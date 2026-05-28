@@ -1,0 +1,214 @@
+{
+  "Python": {
+    "aliases": ["Python3", "Python 3", "CPython", "PyPy"],
+    "category": "Programming Languages"
+  },
+  "JavaScript": {
+    "aliases": ["JS", "ECMAScript", "ES6", "ES7", "ES8"],
+    "category": "Programming Languages"
+  },
+  "TypeScript": {
+    "aliases": ["TS"],
+    "category": "Programming Languages"
+  },
+  "Java": {
+    "aliases": ["Java SE", "Java EE", "Jakarta EE", "J2EE"],
+    "category": "Programming Languages"
+  },
+  "Go": {
+    "aliases": ["Golang", "GoLang"],
+    "category": "Programming Languages"
+  },
+  "Rust": {
+    "aliases": ["RustLang"],
+    "category": "Programming Languages"
+  },
+  "C++": {
+    "aliases": ["CPP", "C Plus Plus", "CPlusPlus"],
+    "category": "Programming Languages"
+  },
+  "C#": {
+    "aliases": ["CSharp", "C Sharp", "dotnet"],
+    "category": "Programming Languages"
+  },
+  "Ruby": {
+    "aliases": ["Ruby on Rails", "RoR"],
+    "category": "Programming Languages"
+  },
+  "PHP": {
+    "aliases": ["PHP 7", "PHP 8"],
+    "category": "Programming Languages"
+  },
+  "Kotlin": {
+    "aliases": [],
+    "category": "Programming Languages"
+  },
+  "Swift": {
+    "aliases": ["SwiftUI"],
+    "category": "Programming Languages"
+  },
+  "Scala": {
+    "aliases": [],
+    "category": "Programming Languages"
+  },
+  "React": {
+    "aliases": ["ReactJS", "React.js", "React Native"],
+    "category": "Frontend Frameworks"
+  },
+  "Angular": {
+    "aliases": ["AngularJS", "Angular 2+", "Angular 17"],
+    "category": "Frontend Frameworks"
+  },
+  "Vue": {
+    "aliases": ["VueJS", "Vue.js", "Vue 3"],
+    "category": "Frontend Frameworks"
+  },
+  "Next.js": {
+    "aliases": ["NextJS", "Next"],
+    "category": "Frontend Frameworks"
+  },
+  "Svelte": {
+    "aliases": ["SvelteKit"],
+    "category": "Frontend Frameworks"
+  },
+  "Node.js": {
+    "aliases": ["Node", "NodeJS"],
+    "category": "Backend Runtimes"
+  },
+  "Express": {
+    "aliases": ["Express.js", "ExpressJS"],
+    "category": "Backend Frameworks"
+  },
+  "Django": {
+    "aliases": ["Django REST", "DRF"],
+    "category": "Backend Frameworks"
+  },
+  "FastAPI": {
+    "aliases": [],
+    "category": "Backend Frameworks"
+  },
+  "Flask": {
+    "aliases": [],
+    "category": "Backend Frameworks"
+  },
+  "Spring Boot": {
+    "aliases": ["Spring", "Spring Framework"],
+    "category": "Backend Frameworks"
+  },
+  "PostgreSQL": {
+    "aliases": ["Postgres", "PgSQL", "pg", "PostgresDB", "Postgres SQL"],
+    "category": "Databases"
+  },
+  "MySQL": {
+    "aliases": ["MariaDB"],
+    "category": "Databases"
+  },
+  "MongoDB": {
+    "aliases": ["Mongo", "Mongo DB"],
+    "category": "Databases"
+  },
+  "Redis": {
+    "aliases": ["RedisDB"],
+    "category": "Databases"
+  },
+  "SQLite": {
+    "aliases": [],
+    "category": "Databases"
+  },
+  "Docker": {
+    "aliases": ["Docker Compose", "Docker Swarm"],
+    "category": "DevOps & Infrastructure"
+  },
+  "Kubernetes": {
+    "aliases": ["K8s", "k8s", "EKS", "AKS", "GKE"],
+    "category": "DevOps & Infrastructure"
+  },
+  "AWS": {
+    "aliases": ["Amazon Web Services", "EC2", "S3", "Lambda"],
+    "category": "Cloud Platforms"
+  },
+  "Azure": {
+    "aliases": ["Microsoft Azure", "Azure DevOps"],
+    "category": "Cloud Platforms"
+  },
+  "GCP": {
+    "aliases": ["Google Cloud", "Google Cloud Platform"],
+    "category": "Cloud Platforms"
+  },
+  "Terraform": {
+    "aliases": ["HashiCorp Terraform"],
+    "category": "DevOps & Infrastructure"
+  },
+  "Git": {
+    "aliases": ["GitHub", "GitLab", "Bitbucket"],
+    "category": "Tools"
+  },
+  "CI/CD": {
+    "aliases": ["Jenkins", "GitHub Actions", "GitLab CI", "CircleCI"],
+    "category": "DevOps & Infrastructure"
+  },
+  "Machine Learning": {
+    "aliases": ["ML", "Deep Learning", "Neural Networks"],
+    "category": "AI & Data Science"
+  },
+  "TensorFlow": {
+    "aliases": ["TF"],
+    "category": "AI & Data Science"
+  },
+  "PyTorch": {
+    "aliases": [],
+    "category": "AI & Data Science"
+  },
+  "Scikit-learn": {
+    "aliases": ["sklearn", "scikit learn"],
+    "category": "AI & Data Science"
+  },
+  "Pandas": {
+    "aliases": [],
+    "category": "AI & Data Science"
+  },
+  "NumPy": {
+    "aliases": ["numpy"],
+    "category": "AI & Data Science"
+  },
+  "Apache Kafka": {
+    "aliases": ["Kafka"],
+    "category": "Data Engineering"
+  },
+  "Apache Spark": {
+    "aliases": ["Spark"],
+    "category": "Data Engineering"
+  },
+  "GraphQL": {
+    "aliases": ["Apollo", "Relay"],
+    "category": "API Technologies"
+  },
+  "REST": {
+    "aliases": ["RESTful", "REST API"],
+    "category": "API Technologies"
+  },
+  "gRPC": {
+    "aliases": [],
+    "category": "API Technologies"
+  },
+  "Linux": {
+    "aliases": ["Unix", "Ubuntu", "CentOS", "Debian"],
+    "category": "Operating Systems"
+  },
+  "Agile": {
+    "aliases": ["Scrum", "Kanban", "Sprint"],
+    "category": "Methodologies"
+  },
+  "Leadership": {
+    "aliases": ["Team Lead", "Mentoring", "Management"],
+    "category": "Soft Skills"
+  },
+  "Communication": {
+    "aliases": ["Written Communication", "Verbal Communication", "Presentation"],
+    "category": "Soft Skills"
+  },
+  "Problem Solving": {
+    "aliases": ["Analytical", "Critical Thinking", "Debugging"],
+    "category": "Soft Skills"
+  }
+}
