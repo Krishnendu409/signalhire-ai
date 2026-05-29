@@ -1,13 +1,10 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { 
   CheckCircle2, 
   AlertTriangle, 
-  Info, 
   ChevronRight, 
   Quote,
-  Target,
   Zap
 } from "lucide-react"
 import { Card } from "@/components/ui/card"
@@ -19,7 +16,10 @@ interface EvaluationCardProps {
   candidate: {
     full_name: string
     final_score: number
-    dimension_scores: any
+    dimension_scores: {
+      semantic_relevance?: { score?: number }
+      career_trajectory?: { score?: number }
+    }
     explanation?: {
       top_strengths: string[]
       missing_skills: string[]
@@ -123,7 +123,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
               <Quote className="w-3 h-3" /> Extracted Evidence
             </h4>
             <div className="p-3 rounded-lg bg-black/20 border border-white/5 italic text-xs text-slate-400 relative">
-              "{explanation.extracted_evidence[0].evidence}"
+              &quot;{explanation.extracted_evidence[0].evidence}&quot;
               <div className="mt-2 text-[10px] not-italic font-bold text-slate-500 flex items-center gap-1">
                 <ChevronRight className="w-3 h-3" /> {explanation.extracted_evidence[0].claim}
               </div>

@@ -1,20 +1,54 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Upload, Briefcase, Sparkles, CheckCircle, Users,
-  Zap, AlertTriangle, Info, LayoutGrid, Table as TableIcon,
-  FileText, TrendingUp, ArrowRight
+  Zap, AlertTriangle, FileText
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { EvaluationCard } from "@/components/EvaluationCard";
-import { TrajectoryBadge } from "@/components/TrajectoryBadge";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+
+type CandidateResult = {
+  full_name: string;
+  final_score: number;
+  dimension_scores: {
+    semantic_relevance?: { score?: number };
+    career_trajectory?: { score?: number };
+  };
+  explanation?: {
+    top_strengths: string[];
+    missing_skills: string[];
+    adjacent_skills: string[];
+    risk_factors: string[];
+    overall_assessment: string;
+    extracted_evidence: { claim: string; evidence: string }[];
+  };
+  parsed_data: {
+    _trajectory?: {
+      archetype: "fast_climber" | "stable_performer" | "chaotic_hopper" | "mixed" | "unknown";
+      score: number;
+      details: string;
+    };
+    _meta?: {
+      layout_complexity: number;
+      extraction_confidence: number;
+      parser_warnings: string[];
+    };
+  };
+  id?: string | number;
+};
+
+type PollResult = {
+  status?: string;
+  error?: string;
+  results?: CandidateResult[];
+};
 
 export default function DashboardPage() {
   const [jdFile, setJdFile] = useState<File | null>(null);
@@ -22,10 +56,9 @@ export default function DashboardPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [statusMessage, setStatusMessage] = useState("");
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<CandidateResult[]>([]);
   const [currentJobId, setCurrentJobId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<"grid" | "spreadsheet">("grid");
 
   const handleProcess = async () => {
     if (!jdFile || resumeFiles.length === 0) return;
@@ -83,7 +116,7 @@ export default function DashboardPage() {
 
       // 5. Poll for completed ranking using job_id directly
       setStatusMessage("Analyzing profiles and generating explanations...");
-      let finalResults = null;
+      let finalResults: PollResult | null = null;
       let attempts = 0;
       while (attempts < 30) {
         await new Promise(r => setTimeout(r, 2000));
@@ -107,9 +140,9 @@ export default function DashboardPage() {
       setResults(finalResults.results || []);
       setUploadProgress(100);
       setStatusMessage("Complete!");
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Processing failed:", err);
-      setError(err.message || "An unexpected error occurred.");
+      setError(err instanceof Error ? err.message : "An unexpected error occurred.");
     } finally {
       setIsProcessing(false);
       setStatusMessage("");

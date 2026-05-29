@@ -1,9 +1,9 @@
 const API_BASE = "http://localhost:8000/api"
 
-export async function apiRequest(
+export async function apiRequest<T = unknown>(
   endpoint: string,
   options: RequestInit = {}
-): Promise<any> {
+): Promise<T> {
   const user = localStorage.getItem("signalhire_user")
   let token = ""
   if (user) {
@@ -25,5 +25,5 @@ export async function apiRequest(
     throw new Error(error || `Request failed with status ${res.status}`)
   }
 
-  return res.json()
+  return res.json() as Promise<T>
 }
