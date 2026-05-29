@@ -15,12 +15,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       async authorize(credentials) {
         // For demo: accept any email/password and auto‑create a user in backend
         // In production, verify against your database or backend endpoint
-        if (!credentials?.email) return null
+        const email = typeof credentials?.email === "string" ? credentials.email : null
+        if (!email) return null
 
         // We'll return a user object with an id (the backend expects a UUID)
         // For simplicity, we'll generate a fake UUID from the email hash
         const id = crypto.randomUUID() // temporary – replace with real user id from DB
-        return { id, email: credentials.email, name: credentials.email }
+        return { id, email, name: email }
       },
     }),
   ],
