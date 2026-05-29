@@ -1,31 +1,65 @@
-import asyncio
 import uuid
-from typing import Any, Dict, Callable
+import traceback
+import asyncio
+from app.tasks.functions import process_resume, process_ranking
 
-class SimpleQueue:
+
+class TaskManager:
+    """In-memory task queue that matches the SAQ interface."""
+    
     def __init__(self):
-        self.queue = asyncio.Queue()
-        self.tasks: Dict[str, Dict[str, Any]] = {}
-
-    async def add_task(self, name: str, func: Callable, *args, **kwargs) -> str:
-        task_id = str(uuid.uuid4())
-        self.tasks[task_id] = {
-            "id": task_id,
-            "name": name,
-            "status": "pending",
-            "progress": 0,
-            "result": None,
-            "error": None
+        self._tasks = {}
+        self._functions = {
+            "process_resume": process_resume,
+            "process_ranking": process_ranking,
         }
-        await self.queue.put((task_id, func, args, kwargs))
+
+    async def add_task(self, name: str, *args, **kwargs) -> str:
+        """Enqueue a task and return its ID."""
+        task_id = str(uuid.uuid4())
+        func = self._functions.get(name)
+        
+        if not func:
+            raise ValueError(f"Unknown task: {name}")
+        
+        # Store task state
+        self._tasks[task_id] = {
+            "id": task_id,
+            "status": "pending",
+            "result": None,
+            "error": None,
+        }
+        
+        # Run in background
+        asyncio.create_task(self._run_task(task_id, func, *args, **kwargs))
+        
         return task_id
 
-    def get_task_status(self, task_id: str) -> Dict[str, Any] | None:
-        return self.tasks.get(task_id)
+    async def _run_task(self, task_id: str, func, *args, **kwargs):
+        """Execute a task and update its status."""
+        self._tasks[task_id]["status"] = "processing"
+        try:
+            result = await func(*args, **kwargs)
+            self._tasks[task_id]["status"] = "completed"
+            self._tasks[task_id]["result"] = result
+        except Exception as e:
+            traceback.print_exc()
+            self._tasks[task_id]["status"] = "failed"
+            self._tasks[task_id]["error"] = str(e)
 
-    async def update_task(self, task_id: str, **kwargs):
-        if task_id in self.tasks:
-            self.tasks[task_id].update(kwargs)
+    async def get_task_status(self, task_id: str) -> dict | None:
+        """Get the current status of a task."""
+        task = self._tasks.get(task_id)
+        if not task:
+            return None
+        return {
+            "id": task["id"],
+            "status": task["status"],
+            "progress": 100 if task["status"] == "completed" else 0,
+            "result": task["result"],
+            "error": task["error"],
+        }
 
-# Global queue instance
-task_queue = SimpleQueue()
+
+# Global instance
+task_queue = TaskManager()

@@ -78,26 +78,26 @@ def classify_trajectory(
     lateral_rate = len(lateral_moves) / career_years
 
     # Detect industry patterns
-    companies = [exp.get("company", "") for exp in experiences if exp.get("company")]
-    unique_industries = len(set(companies))  # Simplified – in production you'd map to industry taxonomy
+    companies = [exp.get("company", "").strip().lower() for exp in experiences if exp.get("company")]
+    unique_companies = len(set(companies))
 
     # Classification logic
-    if promotion_rate >= 0.5 and avg_tenure_years <= 3:
+    if promotion_rate >= 0.5:
         archetype = "fast_climber"
-        score = min(1.0, 0.7 + promotion_rate)
-        details = f"Fast Climber: {len(promotions)} promotions in {career_years:.1f} years ({promotion_rate:.2f} promotions/year). Average tenure: {avg_tenure_years:.1f} years."
-    elif avg_tenure_years >= 4 and promotion_rate <= 0.3 and lateral_rate <= 0.2:
+        score = min(1.0, 0.7 + (promotion_rate / 2))
+        details = f"Fast Climber: {len(promotions)} promotions in {career_years:.1f} years ({promotion_rate:.2f}/yr). High growth momentum."
+    elif avg_tenure_years >= 3.5:
         archetype = "stable_performer"
-        score = 0.85
-        details = f"Stable Performer: Long average tenure of {avg_tenure_years:.1f} years with steady, deep expertise building."
-    elif avg_tenure_years <= 1.5 and promotion_rate <= 0.2 and lateral_rate >= 0.4:
+        score = 0.9
+        details = f"Stable Performer: Solid tenure averaging {avg_tenure_years:.1f} years. Deep institutional knowledge and commitment."
+    elif avg_tenure_years <= 1.8 and unique_companies >= 3:
         archetype = "chaotic_hopper"
-        score = 0.3
-        details = f"Chaotic Hopper: High job mobility ({num_jobs} jobs in {career_years:.1f} years, {avg_tenure_years:.1f}yr avg tenure) without clear advancement."
+        score = 0.4
+        details = f"Chaotic Hopper: High mobility across {unique_companies} different companies in {career_years:.1f} years. Potential retention risk."
     else:
         archetype = "mixed"
         score = 0.6
-        details = f"Mixed trajectory: {career_years:.1f} years, {num_jobs} roles, {len(promotions)} promotions."
+        details = f"Mixed trajectory: {career_years:.1f} years, {num_jobs} roles, showing varied professional growth patterns."
 
     return {
         "archetype": archetype,

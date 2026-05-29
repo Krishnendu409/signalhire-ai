@@ -55,10 +55,12 @@ async def create_ranking(
     db.add(ranking)
     await db.commit()
 
-    await task_queue.add_task("process_ranking", process_ranking, str(ranking.id))
+    # SAQ: only pass function name as string
+    task_id = await task_queue.add_task("process_ranking", ranking_job_id=str(ranking.id))
 
     return {
         "ranking_id": str(ranking.id),
+        "task_id": task_id,
         "status": "pending",
         "message": f"Ranking started for {len(candidates)} candidates.",
     }
@@ -70,13 +72,14 @@ async def get_latest_ranking(
     user: User = Depends(get_current_user),
     db=Depends(get_db),
 ):
-    """Get the latest completed ranking for a job."""
+    """Get the latest completed ranking for a job with ownership verification."""
+    # Verify job ownership first
     job_result = await db.execute(
         select(Job).where(Job.id == job_id, Job.recruiter_id == user.id)
     )
     job = job_result.scalar_one_or_none()
     if not job:
-        raise HTTPException(status_code=404, detail="Job not found")
+        raise HTTPException(status_code=404, detail="Job not found or unauthorized")
 
     ranking_result = await db.execute(
         select(RankingJob)
@@ -119,10 +122,17 @@ async def export_ranking_csv(
     user: User = Depends(get_current_user),
     db=Depends(get_db),
 ):
-    """Export the latest ranking as CSV for spreadsheet integration."""
+    """Export the latest ranking as CSV for spreadsheet integration with ownership verification."""
     import csv
     import io
     from fastapi.responses import StreamingResponse
+
+    # Verify job ownership
+    job_result = await db.execute(
+        select(Job).where(Job.id == job_id, Job.recruiter_id == user.id)
+    )
+    if not job_result.scalar_one_or_none():
+        raise HTTPException(status_code=404, detail="Job not found or unauthorized")
 
     ranking_result = await db.execute(
         select(RankingJob)
@@ -172,4 +182,4 @@ async def export_ranking_csv(
         iter([output.getvalue()]),
         media_type="text/csv",
         headers={"Content-Disposition": f"attachment; filename=ranking_{job_id}.csv"},
-    )
+    )

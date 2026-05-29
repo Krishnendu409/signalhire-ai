@@ -39,9 +39,9 @@ def normalize_skill(raw_name: str) -> dict | None:
             "matched_by": "exact",
         }
 
-    # 2. Fuzzy match on all known strings
+    # 2. Fuzzy match on all known strings (lower threshold)
     all_keys = list(_ALL_ALIASES.keys())
-    matches = get_close_matches(name_lower, all_keys, n=1, cutoff=0.85)
+    matches = get_close_matches(name_lower, all_keys, n=1, cutoff=0.75)
     if matches:
         canon = _ALL_ALIASES[matches[0]]
         return {
@@ -51,7 +51,21 @@ def normalize_skill(raw_name: str) -> dict | None:
             "matched_by": "fuzzy",
         }
 
-    # 3. No match — return as-is with uncategorized
+    # 3. Token overlap check (e.g., "React.js" in "React")
+    name_tokens = set(name_lower.split())
+    for key in all_keys:
+        key_tokens = set(key.split())
+        # Check if one is a subset of another (simple version)
+        if name_tokens.issubset(key_tokens) or key_tokens.issubset(name_tokens):
+             canon = _ALL_ALIASES[key]
+             return {
+                "raw": raw_name,
+                "canonical_name": canon,
+                "category": TAXONOMY[canon]["category"],
+                "matched_by": "token_overlap",
+            }
+
+    # 4. No match — return as-is with uncategorized
     return {
         "raw": raw_name,
         "canonical_name": raw_name,
