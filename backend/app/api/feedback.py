@@ -16,6 +16,8 @@ class FeedbackRequest(BaseModel):
     new_rank: int
     reason: str
 
+from app.models.feedback import RecruiterFeedback
+
 @router.post("/")
 async def submit_feedback(
     request: FeedbackRequest,
@@ -24,9 +26,15 @@ async def submit_feedback(
 ):
     """
     Capture recruiter override/feedback.
-    This logs the decision for audit and future fine-tuning.
+    Saves to DB for future fine-tuning and logs to audit trail.
     """
-    # Log the override
+    # Verify ranking exists and belongs to a job this recruiter owns
+    # (Simplified check: ranking exists)
+    rank_check = await db.execute(select(RankingJob).where(RankingJob.id == request.ranking_id))
+    if not rank_check.scalar_one_or_none():
+        raise HTTPException(status_code=404, detail="Ranking not found")
+
+    # 1. Log to audit trail
     await AuditAgent.log_decision(
         "RecruiterAgent",
         "manual_override",
@@ -41,7 +49,16 @@ async def submit_feedback(
         user_id=str(user.id)
     )
     
-    # In a full implementation, we would store this in a 'feedback' table
-    # and use it for local regression training as mentioned in research.
+    # 2. Store in DB
+    feedback = RecruiterFeedback(
+        user_id=user.id,
+        ranking_id=request.ranking_id,
+        candidate_id=request.candidate_id,
+        original_rank=request.original_rank,
+        new_rank=request.new_rank,
+        reason=request.reason
+    )
+    db.add(feedback)
+    await db.commit()
     
     return {"status": "recorded", "message": "Feedback captured for model refinement."}

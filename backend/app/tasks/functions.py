@@ -19,7 +19,7 @@ async def process_resume(candidate_id: str):
         candidate = result.scalar_one_or_none()
         if not candidate:
             logger.error(f"Candidate {candidate_id} not found")
-            return
+            return {"error": "Candidate not found"}
         
         try:
             file_bytes = await download_resume(candidate.resume_file_key)
@@ -29,7 +29,6 @@ async def process_resume(candidate_id: str):
             candidate.layout_complexity = parsed.get("_meta", {}).get("layout_complexity", 0)
             candidate.extraction_confidence = parsed.get("_meta", {}).get("extraction_confidence", 0)
             
-            # Generate embedding and index in Qdrant (Optional: don't fail if Qdrant/Ollama is off)
             try:
                 skills = " ".join([s.get("name", "") for s in parsed.get("skills", [])])
                 index_text = f"{parsed.get('full_name', '')} {parsed.get('current_title', '')} {skills} {parsed.get('summary', '')}"
@@ -49,10 +48,12 @@ async def process_resume(candidate_id: str):
             
             await session.commit()
             logger.info(f"Successfully processed resume for candidate {candidate_id}")
+            return {"candidate_id": candidate_id, "parsed": True}
         except Exception as e:
             logger.error(f"Error processing resume for candidate {candidate_id}: {str(e)}")
             candidate.parsed_data = {"error": str(e)}
             await session.commit()
+            return {"candidate_id": candidate_id, "error": str(e)}
 
 async def process_ranking(ranking_job_id: str):
     """Background task to run the full ranking pipeline."""
@@ -60,18 +61,15 @@ async def process_ranking(ranking_job_id: str):
         res = await session.execute(select(RankingJob).where(RankingJob.id == ranking_job_id))
         ranking_job = res.scalar_one_or_none()
         if not ranking_job:
-            return
+            return {"error": "Ranking job not found"}
         
         try:
             ranking_job.status = "processing"
             await session.commit()
             
-            # Get job and candidates
             job_res = await session.execute(select(Job).where(Job.id == ranking_job.job_id))
             job = job_res.scalar_one_or_none()
             
-            # Get all parsed candidates for this recruiter
-            # In production, we'd use semantic retrieval here, but for MVP we match against all
             cand_res = await session.execute(
                 select(Candidate).where(
                     Candidate.recruiter_id == job.recruiter_id,
@@ -94,8 +92,10 @@ async def process_ranking(ranking_job_id: str):
             ranking_job.status = "completed"
             await session.commit()
             logger.info(f"Successfully completed ranking job {ranking_job_id}")
+            return results
         except Exception as e:
             logger.error(f"Error in ranking job {ranking_job_id}: {str(e)}")
             ranking_job.status = "failed"
             ranking_job.results = {"error": str(e)}
             await session.commit()
+            return {"error": str(e)}

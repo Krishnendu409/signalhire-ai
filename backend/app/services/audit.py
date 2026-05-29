@@ -1,14 +1,18 @@
 import json
 import logging
 import uuid
+import os
+from pathlib import Path
 from datetime import datetime
 from typing import Any, Dict, List
-from sqlalchemy.ext.asyncio import AsyncSession
-from app.models.user import User
 
-# Configure a specialized audit logger
+# Configure a specialized audit logger with a reliable absolute path
+LOG_DIR = Path("C:/Users/krish/Documents/signalhire/backend/logs")
+LOG_DIR.mkdir(exist_ok=True)
+LOG_FILE = LOG_DIR / "audit_trail.log"
+
 audit_logger = logging.getLogger("signalhire.audit")
-handler = logging.FileHandler("audit_trail.log")
+handler = logging.FileHandler(str(LOG_FILE))
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 audit_logger.addHandler(handler)

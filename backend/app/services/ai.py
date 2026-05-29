@@ -1,78 +1,42 @@
 import json
-import time
-import httpx
-import openai
+import logging
+import asyncio
+from google import genai
+from google.genai import types
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from app.core.config import settings
 
+logger = logging.getLogger(__name__)
 
-# ---------- Low-level LLM callers ----------
+# Initialize the new Gemini client (Gemini 2.5 Flash is free and fast)
+client = genai.Client(api_key=settings.gemini_api_key)
+
 
 @retry(
     stop=stop_after_attempt(3),
     wait=wait_exponential(multiplier=1, min=2, max=10),
-    retry=retry_if_exception_type((httpx.HTTPError, httpx.TimeoutException)),
+    retry=retry_if_exception_type(Exception),
 )
-async def deepseek_chat(
+async def gemini_generate(
     prompt: str,
     system: str = "You are an expert recruiter and talent analyst.",
     temperature: float = 0.1,
 ) -> dict:
-    """Call DeepSeek API and return parsed JSON response."""
-    headers = {
-        "Authorization": f"Bearer {settings.deepseek_api_key}",
-        "Content-Type": "application/json",
-    }
-    payload = {
-        "model": "deepseek-chat",
-        "messages": [
-            {"role": "system", "content": system},
-            {"role": "user", "content": prompt},
-        ],
-        "response_format": {"type": "json_object"},
-        "temperature": temperature,
-    }
-    async with httpx.AsyncClient() as client:
-        resp = await client.post(
-            "https://api.deepseek.com/v1/chat/completions",
-            headers=headers,
-            json=payload,
-            timeout=60.0,
-        )
-        if resp.status_code == 402:
-            raise Exception("DeepSeek API balance exhausted. Please top up your account or switch to Ollama.")
-        resp.raise_for_status()
-        data = resp.json()
-        content = data["choices"][0]["message"]["content"]
-        return json.loads(content)
-
-
-async def ollama_chat(
-    prompt: str,
-    system: str = "You are an expert recruiter and talent analyst.",
-    model: str = "qwen2.5:7b",
-    temperature: float = 0.1,
-) -> dict:
-    """Fallback to local Ollama when DeepSeek is unavailable or for offline dev."""
-    client = openai.AsyncOpenAI(
-        base_url=settings.ollama_base_url,
-        api_key="ollama",
-    )
-    try:
-        resp = await client.chat.completions.create(
-            model=model,
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": prompt},
-            ],
-            response_format={"type": "json_object"},
+    """
+    Call Gemini 2.5 Flash and return the parsed JSON response.
+    Uses asyncio.to_thread to avoid blocking the event loop.
+    """
+    response = await asyncio.to_thread(
+        client.models.generate_content,
+        model="gemini-2.5-flash",
+        config=types.GenerateContentConfig(
+            system_instruction=system,
             temperature=temperature,
-        )
-        return json.loads(resp.choices[0].message.content)
-    except Exception as e:
-        if "500" in str(e):
-            raise Exception(f"Ollama error: {e}. Tip: Ensure you have run 'ollama pull {model}'")
-        raise e
+            response_mime_type="application/json",
+        ),
+        contents=[prompt],
+    )
+    return json.loads(response.text)
 
 
 # ---------- Prompt Templates ----------
@@ -188,78 +152,24 @@ Output JSON:
 class AIPipeline:
     @staticmethod
     async def parse_jd(raw_text: str) -> dict:
-        """Run JD understanding engine with multiple fallbacks."""
+        """Run JD understanding engine using Gemini 2.5 Flash."""
         prompt = JD_PARSE_PROMPT.format(jd_text=raw_text)
-        try:
-            return await deepseek_chat(prompt, system=JD_PARSE_SYSTEM)
-        except Exception as e:
-            print(f"DeepSeek JD Parse failed: {e}. Trying Ollama...")
-            try:
-                return await ollama_chat(prompt, system=JD_PARSE_SYSTEM)
-            except Exception as e2:
-                print(f"Ollama JD Parse failed: {e2}. Using heuristic fallback.")
-                return {
-                    "title": "Unparsed Role",
-                    "seniority": "mid",
-                    "required_hard_skills": [],
-                    "required_soft_skills": [],
-                    "must_have_experience": "JD parsing failed. Manual review required.",
-                    "nice_to_have": [],
-                    "hidden_competencies": [],
-                    "domain_knowledge": "N/A"
-                }
+        return await gemini_generate(prompt, system=JD_PARSE_SYSTEM)
 
     @staticmethod
     async def parse_resume(text: str) -> dict:
-        """Extract structured data from resume text with multiple fallbacks."""
+        """Extract structured data from resume text."""
         prompt = RESUME_PARSE_PROMPT.format(resume_text=text[:8000])
-        try:
-            return await deepseek_chat(prompt, system=RESUME_PARSE_SYSTEM)
-        except Exception as e:
-            print(f"DeepSeek Resume Parse failed: {e}. Trying Ollama...")
-            try:
-                return await ollama_chat(prompt, system=RESUME_PARSE_SYSTEM)
-            except Exception as e2:
-                print(f"Ollama Resume Parse failed: {e2}. Using heuristic fallback.")
-                return {
-                    "full_name": "Unknown Candidate",
-                    "current_title": "Unknown Title",
-                    "summary": "Resume parsing failed due to AI provider unavailability.",
-                    "contact": {"email": "", "phone": ""},
-                    "experiences": [],
-                    "education": [],
-                    "skills": [],
-                    "certifications": [],
-                    "projects": [],
-                    "career_gaps": [],
-                    "trajectory_events": []
-                }
+        return await gemini_generate(prompt, system=RESUME_PARSE_SYSTEM)
 
     @staticmethod
     async def rerank_candidate(job_req: dict, candidate_parsed: dict) -> dict:
-        """Score a candidate on all dimensions with heuristic fallback."""
+        """Score a candidate on all dimensions."""
         prompt = RERANK_PROMPT.format(
             job_req_json=json.dumps(job_req, indent=2),
             candidate_json=json.dumps(candidate_parsed, indent=2),
         )
-        try:
-            return await deepseek_chat(prompt, system=RERANK_SYSTEM)
-        except Exception:
-            try:
-                return await ollama_chat(prompt, system=RERANK_SYSTEM)
-            except Exception:
-                # Heuristic scoring (very basic)
-                return {
-                    "semantic_relevance": {"score": 50, "note": "Heuristic fallback (AI unavailable)"},
-                    "experience_depth": {"score": 50, "note": "N/A"},
-                    "career_trajectory": {"score": 50, "note": "N/A", "archetype": "stable_performer"},
-                    "project_relevance": {"score": 50, "note": "N/A"},
-                    "behavioral_indicators": {"score": 50, "note": "N/A"},
-                    "domain_alignment": {"score": 50, "note": "N/A"},
-                    "adaptability": {"score": 50, "note": "N/A"},
-                    "adjacent_skills": [],
-                    "missing_skills": []
-                }
+        return await gemini_generate(prompt, system=RERANK_SYSTEM)
 
     @staticmethod
     async def generate_explanation(
@@ -267,23 +177,10 @@ class AIPipeline:
         candidate_parsed: dict,
         scores: dict,
     ) -> dict:
-        """Generate evidence-backed explanation with template fallback."""
+        """Generate evidence-backed explanation."""
         prompt = EXPLAIN_PROMPT.format(
             job_req_json=json.dumps(job_req, indent=2),
             candidate_json=json.dumps(candidate_parsed, indent=2),
             scores_json=json.dumps(scores, indent=2),
         )
-        try:
-            return await deepseek_chat(prompt, system=EXPLAIN_SYSTEM)
-        except Exception:
-            try:
-                return await ollama_chat(prompt, system=EXPLAIN_SYSTEM)
-            except Exception:
-                return {
-                    "top_strengths": ["Data present in profile"],
-                    "missing_skills": ["Unable to determine (AI Offline)"],
-                    "adjacent_skills": [],
-                    "risk_factors": ["System fallback mode active"],
-                    "overall_assessment": "This candidate was evaluated using heuristic rules because the AI reasoning engine was unavailable. Please review the resume manually for precise fit.",
-                    "extracted_evidence": [{"claim": "Evaluation Mode", "evidence": "System Fallback"}]
-                }
+        return await gemini_generate(prompt, system=EXPLAIN_SYSTEM)

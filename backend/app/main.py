@@ -1,19 +1,26 @@
+import logging
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api import jobs, candidates, rankings, tasks, feedback
 
-app = FastAPI(title="SignalHire AI", version="1.0.0")
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("signalhire")
 
-@app.on_event("startup")
-async def startup_event():
-    from app.tasks.worker import start_worker
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    logger.info("Starting SignalHire AI backend...")
     from app.services.vector_store import init_qdrant
     await init_qdrant()
-    start_worker()
+    yield
+    logger.info("Shutting down SignalHire AI backend...")
 
+app = FastAPI(title="SignalHire AI", version="1.0.0", lifespan=lifespan)
+
+# Explicit CORS origins – this fixes the "Failed to fetch" error
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -21,9 +28,9 @@ app.add_middleware(
 
 @app.middleware("http")
 async def log_requests(request, call_next):
-    print(f"Incoming request: {request.method} {request.url}")
+    logger.info(f"Incoming request: {request.method} {request.url}")
     response = await call_next(request)
-    print(f"Response status: {response.status_code}")
+    logger.info(f"Response status: {response.status_code}")
     return response
 
 app.include_router(jobs.router, prefix="/api/jobs", tags=["jobs"])
