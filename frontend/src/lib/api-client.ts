@@ -2,20 +2,14 @@ const API_BASE = "http://localhost:8000/api"
 
 export async function apiRequest<T = unknown>(
   endpoint: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
+  token?: string
 ): Promise<T> {
-  const user = localStorage.getItem("signalhire_user")
-  let token = ""
-  if (user) {
-    const parsed = JSON.parse(user)
-    token = parsed.id
-  }
-
   const res = await fetch(`${API_BASE}${endpoint}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
+      ...(token ? { Authorization: ["Bearer", token].join(" ") } : {}),
       ...options.headers,
     },
   })
