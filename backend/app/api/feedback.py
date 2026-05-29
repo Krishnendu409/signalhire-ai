@@ -4,6 +4,7 @@ from app.core.deps import get_current_user
 from app.db.session import get_db
 from app.models.user import User
 from app.models.ranking import RankingJob
+from app.models.job import Job
 from app.services.audit import AuditAgent
 from sqlalchemy import select
 
@@ -28,11 +29,14 @@ async def submit_feedback(
     Capture recruiter override/feedback.
     Saves to DB for future fine-tuning and logs to audit trail.
     """
-    # Verify ranking exists and belongs to a job this recruiter owns
-    # (Simplified check: ranking exists)
-    rank_check = await db.execute(select(RankingJob).where(RankingJob.id == request.ranking_id))
+    # Verify ranking belongs to a job owned by this recruiter
+    rank_check = await db.execute(
+        select(RankingJob)
+        .join(Job, RankingJob.job_id == Job.id)
+        .where(RankingJob.id == request.ranking_id, Job.recruiter_id == user.id)
+    )
     if not rank_check.scalar_one_or_none():
-        raise HTTPException(status_code=404, detail="Ranking not found")
+        raise HTTPException(status_code=404, detail="Ranking not found or unauthorized")
 
     # 1. Log to audit trail
     await AuditAgent.log_decision(

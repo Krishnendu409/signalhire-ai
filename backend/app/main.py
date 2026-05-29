@@ -1,4 +1,5 @@
 import logging
+import asyncio
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,7 +12,9 @@ logger = logging.getLogger("signalhire")
 async def lifespan(app: FastAPI):
     logger.info("Starting SignalHire AI backend...")
     from app.services.vector_store import init_qdrant
+    from app.services.reranker import _get_model
     await init_qdrant()
+    await asyncio.to_thread(_get_model)
     yield
     logger.info("Shutting down SignalHire AI backend...")
 

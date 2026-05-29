@@ -6,6 +6,9 @@ def parse_date(date_str: str) -> datetime | None:
     """Attempt to parse various date formats. Returns None on failure."""
     if not date_str:
         return None
+    normalized = date_str.strip().lower()
+    if normalized in {"present", "current", "now"}:
+        return datetime.now()
     formats = [
         "%Y-%m-%d",
         "%Y-%m",
