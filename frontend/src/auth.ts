@@ -1,8 +1,17 @@
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { SignJWT } from "jose"
+import { createHash } from "crypto"
 
-const AUTH_SECRET = new TextEncoder().encode("188043feca145f51d8e6da3c44d8ac1f73fc9ac7ceaab249953258e585d9eec8") // your secret
+const authSecretValue = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET
+const AUTH_SECRET = new TextEncoder().encode(authSecretValue || "development-only-secret-change-me")
+
+function stableUserId(email: string): string {
+  const hash = createHash("sha256").update(email.trim().toLowerCase()).digest("hex")
+  const variantNibble = ((parseInt(hash[16], 16) & 0x3) | 0x8).toString(16)
+  // Build an RFC4122-style deterministic UUID (v5-formatted, SHA-256-derived).
+  return `${hash.slice(0, 8)}-${hash.slice(8, 12)}-5${hash.slice(12, 15)}-${variantNibble}${hash.slice(17, 20)}-${hash.slice(20, 32)}`
+}
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -18,9 +27,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const email = typeof credentials?.email === "string" ? credentials.email : null
         if (!email) return null
 
-        // We'll return a user object with an id (the backend expects a UUID)
-        // For simplicity, we'll generate a fake UUID from the email hash
-        const id = crypto.randomUUID() // temporary – replace with real user id from DB
+        const id = stableUserId(email)
         return { id, email, name: email }
       },
     }),

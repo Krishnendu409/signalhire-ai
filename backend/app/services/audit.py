@@ -1,14 +1,14 @@
 import json
 import logging
 import uuid
-import os
 from pathlib import Path
 from datetime import datetime
 from typing import Any, Dict, List
+from app.core.config import settings
 
-# Configure a specialized audit logger with a reliable absolute path
-LOG_DIR = Path("C:/Users/krish/Documents/signalhire/backend/logs")
-LOG_DIR.mkdir(exist_ok=True)
+# Configure a specialized audit logger with an env-driven path
+LOG_DIR = Path(settings.audit_log_dir)
+LOG_DIR.mkdir(parents=True, exist_ok=True)
 LOG_FILE = LOG_DIR / "audit_trail.log"
 
 audit_logger = logging.getLogger("signalhire.audit")
