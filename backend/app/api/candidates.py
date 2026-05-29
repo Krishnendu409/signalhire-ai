@@ -20,9 +20,9 @@ async def upload_candidate_resume(
 ):
     """
     Upload a resume PDF/image. The system will:
-    1. Save the file to local storage.
+    1. Save the file.
     2. Create a candidate record.
-    3. Enqueue async parsing + embedding.
+    3. Enqueue async parsing + embedding via SAQ.
     """
     if not file.filename or not file.filename.lower().endswith((".pdf", ".png", ".jpg", ".jpeg")):
         raise HTTPException(
@@ -47,13 +47,39 @@ async def upload_candidate_resume(
     candidate.resume_file_key = file_key
     await db.commit()
 
-    await task_queue.add_task("process_resume", process_resume, str(candidate.id))
+    # SAQ: only pass function name as string
+    task_id = await task_queue.add_task("process_resume", candidate_id=str(candidate.id))
 
     return {
         "candidate_id": str(candidate.id),
+        "task_id": task_id,
         "status": "processing",
         "message": "Resume uploaded and queued for parsing.",
     }
+
+
+@router.get("/file/{candidate_id}")
+async def get_candidate_file(
+    candidate_id: str,
+    user: User = Depends(get_current_user),
+    db=Depends(get_db),
+):
+    """Serve the raw resume file for display or download."""
+    from fastapi.responses import Response
+    from app.services.storage import download_resume
+
+    result = await db.execute(
+        select(Candidate).where(Candidate.id == candidate_id, Candidate.recruiter_id == user.id)
+    )
+    candidate = result.scalar_one_or_none()
+    if not candidate:
+        raise HTTPException(status_code=404, detail="Candidate not found")
+    
+    file_bytes = await download_resume(candidate.resume_file_key)
+    # Determine the media type
+    media_type = "application/pdf" if candidate.resume_file_key.lower().endswith(".pdf") else "image/jpeg"
+    
+    return Response(content=file_bytes, media_type=media_type)
 
 
 @router.get("/")
