@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useSession } from "next-auth/react";
 import {
   Upload, Briefcase, Sparkles, CheckCircle, Users,
   Zap, AlertTriangle, FileText
@@ -13,6 +14,10 @@ import { Progress } from "@/components/ui/progress";
 import { EvaluationCard } from "@/components/EvaluationCard";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+const CANDIDATE_READY_MAX_ATTEMPTS = 30;
+const CANDIDATE_READY_POLL_INTERVAL_MS = 2000;
+const PARSING_PROGRESS_START = 45;
+const PARSING_PROGRESS_RANGE = 15;
 
 type CandidateResult = {
   full_name: string;
@@ -50,7 +55,13 @@ type PollResult = {
   results?: CandidateResult[];
 };
 
+type CandidateStatus = {
+  id: string;
+  status: "ready" | "processing";
+};
+
 export default function DashboardPage() {
+  const { data: session } = useSession();
   const [jdFile, setJdFile] = useState<File | null>(null);
   const [resumeFiles, setResumeFiles] = useState<File[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -60,8 +71,44 @@ export default function DashboardPage() {
   const [currentJobId, setCurrentJobId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const backendToken = session?.backendToken;
+  const authHeaders: HeadersInit = backendToken
+    ? { Authorization: ["Bearer", backendToken].join(" ") }
+    : {};
+
+  const waitForCandidatesReady = async (candidateIds: string[]) => {
+    for (let attempt = 0; attempt < CANDIDATE_READY_MAX_ATTEMPTS; attempt++) {
+      await new Promise(r => setTimeout(r, CANDIDATE_READY_POLL_INTERVAL_MS));
+      const res = await fetch(`${API_BASE}/api/candidates`, { headers: authHeaders });
+      if (!res.ok) throw new Error("Failed to fetch candidates for status polling");
+      const candidates: CandidateStatus[] = await res.json();
+      const uploaded = candidates.filter(c => candidateIds.includes(c.id));
+      if (uploaded.length === candidateIds.length && uploaded.every(c => c.status === "ready")) return;
+      setStatusMessage(`Processing resumes (OCR + AI extraction)... (${attempt + 1}/${CANDIDATE_READY_MAX_ATTEMPTS})`);
+      setUploadProgress(PARSING_PROGRESS_START + ((attempt + 1) / CANDIDATE_READY_MAX_ATTEMPTS) * PARSING_PROGRESS_RANGE);
+    }
+    throw new Error("Resume parsing timed out. Please retry ranking in a few moments.");
+  };
+
+  const handleExportCsv = async () => {
+    if (!currentJobId || !backendToken) return;
+    const res = await fetch(`${API_BASE}/api/rankings/${currentJobId}/export`, { headers: authHeaders });
+    if (!res.ok) throw new Error("CSV export failed");
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `ranking_${currentJobId}.csv`;
+    link.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   const handleProcess = async () => {
     if (!jdFile || resumeFiles.length === 0) return;
+    if (!backendToken) {
+      setError("You must be signed in before processing.");
+      return;
+    }
     setIsProcessing(true);
     setUploadProgress(5);
     setStatusMessage("Parsing Job Description...");
@@ -75,7 +122,7 @@ export default function DashboardPage() {
       const jobRes = await fetch(`${API_BASE}/api/jobs`, {
         method: "POST",
         body: jdFormData,
-        headers: { "Authorization": "Bearer demo-token-placeholder" }
+        headers: authHeaders
       });
       const jobData = await jobRes.json();
       if (!jobRes.ok) throw new Error(jobData.detail || "JD upload failed");
@@ -86,6 +133,7 @@ export default function DashboardPage() {
 
       // 2. Upload Resumes
       setStatusMessage(`Uploading ${resumeFiles.length} resumes...`);
+      const uploadedCandidateIds: string[] = [];
       for (let i = 0; i < resumeFiles.length; i++) {
         const file = resumeFiles[i];
         const formData = new FormData();
@@ -93,23 +141,24 @@ export default function DashboardPage() {
         const res = await fetch(`${API_BASE}/api/candidates/upload`, {
           method: "POST",
           body: formData,
-          headers: { "Authorization": "Bearer demo-token-placeholder" }
+          headers: authHeaders
         });
         const data = await res.json();
         if (!res.ok) throw new Error(`Resume upload failed: ${data.detail || "Unknown error"}`);
+        uploadedCandidateIds.push(data.candidate_id);
         setUploadProgress(20 + ((i + 1) / resumeFiles.length) * 40);
         setStatusMessage(`Uploaded ${file.name}`);
       }
 
-      // 3. Wait briefly for async parsing to complete (simplified)
+      // 3. Wait for async parsing to complete
       setStatusMessage("Processing resumes (OCR + AI extraction)...");
-      await new Promise(r => setTimeout(r, 3000));
+      await waitForCandidatesReady(uploadedCandidateIds);
 
       // 4. Trigger Ranking
       setStatusMessage("Starting ranking engine...");
       const rankRes = await fetch(`${API_BASE}/api/rankings/${jobId}`, {
         method: "POST",
-        headers: { "Authorization": "Bearer demo-token-placeholder" }
+        headers: authHeaders
       });
       const rankData = await rankRes.json();
       if (!rankRes.ok) throw new Error(rankData.detail || rankData.message || "Ranking trigger failed");
@@ -121,7 +170,7 @@ export default function DashboardPage() {
       while (attempts < 30) {
         await new Promise(r => setTimeout(r, 2000));
         const pollRes = await fetch(`${API_BASE}/api/rankings/${jobId}/latest`, {
-          headers: { "Authorization": "Bearer demo-token-placeholder" }
+          headers: authHeaders
         });
         const pollData = await pollRes.json();
         if (pollData.status === "completed") {
@@ -326,7 +375,7 @@ export default function DashboardPage() {
                       <Progress value={92} className="h-1 bg-white/5" />
                     </div>
                   </div>
-                  <Button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-black text-xs h-12 rounded-2xl" onClick={() => window.open(`${API_BASE}/api/rankings/${currentJobId}/export`)}>
+                  <Button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-black text-xs h-12 rounded-2xl" onClick={handleExportCsv}>
                     <FileText className="w-4 h-4 mr-2" /> Export CSV
                   </Button>
                   <Button variant="outline" className="w-full border-white/10 hover:bg-white/5 text-white font-black text-xs h-12 rounded-2xl" onClick={() => { setResults([]); setJdFile(null); setResumeFiles([]); }}>

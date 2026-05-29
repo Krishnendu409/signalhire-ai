@@ -118,7 +118,7 @@ async def rank_candidates_for_job(
             candidate.get("dimension_scores", {}),
         )
         candidate["explanation"] = explanation
-        await AuditAgent.log_explanation(c_id, job_id, "qwen2.5:7b")
+        await AuditAgent.log_explanation(c_id, job_id, "gemini-2.5-flash-latest")
         return candidate
 
     top_5_with_explanations = await asyncio.gather(*[explain_one(c) for c in top_5])

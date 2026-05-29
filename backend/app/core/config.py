@@ -10,8 +10,11 @@ class Settings(BaseSettings):
     # DeepSeek (primary reasoning LLM)
     deepseek_api_key: str = ""
 
-    # Gemini (embeddings)
+    # Gemini (LLM parsing/ranking)
     gemini_api_key: str = ""
+
+    # Audit logging
+    audit_log_dir: str = "logs"
 
     # Qdrant (local Docker)
     qdrant_host: str = "localhost"

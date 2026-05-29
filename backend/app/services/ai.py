@@ -1,21 +1,32 @@
 import json
 import logging
 import asyncio
+from functools import lru_cache
 from google import genai
 from google.genai import types
+from google.api_core.exceptions import GoogleAPICallError
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
-# Initialize the new Gemini client (Gemini 2.5 Flash is free and fast)
-client = genai.Client(api_key=settings.gemini_api_key)
+MODEL_NAME = "gemini-2.5-flash-latest"
+# Thinking budget controls extra reasoning tokens in Gemini 2.5 Flash; 768 balances
+# extraction consistency improvements with latency/cost for JD and resume parsing.
+THINKING_BUDGET = 768
+
+
+@lru_cache(maxsize=1)
+def _get_client() -> genai.Client:
+    if not settings.gemini_api_key:
+        raise RuntimeError("GEMINI_API_KEY is not configured")
+    return genai.Client(api_key=settings.gemini_api_key)
 
 
 @retry(
     stop=stop_after_attempt(3),
     wait=wait_exponential(multiplier=1, min=2, max=10),
-    retry=retry_if_exception_type(Exception),
+    retry=retry_if_exception_type((GoogleAPICallError, ConnectionError, TimeoutError)),
 )
 async def gemini_generate(
     prompt: str,
@@ -27,12 +38,13 @@ async def gemini_generate(
     Uses asyncio.to_thread to avoid blocking the event loop.
     """
     response = await asyncio.to_thread(
-        client.models.generate_content,
-        model="gemini-2.5-flash",
+        _get_client().models.generate_content,
+        model=MODEL_NAME,
         config=types.GenerateContentConfig(
             system_instruction=system,
             temperature=temperature,
             response_mime_type="application/json",
+            thinking_config=types.ThinkingConfig(thinking_budget=THINKING_BUDGET),
         ),
         contents=[prompt],
     )
@@ -159,7 +171,8 @@ class AIPipeline:
     @staticmethod
     async def parse_resume(text: str) -> dict:
         """Extract structured data from resume text."""
-        prompt = RESUME_PARSE_PROMPT.format(resume_text=text[:8000])
+        # Pass full resume text; Gemini 2.5 Flash supports long context windows.
+        prompt = RESUME_PARSE_PROMPT.format(resume_text=text)
         return await gemini_generate(prompt, system=RESUME_PARSE_SYSTEM)
 
     @staticmethod
