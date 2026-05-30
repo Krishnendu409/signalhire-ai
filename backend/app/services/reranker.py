@@ -38,7 +38,13 @@ def _candidate_to_text(candidate: dict) -> str:
     
     # Skills with high confidence
     skills = candidate.get("skills", [])
-    high_conf_skills = [s["name"] for s in skills if s.get("confidence", 0) >= 0.6]
+    high_conf_skills = []
+    for s in skills:
+        if s.get("confidence", 0) < 0.6 or s.get("negated") or s.get("excluded_from_scoring"):
+            continue
+        skill_name = s.get("canonical_name") or s.get("name")
+        if skill_name:
+            high_conf_skills.append(skill_name)
     if high_conf_skills:
         parts.append("Skills: " + ", ".join(high_conf_skills))
     
