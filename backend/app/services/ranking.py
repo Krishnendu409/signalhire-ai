@@ -1,5 +1,6 @@
 import json
 import asyncio
+import copy
 from app.services.ai import AIPipeline
 from app.services.embeddings import embed_query
 from app.services.vector_store import search_candidates
@@ -78,7 +79,15 @@ async def rank_candidates_for_job(
     # Stage 3: AI multi-dimensional scoring
     async def score_one(candidate: dict) -> dict:
         parsed = candidate.get("parsed_data", {})
+        parsed_for_scoring = copy.deepcopy(parsed)
         c_id = str(candidate.get("id"))
+        scoring_skills = parsed_for_scoring.get("scoring_skills")
+        if isinstance(scoring_skills, list):
+            parsed_for_scoring["skills"] = scoring_skills
+            parsed_for_scoring["excluded_negated_skills"] = [
+                s.get("canonical_name", s.get("name", ""))
+                for s in parsed_for_scoring.get("negated_skills", [])
+            ]
         
         # Classify trajectory
         trajectory = classify_trajectory(
@@ -86,15 +95,25 @@ async def rank_candidates_for_job(
             parsed.get("trajectory_events", []),
         )
         parsed["_trajectory"] = trajectory
+        parsed_for_scoring["_trajectory"] = trajectory
 
         # AI scoring
-        dimension_scores = await AIPipeline.rerank_candidate(job_requirements, parsed)
+        dimension_scores = await AIPipeline.rerank_candidate(job_requirements, parsed_for_scoring)
+        if "career_trajectory" in dimension_scores:
+            dimension_scores["career_trajectory"]["archetype"] = trajectory.get("archetype", "unknown")
+            dimension_scores["career_trajectory"]["note"] = trajectory.get(
+                "details",
+                dimension_scores["career_trajectory"].get("note", ""),
+            )
         candidate["dimension_scores"] = dimension_scores
         candidate["final_score"] = compute_final_score(dimension_scores)
+        candidate["full_name"] = parsed.get("full_name", "Unknown")
+        candidate["current_title"] = parsed.get("current_title", "")
+        candidate["compliance_note"] = "No protected attributes used"
 
         # Audit provenence and compliance
         await AuditAgent.log_provenance(c_id, "internal_db", list(parsed.keys()))
-        await AuditAgent.log_compliance_check(c_id, job_id, "pass", ["No protected attributes used"])
+        await AuditAgent.log_compliance_check(c_id, job_id, "pass", [candidate["compliance_note"]])
         
         return candidate
 

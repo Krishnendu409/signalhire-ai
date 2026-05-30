@@ -1,4 +1,5 @@
 import io
+import copy
 import fitz  # PyMuPDF
 import pytesseract
 from PIL import Image
@@ -74,9 +75,14 @@ async def parse_resume_bytes(file_bytes: bytes, filename: str) -> dict:
     # Step 2: AI structured extraction
     parsed = await AIPipeline.parse_resume(text)
 
-    # Step 3: Normalize skills through taxonomy
+    # Step 3: Normalize and calibrate skills through taxonomy
     if "skills" in parsed:
-        parsed["skills"] = normalize_skills(parsed["skills"])
+        raw_skills = copy.deepcopy(parsed["skills"])
+        normalized_skills = normalize_skills(copy.deepcopy(parsed["skills"]))
+        parsed["skills"] = normalized_skills
+        parsed["raw_extracted_skills"] = raw_skills
+        parsed["scoring_skills"] = [s for s in normalized_skills if s.get("is_scoring_eligible", False)]
+        parsed["negated_skills"] = [s for s in normalized_skills if s.get("negated", False)]
 
     # Step 4: Attach parsing metadata (for calibrated uncertainty UI)
     parsed["_meta"] = {

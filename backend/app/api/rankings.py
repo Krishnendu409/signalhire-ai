@@ -148,21 +148,23 @@ async def export_ranking_csv(
     output = io.StringIO()
     writer = csv.writer(output)
     writer.writerow([
-        "Rank", "Candidate Name", "Current Title", "Final Score",
+        "Rank", "Name", "Title", "Final Score",
         "Semantic Relevance", "Experience Depth", "Career Trajectory",
-        "Project Relevance", "Behavioral", "Domain Alignment", "Adaptability",
-        "Top Strengths", "Missing Skills", "Adjacent Skills", "Risk Factors",
+        "Project Relevance", "Behavioral Indicators", "Domain Alignment", "Adaptability",
+        "Trajectory Archetype", "Top Strengths", "Missing Skills", "Adjacent Skills",
+        "Risk Factors", "Compliance Note",
     ])
 
     for i, res in enumerate(ranking.results.get("results", [])):
         parsed = res.get("parsed_data", {})
         dims = res.get("dimension_scores", {})
         expl = res.get("explanation", {})
+        trajectory = parsed.get("_trajectory", {})
 
         writer.writerow([
             i + 1,
-            parsed.get("full_name", "Unknown"),
-            parsed.get("current_title", ""),
+            res.get("full_name", parsed.get("full_name", "Unknown")),
+            res.get("current_title", parsed.get("current_title", "")),
             res.get("final_score", 0),
             dims.get("semantic_relevance", {}).get("score", ""),
             dims.get("experience_depth", {}).get("score", ""),
@@ -171,10 +173,12 @@ async def export_ranking_csv(
             dims.get("behavioral_indicators", {}).get("score", ""),
             dims.get("domain_alignment", {}).get("score", ""),
             dims.get("adaptability", {}).get("score", ""),
+            trajectory.get("archetype", dims.get("career_trajectory", {}).get("archetype", "unknown")),
             "; ".join(expl.get("top_strengths", [])),
             "; ".join(expl.get("missing_skills", [])),
             "; ".join(expl.get("adjacent_skills", [])),
             "; ".join(expl.get("risk_factors", [])),
+            res.get("compliance_note", "No protected attributes used"),
         ])
 
     output.seek(0)
