@@ -98,7 +98,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
              </h4>
              <ul className="space-y-1">
                {explanation?.top_strengths.slice(0, 2).map((s, i) => (
-                 <li key={i} className="text-xs text-slate-300 flex items-start gap-2">
+                 <li key={`${i}-${s}`} className="text-xs text-slate-300 flex items-start gap-2">
                    <CheckCircle2 className="w-3 h-3 text-emerald-500 mt-0.5 flex-shrink-0" />
                    {s}
                  </li>
