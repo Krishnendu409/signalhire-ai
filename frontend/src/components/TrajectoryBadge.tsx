@@ -55,7 +55,7 @@ export function TrajectoryBadge({ archetype, details, metrics, showIcon = true, 
   const Icon = config.icon
   const fallbackDetails = config.description
   const metricSummary = [
-    typeof metrics?.promotion_rate === "number" ? `${metrics.promotion_rate.toFixed(2)}/yr promotions` : "",
+    typeof metrics?.promotion_rate === "number" ? `${metrics.promotion_rate.toFixed(2)} promotions/yr` : "",
     typeof metrics?.avg_tenure_years === "number" ? `${metrics.avg_tenure_years.toFixed(1)}y avg tenure` : "",
     typeof metrics?.industry_diversity === "number" ? `${metrics.industry_diversity} industry tracks` : "",
   ].filter(Boolean).join(" • ")

@@ -23,6 +23,10 @@ for canon_name, data in TAXONOMY.items():
     for alias in data.get("aliases", []):
         _ALL_ALIASES[alias.lower()] = canon_name
 
+SOFT_SIGNAL_PATTERN = re.compile(r"\b(familiar with|basic knowledge|beginner|learning)\b", re.IGNORECASE)
+NEGATION_PATTERN = re.compile(r"\b(no experience with|have not worked with|not worked with|without)\b", re.IGNORECASE)
+SECTION_BOOST = 0.15  # Cross-section mention boost reflects stronger multi-context evidence.
+
 
 def normalize_skill(raw_name: str) -> dict | None:
     """Map a raw skill string to its canonical form. Returns None if no match found."""
@@ -92,9 +96,6 @@ def normalize_skills(raw_skills: list[dict]) -> list[dict]:
         "skills": 0.2,
         "skill": 0.2,
     }
-    SOFT_SIGNAL_PATTERN = re.compile(r"\b(familiar with|basic knowledge|beginner|learning)\b", re.IGNORECASE)
-    NEGATION_PATTERN = re.compile(r"\b(no experience with|have not worked with|not worked with|without)\b", re.IGNORECASE)
-
     grouped: dict[str, dict] = {}
 
     def _safe_float(value: object) -> float:
@@ -155,7 +156,7 @@ def normalize_skills(raw_skills: list[dict]) -> list[dict]:
     for entry in grouped.values():
         section_count = len(entry["source_sections"])
         max_confidence = max(entry["confidences"]) if entry["confidences"] else 0.0
-        boosted_confidence = min(1.0, max_confidence + max(0, section_count - 1) * 0.15)
+        boosted_confidence = min(1.0, max_confidence + max(0, section_count - 1) * SECTION_BOOST)
         final_negated = entry["positive_mentions"] == 0 and entry["negated_mentions"] > 0
         final_confidence = 0.0 if final_negated else round(boosted_confidence, 2)
 
@@ -164,7 +165,7 @@ def normalize_skills(raw_skills: list[dict]) -> list[dict]:
                 "name": entry["name"],
                 "type": entry["type"],
                 "confidence": final_confidence,
-                "source_section": "multiple" if section_count > 1 else (next(iter(entry["source_sections"]), "skills")),
+                "source_section": "multiple" if section_count > 1 else next(iter(entry["source_sections"])),
                 "source_sections": sorted(s for s in entry["source_sections"] if s),
                 "context": " | ".join(entry["contexts"][:3]),
                 "negated": final_negated,

@@ -7,6 +7,7 @@ from google.genai import types
 from google.api_core.exceptions import GoogleAPICallError
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from app.core.config import settings
+from app.core.constants import COMPLIANCE_NOTE_DEFAULT
 
 logger = logging.getLogger(__name__)
 
@@ -229,6 +230,6 @@ class AIPipeline:
             )
         response["extracted_evidence"] = normalized
         response["compliance_note"] = str(
-            response.get("compliance_note", "No protected attributes used in scoring decisions.")
-        ).strip() or "No protected attributes used in scoring decisions."
+            response.get("compliance_note", COMPLIANCE_NOTE_DEFAULT)
+        ).strip() or COMPLIANCE_NOTE_DEFAULT
         return response
