@@ -11,13 +11,13 @@ async def init_qdrant():
         if not await client.collection_exists("candidates"):
             await client.create_collection(
                 collection_name="candidates",
-                vectors_config=VectorParams(size=768, distance=Distance.COSINE),
+                vectors_config=VectorParams(size=settings.embedding_dimension, distance=Distance.COSINE),
             )
 
         if not await client.collection_exists("jobs"):
             await client.create_collection(
                 collection_name="jobs",
-                vectors_config=VectorParams(size=768, distance=Distance.COSINE),
+                vectors_config=VectorParams(size=settings.embedding_dimension, distance=Distance.COSINE),
             )
         print("✅ Qdrant collections initialized.")
     except Exception as e:
