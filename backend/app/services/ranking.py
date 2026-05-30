@@ -1,6 +1,5 @@
-import json
 import asyncio
-from app.services.ai import AIPipeline
+from app.services.ai import AIPipeline, MODEL_NAME
 from app.services.embeddings import embed_query
 from app.services.vector_store import search_candidates
 from app.services.reranker import rerank_with_cross_encoder
@@ -55,25 +54,37 @@ async def rank_candidates_for_job(
     ]
     query_text = ". ".join(p for p in query_parts if p)
 
-    # Stage 1: Dense retrieval
-    if not candidates:
-        try:
-            query_embedding = await embed_query(query_text)
-            search_results = await search_candidates(query_embedding, top_k=50)
-            candidates = [
-                {"id": r.id, "parsed_data": r.payload}
-                for r in search_results
-            ]
-        except Exception as e:
-            print(f"Retrieval error: {e}")
-            candidates = []
+    # Stage 1: Dense retrieval (top 50 bi-encoder candidates)
+    dense_candidates = []
+    candidate_map = {}
+    for candidate in candidates:
+        candidate_id = candidate.get("id")
+        if candidate_id is None:
+            continue
+        candidate_map[str(candidate_id)] = candidate
+    try:
+        query_embedding = await embed_query(query_text)
+        search_results = await search_candidates(query_embedding, top_k=50)
+        for r in search_results:
+            candidate_id = str(r.id)
+            if candidate_id in candidate_map:
+                dense_candidates.append(candidate_map[candidate_id])
+            else:
+                dense_candidates.append({"id": candidate_id, "parsed_data": r.payload})
+    except Exception as e:
+        print(f"Retrieval error: {e}")
+
+    if dense_candidates:
+        candidates = dense_candidates
+    elif candidates:
+        candidates = candidates[:50]
 
     if not candidates:
         return {"results": [], "total": 0, "message": "No candidates found"}
 
     # Stage 2: Cross-encoder reranking
-    top_candidates = await rerank_with_cross_encoder(query_text, candidates, top_k=30)
-    await AuditAgent.log_decision("RetrieverAgent", "top_k_retrieval", "batch", job_id, {"count": len(top_candidates)})
+    reranked_candidates = await rerank_with_cross_encoder(query_text, candidates, top_k=50)
+    await AuditAgent.log_decision("RetrieverAgent", "top_k_retrieval", "batch", job_id, {"count": len(reranked_candidates)})
 
     # Stage 3: AI multi-dimensional scoring
     async def score_one(candidate: dict) -> dict:
@@ -91,6 +102,7 @@ async def rank_candidates_for_job(
         dimension_scores = await AIPipeline.rerank_candidate(job_requirements, parsed)
         candidate["dimension_scores"] = dimension_scores
         candidate["final_score"] = compute_final_score(dimension_scores)
+        candidate["full_name"] = parsed.get("full_name", "Unknown")
 
         # Audit provenence and compliance
         await AuditAgent.log_provenance(c_id, "internal_db", list(parsed.keys()))
@@ -100,8 +112,8 @@ async def rank_candidates_for_job(
 
     scored_candidates = []
     batch_size = 5
-    for i in range(0, len(top_candidates), batch_size):
-        batch = top_candidates[i:i + batch_size]
+    for i in range(0, len(reranked_candidates), batch_size):
+        batch = reranked_candidates[i:i + batch_size]
         batch_results = await asyncio.gather(*[score_one(c) for c in batch])
         scored_candidates.extend(batch_results)
 
@@ -118,7 +130,7 @@ async def rank_candidates_for_job(
             candidate.get("dimension_scores", {}),
         )
         candidate["explanation"] = explanation
-        await AuditAgent.log_explanation(c_id, job_id, "gemini-2.5-flash-latest")
+        await AuditAgent.log_explanation(c_id, job_id, MODEL_NAME)
         return candidate
 
     top_5_with_explanations = await asyncio.gather(*[explain_one(c) for c in top_5])

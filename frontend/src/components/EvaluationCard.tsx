@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { 
   CheckCircle2, 
   AlertTriangle, 
@@ -11,6 +12,8 @@ import { Card } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { TrajectoryBadge, TrajectoryArchetype } from "./TrajectoryBadge"
+
+const UNCERTAINTY_THRESHOLD = 0.8
 
 interface EvaluationCardProps {
   candidate: {
@@ -26,7 +29,13 @@ interface EvaluationCardProps {
       adjacent_skills: string[]
       risk_factors: string[]
       overall_assessment: string
-      extracted_evidence: { claim: string; evidence: string }[]
+      extracted_evidence: {
+        claim: string
+        evidence: string
+        mapped_requirement?: string
+        confidence?: number
+        source_section?: string
+      }[]
     }
     parsed_data: {
       _trajectory?: {
@@ -38,6 +47,7 @@ interface EvaluationCardProps {
         layout_complexity: number
         extraction_confidence: number
         parser_warnings: string[]
+        raw_extracted_text?: string
       }
     }
   }
@@ -47,7 +57,24 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
   const { explanation, final_score, dimension_scores, parsed_data } = candidate
   const trajectory = parsed_data._trajectory
   const meta = parsed_data._meta
-  const isUncertain = (meta?.extraction_confidence ?? 1.0) < 0.8
+  const isUncertain = (meta?.extraction_confidence ?? 1.0) < UNCERTAINTY_THRESHOLD
+  const [showRawText, setShowRawText] = useState(false)
+  const confidencePercent = Math.round((meta?.extraction_confidence ?? 1.0) * 100)
+  const formatEvidenceMeta = (item: {
+    mapped_requirement?: string
+    confidence?: number
+    source_section?: string
+  }) => {
+    const parts: string[] = []
+    parts.push(item.mapped_requirement ? `Maps to ${item.mapped_requirement}` : "General evidence")
+    if (typeof item.confidence === "number") {
+      parts.push(`${Math.round(item.confidence * 100)}% confidence`)
+    }
+    if (item.source_section) {
+      parts.push(`${item.source_section} section`)
+    }
+    return parts.join(" • ")
+  }
 
   return (
     <Card className="overflow-hidden border-white/5 bg-slate-900/50 backdrop-blur-sm">
@@ -61,7 +88,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
               {isUncertain && (
                 <Badge variant="outline" className="bg-amber-500/10 text-amber-400 border-amber-500/20 gap-1">
                   <AlertTriangle className="w-3 h-3" />
-                  Low Confidence
+                  {confidencePercent}% Layout Confidence
                 </Badge>
               )}
             </div>
@@ -110,9 +137,31 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
             <div className="space-y-1">
               <p className="text-xs font-semibold text-amber-400">Calibrated Uncertainty Warning</p>
               <p className="text-[11px] text-amber-500/80 leading-relaxed">
-                {meta?.parser_warnings[0] || "High layout complexity detected. Verify extraction manually."}
+                Layout-parsing confidence: {confidencePercent}% — this candidate may be underscored due to a decorative PDF. Select to verify raw extracted text.
               </p>
+              {meta?.parser_warnings?.[0] && (
+                <p className="text-[11px] text-amber-500/70 leading-relaxed">{meta.parser_warnings[0]}</p>
+              )}
+              {meta?.raw_extracted_text && (
+                <button
+                  type="button"
+                  onClick={() => setShowRawText((current) => !current)}
+                  aria-expanded={showRawText}
+                  aria-controls="raw-extracted-text-panel"
+                  className="text-[11px] font-semibold text-amber-300 hover:text-amber-200 transition-colors"
+                >
+                  {showRawText ? "Hide raw extracted text" : "Verify raw extracted text"}
+                </button>
+              )}
             </div>
+          </div>
+        )}
+        {isUncertain && showRawText && meta?.raw_extracted_text && (
+          <div id="raw-extracted-text-panel" className="p-3 rounded-lg bg-black/30 border border-amber-500/20">
+            <p className="text-[10px] uppercase font-bold text-amber-300 mb-2">Raw Extracted Text</p>
+            <pre className="text-[11px] text-slate-300 whitespace-pre-wrap max-h-56 overflow-y-auto font-sans leading-relaxed">
+              {meta.raw_extracted_text}
+            </pre>
           </div>
         )}
 
@@ -120,14 +169,19 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
         {explanation?.extracted_evidence && explanation.extracted_evidence.length > 0 && (
           <div className="space-y-2">
             <h4 className="text-[10px] uppercase font-bold text-slate-500 flex items-center gap-1">
-              <Quote className="w-3 h-3" /> Extracted Evidence
+              <Quote className="w-3 h-3" /> Evidence-Citation Cards
             </h4>
-            <div className="p-3 rounded-lg bg-black/20 border border-white/5 italic text-xs text-slate-400 relative">
-              &quot;{explanation.extracted_evidence[0].evidence}&quot;
-              <div className="mt-2 text-[10px] not-italic font-bold text-slate-500 flex items-center gap-1">
-                <ChevronRight className="w-3 h-3" /> {explanation.extracted_evidence[0].claim}
+            {explanation.extracted_evidence.slice(0, 3).map((item, idx) => (
+              <div key={idx} className="p-3 rounded-lg bg-black/20 border border-white/5 italic text-xs text-slate-400 relative">
+                &quot;{item.evidence}&quot;
+                <div className="mt-2 text-[10px] not-italic font-bold text-slate-500 flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3" /> {item.claim}
+                </div>
+                <div className="mt-1 text-[10px] not-italic text-slate-500">
+                  {formatEvidenceMeta(item)}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         )}
       </div>
