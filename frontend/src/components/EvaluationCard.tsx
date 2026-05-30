@@ -149,7 +149,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
             <div className="space-y-1">
               <p className="text-xs font-semibold text-amber-400">Calibrated Uncertainty Warning</p>
               <p className="text-[11px] text-amber-500/80 leading-relaxed">
-                Layout-parsing confidence: {confidencePercent}% — this candidate may be underscored due to a decorative PDF. Select to verify raw extracted text.
+                Layout-parsing confidence: {confidencePercent}% — this candidate may be underscored due to a decorative PDF. Click to verify raw extracted text.
               </p>
               {meta?.parser_warnings?.[0] && (
                 <p className="text-[11px] text-amber-500/70 leading-relaxed">{meta.parser_warnings[0]}</p>
@@ -183,7 +183,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
             <h4 className="text-[10px] uppercase font-bold text-slate-500 flex items-center gap-1">
               <Quote className="w-3 h-3" /> Evidence-Citation Cards
             </h4>
-            {explanation.extracted_evidence.slice(0, 3).map((item, idx) => (
+            {explanation.extracted_evidence.map((item, idx) => (
               <div key={idx} className="p-3 rounded-lg bg-black/20 border border-white/5 italic text-xs text-slate-400 relative">
                 &quot;{item.evidence}&quot;
                 <div className="mt-2 text-[10px] not-italic font-bold text-slate-500 flex items-center gap-1">
