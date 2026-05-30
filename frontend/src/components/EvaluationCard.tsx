@@ -137,7 +137,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
             <div className="space-y-1">
               <p className="text-xs font-semibold text-amber-400">Calibrated Uncertainty Warning</p>
               <p className="text-[11px] text-amber-500/80 leading-relaxed">
-                Layout-parsing confidence: {confidencePercent}% — this candidate may be underscored due to a decorative PDF. Click to verify raw extracted text.
+                Layout-parsing confidence: {confidencePercent}% — this candidate may be underscored due to a decorative PDF. Select to verify raw extracted text.
               </p>
               {meta?.parser_warnings?.[0] && (
                 <p className="text-[11px] text-amber-500/70 leading-relaxed">{meta.parser_warnings[0]}</p>
@@ -146,6 +146,8 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
                 <button
                   type="button"
                   onClick={() => setShowRawText((current) => !current)}
+                  aria-expanded={showRawText}
+                  aria-controls="raw-extracted-text-panel"
                   className="text-[11px] font-semibold text-amber-300 hover:text-amber-200 transition-colors"
                 >
                   {showRawText ? "Hide raw extracted text" : "Verify raw extracted text"}
@@ -155,7 +157,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
           </div>
         )}
         {isUncertain && showRawText && meta?.raw_extracted_text && (
-          <div className="p-3 rounded-lg bg-black/30 border border-amber-500/20">
+          <div id="raw-extracted-text-panel" className="p-3 rounded-lg bg-black/30 border border-amber-500/20">
             <p className="text-[10px] uppercase font-bold text-amber-300 mb-2">Raw Extracted Text</p>
             <pre className="text-[11px] text-slate-300 whitespace-pre-wrap max-h-56 overflow-y-auto font-sans leading-relaxed">
               {meta.raw_extracted_text}

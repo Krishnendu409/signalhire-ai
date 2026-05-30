@@ -16,6 +16,13 @@ MODEL_NAME = "gemini-2.5-flash-preview-05-20"
 THINKING_BUDGET = 768
 
 
+def _safe_float(value, default: float = 0.0) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return default
+
+
 @lru_cache(maxsize=1)
 def _get_client() -> genai.Client:
     if not settings.gemini_api_key:
@@ -215,7 +222,7 @@ class AIPipeline:
                     "claim": str(item.get("claim", "")).strip(),
                     "evidence": str(item.get("evidence", "")).strip(),
                     "mapped_requirement": str(item.get("mapped_requirement", "")).strip(),
-                    "confidence": float(item.get("confidence", 0.0)),
+                    "confidence": _safe_float(item.get("confidence", 0.0), default=0.0),
                     "source_section": str(item.get("source_section", "unknown")).strip() or "unknown",
                 }
             )
