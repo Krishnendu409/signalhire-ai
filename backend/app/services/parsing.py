@@ -5,6 +5,8 @@ from PIL import Image
 from app.services.ai import AIPipeline
 from app.services.skill_taxonomy import normalize_skills
 
+UNCERTAINTY_THRESHOLD = 0.8
+
 
 async def extract_text_from_pdf(file_bytes: bytes) -> tuple[str, float]:
     """
@@ -80,7 +82,7 @@ async def parse_resume_bytes(file_bytes: bytes, filename: str) -> dict:
 
     # Step 4: Attach parsing metadata (for calibrated uncertainty UI)
     extraction_confidence = _compute_extraction_confidence(layout_complexity)
-    raw_extracted_text = text if extraction_confidence < 0.8 else ""
+    raw_extracted_text = text if extraction_confidence < UNCERTAINTY_THRESHOLD else ""
     parsed["_meta"] = {
         "layout_complexity": layout_complexity,
         "extraction_confidence": extraction_confidence,
