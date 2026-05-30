@@ -34,6 +34,7 @@ interface EvaluationCardProps {
         score: number
         details: string
       }
+      negated_skills?: { canonical_name?: string; name?: string }[]
       _meta?: {
         layout_complexity: number
         extraction_confidence: number
@@ -57,7 +58,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
           <div className="space-y-1">
             <h3 className="text-xl font-bold text-white">{candidate.full_name}</h3>
             <div className="flex items-center gap-2">
-              <TrajectoryBadge archetype={trajectory?.archetype || "unknown"} />
+              <TrajectoryBadge archetype={trajectory?.archetype || "unknown"} explanation={trajectory?.details} />
               {isUncertain && (
                 <Badge variant="outline" className="bg-amber-500/10 text-amber-400 border-amber-500/20 gap-1">
                   <AlertTriangle className="w-3 h-3" />
@@ -71,6 +72,9 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
             <p className="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Match Score</p>
           </div>
         </div>
+        {trajectory?.details && (
+          <p className="text-xs text-slate-400 leading-relaxed">{trajectory.details}</p>
+        )}
 
         {/* Alignment Dimensions */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -102,6 +106,32 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
              </ul>
           </div>
         </div>
+
+        {(explanation?.adjacent_skills?.length || explanation?.missing_skills?.length || explanation?.risk_factors?.length) ? (
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+           <div className="bg-white/[0.02] rounded-lg p-3 border border-white/5">
+             <h4 className="text-[10px] uppercase font-bold text-slate-500 mb-2">Adjacent Skills</h4>
+             <p className="text-xs text-slate-300">{explanation?.adjacent_skills?.slice(0, 2).join(" • ") || "None identified"}</p>
+           </div>
+           <div className="bg-white/[0.02] rounded-lg p-3 border border-white/5">
+             <h4 className="text-[10px] uppercase font-bold text-slate-500 mb-2">Missing Skills</h4>
+             <p className="text-xs text-slate-300">{explanation?.missing_skills?.slice(0, 2).join(" • ") || "No major gaps"}</p>
+           </div>
+           <div className="bg-white/[0.02] rounded-lg p-3 border border-white/5">
+             <h4 className="text-[10px] uppercase font-bold text-slate-500 mb-2">Risk Factors</h4>
+             <p className="text-xs text-slate-300">{explanation?.risk_factors?.slice(0, 2).join(" • ") || "No major flags"}</p>
+           </div>
+         </div>
+        ) : null}
+
+        {parsed_data?.negated_skills && parsed_data.negated_skills.length > 0 && (
+         <div className="p-3 rounded-lg bg-rose-500/5 border border-rose-500/10">
+           <p className="text-xs font-semibold text-rose-400">Negation Filter Applied</p>
+           <p className="text-[11px] text-rose-300/90 mt-1">
+             Excluded from scoring: {parsed_data.negated_skills.slice(0, 3).map(s => s.canonical_name || s.name).filter(Boolean).join(", ")}
+           </p>
+         </div>
+        )}
 
         {/* Uncertainty Warning */}
         {isUncertain && (

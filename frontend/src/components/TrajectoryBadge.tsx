@@ -7,6 +7,7 @@ export type TrajectoryArchetype = "fast_climber" | "stable_performer" | "chaotic
 
 interface TrajectoryBadgeProps {
   archetype: TrajectoryArchetype
+  explanation?: string
   showIcon?: boolean
   className?: string
 }
@@ -44,7 +45,7 @@ const ARCHETYPE_CONFIG = {
   }
 }
 
-export function TrajectoryBadge({ archetype, showIcon = true, className = "" }: TrajectoryBadgeProps) {
+export function TrajectoryBadge({ archetype, explanation, showIcon = true, className = "" }: TrajectoryBadgeProps) {
   const config = ARCHETYPE_CONFIG[archetype] || ARCHETYPE_CONFIG.unknown
   const Icon = config.icon
 
@@ -53,7 +54,7 @@ export function TrajectoryBadge({ archetype, showIcon = true, className = "" }: 
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs font-semibold ${config.color} ${className}`}
-      title={config.description}
+      title={explanation || config.description}
     >
       {showIcon && <Icon className="w-3 h-3" />}
       {config.label}
