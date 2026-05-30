@@ -1,6 +1,17 @@
 from datetime import datetime
 import re
 
+MIN_TENURE_YEARS = 0.08
+FAST_CLIMBER_PROMOTION_RATE = 0.45
+FAST_CLIMBER_ALT_PROMOTION_RATE = 0.3
+FAST_CLIMBER_MIN_TENURE = 1.2
+STABLE_MIN_TENURE = 3.0
+STABLE_MAX_TENURE = 5.5
+STABLE_MAX_DIVERSITY = 0.65
+HOPPER_MAX_TENURE = 2.0
+HOPPER_MIN_DIVERSITY = 0.7
+HOPPER_MIN_COMPANIES = 3
+
 
 def parse_date(date_str: str) -> datetime | None:
     """Attempt to parse various date formats. Returns None on failure."""
@@ -80,7 +91,8 @@ def classify_trajectory(
         if ed:
             end_dates.append(ed)
         if sd and ed:
-            tenure_years = max(0.08, (ed - sd).days / 365.25)
+            # Prevent zero-duration artifacts when month/year-only dates collapse to same day.
+            tenure_years = max(MIN_TENURE_YEARS, (ed - sd).days / 365.25)
             tenures.append(tenure_years)
 
     if not start_dates:
@@ -123,21 +135,27 @@ def classify_trajectory(
     history_snippet = history_snippet or "role progression across past experience"
 
     # Classification logic
-    if promotion_rate >= 0.45 or (promotion_rate >= 0.3 and avg_tenure_years >= 1.2):
+    if promotion_rate >= FAST_CLIMBER_PROMOTION_RATE or (
+        promotion_rate >= FAST_CLIMBER_ALT_PROMOTION_RATE and avg_tenure_years >= FAST_CLIMBER_MIN_TENURE
+    ):
         archetype = "fast_climber"
         score = min(1.0, 0.7 + (promotion_rate / 2))
         details = (
             f"Fast Climber: {len(promotions)} promotions over {career_years:.1f} years "
             f"({promotion_rate:.2f}/yr), including {history_snippet}."
         )
-    elif 3.0 <= avg_tenure_years <= 5.5 and industry_diversity <= 0.65:
+    elif STABLE_MIN_TENURE <= avg_tenure_years <= STABLE_MAX_TENURE and industry_diversity <= STABLE_MAX_DIVERSITY:
         archetype = "stable_performer"
         score = 0.9
         details = (
             f"Stable Performer: Average tenure is {avg_tenure_years:.1f} years with focused depth "
             f"(industry diversity {industry_diversity:.2f}); track includes {history_snippet}."
         )
-    elif avg_tenure_years < 2.0 and industry_diversity >= 0.7 and unique_companies >= 3:
+    elif (
+        avg_tenure_years < HOPPER_MAX_TENURE
+        and industry_diversity >= HOPPER_MIN_DIVERSITY
+        and unique_companies >= HOPPER_MIN_COMPANIES
+    ):
         archetype = "chaotic_hopper"
         score = 0.4
         details = (
