@@ -80,11 +80,12 @@ async def parse_resume_bytes(file_bytes: bytes, filename: str) -> dict:
 
     # Step 4: Attach parsing metadata (for calibrated uncertainty UI)
     extraction_confidence = _compute_extraction_confidence(layout_complexity)
+    raw_extracted_text = text if extraction_confidence < 0.8 else ""
     parsed["_meta"] = {
         "layout_complexity": layout_complexity,
         "extraction_confidence": extraction_confidence,
         "parser_warnings": _generate_warnings(layout_complexity, parsed),
-        "raw_extracted_text": text,
+        "raw_extracted_text": raw_extracted_text,
     }
 
     return parsed

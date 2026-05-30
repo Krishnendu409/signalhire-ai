@@ -58,6 +58,21 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
   const isUncertain = (meta?.extraction_confidence ?? 1.0) < 0.8
   const [showRawText, setShowRawText] = useState(false)
   const confidencePercent = Math.round((meta?.extraction_confidence ?? 1.0) * 100)
+  const formatEvidenceMeta = (item: {
+    mapped_requirement?: string
+    confidence?: number
+    source_section?: string
+  }) => {
+    const parts: string[] = []
+    parts.push(item.mapped_requirement ? `Maps to ${item.mapped_requirement}` : "Mapped requirement unavailable")
+    if (typeof item.confidence === "number") {
+      parts.push(`${Math.round(item.confidence * 100)}% confidence`)
+    }
+    if (item.source_section) {
+      parts.push(`${item.source_section} section`)
+    }
+    return parts.join(" • ")
+  }
 
   return (
     <Card className="overflow-hidden border-white/5 bg-slate-900/50 backdrop-blur-sm">
@@ -159,10 +174,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
                   <ChevronRight className="w-3 h-3" /> {item.claim}
                 </div>
                 <div className="mt-1 text-[10px] not-italic text-slate-500">
-                  {item.mapped_requirement ? `Maps to ${item.mapped_requirement}` : "Mapped requirement unavailable"}
-                  {typeof item.confidence === "number" ? ` (${Math.round(item.confidence * 100)}% confidence` : ""}
-                  {item.source_section ? `, ${item.source_section} section` : ""}
-                  {typeof item.confidence === "number" ? ")" : ""}
+                  {formatEvidenceMeta(item)}
                 </div>
               </div>
             ))}
