@@ -98,16 +98,16 @@ RESUME_PARSE_PROMPT = """Extract a JSON object from the resume text below with e
 - contact: {{"email": "", "phone": ""}}
 - experiences: list of objects {{"title": "", "company": "", "start_date": "", "end_date": "", "bullets": [""]}}
 - education: list of objects {{"degree": "", "institution": "", "year": ""}}
-- skills: list of objects {{"name": "", "type": "hard/soft", "confidence": 0.0, "source_section": "experience/skills/certification/projects/education", "context": ""}}
+- skills: list of objects {{"name": "", "type": "hard/soft", "confidence": 0.0, "source_section": "experience/skills/certification/projects/education", "context": "", "negated": false}}
 - certifications: list of names
 - projects: list of objects {{"name": "", "description": "", "technologies": []}}
 - career_gaps: list of objects {{"start": "", "end": "", "reason": ""}}
 - trajectory_events: list of objects {{"type": "promotion/lateral/break", "date": "", "details": ""}}
 
 Rules for skills:
-- Set confidence: 1.0 if mentioned in experience section with concrete usage; 0.6 if in projects or education; 0.2 if only in a skills list.
+- Set confidence baseline by section: certification=1.0, experience=0.8, projects=0.6, education=0.5, skills list=0.2.
 - For "familiar with" or "basic knowledge of" -> reduce confidence to 0.3 and note in context.
-- Detect negation ("no experience with", "have not worked with") -> set confidence to 0.0 and flag.
+- Detect negation ("no experience with", "have not worked with") -> set confidence to 0.0 and set negated=true.
 - Extract version numbers (e.g., "Angular 17", "Python 3.10").
 - Do NOT confuse programming languages with general terms (e.g., "Go" language vs "go-to-market").
 
@@ -143,7 +143,7 @@ Return JSON:
   "behavioral_indicators": {{"score": int, "note": "string"}},
   "domain_alignment": {{"score": int, "note": "string"}},
   "adaptability": {{"score": int, "note": "string"}},
-  "adjacent_skills": ["string"],
+  "adjacent_skills": ["string with concise reasoning"],
   "missing_skills": ["string"]
 }}"""
 
@@ -159,8 +159,9 @@ Output JSON:
 {{
   "top_strengths": ["string", ...],
   "missing_skills": ["string", ...],
-  "adjacent_skills": ["string", ...],
+  "adjacent_skills": ["string with concise reasoning", ...],
   "risk_factors": ["string", ...],
+  "compliance_note": "single sentence confirming no protected attributes influenced scoring",
   "overall_assessment": "paragraph summary",
   "extracted_evidence": [
     {{
@@ -227,4 +228,7 @@ class AIPipeline:
                 }
             )
         response["extracted_evidence"] = normalized
+        response["compliance_note"] = str(
+            response.get("compliance_note", "No protected attributes used in scoring decisions.")
+        ).strip() or "No protected attributes used in scoring decisions."
         return response

@@ -28,6 +28,7 @@ interface EvaluationCardProps {
       missing_skills: string[]
       adjacent_skills: string[]
       risk_factors: string[]
+      compliance_note?: string
       overall_assessment: string
       extracted_evidence: {
         claim: string
@@ -42,6 +43,9 @@ interface EvaluationCardProps {
         archetype: TrajectoryArchetype
         score: number
         details: string
+        promotion_rate?: number
+        avg_tenure_years?: number
+        industry_diversity?: number
       }
       _meta?: {
         layout_complexity: number
@@ -83,8 +87,16 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
         <div className="flex items-center justify-between">
           <div className="space-y-1">
             <h3 className="text-xl font-bold text-white">{candidate.full_name}</h3>
-            <div className="flex items-center gap-2">
-              <TrajectoryBadge archetype={trajectory?.archetype || "unknown"} />
+            <div className="flex items-start gap-2">
+              <TrajectoryBadge
+                archetype={trajectory?.archetype || "unknown"}
+                details={trajectory?.details}
+                metrics={{
+                  promotion_rate: trajectory?.promotion_rate,
+                  avg_tenure_years: trajectory?.avg_tenure_years,
+                  industry_diversity: trajectory?.industry_diversity,
+                }}
+              />
               {isUncertain && (
                 <Badge variant="outline" className="bg-amber-500/10 text-amber-400 border-amber-500/20 gap-1">
                   <AlertTriangle className="w-3 h-3" />
@@ -184,6 +196,40 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
             ))}
           </div>
         )}
+
+        {/* Explainability breakdown */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="bg-white/[0.02] rounded-lg p-3 border border-white/5">
+            <h4 className="text-[10px] uppercase font-bold text-slate-500 mb-2">Adjacent Skills</h4>
+            <ul className="space-y-1">
+              {(explanation?.adjacent_skills?.length ? explanation.adjacent_skills : ["No adjacent coverage detected."])
+                .slice(0, 3)
+                .map((item, idx) => (
+                  <li key={idx} className="text-xs text-slate-300">{item}</li>
+                ))}
+            </ul>
+          </div>
+          <div className="bg-white/[0.02] rounded-lg p-3 border border-white/5">
+            <h4 className="text-[10px] uppercase font-bold text-slate-500 mb-2">Missing Skills</h4>
+            <ul className="space-y-1">
+              {(explanation?.missing_skills?.length ? explanation.missing_skills : ["No critical gaps identified."])
+                .slice(0, 3)
+                .map((item, idx) => (
+                  <li key={idx} className="text-xs text-slate-300">{item}</li>
+                ))}
+            </ul>
+          </div>
+          <div className="bg-white/[0.02] rounded-lg p-3 border border-white/5">
+            <h4 className="text-[10px] uppercase font-bold text-slate-500 mb-2">Risk Factors</h4>
+            <ul className="space-y-1">
+              {(explanation?.risk_factors?.length ? explanation.risk_factors : ["No immediate hiring risk flagged."])
+                .slice(0, 3)
+                .map((item, idx) => (
+                  <li key={idx} className="text-xs text-slate-300">{item}</li>
+                ))}
+            </ul>
+          </div>
+        </div>
       </div>
       
       {/* Footer / Assessment */}
@@ -191,6 +237,9 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
         <p className="text-[11px] text-slate-400 leading-relaxed">
           <span className="font-bold text-slate-300">AI Assessment:</span> {explanation?.overall_assessment}
         </p>
+        {explanation?.compliance_note && (
+          <p className="text-[10px] text-slate-500 mt-2">{explanation.compliance_note}</p>
+        )}
       </div>
     </Card>
   )
