@@ -83,8 +83,8 @@ async def rank_candidates_for_job(
         return {"results": [], "total": 0, "message": "No candidates found"}
 
     # Stage 2: Cross-encoder reranking
-    top_candidates = await rerank_with_cross_encoder(query_text, candidates, top_k=50)
-    await AuditAgent.log_decision("RetrieverAgent", "top_k_retrieval", "batch", job_id, {"count": len(top_candidates)})
+    reranked_candidates = await rerank_with_cross_encoder(query_text, candidates, top_k=50)
+    await AuditAgent.log_decision("RetrieverAgent", "top_k_retrieval", "batch", job_id, {"count": len(reranked_candidates)})
 
     # Stage 3: AI multi-dimensional scoring
     async def score_one(candidate: dict) -> dict:
@@ -112,8 +112,8 @@ async def rank_candidates_for_job(
 
     scored_candidates = []
     batch_size = 5
-    for i in range(0, len(top_candidates), batch_size):
-        batch = top_candidates[i:i + batch_size]
+    for i in range(0, len(reranked_candidates), batch_size):
+        batch = reranked_candidates[i:i + batch_size]
         batch_results = await asyncio.gather(*[score_one(c) for c in batch])
         scored_candidates.extend(batch_results)
 
