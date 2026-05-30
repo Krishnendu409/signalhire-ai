@@ -56,7 +56,12 @@ async def rank_candidates_for_job(
 
     # Stage 1: Dense retrieval (top 50 bi-encoder candidates)
     dense_candidates = []
-    candidate_map = {str(c.get("id")): c for c in candidates}
+    candidate_map = {}
+    for candidate in candidates:
+        candidate_id = candidate.get("id")
+        if candidate_id is None:
+            continue
+        candidate_map[str(candidate_id)] = candidate
     try:
         query_embedding = await embed_query(query_text)
         search_results = await search_candidates(query_embedding, top_k=50)
