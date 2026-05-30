@@ -6,6 +6,7 @@ from app.models.user import User
 from app.models.job import Job
 from app.models.candidate import Candidate
 from app.models.ranking import RankingJob
+from app.core.constants import COMPLIANCE_NOTE_DEFAULT
 from app.tasks.manager import task_queue
 from app.tasks.functions import process_ranking
 import uuid
@@ -179,7 +180,7 @@ async def export_ranking_csv(
             "; ".join(expl.get("missing_skills", [])),
             "; ".join(expl.get("adjacent_skills", [])),
             "; ".join(expl.get("risk_factors", [])),
-            expl.get("compliance_note", "No protected attributes used in scoring decisions."),
+            expl.get("compliance_note", COMPLIANCE_NOTE_DEFAULT),
         ])
 
     output.seek(0)

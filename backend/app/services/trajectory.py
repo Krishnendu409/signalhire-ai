@@ -1,8 +1,5 @@
 import re
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
-
-
 def parse_date(date_str: str) -> datetime | None:
     """Attempt to parse various date formats. Returns None on failure."""
     if not date_str:
@@ -67,8 +64,7 @@ def classify_trajectory(
         if ed:
             end_dates.append(ed)
         if sd and ed and ed >= sd:
-            delta = relativedelta(ed, sd)
-            tenure_years = delta.years + (delta.months / 12.0) + (delta.days / 365.25)
+            tenure_years = (ed - sd).days / 365.25
             tenures.append(max(0.0, tenure_years))
 
     if not start_dates:
@@ -107,12 +103,14 @@ def classify_trajectory(
     recent_companies = [exp.get("company", "").strip() for exp in experiences[:3] if exp.get("company")]
 
     # Classification logic
+    role_scope = ", ".join([title for title in recent_titles[:2] if title]).strip()
+    industry_label = "industry" if industry_diversity == 1 else "industries"
     if promotion_rate >= 0.5:
         archetype = "fast_climber"
         score = min(1.0, 0.7 + (promotion_rate / 2))
         details = (
             f"Promoted {len(promotions)} times in {career_years:.1f} years "
-            f"({promotion_rate:.2f}/yr) with scope growth across {', '.join(recent_titles[:2]) or 'recent roles'}."
+            f"({promotion_rate:.2f}/yr) with scope growth across {role_scope or 'recent roles'}."
         )
     elif avg_tenure_years >= 3.5:
         archetype = "stable_performer"
@@ -122,11 +120,11 @@ def classify_trajectory(
             f"Averages {avg_tenure_years:.1f}-year tenures"
             f"{company_phrase}, signaling depth and retention."
         )
-    elif avg_tenure_years <= 1.8 and industry_diversity >= 3:
+    elif avg_tenure_years <= 1.8 and (industry_diversity >= 3 or unique_companies >= 3):
         archetype = "chaotic_hopper"
         score = 0.4
         details = (
-            f"Short average tenure ({avg_tenure_years:.1f} years) across {industry_diversity} industries"
+            f"Short average tenure ({avg_tenure_years:.1f} years) across {industry_diversity} {industry_label}"
             " suggests elevated retention risk."
         )
     else:

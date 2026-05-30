@@ -133,7 +133,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
              </h4>
              <ul className="space-y-1">
                {explanation?.top_strengths.slice(0, 2).map((s, i) => (
-                 <li key={i} className="text-xs text-slate-300 flex items-start gap-2">
+                 <li key={`${s}-${i}`} className="text-xs text-slate-300 flex items-start gap-2">
                    <CheckCircle2 className="w-3 h-3 text-emerald-500 mt-0.5 flex-shrink-0" />
                    {s}
                  </li>
@@ -205,7 +205,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
               {(explanation?.adjacent_skills?.length ? explanation.adjacent_skills : ["No adjacent coverage detected."])
                 .slice(0, 3)
                 .map((item, idx) => (
-                  <li key={idx} className="text-xs text-slate-300">{item}</li>
+                  <li key={`${item}-${idx}`} className="text-xs text-slate-300">{item}</li>
                 ))}
             </ul>
           </div>
@@ -215,7 +215,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
               {(explanation?.missing_skills?.length ? explanation.missing_skills : ["No critical gaps identified."])
                 .slice(0, 3)
                 .map((item, idx) => (
-                  <li key={idx} className="text-xs text-slate-300">{item}</li>
+                  <li key={`${item}-${idx}`} className="text-xs text-slate-300">{item}</li>
                 ))}
             </ul>
           </div>
@@ -225,7 +225,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
               {(explanation?.risk_factors?.length ? explanation.risk_factors : ["No immediate hiring risk flagged."])
                 .slice(0, 3)
                 .map((item, idx) => (
-                  <li key={idx} className="text-xs text-slate-300">{item}</li>
+                  <li key={`${item}-${idx}`} className="text-xs text-slate-300">{item}</li>
                 ))}
             </ul>
           </div>
