@@ -13,6 +13,8 @@ import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { TrajectoryBadge, TrajectoryArchetype } from "./TrajectoryBadge"
 
+const UNCERTAINTY_THRESHOLD = 0.8
+
 interface EvaluationCardProps {
   candidate: {
     full_name: string
@@ -55,7 +57,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
   const { explanation, final_score, dimension_scores, parsed_data } = candidate
   const trajectory = parsed_data._trajectory
   const meta = parsed_data._meta
-  const isUncertain = (meta?.extraction_confidence ?? 1.0) < 0.8
+  const isUncertain = (meta?.extraction_confidence ?? 1.0) < UNCERTAINTY_THRESHOLD
   const [showRawText, setShowRawText] = useState(false)
   const confidencePercent = Math.round((meta?.extraction_confidence ?? 1.0) * 100)
   const formatEvidenceMeta = (item: {
@@ -64,7 +66,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
     source_section?: string
   }) => {
     const parts: string[] = []
-    parts.push(item.mapped_requirement ? `Maps to ${item.mapped_requirement}` : "Mapped requirement unavailable")
+    parts.push(item.mapped_requirement ? `Maps to ${item.mapped_requirement}` : "General evidence")
     if (typeof item.confidence === "number") {
       parts.push(`${Math.round(item.confidence * 100)}% confidence`)
     }

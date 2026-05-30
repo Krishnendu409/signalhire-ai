@@ -215,7 +215,7 @@ class AIPipeline:
                     "claim": str(item.get("claim", "")).strip(),
                     "evidence": str(item.get("evidence", "")).strip(),
                     "mapped_requirement": str(item.get("mapped_requirement", "")).strip(),
-                    "confidence": float(item.get("confidence") or 0.0),
+                    "confidence": float(item.get("confidence", 0.0)),
                     "source_section": str(item.get("source_section", "unknown")).strip() or "unknown",
                 }
             )
