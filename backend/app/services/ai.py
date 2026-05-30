@@ -10,7 +10,7 @@ from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
-MODEL_NAME = "gemini-2.5-flash-latest"
+MODEL_NAME = "gemini-2.5-flash-preview-05-20"
 # Thinking budget controls extra reasoning tokens in Gemini 2.5 Flash; 768 balances
 # extraction consistency improvements with latency/cost for JD and resume parsing.
 THINKING_BUDGET = 768
@@ -155,7 +155,15 @@ Output JSON:
   "adjacent_skills": ["string", ...],
   "risk_factors": ["string", ...],
   "overall_assessment": "paragraph summary",
-  "extracted_evidence": [{{"claim": "string", "evidence": "verbatim resume snippet"}}]
+  "extracted_evidence": [
+    {{
+      "claim": "string",
+      "evidence": "verbatim resume snippet",
+      "mapped_requirement": "string",
+      "confidence": 0.0,
+      "source_section": "experience/projects/summary/skills/education"
+    }}
+  ]
 }}"""
 
 
@@ -196,4 +204,20 @@ class AIPipeline:
             candidate_json=json.dumps(candidate_parsed, indent=2),
             scores_json=json.dumps(scores, indent=2),
         )
-        return await gemini_generate(prompt, system=EXPLAIN_SYSTEM)
+        response = await gemini_generate(prompt, system=EXPLAIN_SYSTEM)
+        evidence = response.get("extracted_evidence", [])
+        normalized = []
+        for item in evidence:
+            if not isinstance(item, dict):
+                continue
+            normalized.append(
+                {
+                    "claim": str(item.get("claim", "")).strip(),
+                    "evidence": str(item.get("evidence", "")).strip(),
+                    "mapped_requirement": str(item.get("mapped_requirement", "")).strip(),
+                    "confidence": float(item.get("confidence", 0.0) or 0.0),
+                    "source_section": str(item.get("source_section", "unknown")).strip() or "unknown",
+                }
+            )
+        response["extracted_evidence"] = normalized
+        return response
