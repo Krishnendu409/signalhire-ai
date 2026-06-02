@@ -60,6 +60,9 @@
 
 4. **Configuration**
     - Edit `.env` or `config.yaml` as needed for API keys and environment settings.
+    - Use `backend/.env.example` as a template only.
+    - Generate Gemini API credentials securely from: https://aistudio.google.com/app/apikey
+    - Never commit `.env` files or real credentials to git.
 
 5. **Run the application**
     - Backend:  
