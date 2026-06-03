@@ -6,6 +6,8 @@ from PIL import Image
 from app.services.ai import AIPipeline
 from app.services.skill_taxonomy import normalize_skills
 
+UNCERTAINTY_THRESHOLD = 0.8
+
 
 async def extract_text_from_pdf(file_bytes: bytes) -> tuple[str, float]:
     """
@@ -85,10 +87,13 @@ async def parse_resume_bytes(file_bytes: bytes, filename: str) -> dict:
         parsed["negated_skills"] = [s for s in normalized_skills if s.get("negated", False)]
 
     # Step 4: Attach parsing metadata (for calibrated uncertainty UI)
+    extraction_confidence = _compute_extraction_confidence(layout_complexity)
+    raw_extracted_text = text if extraction_confidence < UNCERTAINTY_THRESHOLD else ""
     parsed["_meta"] = {
         "layout_complexity": layout_complexity,
-        "extraction_confidence": 0.95 if layout_complexity < 0.5 else 0.76,
+        "extraction_confidence": extraction_confidence,
         "parser_warnings": _generate_warnings(layout_complexity, parsed),
+        "raw_extracted_text": raw_extracted_text,
     }
 
     return parsed
@@ -102,3 +107,12 @@ def _generate_warnings(layout_complexity: float, parsed: dict) -> list[str]:
     if layout_complexity > 0.8:
         warnings.append("High formatting complexity detected. Skill extraction confidence is low. Please review extracted skills manually.")
     return warnings
+
+
+def _compute_extraction_confidence(layout_complexity: float) -> float:
+    """
+    Calibrate extraction confidence from layout complexity.
+    Keeps confidence conservative for complex, decorative resumes.
+    """
+    confidence = 1.0 - (0.35 * max(0.0, min(layout_complexity, 1.0)))
+    return round(max(0.55, confidence), 2)

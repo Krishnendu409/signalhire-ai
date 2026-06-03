@@ -12,9 +12,11 @@ logger = logging.getLogger("signalhire")
 async def lifespan(app: FastAPI):
     logger.info("Starting SignalHire AI backend...")
     from app.services.vector_store import init_qdrant
-    from app.services.reranker import _get_model
+    from app.services.reranker import warmup_reranker
+    from app.services.embeddings import warmup_embeddings
     await init_qdrant()
-    await asyncio.to_thread(_get_model)
+    await warmup_embeddings()
+    await asyncio.to_thread(warmup_reranker)
     yield
     logger.info("Shutting down SignalHire AI backend...")
 

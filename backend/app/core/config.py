@@ -31,6 +31,12 @@ class Settings(BaseSettings):
 
     # Ollama (local fallback)
     ollama_base_url: str = "http://localhost:11434/v1"
+    ollama_embedding_model: str = "nomic-embed-text"
+
+    # Embeddings provider routing
+    embedding_provider: str = "ollama"  # ollama | gemini
+    gemini_embedding_model: str = "text-embedding-004"
+    embedding_dimension: int = 768
 
     class Config:
         env_file = ".env"
