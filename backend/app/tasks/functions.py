@@ -30,11 +30,14 @@ async def process_resume(candidate_id: str):
             candidate.extraction_confidence = parsed.get("_meta", {}).get("extraction_confidence", 0)
             
             try:
-                scored_skills = [
+                scoring_skills = parsed.get("scoring_skills") or [
                     s for s in parsed.get("skills", [])
-                    if not s.get("excluded_from_scoring") and not s.get("negated") and s.get("confidence", 0) > 0
+                    if s.get("is_scoring_eligible", not s.get("negated", False))
                 ]
-                skills = " ".join([s.get("canonical_name") or s.get("name", "") for s in scored_skills])
+                skills = " ".join([
+                    s.get("canonical_name", s.get("name", ""))
+                    for s in scoring_skills
+                ])
                 index_text = f"{parsed.get('full_name', '')} {parsed.get('current_title', '')} {skills} {parsed.get('summary', '')}"
                 embedding = await embed_document(index_text)
                 
@@ -44,7 +47,10 @@ async def process_resume(candidate_id: str):
                     payload={
                         "full_name": parsed.get("full_name", ""),
                         "current_title": parsed.get("current_title", ""),
-                        "skills": [s.get("canonical_name") or s.get("name", "") for s in scored_skills]
+                        "skills": [
+                            s.get("canonical_name", s.get("name", ""))
+                            for s in scoring_skills
+                        ]
                     }
                 )
             except Exception as ve:

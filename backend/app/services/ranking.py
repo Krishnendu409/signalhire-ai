@@ -1,5 +1,7 @@
+import json
 import asyncio
-from app.services.ai import AIPipeline, MODEL_NAME
+import copy
+from app.services.ai import AIPipeline
 from app.services.embeddings import embed_query
 from app.services.vector_store import search_candidates
 from app.services.reranker import rerank_with_cross_encoder
@@ -54,42 +56,38 @@ async def rank_candidates_for_job(
     ]
     query_text = ". ".join(p for p in query_parts if p)
 
-    # Stage 1: Dense retrieval (top 50 bi-encoder candidates)
-    dense_candidates = []
-    candidate_map = {}
-    for candidate in candidates:
-        candidate_id = candidate.get("id")
-        if candidate_id is None:
-            continue
-        candidate_map[str(candidate_id)] = candidate
-    try:
-        query_embedding = await embed_query(query_text)
-        search_results = await search_candidates(query_embedding, top_k=50)
-        for r in search_results:
-            candidate_id = str(r.id)
-            if candidate_id in candidate_map:
-                dense_candidates.append(candidate_map[candidate_id])
-            else:
-                dense_candidates.append({"id": candidate_id, "parsed_data": r.payload})
-    except Exception as e:
-        print(f"Retrieval error: {e}")
-
-    if dense_candidates:
-        candidates = dense_candidates
-    elif candidates:
-        candidates = candidates[:50]
+    # Stage 1: Dense retrieval
+    if not candidates:
+        try:
+            query_embedding = await embed_query(query_text)
+            search_results = await search_candidates(query_embedding, top_k=50)
+            candidates = [
+                {"id": r.id, "parsed_data": r.payload}
+                for r in search_results
+            ]
+        except Exception as e:
+            print(f"Retrieval error: {e}")
+            candidates = []
 
     if not candidates:
         return {"results": [], "total": 0, "message": "No candidates found"}
 
     # Stage 2: Cross-encoder reranking
-    reranked_candidates = await rerank_with_cross_encoder(query_text, candidates, top_k=50)
-    await AuditAgent.log_decision("RetrieverAgent", "top_k_retrieval", "batch", job_id, {"count": len(reranked_candidates)})
+    top_candidates = await rerank_with_cross_encoder(query_text, candidates, top_k=30)
+    await AuditAgent.log_decision("RetrieverAgent", "top_k_retrieval", "batch", job_id, {"count": len(top_candidates)})
 
     # Stage 3: AI multi-dimensional scoring
     async def score_one(candidate: dict) -> dict:
         parsed = candidate.get("parsed_data", {})
+        parsed_for_scoring = copy.deepcopy(parsed)
         c_id = str(candidate.get("id"))
+        scoring_skills = parsed_for_scoring.get("scoring_skills")
+        if isinstance(scoring_skills, list):
+            parsed_for_scoring["skills"] = scoring_skills
+            parsed_for_scoring["excluded_negated_skills"] = [
+                s.get("canonical_name", s.get("name", ""))
+                for s in parsed_for_scoring.get("negated_skills", [])
+            ]
         
         # Classify trajectory
         trajectory = classify_trajectory(
@@ -97,31 +95,39 @@ async def rank_candidates_for_job(
             parsed.get("trajectory_events", []),
         )
         parsed["_trajectory"] = trajectory
+        parsed_for_scoring["_trajectory"] = trajectory
 
         # AI scoring
-        dimension_scores = await AIPipeline.rerank_candidate(job_requirements, parsed)
+        dimension_scores = await AIPipeline.rerank_candidate(job_requirements, parsed_for_scoring)
+        if "career_trajectory" in dimension_scores:
+            dimension_scores["career_trajectory"]["archetype"] = trajectory.get("archetype", "unknown")
+            dimension_scores["career_trajectory"]["note"] = trajectory.get(
+                "details",
+                dimension_scores["career_trajectory"].get("note", ""),
+            )
         candidate["dimension_scores"] = dimension_scores
         candidate["final_score"] = compute_final_score(dimension_scores)
         candidate["full_name"] = parsed.get("full_name", "Unknown")
+        candidate["current_title"] = parsed.get("current_title", "")
+        candidate["compliance_note"] = "No protected attributes used"
 
         # Audit provenence and compliance
         await AuditAgent.log_provenance(c_id, "internal_db", list(parsed.keys()))
-        await AuditAgent.log_compliance_check(c_id, job_id, "pass", ["No protected attributes used"])
+        await AuditAgent.log_compliance_check(c_id, job_id, "pass", [candidate["compliance_note"]])
         
         return candidate
 
     scored_candidates = []
     batch_size = 5
-    for i in range(0, len(reranked_candidates), batch_size):
-        batch = reranked_candidates[i:i + batch_size]
+    for i in range(0, len(top_candidates), batch_size):
+        batch = top_candidates[i:i + batch_size]
         batch_results = await asyncio.gather(*[score_one(c) for c in batch])
         scored_candidates.extend(batch_results)
 
     # Sort
     scored_candidates.sort(key=lambda x: x.get("final_score", 0), reverse=True)
 
-    # Stage 4: Explainability for top 5
-    top_5 = scored_candidates[:5]
+    # Stage 4: Explainability for all candidates (needed for complete exports)
     async def explain_one(candidate: dict) -> dict:
         c_id = str(candidate.get("id"))
         explanation = await AIPipeline.generate_explanation(
@@ -130,14 +136,17 @@ async def rank_candidates_for_job(
             candidate.get("dimension_scores", {}),
         )
         candidate["explanation"] = explanation
-        await AuditAgent.log_explanation(c_id, job_id, MODEL_NAME)
+        await AuditAgent.log_explanation(c_id, job_id, "gemini-2.5-flash-latest")
         return candidate
 
-    top_5_with_explanations = await asyncio.gather(*[explain_one(c) for c in top_5])
+    explained_candidates = []
+    explain_batch_size = 5
+    for i in range(0, len(scored_candidates), explain_batch_size):
+        batch = scored_candidates[i:i + explain_batch_size]
+        explained_batch = await asyncio.gather(*[explain_one(c) for c in batch])
+        explained_candidates.extend(explained_batch)
 
-    for i, c in enumerate(scored_candidates):
-        if i < 5:
-            scored_candidates[i] = top_5_with_explanations[i]
+    scored_candidates = explained_candidates
 
     return {
         "job_id": job_id,

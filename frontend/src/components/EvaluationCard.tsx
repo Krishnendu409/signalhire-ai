@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import { 
   CheckCircle2, 
   AlertTriangle, 
@@ -12,8 +11,6 @@ import { Card } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { TrajectoryBadge, TrajectoryArchetype } from "./TrajectoryBadge"
-
-const UNCERTAINTY_THRESHOLD = 0.8
 
 interface EvaluationCardProps {
   candidate: {
@@ -28,30 +25,20 @@ interface EvaluationCardProps {
       missing_skills: string[]
       adjacent_skills: string[]
       risk_factors: string[]
-      compliance_note?: string
       overall_assessment: string
-      extracted_evidence: {
-        claim: string
-        evidence: string
-        mapped_requirement?: string
-        confidence?: number
-        source_section?: string
-      }[]
+      extracted_evidence: { claim: string; evidence: string }[]
     }
     parsed_data: {
       _trajectory?: {
         archetype: TrajectoryArchetype
         score: number
         details: string
-        promotion_rate?: number
-        avg_tenure_years?: number
-        industry_diversity?: number
       }
+      negated_skills?: { canonical_name?: string; name?: string }[]
       _meta?: {
         layout_complexity: number
         extraction_confidence: number
         parser_warnings: string[]
-        raw_extracted_text?: string
       }
     }
   }
@@ -61,24 +48,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
   const { explanation, final_score, dimension_scores, parsed_data } = candidate
   const trajectory = parsed_data._trajectory
   const meta = parsed_data._meta
-  const isUncertain = (meta?.extraction_confidence ?? 1.0) < UNCERTAINTY_THRESHOLD
-  const [showRawText, setShowRawText] = useState(false)
-  const confidencePercent = Math.round((meta?.extraction_confidence ?? 1.0) * 100)
-  const formatEvidenceMeta = (item: {
-    mapped_requirement?: string
-    confidence?: number
-    source_section?: string
-  }) => {
-    const parts: string[] = []
-    parts.push(item.mapped_requirement ? `Maps to ${item.mapped_requirement}` : "General evidence")
-    if (typeof item.confidence === "number") {
-      parts.push(`${Math.round(item.confidence * 100)}% confidence`)
-    }
-    if (item.source_section) {
-      parts.push(`${item.source_section} section`)
-    }
-    return parts.join(" • ")
-  }
+  const isUncertain = (meta?.extraction_confidence ?? 1.0) < 0.8
 
   return (
     <Card className="overflow-hidden border-white/5 bg-slate-900/50 backdrop-blur-sm">
@@ -87,20 +57,12 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
         <div className="flex items-center justify-between">
           <div className="space-y-1">
             <h3 className="text-xl font-bold text-white">{candidate.full_name}</h3>
-            <div className="flex items-start gap-2">
-              <TrajectoryBadge
-                archetype={trajectory?.archetype || "unknown"}
-                details={trajectory?.details}
-                metrics={{
-                  promotion_rate: trajectory?.promotion_rate,
-                  avg_tenure_years: trajectory?.avg_tenure_years,
-                  industry_diversity: trajectory?.industry_diversity,
-                }}
-              />
+            <div className="flex items-center gap-2">
+              <TrajectoryBadge archetype={trajectory?.archetype || "unknown"} explanation={trajectory?.details} />
               {isUncertain && (
                 <Badge variant="outline" className="bg-amber-500/10 text-amber-400 border-amber-500/20 gap-1">
                   <AlertTriangle className="w-3 h-3" />
-                  {confidencePercent}% Layout Confidence
+                  Low Confidence
                 </Badge>
               )}
             </div>
@@ -110,6 +72,9 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
             <p className="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Match Score</p>
           </div>
         </div>
+        {trajectory?.details && (
+          <p className="text-xs text-slate-400 leading-relaxed">{trajectory.details}</p>
+        )}
 
         {/* Alignment Dimensions */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -133,7 +98,7 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
              </h4>
              <ul className="space-y-1">
                {explanation?.top_strengths.slice(0, 2).map((s, i) => (
-                 <li key={`${s}-${i}`} className="text-xs text-slate-300 flex items-start gap-2">
+                 <li key={`${i}-${s}`} className="text-xs text-slate-300 flex items-start gap-2">
                    <CheckCircle2 className="w-3 h-3 text-emerald-500 mt-0.5 flex-shrink-0" />
                    {s}
                  </li>
@@ -142,6 +107,32 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
           </div>
         </div>
 
+        {(explanation?.adjacent_skills?.length || explanation?.missing_skills?.length || explanation?.risk_factors?.length) ? (
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+           <div className="bg-white/[0.02] rounded-lg p-3 border border-white/5">
+             <h4 className="text-[10px] uppercase font-bold text-slate-500 mb-2">Adjacent Skills</h4>
+             <p className="text-xs text-slate-300">{explanation?.adjacent_skills?.slice(0, 2).join(" • ") || "None identified"}</p>
+           </div>
+           <div className="bg-white/[0.02] rounded-lg p-3 border border-white/5">
+             <h4 className="text-[10px] uppercase font-bold text-slate-500 mb-2">Missing Skills</h4>
+             <p className="text-xs text-slate-300">{explanation?.missing_skills?.slice(0, 2).join(" • ") || "No major gaps"}</p>
+           </div>
+           <div className="bg-white/[0.02] rounded-lg p-3 border border-white/5">
+             <h4 className="text-[10px] uppercase font-bold text-slate-500 mb-2">Risk Factors</h4>
+             <p className="text-xs text-slate-300">{explanation?.risk_factors?.slice(0, 2).join(" • ") || "No major flags"}</p>
+           </div>
+         </div>
+        ) : null}
+
+        {parsed_data?.negated_skills && parsed_data.negated_skills.length > 0 && (
+         <div className="p-3 rounded-lg bg-rose-500/5 border border-rose-500/10">
+           <p className="text-xs font-semibold text-rose-400">Negation Filter Applied</p>
+           <p className="text-[11px] text-rose-300/90 mt-1">
+             Excluded from scoring: {parsed_data.negated_skills.slice(0, 3).map(s => s.canonical_name || s.name).filter(Boolean).join(", ")}
+           </p>
+         </div>
+        )}
+
         {/* Uncertainty Warning */}
         {isUncertain && (
           <div className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10 flex gap-3">
@@ -149,31 +140,9 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
             <div className="space-y-1">
               <p className="text-xs font-semibold text-amber-400">Calibrated Uncertainty Warning</p>
               <p className="text-[11px] text-amber-500/80 leading-relaxed">
-                Layout-parsing confidence: {confidencePercent}% — this candidate may be underscored due to a decorative PDF. Click to verify raw extracted text.
+                {meta?.parser_warnings[0] || "High layout complexity detected. Verify extraction manually."}
               </p>
-              {meta?.parser_warnings?.[0] && (
-                <p className="text-[11px] text-amber-500/70 leading-relaxed">{meta.parser_warnings[0]}</p>
-              )}
-              {meta?.raw_extracted_text && (
-                <button
-                  type="button"
-                  onClick={() => setShowRawText((current) => !current)}
-                  aria-expanded={showRawText}
-                  aria-controls="raw-extracted-text-panel"
-                  className="text-[11px] font-semibold text-amber-300 hover:text-amber-200 transition-colors"
-                >
-                  {showRawText ? "Hide raw extracted text" : "Verify raw extracted text"}
-                </button>
-              )}
             </div>
-          </div>
-        )}
-        {isUncertain && showRawText && meta?.raw_extracted_text && (
-          <div id="raw-extracted-text-panel" className="p-3 rounded-lg bg-black/30 border border-amber-500/20">
-            <p className="text-[10px] uppercase font-bold text-amber-300 mb-2">Raw Extracted Text</p>
-            <pre className="text-[11px] text-slate-300 whitespace-pre-wrap max-h-56 overflow-y-auto font-sans leading-relaxed">
-              {meta.raw_extracted_text}
-            </pre>
           </div>
         )}
 
@@ -181,55 +150,16 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
         {explanation?.extracted_evidence && explanation.extracted_evidence.length > 0 && (
           <div className="space-y-2">
             <h4 className="text-[10px] uppercase font-bold text-slate-500 flex items-center gap-1">
-              <Quote className="w-3 h-3" /> Evidence-Citation Cards
+              <Quote className="w-3 h-3" /> Extracted Evidence
             </h4>
-            {explanation.extracted_evidence.map((item, idx) => (
-              <div key={idx} className="p-3 rounded-lg bg-black/20 border border-white/5 italic text-xs text-slate-400 relative">
-                &quot;{item.evidence}&quot;
-                <div className="mt-2 text-[10px] not-italic font-bold text-slate-500 flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3" /> {item.claim}
-                </div>
-                <div className="mt-1 text-[10px] not-italic text-slate-500">
-                  {formatEvidenceMeta(item)}
-                </div>
+            <div className="p-3 rounded-lg bg-black/20 border border-white/5 italic text-xs text-slate-400 relative">
+              &quot;{explanation.extracted_evidence[0].evidence}&quot;
+              <div className="mt-2 text-[10px] not-italic font-bold text-slate-500 flex items-center gap-1">
+                <ChevronRight className="w-3 h-3" /> {explanation.extracted_evidence[0].claim}
               </div>
-            ))}
+            </div>
           </div>
         )}
-
-        {/* Explainability breakdown */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div className="bg-white/[0.02] rounded-lg p-3 border border-white/5">
-            <h4 className="text-[10px] uppercase font-bold text-slate-500 mb-2">Adjacent Skills</h4>
-            <ul className="space-y-1">
-              {(explanation?.adjacent_skills?.length ? explanation.adjacent_skills : ["No adjacent coverage detected."])
-                .slice(0, 3)
-                .map((item, idx) => (
-                  <li key={`${item}-${idx}`} className="text-xs text-slate-300">{item}</li>
-                ))}
-            </ul>
-          </div>
-          <div className="bg-white/[0.02] rounded-lg p-3 border border-white/5">
-            <h4 className="text-[10px] uppercase font-bold text-slate-500 mb-2">Missing Skills</h4>
-            <ul className="space-y-1">
-              {(explanation?.missing_skills?.length ? explanation.missing_skills : ["No critical gaps identified."])
-                .slice(0, 3)
-                .map((item, idx) => (
-                  <li key={`${item}-${idx}`} className="text-xs text-slate-300">{item}</li>
-                ))}
-            </ul>
-          </div>
-          <div className="bg-white/[0.02] rounded-lg p-3 border border-white/5">
-            <h4 className="text-[10px] uppercase font-bold text-slate-500 mb-2">Risk Factors</h4>
-            <ul className="space-y-1">
-              {(explanation?.risk_factors?.length ? explanation.risk_factors : ["No immediate hiring risk flagged."])
-                .slice(0, 3)
-                .map((item, idx) => (
-                  <li key={`${item}-${idx}`} className="text-xs text-slate-300">{item}</li>
-                ))}
-            </ul>
-          </div>
-        </div>
       </div>
       
       {/* Footer / Assessment */}
@@ -237,9 +167,6 @@ export function EvaluationCard({ candidate }: EvaluationCardProps) {
         <p className="text-[11px] text-slate-400 leading-relaxed">
           <span className="font-bold text-slate-300">AI Assessment:</span> {explanation?.overall_assessment}
         </p>
-        {explanation?.compliance_note && (
-          <p className="text-[10px] text-slate-500 mt-2">{explanation.compliance_note}</p>
-        )}
       </div>
     </Card>
   )

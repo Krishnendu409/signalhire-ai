@@ -6,7 +6,6 @@ from app.models.user import User
 from app.models.job import Job
 from app.models.candidate import Candidate
 from app.models.ranking import RankingJob
-from app.core.constants import COMPLIANCE_NOTE_DEFAULT
 from app.tasks.manager import task_queue
 from app.tasks.functions import process_ranking
 import uuid
@@ -151,10 +150,9 @@ async def export_ranking_csv(
     writer.writerow([
         "Rank", "Name", "Title", "Final Score",
         "Semantic Relevance", "Experience Depth", "Career Trajectory",
-        "Project Relevance", "Behavioral", "Domain Alignment", "Adaptability",
-        "Trajectory Archetype",
-        "Top Strengths", "Missing Skills", "Adjacent Skills", "Risk Factors",
-        "Compliance Note",
+        "Project Relevance", "Behavioral Indicators", "Domain Alignment", "Adaptability",
+        "Trajectory Archetype", "Top Strengths", "Missing Skills", "Adjacent Skills",
+        "Risk Factors", "Compliance Note",
     ])
 
     for i, res in enumerate(ranking.results.get("results", [])):
@@ -165,8 +163,8 @@ async def export_ranking_csv(
 
         writer.writerow([
             i + 1,
-            parsed.get("full_name", "Unknown"),
-            parsed.get("current_title", ""),
+            res.get("full_name", parsed.get("full_name", "Unknown")),
+            res.get("current_title", parsed.get("current_title", "")),
             res.get("final_score", 0),
             dims.get("semantic_relevance", {}).get("score", ""),
             dims.get("experience_depth", {}).get("score", ""),
@@ -175,12 +173,12 @@ async def export_ranking_csv(
             dims.get("behavioral_indicators", {}).get("score", ""),
             dims.get("domain_alignment", {}).get("score", ""),
             dims.get("adaptability", {}).get("score", ""),
-            trajectory.get("archetype", ""),
+            trajectory.get("archetype", dims.get("career_trajectory", {}).get("archetype", "unknown")),
             "; ".join(expl.get("top_strengths", [])),
             "; ".join(expl.get("missing_skills", [])),
             "; ".join(expl.get("adjacent_skills", [])),
             "; ".join(expl.get("risk_factors", [])),
-            expl.get("compliance_note", COMPLIANCE_NOTE_DEFAULT),
+            res.get("compliance_note", "No protected attributes used"),
         ])
 
     output.seek(0)

@@ -7,21 +7,13 @@ from google.genai import types
 from google.api_core.exceptions import GoogleAPICallError
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from app.core.config import settings
-from app.core.constants import COMPLIANCE_NOTE_DEFAULT
 
 logger = logging.getLogger(__name__)
 
-MODEL_NAME = "gemini-2.5-flash-preview-05-20"
+MODEL_NAME = "gemini-2.5-flash-latest"
 # Thinking budget controls extra reasoning tokens in Gemini 2.5 Flash; 768 balances
 # extraction consistency improvements with latency/cost for JD and resume parsing.
 THINKING_BUDGET = 768
-
-
-def _safe_float(value, default: float = 0.0) -> float:
-    try:
-        return float(value)
-    except (TypeError, ValueError):
-        return default
 
 
 @lru_cache(maxsize=1)
@@ -106,9 +98,11 @@ RESUME_PARSE_PROMPT = """Extract a JSON object from the resume text below with e
 - trajectory_events: list of objects {{"type": "promotion/lateral/break", "date": "", "details": ""}}
 
 Rules for skills:
-- Set confidence baseline by section: certification=1.0, experience=0.8, projects=0.6, education=0.5, skills list=0.2.
-- For "familiar with" or "basic knowledge of" -> reduce confidence to 0.3 and note in context.
-- Detect negation ("no experience with", "have not worked with") -> set confidence to 0.0 and set negated=true.
+- source_section must be one of: experience, skills, certification, projects, education.
+- Set confidence by section signal: certification=1.0, experience=0.8, projects=0.6, education=0.5, skills list=0.2.
+- For "familiar with" or "basic knowledge of" -> set confidence to 0.3 and note in context.
+- Detect negation ("no experience with", "have not worked with", "not yet worked with") -> set negated=true and confidence=0.0.
+- Keep negated skills in output (do not drop them) so downstream filters can exclude them from scoring.
 - Extract version numbers (e.g., "Angular 17", "Python 3.10").
 - Do NOT confuse programming languages with general terms (e.g., "Go" language vs "go-to-market").
 
@@ -144,7 +138,7 @@ Return JSON:
   "behavioral_indicators": {{"score": int, "note": "string"}},
   "domain_alignment": {{"score": int, "note": "string"}},
   "adaptability": {{"score": int, "note": "string"}},
-  "adjacent_skills": ["string with concise reasoning"],
+  "adjacent_skills": ["string"],
   "missing_skills": ["string"]
 }}"""
 
@@ -160,19 +154,10 @@ Output JSON:
 {{
   "top_strengths": ["string", ...],
   "missing_skills": ["string", ...],
-  "adjacent_skills": ["string with concise reasoning", ...],
+  "adjacent_skills": ["string", ...],
   "risk_factors": ["string", ...],
-  "compliance_note": "single sentence confirming no protected attributes influenced scoring",
   "overall_assessment": "paragraph summary",
-  "extracted_evidence": [
-    {{
-      "claim": "string",
-      "evidence": "verbatim resume snippet",
-      "mapped_requirement": "string",
-      "confidence": 0.0,
-      "source_section": "experience/projects/summary/skills/education"
-    }}
-  ]
+  "extracted_evidence": [{{"claim": "string", "evidence": "verbatim resume snippet"}}]
 }}"""
 
 
@@ -213,23 +198,4 @@ class AIPipeline:
             candidate_json=json.dumps(candidate_parsed, indent=2),
             scores_json=json.dumps(scores, indent=2),
         )
-        response = await gemini_generate(prompt, system=EXPLAIN_SYSTEM)
-        evidence = response.get("extracted_evidence", [])
-        normalized = []
-        for item in evidence:
-            if not isinstance(item, dict):
-                continue
-            normalized.append(
-                {
-                    "claim": str(item.get("claim", "")).strip(),
-                    "evidence": str(item.get("evidence", "")).strip(),
-                    "mapped_requirement": str(item.get("mapped_requirement", "")).strip(),
-                    "confidence": _safe_float(item.get("confidence", 0.0), default=0.0),
-                    "source_section": str(item.get("source_section", "unknown")).strip() or "unknown",
-                }
-            )
-        response["extracted_evidence"] = normalized
-        response["compliance_note"] = str(
-            response.get("compliance_note", COMPLIANCE_NOTE_DEFAULT)
-        ).strip() or COMPLIANCE_NOTE_DEFAULT
-        return response
+        return await gemini_generate(prompt, system=EXPLAIN_SYSTEM)
