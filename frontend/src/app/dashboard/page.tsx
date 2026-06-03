@@ -32,7 +32,13 @@ type CandidateResult = {
     adjacent_skills: string[];
     risk_factors: string[];
     overall_assessment: string;
-    extracted_evidence: { claim: string; evidence: string }[];
+    extracted_evidence: {
+      claim: string;
+      evidence: string;
+      mapped_requirement?: string;
+      confidence?: number;
+      source_section?: string;
+    }[];
   };
   parsed_data: {
     _trajectory?: {
@@ -44,6 +50,7 @@ type CandidateResult = {
       layout_complexity: number;
       extraction_confidence: number;
       parser_warnings: string[];
+      raw_extracted_text?: string;
     };
   };
   id?: string | number;
