@@ -127,8 +127,7 @@ async def rank_candidates_for_job(
     # Sort
     scored_candidates.sort(key=lambda x: x.get("final_score", 0), reverse=True)
 
-    # Stage 4: Explainability for top 5
-    top_5 = scored_candidates[:5]
+    # Stage 4: Explainability for all candidates (needed for complete exports)
     async def explain_one(candidate: dict) -> dict:
         c_id = str(candidate.get("id"))
         explanation = await AIPipeline.generate_explanation(
@@ -140,11 +139,14 @@ async def rank_candidates_for_job(
         await AuditAgent.log_explanation(c_id, job_id, "gemini-2.5-flash-latest")
         return candidate
 
-    top_5_with_explanations = await asyncio.gather(*[explain_one(c) for c in top_5])
+    explained_candidates = []
+    explain_batch_size = 5
+    for i in range(0, len(scored_candidates), explain_batch_size):
+        batch = scored_candidates[i:i + explain_batch_size]
+        explained_batch = await asyncio.gather(*[explain_one(c) for c in batch])
+        explained_candidates.extend(explained_batch)
 
-    for i, c in enumerate(scored_candidates):
-        if i < 5:
-            scored_candidates[i] = top_5_with_explanations[i]
+    scored_candidates = explained_candidates
 
     return {
         "job_id": job_id,

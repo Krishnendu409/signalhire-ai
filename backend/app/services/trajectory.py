@@ -13,14 +13,29 @@ HOPPER_MIN_DIVERSITY = 0.7
 HOPPER_MIN_COMPANIES = 3
 
 
+def _normalize_date_text(date_str: str | None) -> str:
+    return re.sub(r"[,\.\(\)]", "", (date_str or "").strip().lower())
+
+
 def parse_date(date_str: str) -> datetime | None:
     """Attempt to parse various date formats. Returns None on failure."""
     if not date_str:
         return None
-    normalized = date_str.strip().lower()
-    normalized = re.sub(r"[,\.\(\)]", "", normalized)
-    if normalized in {"present", "current", "now"}:
+
+    normalized = _normalize_date_text(date_str)
+    if _is_current_role(normalized):
         return datetime.now()
+
+    if " to " in normalized:
+        normalized = normalized.split(" to ")[-1].strip()
+    if " - " in normalized:
+        normalized = normalized.split(" - ")[-1].strip()
+    elif "-" in normalized and normalized.count("-") == 1 and " " in normalized:
+        normalized = normalized.split("-")[-1].strip()
+
+    if _is_current_role(normalized):
+        return datetime.now()
+
     formats = [
         "%Y-%m-%d",
         "%Y-%m",
@@ -43,8 +58,9 @@ def parse_date(date_str: str) -> datetime | None:
 def _is_current_role(end_date: str | None) -> bool:
     if not end_date:
         return True
-    normalized = re.sub(r"[,\.\(\)]", "", end_date.strip().lower())
-    return normalized in {"present", "current", "now", "till date", "to date", "ongoing"}
+    normalized = _normalize_date_text(end_date)
+    current_tokens = {"present", "current", "now", "till date", "to date", "ongoing", "today", "till now"}
+    return normalized in current_tokens or any(token in normalized for token in current_tokens)
 
 
 def _experience_label(exp: dict) -> str:
@@ -177,6 +193,7 @@ def classify_trajectory(
         "details": details,
         "career_years": round(career_years, 1),
         "num_jobs": num_jobs,
+        "avg_tenure": round(avg_tenure_years, 1),
         "avg_tenure_years": round(avg_tenure_years, 1),
         "promotion_rate": round(promotion_rate, 2),
         "industry_diversity": round(industry_diversity, 2),
