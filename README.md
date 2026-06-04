@@ -1,103 +1,95 @@
-# SignalHire AI
+<div align="center">
+  
+# 🎯 SignalHire AI: Redrob Intelligent Candidate Discovery
+**Modeling Recruiter Judgment through 5 Dimensions of Technical and Behavioral Fit**
 
-[![Python](https://img.shields.io/badge/Python-53.3%25-blue.svg)](https://www.python.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-43.4%25-3178c6.svg)](https://www.typescriptlang.org/)
-[![CSS](https://img.shields.io/badge/CSS-2.9%25-254bdd.svg)](https://developer.mozilla.org/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-0.4%25-f7df1e.svg)](https://www.javascript.com/)
-[![GitHub License](https://img.shields.io/github/license/Krishnendu409/signalhire-ai.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
+[![LightGBM](https://img.shields.io/badge/LightGBM-4.6.0-green.svg)](https://lightgbm.readthedocs.io/)
+[![Sentence Transformers](https://img.shields.io/badge/Sentence_Transformers-5.5.1-yellow.svg)](https://sbert.net/)
+[![Next.js](https://img.shields.io/badge/Next.js-UI-black.svg)](https://nextjs.org/)
+
+</div>
 
 ---
 
 ## 🚀 Overview
 
-**SignalHire AI** is a powerful and extensible platform designed to automate, streamline, and enhance talent sourcing workflows using cutting-edge artificial intelligence. Built with Python and TypeScript, this project aims to simplify data discovery, enrichment, and communication processes for recruiters and teams.
+**SignalHire AI** is a cutting-edge retrieval and ranking pipeline built specifically for the *Redrob Intelligent Candidate Discovery & Ranking Challenge*. 
 
-## ✨ Features
+Instead of relying purely on semantic similarity—which is highly vulnerable to keyword stuffing and honeypot profiles—SignalHire AI explicitly models **Recruiter Judgment** through five dimensions:
+1. **Technical Fit** (Retrieval, Ranking, Vector DBs, Evaluation)
+2. **Startup Readiness** (Ownership, Cross-functional experience)
+3. **Candidate Authenticity** (LLM-Artifact Detection, Multi-Profile Consistency)
+4. **Hireability** (Response rates, Notice periods, Recency)
+5. **Behavioral Reliability** (Role Progression Slope, Leadership momentum)
 
-- **AI-Driven Data Extraction**: Seamlessly extract and analyze talent or contact data from multiple sources.
-- **Multi-Source Integration**: Connect with various websites, APIs, and data sources.
-- **Extensible Agents & Workflows**: Customize and extend with your own automation routines (agents) for sourcing and enrichment.
-- **TypeScript & Python Core**: Leverage the strengths of both Python (AI, backend) and TypeScript (frontend, logic).
-- **Modern UI**: Clean, responsive frontend powered by the latest web technologies.
-- **Automation Ready**: Integrates with automation/CI tools for workflow optimization.
-
-## 📦 Tech Stack
-
-- **Backend**: Python (FastAPI/Flask/Other)
-- **Frontend**: TypeScript (React/Next.js/Vue), CSS
-- **Auxiliary**: JavaScript, CSS
-- **Database**: (Add your DB here if applicable)
-- **External Services**: (APIs or third-party tools if any)
-
-## 🛠️ Getting Started
-
-### Prerequisites
-
-- Python 3.9+
-- Node.js (>= 16.x), npm or yarn
-
-### Installation
-
-1. **Clone the repository**
-    ```bash
-    git clone https://github.com/Krishnendu409/signalhire-ai.git
-    cd signalhire-ai
-    ```
-
-2. **Backend Setup**
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    pip install -r requirements.txt
-    ```
-
-3. **Frontend Setup**
-    ```bash
-    cd frontend
-    npm install  # or yarn install
-    npm run dev  # Start the frontend development server
-    ```
-
-4. **Configuration**
-    - Edit `.env` or `config.yaml` as needed for API keys and environment settings.
-
-5. **Run the application**
-    - Backend:  
-      ```bash
-      # In project root
-      python app.py  # or your backend start command
-      ```
-    - Frontend:  
-      (See above)
-
-## 📖 Usage
-
-1. Access the frontend at [http://localhost:3000](http://localhost:3000)
-2. Utilize the dashboard to run AI-powered sourcing agents.
-3. Customize agents/workflows for your use cases.
-
-_For advanced features, workflow samples, and agent customization, refer to the [docs/](docs/) directory or Wiki (if available)._
-
-## 🚧 Roadmap
-
-- [ ] Add more sourcing agent templates
-- [ ] Integrate chat-based AI assistant
-- [ ] Advanced analytics and reporting
-- [ ] Plugin/extension system
-
-## 🤝 Contributing
-
-Contributions are welcome! Please open issues and pull requests. See the [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-## 📄 License
-
-This project is licensed under the terms of the [LICENSE](LICENSE).
-
-## 🙏 Acknowledgments
-
-- Open source libraries and frameworks powering this project.
-- Special thanks to contributors!
+The system is designed strictly for offline, CPU-constrained execution, maintaining full forensic dataset scanning within the 5-minute wall-clock limit.
 
 ---
 
-*Crafted by [Krishnendu409](https://github.com/Krishnendu409) — Made with Python & TypeScript ❤️*
+## ✨ Key Features & Architecture
+
+### 🛡️ 1. Dataset Forensics & Consistency Engine
+We don't just match keywords; we detect deception.
+*   **Identity Consistency Score:** Cross-references headlines, summaries, and career history to find contradictions.
+*   **Timeline Integrity:** Validates mathematical discrepancies between stated years of experience and actual chronologies.
+*   **LLM Synthetic Generation Artifacts:** Identifies generated honeypots using a statistical penalty for known LLM-isms (e.g., *"delve"*, *"tapestry"*).
+*   **Skill Inflation Penalty:** Penalizes profiles listing 50+ "Expert" skills with low actual experience.
+
+### 🧠 2. JD-Specific Alignment Scoring
+We built 16 handcrafted recruiter heuristics precisely mapped to the JD:
+*   `retrieval_experience_score`
+*   `ranking_experience_score`
+*   `vector_db_score`
+*   `evaluation_framework_score`
+*   `production_ml_score`
+
+*Mentions in current roles are mathematically weighted higher than mentions 10 years ago.*
+
+### ⚡ 3. Hybrid Retrieval Funnel
+To ensure zero high-quality candidates fall through the cracks, we use a massive union strategy:
+*   **Top 5,000 via Semantic Similarity** (`all-MiniLM-L6-v2`)
+*   **Top 5,000 via Lexical BM25** (TF-IDF approximation)
+*   **Heavy Feature Extraction** runs on the deduplicated 10,000 candidate union.
+
+### 🎯 4. Deterministic LightGBM LambdaRank
+Instead of training our Ranker on generic pseudo-labels, we train LightGBM `lambdarank` against our **Handcrafted Recruiter Score** ground truth. This forces the model to learn the critical, non-linear interactions between technical capability and candidate authenticity.
+
+### 💬 5. SHAP-Inspired NLG Reasoning
+Explanations are generated dynamically by reading the extremity of the underlying feature vectors for each candidate.
+*   *Example Output:* `"Extensive background building retrieval and ranking systems with production vector-search infrastructure. Exceptional recruiter engagement signals and hireability."*
+
+---
+
+## 🛠️ Execution & Pipeline
+
+The entire system is decoupled into an offline embedding stage and a highly optimized online inference stage.
+
+### 1. Offline Setup
+To halve memory requirements and satisfy the 16GB limit, embeddings are pre-computed in `float16`.
+```bash
+# Generate candidate_embeddings.npy
+python hackathon_pipeline/offline_embedder.py
+
+# Train LightGBM LambdaRank model on the candidate pool
+python hackathon_pipeline/train_lightgbm.py
+```
+
+### 2. Online Inference (The 5-Minute Challenge)
+Run the finalized online pipeline. It loads the `float16` matrix, runs the Hybrid BM25/Semantic retrieval, runs dataset forensics, and ranks the Top 100 candidates.
+```bash
+# Outputs submission.csv
+python hackathon_pipeline/run_ranking.py
+```
+
+---
+
+## 💻 Tech Stack
+*   **Machine Learning:** `LightGBM` (LambdaRank), `Sentence-Transformers` (`all-MiniLM-L6-v2`), `scikit-learn` (TF-IDF).
+*   **Data Processing:** `pandas`, `numpy`
+*   **Frontend UI:** `Next.js`, `TypeScript`, `Tailwind CSS` (Premium Glassmorphism Aesthetics)
+
+---
+<div align="center">
+<i>Built to find the safe business investment.</i>
+</div>

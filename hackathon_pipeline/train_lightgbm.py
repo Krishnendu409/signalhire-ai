@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import numpy as np
 import lightgbm as lgb
-from feature_extractor import calculate_fraud_risk, extract_behavioral_features
+from feature_extractor import extract_recruiter_features
 
 def generate_training_data(input_path, num_samples=2000):
     print(f"Loading {num_samples} samples from {input_path} for pseudo-label training...")
@@ -20,45 +20,51 @@ def generate_training_data(input_path, num_samples=2000):
     df = pd.DataFrame(records)
     
     print("Extracting features...")
-    df = calculate_fraud_risk(df)
-    features_df = extract_behavioral_features(df)
+    features_df = extract_recruiter_features(df)
     
-    # We simulate semantic similarity as a random normal distribution for training purposes,
-    # as the real similarity will depend on the dynamic query. 
-    # In reality, we'd train on (candidate, query) pairs. Since we don't have labeled queries,
-    # we generate a robust pseudo-labeled dataset teaching the model how to weight behavioral signals.
+    # We simulate semantic similarity and BM25 as they depend on the query dynamically
     np.random.seed(42)
     features_df['semantic_sim'] = np.random.uniform(0.3, 1.0, size=len(features_df))
     features_df['bm25_score'] = np.random.uniform(0.0, 1.0, size=len(features_df))
     
-    # Include fraud score
-    features_df['fraud_risk_score'] = df['fraud_risk_score']
-    
-    # Generate Pseudo-Labels (0 to 4)
+    # Generate Handcrafted Recruiter Score as Pseudo-Label
     labels = np.zeros(len(features_df))
     for idx, row in features_df.iterrows():
-        # Immediate disqualifiers
-        if row['fraud_risk_score'] >= 1.0 or row['notice_period_days'] > 60:
-            labels[idx] = 0
-            continue
-            
-        score = 0
+        # Core alignment
+        core = (
+            row['retrieval_experience_score'] * 2.0 +
+            row['ranking_experience_score'] * 2.5 +
+            row['embedding_experience_score'] * 2.0 +
+            row['vector_db_score'] * 1.5 +
+            row['evaluation_framework_score'] * 1.5 +
+            row['production_ml_score'] * 1.5
+        )
         
-        # Technical fit proxies
-        if row['semantic_sim'] > 0.8 and row['bm25_score'] > 0.5:
-            score += 2
-        elif row['semantic_sim'] > 0.6:
-            score += 1
-            
-        # Behavioral fit
-        if row['recency_decay_score'] > 0.8 and row['recruiter_response_rate'] > 0.7:
-            score += 1
+        # Soft skills & reliability
+        soft = (
+            row['startup_readiness_score'] * 1.0 +
+            row['leadership_score'] * 1.0 +
+            row['product_ownership_score'] * 1.0 +
+            row['hireability_score'] * 2.0 +
+            row['recruiter_interest_score'] * 0.5 + 
+            row['role_progression_score'] * 1.0
+        )
         
-        # Experience multiplier
-        if 24 <= row['avg_tenure_months'] <= 60 and row['product_company_ratio'] > 0.5:
-            score += 1
-            
-        labels[idx] = min(4, score)
+        # Penalties and Consistencies
+        penalties = (
+            row['career_consistency_score'] + # Negative if inconsistent
+            row['timeline_consistency_score'] + # Negative if inconsistent
+            row['jd_disqualifier_penalty'] - 
+            (row['synthetic_risk_score'] * 0.5)
+        )
+        
+        # Query dependencies (simulated)
+        query = (row['semantic_sim'] * 5.0) + (row['bm25_score'] * 2.0)
+        
+        final_score = core + soft + penalties + query
+        
+        # Normalize to 0-5 and cast to int for LambdaRank
+        labels[idx] = int(round(max(0, min(5, final_score / 5.0))))
         
     features_df['label'] = labels
     return features_df
@@ -66,19 +72,20 @@ def generate_training_data(input_path, num_samples=2000):
 def train_lambdarank(df, output_model_path):
     print("Training LightGBM LambdaRank model...")
     
-    # Features for the model
+    # All features for the model
     feature_cols = [
-        'semantic_sim', 'bm25_score', 'recency_decay_score', 
-        'avg_tenure_months', 'product_company_ratio', 
-        'recruiter_response_rate', 'github_activity_score', 
-        'notice_period_days', 'fraud_risk_score'
+        'semantic_sim', 'bm25_score',
+        'retrieval_experience_score', 'ranking_experience_score', 'embedding_experience_score',
+        'vector_db_score', 'evaluation_framework_score', 'production_ml_score',
+        'hireability_score', 'career_consistency_score', 'timeline_consistency_score',
+        'recruiter_interest_score', 'startup_readiness_score', 'leadership_score',
+        'product_ownership_score', 'synthetic_risk_score', 'role_progression_score',
+        'jd_disqualifier_penalty', 'github_activity_score'
     ]
     
     X = df[feature_cols]
     y = df['label']
     
-    # LambdaRank requires query groups. 
-    # Since we are training to optimize a single list for a generic query, we set all data to one group.
     group = [len(X)] 
     
     train_data = lgb.Dataset(X, label=y, group=group)
@@ -100,7 +107,6 @@ def train_lambdarank(df, output_model_path):
     print(f"Saving model to {output_model_path}")
     model.save_model(output_model_path)
     
-    # Print feature importance
     importance = model.feature_importance(importance_type='gain')
     print("\nFeature Importances (Gain):")
     for name, imp in sorted(zip(feature_cols, importance), key=lambda x: x[1], reverse=True):
