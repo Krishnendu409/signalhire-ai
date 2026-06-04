@@ -25,12 +25,14 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-50 selection:bg-blue-500/30 overflow-x-hidden">
-      {/* Background Glows */}
+    <div className="min-h-screen bg-[#020617] text-slate-50 selection:bg-blue-500/30 overflow-x-hidden font-sans">
+      {/* Background Glows & Grid */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full" />
-        <div className="absolute top-[20%] -right-[10%] w-[35%] h-[35%] bg-purple-600/10 blur-[120px] rounded-full" />
-        <div className="absolute -bottom-[10%] left-[20%] w-[30%] h-[30%] bg-indigo-600/10 blur-[120px] rounded-full" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light" />
+        <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-blue-900/20 to-transparent" />
+        <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-blue-600/20 blur-[120px] rounded-full animate-pulse duration-10000" />
+        <div className="absolute top-[20%] -right-[10%] w-[40%] h-[40%] bg-purple-600/20 blur-[150px] rounded-full animate-pulse duration-7000 delay-1000" />
+        <div className="absolute -bottom-[10%] left-[20%] w-[40%] h-[40%] bg-indigo-600/20 blur-[120px] rounded-full" />
       </div>
 
       {/* Nav */}
@@ -65,34 +67,35 @@ export default function Home() {
             Next-Gen Recruiting Intelligence
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400">
-            Hire with Semantic <br />Intelligence, not Keywords.
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-br from-white via-blue-100 to-slate-400 drop-shadow-sm">
+            Hire with Semantic <br />Intelligence.
           </h1>
           
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 mb-10 leading-relaxed">
+          <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-light">
             SignalHire AI ranks candidates using deep career trajectory modeling 
             and multi-signal assessment. Move beyond rigid ATS filters to find 
-            the <span className="text-blue-400 font-medium">Safe Business Investment</span>.
+            the <span className="text-blue-400 font-semibold drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]">Safe Business Investment</span>.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-            <form onSubmit={handleSubmit} className="flex w-full group">
-              <div className="relative flex-1">
+            <form onSubmit={handleSubmit} className="flex w-full group relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+              <div className="relative flex w-full">
                 <input
                   type="email"
                   placeholder="name@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full h-12 bg-white/5 border border-white/10 rounded-l-xl px-4 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
+                  className="w-full h-14 bg-[#0a0f25]/80 backdrop-blur-xl border border-white/10 rounded-l-xl px-5 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-lg"
                 />
+                <button
+                  type="submit"
+                  className="h-14 px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-r-xl transition-all flex items-center gap-2 whitespace-nowrap shadow-xl hover:shadow-blue-500/25 active:scale-[0.98]"
+                >
+                  Access Alpha <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
               </div>
-              <button
-                type="submit"
-                className="h-12 px-6 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-r-xl transition-all flex items-center gap-2 whitespace-nowrap shadow-lg shadow-blue-600/20"
-              >
-                Access Alpha <ArrowRight className="w-4 h-4" />
-              </button>
             </form>
           </div>
         </motion.div>
@@ -177,14 +180,18 @@ export default function Home() {
 function FeatureCard({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
   return (
     <motion.div 
-      whileHover={{ y: -5 }}
-      className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-all hover:bg-white/[0.03]"
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className="p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-colors relative overflow-hidden group shadow-2xl"
     >
-      <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-4">
-        {icon}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="relative z-10">
+        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 flex items-center justify-center mb-6 shadow-inner">
+          {icon}
+        </div>
+        <h3 className="text-xl font-bold mb-3 tracking-tight text-slate-100">{title}</h3>
+        <p className="text-slate-400 leading-relaxed text-sm font-medium">{description}</p>
       </div>
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-slate-400 leading-relaxed text-sm">{description}</p>
     </motion.div>
   )
 }
