@@ -1,4 +1,4 @@
-import json
+import logging
 import asyncio
 import copy
 from app.services.ai import AIPipeline
@@ -8,6 +8,7 @@ from app.services.reranker import rerank_with_cross_encoder
 from app.services.trajectory import classify_trajectory
 from app.services.audit import AuditAgent
 
+logger = logging.getLogger(__name__)
 
 # Scoring weights from the PRD
 SCORING_WEIGHTS = {
@@ -66,7 +67,7 @@ async def rank_candidates_for_job(
                 for r in search_results
             ]
         except Exception as e:
-            print(f"Retrieval error: {e}")
+            logger.error(f"Retrieval error: {e}")
             candidates = []
 
     if not candidates:

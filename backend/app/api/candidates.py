@@ -6,7 +6,6 @@ from app.models.user import User
 from app.models.candidate import Candidate
 from app.services.storage import upload_resume
 from app.tasks.manager import task_queue
-from app.tasks.functions import process_resume
 import uuid
 
 router = APIRouter()
@@ -43,7 +42,7 @@ async def upload_candidate_resume(
     db.add(candidate)
     await db.commit()
 
-    file_key = await upload_resume(file_bytes, str(candidate.id))
+    file_key = await upload_resume(file_bytes, str(candidate.id), file.filename or "")
     candidate.resume_file_key = file_key
     await db.commit()
 

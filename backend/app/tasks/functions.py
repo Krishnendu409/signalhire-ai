@@ -79,7 +79,12 @@ async def process_ranking(ranking_job_id: str):
             
             job_res = await session.execute(select(Job).where(Job.id == ranking_job.job_id))
             job = job_res.scalar_one_or_none()
-            
+            if not job:
+                ranking_job.status = "failed"
+                ranking_job.results = {"error": "Associated job not found"}
+                await session.commit()
+                return {"error": "Associated job not found"}
+
             cand_res = await session.execute(
                 select(Candidate).where(
                     Candidate.recruiter_id == job.recruiter_id,

@@ -7,7 +7,6 @@ from app.models.job import Job
 from app.models.candidate import Candidate
 from app.models.ranking import RankingJob
 from app.tasks.manager import task_queue
-from app.tasks.functions import process_ranking
 import uuid
 
 router = APIRouter()
@@ -136,7 +135,7 @@ async def export_ranking_csv(
 
     ranking_result = await db.execute(
         select(RankingJob)
-        .where(RankingJob.job_id == job_id)
+        .where(RankingJob.job_id == uuid.UUID(job_id))
         .order_by(RankingJob.created_at.desc())
         .limit(1)
     )

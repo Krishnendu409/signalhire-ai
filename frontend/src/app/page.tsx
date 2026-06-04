@@ -161,7 +161,7 @@ export default function Home() {
       </main>
 
       <footer className="py-12 border-t border-white/5 mt-20">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:row items-center justify-between gap-6 opacity-50 text-sm">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 opacity-50 text-sm">
           <p>© 2026 SignalHire AI. Enterprise-Grade Candidate Ranking.</p>
           <div className="flex gap-8">
             <a href="#" className="hover:text-blue-400">Terms</a>

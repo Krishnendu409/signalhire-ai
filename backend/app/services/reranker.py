@@ -1,7 +1,5 @@
-import json
 import asyncio
 from sentence_transformers import CrossEncoder
-from app.core.config import settings
 
 # Load model once at module level – memory-heavy but instant inference after startup
 # BGE-reranker-base: 335M parameters, ~200-300ms for 100 pairs on CPU
@@ -15,6 +13,16 @@ def _get_model() -> CrossEncoder:
             max_length=512,
         )
     return _reranker_model
+
+
+def warmup_reranker() -> None:
+    """Load the cross-encoder model at startup so the first request is fast.
+    Called from main.py lifespan via asyncio.to_thread to avoid blocking."""
+    try:
+        _get_model()
+        print("✅ Cross-encoder reranker warmed up.")
+    except Exception as e:
+        print(f"⚠️  Reranker warmup failed (will load lazily on first request): {e}")
 
 
 def _candidate_to_text(candidate: dict) -> str:
