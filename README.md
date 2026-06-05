@@ -27,7 +27,72 @@ The system is designed strictly for offline, CPU-constrained execution, maintain
 
 ---
 
-## ✨ Key Features & Architecture
+## 🛠️ Complete Setup Instructions (For Beginners)
+
+If you are new to programming, don't worry! Follow these step-by-step instructions to get the AI pipeline running on your own computer.
+
+### Step 1: Install Python
+You need Python installed on your computer to run the AI models.
+1. Go to the [Python Downloads Page](https://www.python.org/downloads/).
+2. Download the latest version of Python (3.11 or higher is recommended).
+3. **Important for Windows Users:** During the installation, make sure to check the box that says **"Add Python to PATH"** before clicking Install.
+
+### Step 2: Download the Project
+1. Open your computer's terminal (Command Prompt or PowerShell on Windows, Terminal on Mac).
+2. Clone this repository to your computer by typing:
+   ```bash
+   git clone https://github.com/Krishnendu409/signalhire-ai.git
+   ```
+3. Move into the project folder:
+   ```bash
+   cd signalhire-ai
+   ```
+
+### Step 3: Install Required Packages
+The AI relies on several external libraries (like `pandas` for data and `lightgbm` for ranking). You need to install them.
+Run this command in your terminal:
+```bash
+pip install pandas numpy scikit-learn lightgbm sentence-transformers
+```
+*(Depending on your computer, you might need to use `pip3` instead of `pip`)*
+
+### Step 4: Add the Hackathon Dataset
+1. Ensure you have the hackathon dataset folder named `[PUB] India_runs_data_and_ai_challenge`.
+2. Place this folder directly next to or inside the `signalhire-ai` folder so the pipeline can read `candidates.jsonl` and `job_description.docx`.
+
+---
+
+## 🏃 Running the AI Pipeline
+
+The pipeline is split into two parts: an **Offline** preparation step and an **Online** ranking step.
+
+### Part 1: Offline Preparation (Run this ONCE)
+This step reads all 100,000 candidates and converts their text into mathematical vectors (embeddings), and then trains the AI model on what makes a "good" candidate.
+1. In your terminal, run the embedder:
+   ```bash
+   python hackathon_pipeline/offline_embedder.py
+   ```
+   *(Note: This process reads 100,000 candidates and calculates deep AI vectors using just your CPU. It may take 1-2 hours depending on your computer's speed. Let it run until it finishes!)*
+   
+2. Next, train the Ranker AI model:
+   ```bash
+   python hackathon_pipeline/train_lightgbm.py
+   ```
+   *(This step takes about 1 minute. It generates a file called `lgbm_ranker.txt`)*
+
+### Part 2: Online Ranking (The Fast Challenge)
+Once the offline setup is complete, you can run the final ranking engine. This part simulates the hackathon's 5-minute constraint. It quickly searches the 100,000 candidates, extracts our 16 recruiter features, filters out fake profiles, and scores the Top 100.
+1. Run the ranking script:
+   ```bash
+   python hackathon_pipeline/run_ranking.py
+   ```
+2. **Success!** Within seconds, this will generate a file named `submission.csv` in your folder. This file contains the Top 100 candidates ranked from 1 to 100, complete with scores and detailed AI-generated recruiter explanations for *why* they were chosen.
+
+---
+
+## ✨ Key Features & Architecture Details
+
+For technical judges, here is how the engine actually works under the hood:
 
 ### 🛡️ 1. Dataset Forensics & Consistency Engine
 We don't just match keywords; we detect deception.
@@ -61,35 +126,6 @@ Explanations are generated dynamically by reading the extremity of the underlyin
 
 ---
 
-## 🛠️ Execution & Pipeline
-
-The entire system is decoupled into an offline embedding stage and a highly optimized online inference stage.
-
-### 1. Offline Setup
-To halve memory requirements and satisfy the 16GB limit, embeddings are pre-computed in `float16`.
-```bash
-# Generate candidate_embeddings.npy
-python hackathon_pipeline/offline_embedder.py
-
-# Train LightGBM LambdaRank model on the candidate pool
-python hackathon_pipeline/train_lightgbm.py
-```
-
-### 2. Online Inference (The 5-Minute Challenge)
-Run the finalized online pipeline. It loads the `float16` matrix, runs the Hybrid BM25/Semantic retrieval, runs dataset forensics, and ranks the Top 100 candidates.
-```bash
-# Outputs submission.csv
-python hackathon_pipeline/run_ranking.py
-```
-
----
-
-## 💻 Tech Stack
-*   **Machine Learning:** `LightGBM` (LambdaRank), `Sentence-Transformers` (`all-MiniLM-L6-v2`), `scikit-learn` (TF-IDF).
-*   **Data Processing:** `pandas`, `numpy`
-*   **Frontend UI:** `Next.js`, `TypeScript`, `Tailwind CSS` (Premium Glassmorphism Aesthetics)
-
----
 <div align="center">
 <i>Built to find the safe business investment.</i>
 </div>
