@@ -23,7 +23,7 @@ Instead of relying purely on semantic similarity—which is highly vulnerable to
 4. **Hireability** (Response rates, Notice periods, Recency)
 5. **Behavioral Reliability** (Role Progression Slope, Leadership momentum)
 
-The system is designed strictly for offline, CPU-constrained execution, maintaining full forensic dataset scanning within the 5-minute wall-clock limit.
+The system is designed strictly for offline, CPU-constrained execution, maintaining full forensic dataset scanning within the 5-minute wall-clock limit. We extract **22 recruiter-aligned features** prior to LightGBM lambda-rank scoring.
 
 ---
 
@@ -81,12 +81,29 @@ This step reads all 100,000 candidates and converts their text into mathematical
    *(This step takes about 1 minute. It generates a file called `lgbm_ranker.txt`)*
 
 ### Part 2: Online Ranking (The Fast Challenge)
-Once the offline setup is complete, you can run the final ranking engine. This part simulates the hackathon's 5-minute constraint. It quickly searches the 100,000 candidates, extracts our 16 recruiter features, filters out fake profiles, and scores the Top 100.
+Once the offline setup is complete, you can run the final ranking engine. This part simulates the hackathon's 5-minute constraint. It quickly searches the 100,000 candidates, extracts our 22 recruiter features, filters out fake profiles, and scores the Top 100.
 1. Run the ranking script:
    ```bash
    python hackathon_pipeline/run_ranking.py
    ```
 2. **Success!** Within seconds, this will generate a file named `submission.csv` in your folder. This file contains the Top 100 candidates ranked from 1 to 100, complete with scores and detailed AI-generated recruiter explanations for *why* they were chosen.
+
+### Part 3: Running the Next.js Frontend Dashboard (Optional)
+We built a beautiful frontend visualization to view your `submission.csv` results directly in the browser!
+1. Install Node.js from the [Node.js Downloads Page](https://nodejs.org/).
+2. In your terminal, move into the `frontend` directory:
+   ```bash
+   cd frontend
+   ```
+3. Install frontend dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the dashboard:
+   ```bash
+   npm run dev
+   ```
+5. Open your web browser and go to `http://localhost:3000` to interact with the Next.js Dashboard!
 
 ---
 
@@ -102,12 +119,15 @@ We don't just match keywords; we detect deception.
 *   **Skill Inflation Penalty:** Penalizes profiles listing 50+ "Expert" skills with low actual experience.
 
 ### 🧠 2. JD-Specific Alignment Scoring
-We built 16 handcrafted recruiter heuristics precisely mapped to the JD:
+We built 22 handcrafted recruiter heuristics precisely mapped to the JD:
 *   `retrieval_experience_score`
 *   `ranking_experience_score`
 *   `vector_db_score`
 *   `evaluation_framework_score`
 *   `production_ml_score`
+*   `profile_completeness`
+*   `avg_skill_assessment`
+*   `trust_score`
 
 *Mentions in current roles are mathematically weighted higher than mentions 10 years ago.*
 
