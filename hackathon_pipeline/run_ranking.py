@@ -149,6 +149,9 @@ def run_pipeline():
         'score': scores
     })
     
+    if 'years_of_experience' not in valid_records.columns:
+        valid_records['years_of_experience'] = 0
+        
     results = pd.concat([results.reset_index(drop=True), X.reset_index(drop=True), valid_records.reset_index(drop=True)[['years_of_experience']]], axis=1)
     
     top_100 = results.sort_values(by=['score', 'candidate_id'], ascending=[False, True]).head(100).copy()
