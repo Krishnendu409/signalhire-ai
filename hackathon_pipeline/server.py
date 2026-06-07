@@ -40,7 +40,7 @@ def parse_jd_text(raw_text: str) -> dict:
     
     family = "Unknown"
     for fam, terms in eng.config['role_families'].items():
-        if any(t.lower() in raw_lower for t in terms):
+        if any(re.search(rf"\b{re.escape(t.lower())}\b", raw_lower) for t in terms):
             family = fam
             break
             
