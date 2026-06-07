@@ -2,243 +2,141 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import {
-  Sparkles,
-  ArrowRight,
-  Brain,
-  ShieldCheck,
-  Target,
-  TrendingUp,
-  Zap,
-  Search,
-  Database,
-  BarChart3,
-  Shield,
-  CheckCircle2,
-  Users,
-  Clock,
-  Cpu,
-} from "lucide-react"
-import { AppShell } from "@/components/layout/AppShell"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-
-const stats = [
-  { label: "Candidates Analyzed", value: "100,000", icon: Users },
-  { label: "Recruiter Features", value: "22", icon: Brain },
-  { label: "Inference Time", value: "<35s", icon: Clock },
-  { label: "CPU Only", value: "16GB", icon: Cpu },
-]
-
-const dimensions = [
-  {
-    title: "Technical Fit",
-    description: "Retrieval, ranking, vector DBs, evaluation frameworks, production ML",
-    icon: Brain,
-    borderColor: "border-blue-500/20",
-    textColor: "text-blue-400",
-    bgColor: "bg-blue-500/10",
-  },
-  {
-    title: "Startup Readiness",
-    description: "Ownership mindset, cross-functional work, greenfield experience",
-    icon: Zap,
-    borderColor: "border-purple-500/20",
-    textColor: "text-purple-400",
-    bgColor: "bg-purple-500/10",
-  },
-  {
-    title: "Candidate Authenticity",
-    description: "Career consistency, timeline integrity, synthetic profile detection",
-    icon: ShieldCheck,
-    borderColor: "border-emerald-500/20",
-    textColor: "text-emerald-400",
-    bgColor: "bg-emerald-500/10",
-  },
-  {
-    title: "Hireability",
-    description: "Response rates, notice periods, recruiter engagement, recency",
-    icon: Target,
-    borderColor: "border-amber-500/20",
-    textColor: "text-amber-400",
-    bgColor: "bg-amber-500/10",
-  },
-  {
-    title: "Behavioral Reliability",
-    description: "Role progression slope, leadership momentum, open-source activity",
-    icon: TrendingUp,
-    borderColor: "border-rose-500/20",
-    textColor: "text-rose-400",
-    bgColor: "bg-rose-500/10",
-  },
-]
-
-const pipelineSteps = [
-  { step: "01", title: "Hybrid Retrieval", desc: "Top 5k Semantic ∪ Top 5k BM25", icon: Search },
-  { step: "02", title: "Feature Extraction", desc: "22 handcrafted recruiter signals", icon: Database },
-  { step: "03", title: "LambdaRank Scoring", desc: "LightGBM learns non-linear interactions", icon: BarChart3 },
-  { step: "04", title: "Forensic Filtering", desc: "Honeypot & consistency detection", icon: Shield },
-]
+import { useEffect, useState } from "react"
+import { AlertTriangle, Fingerprint, XCircle, CheckCircle2, User, Terminal, ArrowRight, ShieldAlert } from "lucide-react"
+import { getLandingPageData } from "@/lib/api"
+import type { Candidate } from "@/store/workspace"
 
 export default function Home() {
+  const [data, setData] = useState<{ trap: Candidate, elite: Candidate } | null>(null);
+
+  useEffect(() => {
+    getLandingPageData().then(setData);
+  }, []);
+
+  if (!data) return <div className="min-h-screen bg-[#0A0A0A]" />;
   return (
-    <AppShell>
-      <section className="mx-auto max-w-7xl px-6 pb-32 pt-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          <Badge className="mb-8 border-blue-500/20 bg-blue-500/10 text-blue-300">
-            <span className="relative mr-2 inline-flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500" />
-            </span>
-            Redrob Intelligent Candidate Discovery Challenge
-          </Badge>
-
-          <h1 className="mb-6 bg-gradient-to-br from-white via-blue-100 to-slate-400 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent md:text-7xl lg:text-8xl">
-            Recruiter Judgment,
-            <br />
-            Quantified.
-          </h1>
-
-          <p className="mx-auto mb-12 max-w-2xl text-lg font-light leading-relaxed text-slate-400 md:text-xl">
-            SignalHire AI models how senior recruiters actually think — scoring candidates across{" "}
-            <span className="font-semibold text-blue-400">5 cognitive dimensions</span> using 22
-            handcrafted features. Detects keyword stuffers and honeypot profiles before ranking.
-          </p>
-
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link href="/dashboard">
-              <Button className="h-14 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 px-10 text-base font-bold shadow-xl shadow-blue-600/25 hover:from-blue-500 hover:to-indigo-500">
-                Open Dashboard
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="/learn">
-              <Button
-                variant="outline"
-                className="h-14 rounded-2xl border-white/10 px-10 text-base text-slate-300 hover:bg-white/5"
-              >
-                <Sparkles className="mr-2 h-5 w-5" />
-                Learn the Basics
-              </Button>
-            </Link>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-20 grid grid-cols-2 gap-4 md:grid-cols-4"
-        >
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-2xl border border-white/5 bg-white/[0.03] p-6 text-center"
-            >
-              <stat.icon className="mx-auto mb-3 h-5 w-5 text-blue-400" />
-              <div className="mb-1 text-2xl font-extrabold text-white md:text-3xl">{stat.value}</div>
-              <div className="text-xs font-medium text-slate-500">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
-
-        <section id="dimensions" className="mt-32">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-3xl font-extrabold tracking-tight md:text-4xl">
-              Five Dimensions of{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Recruiter Cognition
-              </span>
-            </h2>
-            <p className="mx-auto max-w-xl text-slate-400">
-              We model how a senior recruiter evaluates a candidate — not just keyword overlap.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {dimensions.map((dim, i) => (
-              <motion.div
-                key={dim.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -4 }}
-                className={`rounded-2xl border ${dim.borderColor} bg-white/[0.02] p-7 transition-all hover:bg-white/[0.04]`}
-              >
-                <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl ${dim.bgColor}`}>
-                  <dim.icon className={`h-6 w-6 ${dim.textColor}`} />
-                </div>
-                <h3 className="mb-2 text-lg font-bold text-slate-100">{dim.title}</h3>
-                <p className="text-sm leading-relaxed text-slate-400">{dim.description}</p>
-              </motion.div>
-            ))}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex flex-col items-center justify-center rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-indigo-600/10 p-7 text-center"
-            >
-              <CheckCircle2 className="mb-4 h-10 w-10 text-blue-400" />
-              <h3 className="mb-2 text-lg font-bold">Top 100 Ranked</h3>
-              <p className="text-sm text-slate-400">
-                With recruiter-style reasoning for every candidate
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        <section id="pipeline" className="mt-32">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-3xl font-extrabold tracking-tight md:text-4xl">
-              The{" "}
-              <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                Ranking Pipeline
-              </span>
-            </h2>
-            <p className="mx-auto max-w-xl text-slate-400">
-              100,000 → 10,000 → 100. Four stages. Under 35 seconds on CPU.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-            {pipelineSteps.map((s, i) => (
-              <motion.div
-                key={s.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="group rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-emerald-500/20"
-              >
-                <div className="mb-4 text-4xl font-extrabold text-white/5 transition-colors group-hover:text-emerald-500/10">
-                  {s.step}
-                </div>
-                <s.icon className="mb-3 h-6 w-6 text-emerald-400" />
-                <h3 className="mb-1 text-base font-bold">{s.title}</h3>
-                <p className="text-xs text-slate-500">{s.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-      </section>
-
-      <footer className="border-t border-white/5 py-12">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 text-sm opacity-50 md:flex-row">
-          <p>© 2026 SignalHire AI — Redrob Intelligent Candidate Discovery Challenge</p>
-          <a
-            href="https://github.com/Krishnendu409/signalhire-ai"
-            className="hover:text-blue-400"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-          </a>
+    <div className="min-h-screen bg-[#0A0A0A] text-[#E5E2E1] overflow-hidden flex flex-col font-sans selection:bg-[#22C55E]/30">
+      
+      {/* Top Header */}
+      <header className="w-full z-50 flex justify-between items-center px-6 h-16 border-b border-[#262626] bg-[#0A0A0A]/80 backdrop-blur-md">
+        <div className="flex items-center gap-3">
+          <Fingerprint className="text-white w-5 h-5" />
+          <span className="text-sm font-semibold text-white tracking-tight">SignalHire AI</span>
         </div>
-      </footer>
-    </AppShell>
+        <div className="flex items-center gap-4">
+          <span className="text-xs text-white/50 font-bold uppercase tracking-widest font-mono">Evidence-Driven Recruiting</span>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col lg:flex-row items-stretch max-w-7xl mx-auto w-full p-6 lg:p-12 gap-6">
+        
+        {/* Left Column: Narrative Copy */}
+        <div className="flex-1 flex flex-col justify-center max-w-xl py-12 lg:pr-12">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} 
+            className="text-4xl md:text-5xl font-semibold text-white leading-[1.1] tracking-tight mb-6"
+          >
+            Your ATS picked the wrong candidate.
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+            className="text-lg text-[#A3A3A3] leading-relaxed mb-10"
+          >
+            Traditional systems reward keyword matches. We expose fraudulent resumes and identify engineers who actually built retrieval, ranking, and search infrastructure.
+          </motion.p>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+            <Link href="/new">
+              <button className="bg-white text-black px-6 py-3 font-semibold text-sm rounded flex items-center gap-2 hover:bg-gray-200 transition-colors">
+                Start Investigation <ArrowRight className="w-4 h-4" />
+              </button>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Right Column: Stitch Narrative UI */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }}
+          className="flex-1 flex flex-col gap-4 max-w-md w-full relative"
+        >
+          
+          {/* ATS Decision Section */}
+          <section className="bg-[#111111] border border-[#262626] rounded-md p-5 relative overflow-hidden">
+            <div className="flex justify-between items-center mb-4">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[#EF4444]">ATS DECISION: REJECTED</span>
+              <ShieldAlert className="text-[#EF4444] w-4 h-4" />
+            </div>
+            
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 bg-[#171717] rounded border border-[#262626] flex items-center justify-center">
+                <User className="text-[#A3A3A3] w-6 h-6" />
+              </div>
+              <div>
+                <h2 className="text-lg text-white font-medium">{data.trap.title}</h2>
+                <p className="text-[10px] text-[#A3A3A3] font-mono mt-1">ATS SCORE: {data.trap.matchScore}%</p>
+              </div>
+            </div>
+
+            <div className="bg-[#EF4444]/10 border border-[#EF4444]/20 p-3 rounded-sm">
+              <p className="text-xs text-[#EF4444] font-mono">Heavy keyword matches found in resume.</p>
+            </div>
+
+            {/* Overturned Stamp */}
+            <div className="absolute inset-0 m-auto w-fit h-fit px-6 py-2 border-4 border-[#EF4444] text-[#EF4444] font-bold text-3xl transform -rotate-12 opacity-80 pointer-events-none select-none">
+              OVERTURNED
+            </div>
+          </section>
+
+          {/* Evidence Review Section */}
+          <section className="bg-[#111111] border border-[#262626] rounded-md flex flex-col">
+            <div className="border-b border-[#262626] p-3 flex justify-between items-center bg-[#171717]">
+              <h3 className="font-mono text-[10px] text-white uppercase tracking-widest">EVIDENCE LOG</h3>
+              <span className="font-mono text-[10px] text-[#A3A3A3]">SYS_AUDIT_V2.1</span>
+            </div>
+            <div className="p-4 flex flex-col gap-3 font-mono text-xs">
+              {data.trap.decisionPath.penalizedBecause.map((reason, idx) => (
+                <div key={idx} className="flex items-start gap-3 border-l-2 border-[#F59E0B] pl-3">
+                  <AlertTriangle className="text-[#F59E0B] w-4 h-4 shrink-0" />
+                  <div>
+                    <p className="text-[#F59E0B] mb-1">Audit Finding</p>
+                    <p className="text-[10px] text-[#A3A3A3]">{reason}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Correct Candidate Section */}
+          <section className="bg-[#171717] border border-[#22C55E]/30 rounded-md p-5 shadow-[0_0_30px_rgba(34,197,94,0.05)]">
+            <div className="flex justify-between items-center mb-4">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-white">EVIDENCE-DRIVEN RECOMMENDATION</span>
+            </div>
+
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 bg-white rounded border border-[#262626] flex items-center justify-center">
+                <Terminal className="text-black w-6 h-6" />
+              </div>
+              <div>
+                <h2 className="text-lg text-white font-medium">{data.elite.title}</h2>
+                <p className="text-[10px] text-[#A3A3A3] font-mono mt-1">MATCH SCORE: {data.elite.matchScore}%</p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mb-4">
+              {data.elite.decisionPath.rankedBecause.map((f, idx) => (
+                <span key={idx} className="px-2 py-1 bg-[#0A0A0A] border border-[#262626] text-[10px] font-mono text-white rounded-sm">{f}</span>
+              ))}
+            </div>
+
+            <div className="pt-4 border-t border-[#262626] flex items-center gap-2 text-[#22C55E]">
+              <CheckCircle2 className="w-4 h-4" />
+              <span className="text-xs font-bold uppercase tracking-widest">RECOMMENDED</span>
+            </div>
+          </section>
+
+        </motion.div>
+      </main>
+    </div>
   )
 }

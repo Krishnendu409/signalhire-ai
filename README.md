@@ -27,6 +27,33 @@ The system is designed strictly for offline, CPU-constrained execution, maintain
 
 ---
 
+## 📈 How We Improved Candidate Quality
+
+During development, we actively audited the candidate pool to identify and resolve systemic retrieval and ranking failures.
+
+**JD Truncation Fix**
+* **Problem:** 88.4% of the Job Description was initially unseen by the embedding model due to 256-token limits.
+* **Solution:** Implemented **Top-5 Mean Chunking**.
+* **Result:** Search engineers immediately surfaced to the top of the pool.
+
+**Retrieval Recall Fix**
+* **Problem:** Lexical retrieval was dropping candidates whose experience lived in project descriptions rather than titles.
+* **Solution:** **Expanded BM25 Corpus** to include `skills`, `career_history`, and `experience_descriptions`.
+
+**Feature Contamination Fix**
+* **Problem:** Marketing Managers were triggering false positives for "Production ML" based on ambiguous keywords.
+* **Solution:** **Production ML redesign**—transitioned from keyword existence to strict ML-production evidence (e.g., `model serving`, `inference latency`, `feature store`).
+
+**Pseudo-label Redesign**
+* **Problem:** Initial pseudo-labels were noisy, causing high-quality candidates to be suppressed.
+* **Solution:** **Model C formulation** implemented, completely reshaping the label generation logic.
+* **Result:** 
+  * 18/20 Specialist Penetration
+  * Zero unexplained rejections in the Top 20
+  * Cleanest candidate representation yet
+
+---
+
 ## 🛠️ Complete Setup Instructions (For Beginners)
 
 If you are new to programming, don't worry! Follow these step-by-step instructions to get the AI pipeline running on your own computer.
@@ -143,6 +170,29 @@ Instead of training our Ranker on generic pseudo-labels, we train LightGBM `lamb
 ### 💬 5. SHAP-Inspired NLG Reasoning
 Explanations are generated dynamically by reading the extremity of the underlying feature vectors for each candidate.
 *   *Example Output:* `"Extensive background building retrieval and ranking systems with production vector-search infrastructure. Exceptional recruiter engagement signals and hireability."*
+
+---
+
+## 📁 Repository Structure
+
+```text
+signalhire-ai/
+├── backend/                  # FastAPI backend for the recruiting system
+│   ├── app/                  # Core application logic, models, and endpoints
+│   ├── requirements.txt      # Python dependencies
+│   └── run_server.py         # Entry point for backend server
+├── frontend/                 # Next.js React frontend 
+│   ├── src/app/              # UI pages (Landing, Workspace)
+│   ├── src/components/       # Reusable React components
+│   ├── src/store/            # Zustand state management (workspace data)
+│   └── package.json          # Node dependencies
+├── hackathon_pipeline/       # Offline data processing & ranking pipeline
+│   ├── offline_embedder.py   # Step 1: Pre-compute semantic embeddings
+│   ├── train_lightgbm.py     # Step 2: Train the ranking model
+│   └── run_ranking.py        # Step 3: Run full pipeline & generate submission
+├── final_validation.md       # Audit documentation of architecture evolution
+└── README.md                 # Setup and architecture documentation
+```
 
 ---
 

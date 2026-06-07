@@ -1,0 +1,113 @@
+import { create } from "zustand";
+
+export interface CareerStep {
+  role: string;
+  company: string;
+  year: number;
+}
+
+export interface DecisionPath {
+  enteredVia: string;
+  rankedBecause: string[];
+  penalizedBecause: string[];
+}
+
+export interface Evidence {
+  retrieval: string[];
+  ranking: string[];
+  recruiter: string[];
+}
+
+export interface Scores {
+  technical: number;
+  production: number;
+  leadership: number;
+  evaluation: number;
+  hireability: number;
+}
+
+export interface FinalScores {
+  final: number;
+  titleAffinity: number;
+  skillAffinity: number;
+  careerAffinity: number;
+  semantic: number;
+  bm25: number;
+  quality: number;
+  penalties: number;
+}
+
+export interface WhyNotRanked {
+  missing: string[];
+  weak: string[];
+  strong: string[];
+  wouldImprove: string[];
+}
+
+export interface Candidate {
+  id: string;
+  name: string;
+  title: string;
+  company: string;
+  trajectory: string[];
+  rank: number;
+  matchScore: number;
+  whyHere: string[];
+  risks: string[];
+  decisionPath: DecisionPath;
+  evidence: Evidence;
+  career: CareerStep[];
+  scores: Scores;
+  finalScores: FinalScores;
+  narrative: string;
+  whyNotRanked?: WhyNotRanked;
+}
+
+export interface WorkspaceState {
+  candidates: Candidate[];
+  rejectedCandidates: Candidate[];
+  shortlist: Candidate[];
+  selectedCandidate: Candidate | null;
+  comparisonCandidate: Candidate | null;
+  isLoaded: boolean;
+  isProcessing: boolean;
+  demoMode: boolean;
+  demoStep: number;
+  rankingMetadata: any;
+  setCandidates: (candidates: Candidate[]) => void;
+  setSelectedCandidate: (candidate: Candidate | null) => void;
+  setComparisonCandidate: (candidate: Candidate | null) => void;
+  setDemoMode: (active: boolean) => void;
+  setDemoStep: (step: number) => void;
+  setRankingMetadata: (meta: any) => void;
+  clearComparison: () => void;
+  setIsLoaded: (loaded: boolean) => void;
+  setIsProcessing: (processing: boolean) => void;
+}
+
+export const useWorkspaceStore = create<WorkspaceState>((set) => ({
+  candidates: [],
+  rejectedCandidates: [],
+  shortlist: [],
+  selectedCandidate: null,
+  comparisonCandidate: null,
+  isLoaded: false,
+  isProcessing: false,
+  demoMode: false,
+  demoStep: 0,
+  rankingMetadata: null,
+
+  setCandidates: (candidates) => set({ 
+    candidates,
+    shortlist: candidates.filter(c => c.rank <= 100),
+    rejectedCandidates: candidates.filter(c => c.rank > 100)
+  }),
+  setSelectedCandidate: (candidate) => set({ selectedCandidate: candidate }),
+  setComparisonCandidate: (candidate) => set({ comparisonCandidate: candidate }),
+  setDemoMode: (demoMode) => set({ demoMode }),
+  setDemoStep: (demoStep) => set({ demoStep }),
+  setRankingMetadata: (rankingMetadata) => set({ rankingMetadata }),
+  clearComparison: () => set({ comparisonCandidate: null }),
+  setIsLoaded: (isLoaded) => set({ isLoaded }),
+  setIsProcessing: (isProcessing) => set({ isProcessing }),
+}));
