@@ -1,0 +1,122 @@
+{
+  "Search Engineer": {
+    "total_relevant": 232,
+    "Redistributed_Base": {
+      "Recall": 0.28448275862068967,
+      "Honeypot": 0.0,
+      "Title_Entropy": 3.490108396874079
+    },
+    "Affinity_Model": {
+      "Recall": 0.3017241379310345,
+      "Honeypot": 0.0,
+      "Title_Entropy": 3.214918680948132
+    },
+    "Hidden_Titles_Affinity": {
+      "Revenue Operations Manager": {
+        "Recall": 0.11637931034482758,
+        "Honeypot": 20.0,
+        "Title_Entropy": 4.334178936834499
+      },
+      "Customer Success Lead": {
+        "Recall": 0.1336206896551724,
+        "Honeypot": 0.0,
+        "Title_Entropy": 4.24262122438576
+      },
+      "Product Marketing Manager": {
+        "Recall": 0.11637931034482758,
+        "Honeypot": 20.0,
+        "Title_Entropy": 4.334178936834499
+      },
+      "Information Retrieval Engineer": {
+        "Recall": 0.1939655172413793,
+        "Honeypot": 0.0,
+        "Title_Entropy": 3.6915012528378037
+      },
+      "UI Engineer": {
+        "Recall": 0.1939655172413793,
+        "Honeypot": 0.0,
+        "Title_Entropy": 3.6915012528378037
+      }
+    }
+  },
+  "Frontend Engineer": {
+    "total_relevant": 2738,
+    "Redistributed_Base": {
+      "Recall": 0.03579254930606282,
+      "Honeypot": 0.0,
+      "Title_Entropy": 0.16144053821373575
+    },
+    "Affinity_Model": {
+      "Recall": 0.03579254930606282,
+      "Honeypot": 0.0,
+      "Title_Entropy": 0.16144053821373575
+    },
+    "Hidden_Titles_Affinity": {
+      "Revenue Operations Manager": {
+        "Recall": 0.0007304601899196494,
+        "Honeypot": 74.0,
+        "Title_Entropy": 3.103263861449759
+      },
+      "Customer Success Lead": {
+        "Recall": 0.0029218407596785976,
+        "Honeypot": 2.0,
+        "Title_Entropy": 3.2980340577741685
+      },
+      "Product Marketing Manager": {
+        "Recall": 0.0007304601899196494,
+        "Honeypot": 74.0,
+        "Title_Entropy": 3.103263861449759
+      },
+      "Information Retrieval Engineer": {
+        "Recall": 0.004382761139517896,
+        "Honeypot": 0.0,
+        "Title_Entropy": 2.2652041933080778
+      },
+      "UI Engineer": {
+        "Recall": 0.004382761139517896,
+        "Honeypot": 0.0,
+        "Title_Entropy": 2.2652041933080778
+      }
+    }
+  },
+  "Sales Manager": {
+    "total_relevant": 5713,
+    "Redistributed_Base": {
+      "Recall": 0.005251181515841064,
+      "Honeypot": 0.0,
+      "Title_Entropy": 1.5796412020930828
+    },
+    "Affinity_Model": {
+      "Recall": 0.004726063364256958,
+      "Honeypot": 0.0,
+      "Title_Entropy": 1.5705750488232022
+    },
+    "Hidden_Titles_Affinity": {
+      "Revenue Operations Manager": {
+        "Recall": 0.0,
+        "Honeypot": 0.0,
+        "Title_Entropy": 1.983164510866667
+      },
+      "Customer Success Lead": {
+        "Recall": 0.0014003150708909505,
+        "Honeypot": 27.0,
+        "Title_Entropy": 3.639610900669969
+      },
+      "Product Marketing Manager": {
+        "Recall": 0.0,
+        "Honeypot": 0.0,
+        "Title_Entropy": 1.983164510866667
+      },
+      "Information Retrieval Engineer": {
+        "Recall": 0.0,
+        "Honeypot": 100.0,
+        "Title_Entropy": 2.383806278739531
+      },
+      "UI Engineer": {
+        "Recall": 0.0,
+        "Honeypot": 100.0,
+        "Title_Entropy": 2.383806278739531
+      }
+    }
+  }
+}

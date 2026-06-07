@@ -80,14 +80,11 @@ def process_candidates(input_path, output_path):
     print(f"Saving to {output_path} (shape: {final_embeddings.shape})")
 
     np.save(output_path, final_embeddings)
-    with open(output_path.replace('.npy', '_ids.json'), 'w') as f:
-        json.dump(ids, f)
+    np.save("candidate_ids.npy", np.array(ids))
 
 
 if __name__ == "__main__":
-    input_file = r"[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/candidates.jsonl"
-    if not os.path.exists(input_file):
-        input_file = r"../[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/candidates.jsonl"
-
+    input_file = r"C:\Users\krish\Downloads\signalhire-ai-master (3)\signalhire-ai-master\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl"
+    
     output_file = "candidate_embeddings.npy"
     process_candidates(input_file, output_file)

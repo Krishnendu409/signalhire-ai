@@ -1,0 +1,98 @@
+{
+  "weights": {
+    "title_affinity": 2.5,
+    "skill_affinity": 3.5,
+    "career_affinity": 2.5,
+    "semantic_sim": 1.0,
+    "bm25_score": 1.0,
+    "quality_score": 1.0,
+    "consistency_penalty": -2.0
+  },
+  "role_families": {
+    "Search Engineer": [
+      "search",
+      "retrieval",
+      "relevance",
+      "ranking",
+      "nlp",
+      "machine learning",
+      "ai",
+      "data scientist",
+      "ml"
+    ],
+    "Frontend Engineer": [
+      "frontend",
+      "ui",
+      "ux",
+      "client",
+      "web",
+      "javascript",
+      "react",
+      "angular",
+      "vue",
+      "front-end"
+    ],
+    "Sales Manager": [
+      "sales",
+      "revenue",
+      "account",
+      "business development",
+      "gtm",
+      "growth",
+      "customer success",
+      "marketing",
+      "manager",
+      "executive"
+    ]
+  },
+  "skill_families": {
+    "Search Engineer": [
+      "python",
+      "elasticsearch",
+      "faiss",
+      "machine learning",
+      "nlp",
+      "deep learning",
+      "pytorch",
+      "tensorflow",
+      "scikit-learn"
+    ],
+    "Frontend Engineer": [
+      "javascript",
+      "react",
+      "css",
+      "html",
+      "typescript",
+      "ui/ux",
+      "vue",
+      "angular",
+      "redux",
+      "next.js"
+    ],
+    "Sales Manager": [
+      "sales",
+      "crm",
+      "b2b",
+      "negotiation",
+      "leadership",
+      "pipeline",
+      "salesforce",
+      "marketing",
+      "quota"
+    ]
+  },
+  "trap_titles": [
+    "marketing",
+    "sales",
+    "hr",
+    "recruiter",
+    "manager",
+    "project manager",
+    "product manager",
+    "analyst",
+    "support",
+    "executive",
+    "director",
+    "accountant"
+  ]
+}
