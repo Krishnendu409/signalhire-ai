@@ -1,26 +1,11 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { motion } from "framer-motion"
-import {
-  Sparkles,
-  Search,
-  TrendingUp,
-  ShieldCheck,
-  ArrowRight,
-  Target,
-  Zap,
-  Brain,
-  Database,
-  BarChart3,
-  Shield,
-  Users,
-  CheckCircle2,
-  Clock,
-  Cpu
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react"
+import { AlertTriangle, Fingerprint, XCircle, CheckCircle2, User, Terminal, ArrowRight, ShieldAlert } from "lucide-react"
+import { getLandingPageData } from "@/lib/api"
+import type { Candidate } from "@/store/workspace"
 
 const stats = [
   { label: "Candidates Analyzed", value: "100,000", icon: Users },
@@ -85,101 +70,133 @@ const pipelineSteps = [
 ]
 
 export default function Home() {
-  const [email, setEmail] = useState("")
-  const router = useRouter()
+  const [data, setData] = useState<{ trap: Candidate, elite: Candidate } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    localStorage.setItem("signalhire_user", JSON.stringify({ email, id: "demo" }))
-    router.push("/dashboard")
-  }
+  useEffect(() => {
+    getLandingPageData().then(setData);
+  }, []);
 
+  if (!data) return <div className="min-h-screen bg-[#0A0A0A]" />;
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-50 selection:bg-blue-500/30 overflow-x-hidden">
-      {/* Background Effects */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-[600px] bg-gradient-to-b from-blue-950/30 to-transparent" />
-        <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-blue-600/15 blur-[150px] rounded-full" />
-        <div className="absolute top-[20%] -right-[10%] w-[40%] h-[40%] bg-purple-600/15 blur-[150px] rounded-full" />
-        <div className="absolute -bottom-[10%] left-[30%] w-[40%] h-[40%] bg-indigo-600/10 blur-[150px] rounded-full" />
-      </div>
-
-      {/* Nav */}
-      <nav className="relative z-50 flex items-center justify-between px-6 py-5 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-[#0A0A0A] text-[#E5E2E1] overflow-hidden flex flex-col font-sans selection:bg-[#22C55E]/30">
+      
+      {/* Top Header */}
+      <header className="w-full z-50 flex justify-between items-center px-6 h-16 border-b border-[#262626] bg-[#0A0A0A]/80 backdrop-blur-md">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
-            <Sparkles className="w-5 h-5 text-white" />
-          </div>
-          <span className="text-xl font-bold tracking-tight">SignalHire<span className="text-blue-400">AI</span></span>
+          <Fingerprint className="text-white w-5 h-5" />
+          <span className="text-sm font-semibold text-white tracking-tight">SignalHire AI</span>
         </div>
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-          <a href="#dimensions" className="hover:text-blue-400 transition-colors">Dimensions</a>
-          <a href="#pipeline" className="hover:text-blue-400 transition-colors">Pipeline</a>
-          <Button variant="ghost" className="text-slate-50 hover:bg-white/5" onClick={() => router.push("/dashboard")}>
-            Dashboard →
-          </Button>
+        <div className="flex items-center gap-4">
+          <span className="text-xs text-white/50 font-bold uppercase tracking-widest font-mono">Evidence-Driven Recruiting</span>
         </div>
-      </nav>
+      </header>
 
-      {/* Hero */}
-      <main className="relative z-10 pt-16 pb-32 px-6 max-w-7xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
-            </span>
-            Redrob Intelligent Candidate Discovery Challenge
-          </div>
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col lg:flex-row items-stretch max-w-7xl mx-auto w-full p-6 lg:p-12 gap-6">
+        
+        {/* Left Column: Narrative Copy */}
+        <div className="flex-1 flex flex-col justify-center max-w-xl py-12 lg:pr-12">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} 
+            className="text-4xl md:text-5xl font-semibold text-white leading-[1.1] tracking-tight mb-6"
+          >
+            Your ATS picked the wrong candidate.
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+            className="text-lg text-[#A3A3A3] leading-relaxed mb-10"
+          >
+            Traditional systems reward keyword matches. We expose fraudulent resumes and identify engineers who actually built retrieval, ranking, and search infrastructure.
+          </motion.p>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+            <Link href="/new">
+              <button className="bg-white text-black px-6 py-3 font-semibold text-sm rounded flex items-center gap-2 hover:bg-gray-200 transition-colors">
+                Start Investigation <ArrowRight className="w-4 h-4" />
+              </button>
+            </Link>
+          </motion.div>
+        </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-br from-white via-blue-100 to-slate-400">
-            Recruiter Judgment,<br />Quantified.
-          </h1>
-
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 mb-12 leading-relaxed font-light">
-            SignalHire AI models how senior recruiters actually think — scoring candidates across{" "}
-            <span className="text-blue-400 font-semibold">5 cognitive dimensions</span>{" "}
-            using 22 handcrafted features. Detects keyword stuffers, profile inconsistencies,
-            and honeypot candidates before ranking.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-            <form onSubmit={handleSubmit} className="flex w-full group relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
-              <div className="relative flex w-full">
-                <input
-                  type="email"
-                  placeholder="name@company.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="w-full h-14 bg-[#0a0f25]/80 backdrop-blur-xl border border-white/10 rounded-l-xl px-5 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-lg"
-                />
-                <button
-                  type="submit"
-                  className="h-14 px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-r-xl transition-all flex items-center gap-2 whitespace-nowrap shadow-xl hover:shadow-blue-500/25 active:scale-[0.98]"
-                >
-                  Launch <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-            </form>
-          </div>
-        </motion.div>
-
-        {/* Stats Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4"
+        {/* Right Column: Stitch Narrative UI */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }}
+          className="flex-1 flex flex-col gap-4 max-w-md w-full relative"
         >
-          {stats.map((stat) => (
-            <div key={stat.label} className="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center">
-              <stat.icon className="w-5 h-5 text-blue-400 mx-auto mb-3" />
-              <div className="text-2xl md:text-3xl font-extrabold text-white mb-1">{stat.value}</div>
-              <div className="text-xs text-slate-500 font-medium">{stat.label}</div>
+          
+          {/* ATS Decision Section */}
+          <section className="bg-[#111111] border border-[#262626] rounded-md p-5 relative overflow-hidden">
+            <div className="flex justify-between items-center mb-4">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[#EF4444]">ATS DECISION: REJECTED</span>
+              <ShieldAlert className="text-[#EF4444] w-4 h-4" />
             </div>
-          ))}
+            
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 bg-[#171717] rounded border border-[#262626] flex items-center justify-center">
+                <User className="text-[#A3A3A3] w-6 h-6" />
+              </div>
+              <div>
+                <h2 className="text-lg text-white font-medium">{data.trap.title}</h2>
+                <p className="text-[10px] text-[#A3A3A3] font-mono mt-1">ATS SCORE: {data.trap.matchScore}%</p>
+              </div>
+            </div>
+
+            <div className="bg-[#EF4444]/10 border border-[#EF4444]/20 p-3 rounded-sm">
+              <p className="text-xs text-[#EF4444] font-mono">Heavy keyword matches found in resume.</p>
+            </div>
+
+            {/* Overturned Stamp */}
+            <div className="absolute inset-0 m-auto w-fit h-fit px-6 py-2 border-4 border-[#EF4444] text-[#EF4444] font-bold text-3xl transform -rotate-12 opacity-80 pointer-events-none select-none">
+              OVERTURNED
+            </div>
+          </section>
+
+          {/* Evidence Review Section */}
+          <section className="bg-[#111111] border border-[#262626] rounded-md flex flex-col">
+            <div className="border-b border-[#262626] p-3 flex justify-between items-center bg-[#171717]">
+              <h3 className="font-mono text-[10px] text-white uppercase tracking-widest">EVIDENCE LOG</h3>
+              <span className="font-mono text-[10px] text-[#A3A3A3]">SYS_AUDIT_V2.1</span>
+            </div>
+            <div className="p-4 flex flex-col gap-3 font-mono text-xs">
+              {data.trap.decisionPath.penalizedBecause.map((reason, idx) => (
+                <div key={idx} className="flex items-start gap-3 border-l-2 border-[#F59E0B] pl-3">
+                  <AlertTriangle className="text-[#F59E0B] w-4 h-4 shrink-0" />
+                  <div>
+                    <p className="text-[#F59E0B] mb-1">Audit Finding</p>
+                    <p className="text-[10px] text-[#A3A3A3]">{reason}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Correct Candidate Section */}
+          <section className="bg-[#171717] border border-[#22C55E]/30 rounded-md p-5 shadow-[0_0_30px_rgba(34,197,94,0.05)]">
+            <div className="flex justify-between items-center mb-4">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-white">EVIDENCE-DRIVEN RECOMMENDATION</span>
+            </div>
+
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 bg-white rounded border border-[#262626] flex items-center justify-center">
+                <Terminal className="text-black w-6 h-6" />
+              </div>
+              <div>
+                <h2 className="text-lg text-white font-medium">{data.elite.title}</h2>
+                <p className="text-[10px] text-[#A3A3A3] font-mono mt-1">MATCH SCORE: {data.elite.matchScore}%</p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mb-4">
+              {data.elite.decisionPath.rankedBecause.map((f, idx) => (
+                <span key={idx} className="px-2 py-1 bg-[#0A0A0A] border border-[#262626] text-[10px] font-mono text-white rounded-sm">{f}</span>
+              ))}
+            </div>
+
+            <div className="pt-4 border-t border-[#262626] flex items-center gap-2 text-[#22C55E]">
+              <CheckCircle2 className="w-4 h-4" />
+              <span className="text-xs font-bold uppercase tracking-widest">RECOMMENDED</span>
+            </div>
+          </section>
+
         </motion.div>
 
         {/* 5 Dimensions Section */}
@@ -257,15 +274,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <footer className="py-12 border-t border-white/5 mt-20">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 opacity-50 text-sm">
-          <p>© 2026 SignalHire AI — Redrob Intelligent Candidate Discovery Challenge</p>
-          <div className="flex gap-8">
-            <a href="https://github.com/Krishnendu409/signalhire-ai" className="hover:text-blue-400" target="_blank">GitHub</a>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
