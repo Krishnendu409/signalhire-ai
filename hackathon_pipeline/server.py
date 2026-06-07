@@ -31,10 +31,38 @@ def get_engine():
     return engine
 
 class JDRequest(BaseModel):
-    family: str
-    keywords: list[str]
-    title_terms: list[str]
-    req_skills: list[str]
+    raw_text: str
+
+def parse_jd_text(raw_text: str) -> dict:
+    import re
+    eng = get_engine()
+    raw_lower = raw_text.lower()
+    
+    family = "Unknown"
+    for fam, terms in eng.config['role_families'].items():
+        if any(t.lower() in raw_lower for t in terms):
+            family = fam
+            break
+            
+    if family == "Unknown":
+        family = "Search Engineer"
+        
+    title_terms = eng.config['role_families'].get(family, [])
+    req_skills = eng.config['skill_families'].get(family, [])
+    
+    custom_skills = []
+    match = re.search(r'skills:\s*(.*)', raw_text, re.IGNORECASE)
+    if match:
+        custom_skills = [s.strip().lower() for s in match.group(1).split(',')]
+        
+    keywords = list(set(req_skills + custom_skills))
+    
+    return {
+        "family": family,
+        "keywords": keywords,
+        "title_terms": title_terms,
+        "req_skills": req_skills
+    }
 
 def run_investigation(investigation_id: str, jd_data: dict):
     try:
@@ -58,8 +86,10 @@ async def start_investigation(jd_req: JDRequest, background_tasks: BackgroundTas
         "error": None
     }
     
+    parsed_data = parse_jd_text(jd_req.raw_text)
+    
     # Send to background task
-    background_tasks.add_task(run_investigation, investigation_id, jd_req.model_dump())
+    background_tasks.add_task(run_investigation, investigation_id, parsed_data)
     
     return {"investigation_id": investigation_id, "status": "PENDING"}
 

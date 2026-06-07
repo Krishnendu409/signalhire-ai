@@ -24,10 +24,6 @@ function WorkspaceContent() {
     clearComparison,
   } = useWorkspaceStore();
 
-  const [demoRunning, setDemoRunning] = useState(false);
-  const [demoStep, setDemoStep] = useState(0);
-  const demoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
   const rankedCandidates = candidates.filter((c) => c.rank <= 100).sort((a, b) => a.rank - b.rank);
   const unrankedCandidates = candidates.filter((c) => c.rank > 100).sort((a, b) => b.rank - a.rank);
   const displayCandidates = [...rankedCandidates, ...unrankedCandidates];
@@ -53,55 +49,6 @@ function WorkspaceContent() {
     }
   }, [displayCandidates, selectedCandidate, setSelectedCandidate]);
 
-  const startDemo = useCallback(() => {
-    setDemoRunning(true);
-    setDemoStep(0);
-
-    const keywordTrap = unrankedCandidates.find(c => c.id === "CAND_0000004") || unrankedCandidates[0];
-    const searchEngineer = rankedCandidates.find(c => c.id === "CAND_0005260") || rankedCandidates[0];
-    const atsWinner = unrankedCandidates.find(c => c.id === "CAND_0000014") || unrankedCandidates[1];
-
-    setSelectedCandidate(keywordTrap);
-    clearComparison();
-
-    demoTimerRef.current = setTimeout(() => {
-      setDemoStep(1);
-      setSelectedCandidate(searchEngineer);
-
-      demoTimerRef.current = setTimeout(() => {
-        setDemoStep(2);
-        setComparisonCandidate(atsWinner);
-
-        demoTimerRef.current = setTimeout(() => {
-          setDemoStep(3);
-          clearComparison();
-          setSelectedCandidate(rankedCandidates[0]);
-
-          demoTimerRef.current = setTimeout(() => {
-            setDemoRunning(false);
-            setDemoStep(0);
-          }, 10000);
-        }, 30000);
-      }, 15000);
-    }, 15000);
-  }, [rankedCandidates, unrankedCandidates, setSelectedCandidate, setComparisonCandidate, clearComparison]);
-
-  const stopDemo = useCallback(() => {
-    setDemoRunning(false);
-    setDemoStep(0);
-    if (demoTimerRef.current) {
-      clearTimeout(demoTimerRef.current);
-      demoTimerRef.current = null;
-    }
-    clearComparison();
-  }, [clearComparison]);
-
-  useEffect(() => {
-    return () => {
-      if (demoTimerRef.current) clearTimeout(demoTimerRef.current);
-    };
-  }, []);
-
   return (
     <div className="h-screen bg-[#0A0A0A] text-[#e5e2e1] font-sans selection:bg-white selection:text-black flex flex-col overflow-hidden">
       
@@ -120,39 +67,16 @@ function WorkspaceContent() {
           <Link className="text-[#c4c7c8] text-xs hover:bg-[#353434] transition-colors px-3 py-1 rounded" href="/reports">Reports</Link>
         </div>
         <div className="flex items-center gap-4">
-          {!demoRunning ? (
-            <button
-              onClick={startDemo}
-              className="flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold tracking-wider uppercase rounded border border-[#22C55E]/30 bg-[#22C55E]/10 text-[#22C55E] hover:bg-[#22C55E]/20 transition-all"
-            >
-              <Play className="w-3 h-3" />
-              Demo Sequence
-            </button>
-          ) : (
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded bg-[#F59E0B]/10 border border-[#F59E0B]/20">
-                <motion.div
-                  animate={{ opacity: [1, 0.3, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"
-                />
-                <span className="text-[10px] font-mono text-[#F59E0B] tracking-wider">
-                  DEMO RUNNING
-                  {demoStep === 0 && " — 1. Keyword Trap"}
-                  {demoStep === 1 && " — 2. True Search Engineer"}
-                  {demoStep === 2 && " — 3. Head to Head"}
-                  {demoStep === 3 && " — 4. Final Shortlist"}
-                </span>
-              </div>
-              <button
-                onClick={stopDemo}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] font-bold tracking-wider uppercase rounded border border-[#EF4444]/30 bg-[#EF4444]/10 text-[#EF4444] hover:bg-[#EF4444]/20 transition-all"
-              >
-                <Square className="w-3 h-3" />
-                Stop
-              </button>
-            </div>
-          )}
+          <button
+            onClick={() => {
+              setSelectedCandidate(null);
+              clearComparison();
+            }}
+            className="flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold tracking-wider uppercase rounded border border-[#EF4444]/30 bg-[#EF4444]/10 text-[#EF4444] hover:bg-[#EF4444]/20 transition-all"
+          >
+            <Square className="w-3 h-3" />
+            Clear Selection
+          </button>
         </div>
       </nav>
 

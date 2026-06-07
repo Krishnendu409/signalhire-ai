@@ -134,7 +134,7 @@ export async function getRankingMetadata() {
     ranked: 1000,
     shortlisted: 100,
     featuresExtracted: 22,
-    model: "LightGBM LambdaRank",
+    model: "SignalHire Affinity Engine v1.0",
     skills: {
       "Search Engineers": 51,
       "NLP Engineers": 24,
