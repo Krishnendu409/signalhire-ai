@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
-import { AlertTriangle, Fingerprint, XCircle, CheckCircle2, User, Terminal, ArrowRight, ShieldAlert } from "lucide-react"
+import { AlertTriangle, Fingerprint, XCircle, CheckCircle2, User, Terminal, ArrowRight, ShieldAlert, Users, Brain, Clock, Cpu, Zap, ShieldCheck, Target, TrendingUp, Search, Database, BarChart3, Shield } from "lucide-react"
 import { getLandingPageData } from "@/lib/api"
 import type { Candidate } from "@/store/workspace"
 

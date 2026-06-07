@@ -19,17 +19,17 @@ function mapToUICandidate(sub: any, record: any): Candidate {
   const retrievalEvidence = [];
   const rankingEvidence = [];
   
-  if (sub.SemSim_Contrib > 0) {
-    retrievalEvidence.push(`Semantic Match: ${sub.SemSim_Contrib.toFixed(2)}`);
+  if ((sub?.SemSim_Contrib ?? 0) > 0) {
+    retrievalEvidence.push(`Semantic Match: ${(sub?.SemSim_Contrib ?? 0).toFixed(2)}`);
   }
-  if (sub.BM25_Contrib > 0) {
-    retrievalEvidence.push(`Keyword Match: ${sub.BM25_Contrib.toFixed(2)}`);
+  if ((sub?.BM25_Contrib ?? 0) > 0) {
+    retrievalEvidence.push(`Keyword Match: ${(sub?.BM25_Contrib ?? 0).toFixed(2)}`);
   }
 
-  rankingEvidence.push(`Skill Affinity: ${sub.SkillAff_Contrib.toFixed(2)}`);
-  rankingEvidence.push(`Career Affinity: ${sub.CareerAff_Contrib.toFixed(2)}`);
+  rankingEvidence.push(`Skill Affinity: ${(sub?.SkillAff_Contrib ?? 0).toFixed(2)}`);
+  rankingEvidence.push(`Career Affinity: ${(sub?.CareerAff_Contrib ?? 0).toFixed(2)}`);
 
-  const technicalScore = Math.round(sub.final_score * 10);
+  const technicalScore = Math.round((sub?.final_score ?? 0) * 10);
   const matchScore = technicalScore;
 
   return {
@@ -41,11 +41,11 @@ function mapToUICandidate(sub: any, record: any): Candidate {
     rank: sub.rank,
     matchScore: matchScore,
     whyHere: isRejected ? ["Keyword Match"] : ["Domain Affinity"],
-    risks: sub.Penalties < 0 ? ["Inconsistent Profile"] : [],
+    risks: (sub?.Penalties ?? 0) < 0 ? ["Inconsistent Profile"] : [],
     decisionPath: {
       enteredVia: "Domain Affinity Heuristic",
       rankedBecause: [],
-      penalizedBecause: sub.Penalties < 0 ? ["Domain Contradiction Detected"] : [],
+      penalizedBecause: (sub?.Penalties ?? 0) < 0 ? ["Domain Contradiction Detected"] : [],
     },
     evidence: {
       retrieval: retrievalEvidence,
@@ -58,22 +58,22 @@ function mapToUICandidate(sub: any, record: any): Candidate {
     career,
     scores: {
       technical: technicalScore,
-      production: sub.CareerAff_Contrib * 10,
+      production: (sub?.CareerAff_Contrib ?? 0) * 10,
       leadership: 50,
-      evaluation: sub.Quality_Contrib * 10,
+      evaluation: (sub?.Quality_Contrib ?? 0) * 10,
       hireability: (record?.redrob_signals?.recruiter_response_rate || 0) * 100,
     },
     finalScores: {
-      final: sub.final_score,
-      titleAffinity: sub.TitleAff_Contrib,
-      skillAffinity: sub.SkillAff_Contrib,
-      careerAffinity: sub.CareerAff_Contrib,
-      semantic: sub.SemSim_Contrib,
-      bm25: sub.BM25_Contrib,
-      quality: sub.Quality_Contrib,
-      penalties: sub.Penalties
+      final: sub?.final_score ?? 0,
+      titleAffinity: sub?.TitleAff_Contrib ?? 0,
+      skillAffinity: sub?.SkillAff_Contrib ?? 0,
+      careerAffinity: sub?.CareerAff_Contrib ?? 0,
+      semantic: sub?.SemSim_Contrib ?? 0,
+      bm25: sub?.BM25_Contrib ?? 0,
+      quality: sub?.Quality_Contrib ?? 0,
+      penalties: sub?.Penalties ?? 0
     },
-    narrative: `Final Score: ${sub.final_score.toFixed(2)}\nTitle Affinity: ${sub.TitleAff_Contrib.toFixed(2)}\nSkill Affinity: ${sub.SkillAff_Contrib.toFixed(2)}\nCareer Affinity: ${sub.CareerAff_Contrib.toFixed(2)}\nPenalties: ${sub.Penalties.toFixed(2)}`,
+    narrative: `Final Score: ${(sub?.final_score ?? 0).toFixed(2)}\nTitle Affinity: ${(sub?.TitleAff_Contrib ?? 0).toFixed(2)}\nSkill Affinity: ${(sub?.SkillAff_Contrib ?? 0).toFixed(2)}\nCareer Affinity: ${(sub?.CareerAff_Contrib ?? 0).toFixed(2)}\nPenalties: ${(sub?.Penalties ?? 0).toFixed(2)}`,
   };
 }
 
@@ -100,9 +100,15 @@ export async function getCombinedShortlist(invId?: string): Promise<Candidate[]>
         Penalties: 0
       }, c.record);
     });
+  } else {
+    const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    if (!UUID_REGEX.test(invId)) {
+      throw new Error("Invalid investigation id");
+    }
   }
 
-  const res = await fetch(`http://localhost:8000/api/investigations/${invId}/results`, { cache: 'no-store' });
+  const url = new URL(`/api/investigations/${invId}/results`, 'http://localhost:8000');
+  const res = await fetch(url, { cache: 'no-store' });
   if (!res.ok) {
     throw new Error("Failed to fetch results");
   }
