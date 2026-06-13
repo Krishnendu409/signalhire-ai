@@ -11,51 +11,56 @@ const PIPELINE_STAGES = [
   "Extracting Signals",
   "BM25 Retrieval",
   "Semantic Search",
-  "LightGBM Ranking",
+  "Affinity Ranking",
   "Shortlist Construction",
 ];
 
 export default function NewInvestigationPage() {
   const router = useRouter();
   const [isExecuting, setIsExecuting] = useState(false);
-  const [isDemo, setIsDemo] = useState(false);
   const [currentStage, setCurrentStage] = useState(-1);
+  const [jdText, setJdText] = useState("Role: Senior Search Engineer\nSkills: FAISS, Qdrant, Learning-to-Rank, Python\nExperience: Production ML infrastructure");
 
-  const handleRun = async (demo: boolean) => {
+  const handleRun = async () => {
     setIsExecuting(true);
-    setIsDemo(demo);
     setCurrentStage(0);
+
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
     // 1. Start Investigation via API
     try {
-      const response = await fetch("http://localhost:8000/api/investigations", {
+      const startUrl = new URL(`${API_BASE}/jobs`);
+      const formData = new FormData();
+      formData.append("title", "Senior Search Engineer");
+      formData.append("file", new Blob([jdText], { type: "text/plain" }), "jd.txt");
+
+      const response = await fetch(startUrl.toString(), {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          family: "Search Engineer",
-          keywords: ["faiss", "pinecone", "elasticsearch", "search", "ranking", "retrieval", "machine learning", "python"],
-          title_terms: ["search", "retrieval", "relevance", "ranking", "nlp", "machine learning", "ai", "data scientist", "ml"],
-          req_skills: ["python", "elasticsearch", "faiss", "machine learning", "nlp", "deep learning", "pytorch", "tensorflow", "scikit-learn"]
-        })
+        body: formData
       });
       const data = await response.json();
-      const invId = data.investigation_id;
+      const jobId = data.id;
+
+      // Start Ranking
+      const rankUrl = new URL(`${API_BASE}/rankings/${jobId}`);
+      await fetch(rankUrl.toString(), { method: "POST" });
 
       // 2. Poll Status
       setCurrentStage(1);
       
       const poll = setInterval(async () => {
         try {
-          const statusRes = await fetch(`http://localhost:8000/api/investigations/${invId}/status`);
+          const statusUrl = new URL(`${API_BASE}/rankings/${jobId}/latest`);
+          const statusRes = await fetch(statusUrl.toString());
           const statusData = await statusRes.json();
           
-          if (statusData.status === "COMPLETED") {
+          if (statusData.status === "completed") {
             clearInterval(poll);
             setCurrentStage(PIPELINE_STAGES.length - 1);
             setTimeout(() => {
-              router.push(`/workspace?id=${invId}`);
+              router.push(`/workspace?id=${jobId}`);
             }, 800);
-          } else if (statusData.status === "FAILED") {
+          } else if (statusData.status === "failed") {
             clearInterval(poll);
             alert("Investigation failed!");
             setIsExecuting(false);
@@ -106,7 +111,8 @@ export default function NewInvestigationPage() {
                 <textarea 
                   className="w-full h-32 bg-[#141313] border border-[#262626] rounded p-4 text-xs font-mono text-[#c4c7c8] focus:border-[#404040] focus:outline-none resize-none"
                   placeholder="Paste Job Description or Target Signals here..."
-                  defaultValue="Role: Senior Search Engineer&#10;Skills: FAISS, Qdrant, Learning-to-Rank, Python&#10;Experience: Production ML infrastructure"
+                  value={jdText}
+                  onChange={(e) => setJdText(e.target.value)}
                 />
               </div>
 
@@ -126,14 +132,7 @@ export default function NewInvestigationPage() {
               {/* Actions */}
               <div className="flex items-center gap-4 pt-4">
                 <button 
-                  onClick={() => handleRun(true)}
-                  className="flex-1 bg-white text-black py-4 rounded font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors"
-                >
-                  <Play className="w-4 h-4" />
-                  Run Demo Investigation
-                </button>
-                <button 
-                  onClick={() => handleRun(false)}
+                  onClick={() => handleRun()}
                   className="flex-1 border border-[#262626] bg-[#111111] text-white py-4 rounded font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[#141313] transition-colors"
                 >
                   <PlayCircle className="w-4 h-4 text-[#EF4444]" />
@@ -148,7 +147,7 @@ export default function NewInvestigationPage() {
               <div className="mb-8 flex items-center justify-between">
                 <div>
                   <h2 className="text-sm font-bold text-white uppercase tracking-widest mb-1">
-                    {isDemo ? "DEMO INVESTIGATION" : "LIVE PIPELINE EXECUTION"}
+                    LIVE PIPELINE EXECUTION
                   </h2>
                   <p className="text-[10px] text-[#A3A3A3] font-mono">REQ_ID: 2026-001</p>
                 </div>

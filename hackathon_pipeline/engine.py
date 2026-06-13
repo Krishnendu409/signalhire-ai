@@ -114,7 +114,7 @@ class RankingEngine:
                 s_fam_df[fam] += s_text_series.str.contains(r'\b' + re.escape(w.lower()) + r'\b', regex=True).astype(int)
                 
         c_fam_df = pd.DataFrame(index=feat.index)
-        for fam, terms in self.config['skill_families'].items():
+        for fam, terms in self.config['role_families'].items():
             c_fam_df[fam] = 0
             for w in terms:
                 c_fam_df[fam] += d_text_series.str.contains(r'\b' + re.escape(w.lower()) + r'\b', regex=True).astype(int)

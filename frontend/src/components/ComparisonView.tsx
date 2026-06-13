@@ -25,11 +25,13 @@ type Dimension = {
 };
 
 const DIMENSIONS: Dimension[] = [
-  { label: "Technical Fit", key: "technical" },
-  { label: "Production Ownership", key: "production" },
-  { label: "Leadership", key: "leadership" },
-  { label: "Evaluation Experience", key: "evaluation" },
-  { label: "Hireability", key: "hireability" },
+  { label: "Experience Affinity", key: "experience_affinity" },
+  { label: "Skill Depth", key: "skill_depth" },
+  { label: "Domain Authenticity", key: "domain_authenticity" },
+  { label: "Credential Affinity", key: "credential_affinity" },
+  { label: "Availability Affinity", key: "availability_affinity" },
+  { label: "Responsiveness Affinity", key: "responsiveness_affinity" },
+  { label: "Trajectory Affinity", key: "trajectory_affinity" },
 ];
 
 export function ComparisonView({
@@ -37,13 +39,13 @@ export function ComparisonView({
   candidateB,
   onClose,
 }: ComparisonViewProps) {
-  const aTotal = Object.values(candidateA.scores).reduce((a, b) => a + b, 0);
-  const bTotal = Object.values(candidateB.scores).reduce((a, b) => a + b, 0);
+  const aTotal = Object.values(candidateA.scores || {}).reduce((a, b) => (a || 0) + (b || 0), 0);
+  const bTotal = Object.values(candidateB.scores || {}).reduce((a, b) => (a || 0) + (b || 0), 0);
   const aWins = DIMENSIONS.filter(
-    (d) => candidateA.scores[d.key] > candidateB.scores[d.key]
+    (d) => (candidateA.scores?.[d.key] || 0) > (candidateB.scores?.[d.key] || 0)
   ).length;
   const bWins = DIMENSIONS.filter(
-    (d) => candidateB.scores[d.key] > candidateA.scores[d.key]
+    (d) => (candidateB.scores?.[d.key] || 0) > (candidateA.scores?.[d.key] || 0)
   ).length;
 
   const winner = aTotal >= bTotal ? candidateA : candidateB;
@@ -136,8 +138,8 @@ export function ComparisonView({
             <h3 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-4">Metric Breakdown</h3>
             <div className="space-y-3">
               {DIMENSIONS.map((dim, index) => {
-                const scoreA = candidateA.scores[dim.key];
-                const scoreB = candidateB.scores[dim.key];
+                const scoreA = candidateA.scores?.[dim.key] || 0;
+                const scoreB = candidateB.scores?.[dim.key] || 0;
                 const diff = scoreA - scoreB;
                 const aWin = diff > 0;
                 const tie = diff === 0;

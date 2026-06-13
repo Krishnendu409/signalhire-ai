@@ -1,6 +1,5 @@
 'use server';
 
-import { loadTop100, loadRejectedCases, loadCandidates, loadCandidateById } from './repository';
 import type { Candidate, CareerStep } from '../store/workspace';
 
 function mapToUICandidate(sub: any, record: any): Candidate {
@@ -26,8 +25,8 @@ function mapToUICandidate(sub: any, record: any): Candidate {
     retrievalEvidence.push(`Keyword Match: ${(sub?.BM25_Contrib ?? 0).toFixed(2)}`);
   }
 
-  rankingEvidence.push(`Skill Affinity: ${(sub?.SkillAff_Contrib ?? 0).toFixed(2)}`);
-  rankingEvidence.push(`Career Affinity: ${(sub?.CareerAff_Contrib ?? 0).toFixed(2)}`);
+  rankingEvidence.push(`Experience Affinity: ${(sub?.dimension_scores?.experience_affinity?.score ?? 0).toFixed(2)}`);
+  rankingEvidence.push(`Skill Depth: ${(sub?.dimension_scores?.skill_depth?.score ?? 0).toFixed(2)}`);
 
   const technicalScore = Math.round((sub?.final_score ?? 0) * 10);
   const matchScore = technicalScore;
@@ -43,9 +42,9 @@ function mapToUICandidate(sub: any, record: any): Candidate {
     whyHere: isRejected ? ["Keyword Match"] : ["Domain Affinity"],
     risks: (sub?.Penalties ?? 0) < 0 ? ["Inconsistent Profile"] : [],
     decisionPath: {
-      enteredVia: "Domain Affinity Heuristic",
-      rankedBecause: [],
-      penalizedBecause: (sub?.Penalties ?? 0) < 0 ? ["Domain Contradiction Detected"] : [],
+      enteredVia: "Exhaustive Pipeline",
+      rankedBecause: sub?.explanation?.top_strengths || ["Met requirement threshold"],
+      penalizedBecause: (sub?.penalties ?? 0) < 0 ? ["Inconsistency Detected"] : [],
     },
     evidence: {
       retrieval: retrievalEvidence,
@@ -57,114 +56,105 @@ function mapToUICandidate(sub: any, record: any): Candidate {
     },
     career,
     scores: {
-      technical: technicalScore,
-      production: (sub?.CareerAff_Contrib ?? 0) * 10,
-      leadership: 50,
-      evaluation: (sub?.Quality_Contrib ?? 0) * 10,
-      hireability: (record?.redrob_signals?.recruiter_response_rate || 0) * 100,
+      experience_affinity: sub?.dimension_scores?.experience_affinity?.score ?? 0,
+      skill_depth: sub?.dimension_scores?.skill_depth?.score ?? 0,
+      credential_affinity: sub?.dimension_scores?.credential_affinity?.score ?? 0,
+      availability_affinity: sub?.dimension_scores?.availability_affinity?.score ?? 0,
+      responsiveness_affinity: sub?.dimension_scores?.responsiveness_affinity?.score ?? 0,
+      trajectory_affinity: sub?.dimension_scores?.trajectory_affinity?.score ?? 0,
+      domain_authenticity: sub?.dimension_scores?.domain_authenticity?.score ?? 0,
     },
     finalScores: {
       final: sub?.final_score ?? 0,
-      titleAffinity: sub?.TitleAff_Contrib ?? 0,
-      skillAffinity: sub?.SkillAff_Contrib ?? 0,
-      careerAffinity: sub?.CareerAff_Contrib ?? 0,
-      semantic: sub?.SemSim_Contrib ?? 0,
-      bm25: sub?.BM25_Contrib ?? 0,
-      quality: sub?.Quality_Contrib ?? 0,
-      penalties: sub?.Penalties ?? 0
+      titleAffinity: 0,
+      skillAffinity: 0,
+      careerAffinity: 0,
+      experienceAffinity: sub?.dimension_scores?.experience_affinity?.score ?? 0,
+      skillDepth: sub?.dimension_scores?.skill_depth?.score ?? 0,
+      domainAuthenticity: sub?.dimension_scores?.domain_authenticity?.score ?? 0,
+      quality: 0,
+      penalties: sub?.penalties ?? 0
     },
     narrative: `Final Score: ${(sub?.final_score ?? 0).toFixed(2)}\nTitle Affinity: ${(sub?.TitleAff_Contrib ?? 0).toFixed(2)}\nSkill Affinity: ${(sub?.SkillAff_Contrib ?? 0).toFixed(2)}\nCareer Affinity: ${(sub?.CareerAff_Contrib ?? 0).toFixed(2)}\nPenalties: ${(sub?.Penalties ?? 0).toFixed(2)}`,
   };
 }
 
-export async function getCombinedShortlist(invId?: string): Promise<Candidate[]> {
-  if (!invId) {
-    // Fallback if no invId is provided
-    const top100 = await loadTop100();
-    const rejected = await loadRejectedCases();
-    const allCases = [...top100.slice(0, 50), ...rejected];
-    return allCases.map(c => {
-      const sub = c.submission;
-      // Mock fastAPI format for fallback
-      return mapToUICandidate({
-        candidate_id: sub.candidate_id,
-        rank: sub.rank,
-        title: c.record?.profile?.current_title,
-        final_score: sub.score || 0,
-        TitleAff_Contrib: 0,
-        SkillAff_Contrib: 0,
-        CareerAff_Contrib: 0,
-        SemSim_Contrib: 0,
-        BM25_Contrib: 0,
-        Quality_Contrib: 0,
-        Penalties: 0
-      }, c.record);
-    });
+export async function getCombinedShortlist(jobId?: string): Promise<Candidate[]> {
+  if (!jobId) {
+    return [];
   } else {
     const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-    if (!UUID_REGEX.test(invId)) {
+    if (!UUID_REGEX.test(jobId)) {
       throw new Error("Invalid investigation id");
     }
   }
 
-  const url = new URL(`/api/investigations/${invId}/results`, 'http://localhost:8000');
+  const url = new URL(`/api/rankings/${jobId}/latest`, 'http://localhost:8000');
   const res = await fetch(url, { cache: 'no-store' });
   if (!res.ok) {
     throw new Error("Failed to fetch results");
   }
   const data = await res.json();
-  const results = data.results;
-
-  const allCandidates = await loadCandidates();
-  const candMap = new Map();
-  for (const c of allCandidates) {
-    candMap.set(c.candidate_id, c);
+  if (data.status !== 'completed') {
+    return [];
   }
+  const results = data.results || [];
 
   return results.map((sub: any) => {
-    const record = candMap.get(sub.candidate_id);
-    return mapToUICandidate(sub, record);
+    return mapToUICandidate(sub, sub.parsed_data); 
   });
 }
 
-export async function getRankingMetadata() {
+export async function getRankingMetadata(jobId?: string) {
+  if (!jobId) {
+    return {
+      totalEvaluated: 0,
+      retrieved: 0,
+      ranked: 0,
+      shortlisted: 0,
+      featuresExtracted: 22,
+      model: "Exhaustive V2 Ranking Engine",
+      jdTitle: "Unknown",
+      skills: {},
+      signals: [],
+      rejections: []
+    };
+  } else {
+    const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    if (!UUID_REGEX.test(jobId)) {
+      throw new Error("Invalid investigation id");
+    }
+  }
+
+  const url = new URL(`/api/rankings/${jobId}/latest`, 'http://localhost:8000');
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) {
+    throw new Error("Failed to fetch metadata");
+  }
+  const data = await res.json();
+  const results = data.results || [];
+  
   return {
-    totalEvaluated: 100000,
-    retrieved: 5000,
-    ranked: 1000,
-    shortlisted: 100,
-    featuresExtracted: 22,
-    model: "LightGBM LambdaRank",
-    skills: {
-      "Search Engineers": 51,
-      "NLP Engineers": 24,
-      "Applied ML Engineers": 12,
-      "Recommendation Engineers": 8,
-      "Other": 5
-    },
-    signals: [
-      { name: "FAISS", count: 41, avgRank: 12, avgScore: 92 },
-      { name: "Qdrant", count: 28, avgRank: 24, avgScore: 88 },
-      { name: "Learning-to-Rank", count: 17, avgRank: 8, avgScore: 95 }
-    ],
-    rejections: [
-      { reason: "Missing Retrieval Experience", count: 450 },
-      { reason: "Weak Production Evidence", count: 320 },
-      { reason: "Keyword Trap", count: 85 },
-      { reason: "Timeline Inconsistency", count: 45 }
-    ]
+      totalEvaluated: data.total_candidates || 0,
+      retrieved: data.total_candidates || 0,
+      ranked: results.length,
+      shortlisted: results.filter((r: any) => (r.rank || 0) <= 100).length,
+      featuresExtracted: 22,
+      model: "Exhaustive V2 Ranking Engine",
+      jdTitle: data.query_text || "Unknown Role",
+      skills: {},
+      signals: [],
+      rejections: [
+        { reason: "Lacks Domain Authenticity", count: results.filter((r: any) => r.dimension_scores?.domain_authenticity?.score < 50).length },
+        { reason: "Missing Hard Skills", count: results.filter((r: any) => r.dimension_scores?.skill_depth?.score < 30).length },
+        { reason: "Trajectory Mismatch", count: results.filter((r: any) => r.final_score < 40).length }
+      ]
   };
 }
 
 export async function getLandingPageData() {
-  const rejected = await loadRejectedCases();
-  const top100 = await loadTop100();
-  
-  const trapCandidate = rejected[0]; // keyword trap
-  const eliteCandidate = top100[0]; // rank 1
-
   return {
-    trap: mapToUICandidate(trapCandidate.submission, trapCandidate.record),
-    elite: mapToUICandidate(eliteCandidate.submission, eliteCandidate.record)
+    trap: null,
+    elite: null
   };
 }

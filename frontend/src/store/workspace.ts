@@ -19,11 +19,13 @@ export interface Evidence {
 }
 
 export interface Scores {
-  technical: number;
-  production: number;
-  leadership: number;
-  evaluation: number;
-  hireability: number;
+  experience_affinity: number;
+  skill_depth: number;
+  credential_affinity: number;
+  availability_affinity: number;
+  responsiveness_affinity: number;
+  trajectory_affinity: number;
+  domain_authenticity: number;
 }
 
 export interface FinalScores {
@@ -31,8 +33,9 @@ export interface FinalScores {
   titleAffinity: number;
   skillAffinity: number;
   careerAffinity: number;
-  semantic: number;
-  bm25: number;
+  experienceAffinity: number;
+  skillDepth: number;
+  domainAuthenticity: number;
   quality: number;
   penalties: number;
 }
@@ -71,14 +74,10 @@ export interface WorkspaceState {
   comparisonCandidate: Candidate | null;
   isLoaded: boolean;
   isProcessing: boolean;
-  demoMode: boolean;
-  demoStep: number;
   rankingMetadata: any;
   setCandidates: (candidates: Candidate[]) => void;
   setSelectedCandidate: (candidate: Candidate | null) => void;
   setComparisonCandidate: (candidate: Candidate | null) => void;
-  setDemoMode: (active: boolean) => void;
-  setDemoStep: (step: number) => void;
   setRankingMetadata: (meta: any) => void;
   clearComparison: () => void;
   setIsLoaded: (loaded: boolean) => void;
@@ -93,8 +92,6 @@ export const useWorkspaceStore = create<WorkspaceState>((set) => ({
   comparisonCandidate: null,
   isLoaded: false,
   isProcessing: false,
-  demoMode: false,
-  demoStep: 0,
   rankingMetadata: null,
 
   setCandidates: (candidates) => set({ 
@@ -104,8 +101,6 @@ export const useWorkspaceStore = create<WorkspaceState>((set) => ({
   }),
   setSelectedCandidate: (candidate) => set({ selectedCandidate: candidate }),
   setComparisonCandidate: (candidate) => set({ comparisonCandidate: candidate }),
-  setDemoMode: (demoMode) => set({ demoMode }),
-  setDemoStep: (demoStep) => set({ demoStep }),
   setRankingMetadata: (rankingMetadata) => set({ rankingMetadata }),
   clearComparison: () => set({ comparisonCandidate: null }),
   setIsLoaded: (isLoaded) => set({ isLoaded }),

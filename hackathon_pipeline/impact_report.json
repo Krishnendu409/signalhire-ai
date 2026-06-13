@@ -1,0 +1,23 @@
+[
+  {
+    "role": "Search Engineer",
+    "overlap100": 64,
+    "overlap20": 16,
+    "avg_delta": 0.1875,
+    "max_delta": 2.0
+  },
+  {
+    "role": "Frontend Engineer",
+    "overlap100": 100,
+    "overlap20": 20,
+    "avg_delta": 0.0,
+    "max_delta": 0.0
+  },
+  {
+    "role": "Sales Manager",
+    "overlap100": 32,
+    "overlap20": 5,
+    "avg_delta": 0.0,
+    "max_delta": 0.0
+  }
+]

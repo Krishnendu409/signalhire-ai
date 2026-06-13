@@ -10,11 +10,18 @@ type Metadata = Awaited<ReturnType<typeof getRankingMetadata>>;
 
 export default function ReportsPage() {
   const [data, setData] = useState<{ shortlist: Candidate[], meta: Metadata } | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     Promise.all([getCombinedShortlist(), getRankingMetadata()]).then(([candidates, meta]) => {
       const shortlist = candidates.filter(c => c.rank <= 10).sort((a, b) => a.rank - b.rank);
       setData({ shortlist, meta });
+      setIsLoading(false);
+    }).catch(err => {
+      console.error(err);
+      setError(err.message || "Failed to load report data.");
+      setIsLoading(false);
     });
   }, []);
 
@@ -47,7 +54,9 @@ ${data.meta.rejections.map(r => `- ${r.reason}: ${r.count} candidates`).join('\n
     URL.revokeObjectURL(url);
   };
 
-  if (!data) return <div className="h-screen bg-[#0A0A0A]" />;
+  if (isLoading) return <div className="h-screen bg-[#0A0A0A] flex items-center justify-center text-white font-mono">Loading report data...</div>;
+  if (error) return <div className="h-screen bg-[#0A0A0A] flex items-center justify-center text-[#EF4444] font-mono">Error: {error}</div>;
+  if (!data) return <div className="h-screen bg-[#0A0A0A] flex items-center justify-center text-white font-mono">No data available</div>;
 
   return (
     <div className="h-screen bg-[#0A0A0A] text-[#e5e2e1] font-sans overflow-hidden flex flex-col">
