@@ -11,12 +11,7 @@ logger = logging.getLogger("signalhire")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting SignalHire AI backend...")
-    from app.services.vector_store import init_qdrant
-    from app.services.reranker import warmup_reranker
-    from app.services.embeddings import warmup_embeddings
-    await init_qdrant()
-    await warmup_embeddings()
-    await asyncio.to_thread(warmup_reranker)
+    # Legacy vector store and models have been decommissioned for V2 Engine
     yield
     logger.info("Shutting down SignalHire AI backend...")
 

@@ -6,8 +6,6 @@ from app.db.session import get_db
 from app.models.user import User
 from app.models.job import Job
 from app.services.ai import AIPipeline
-from app.services.embeddings import embed_document
-from app.services.vector_store import index_job
 import uuid
 
 router = APIRouter()
@@ -54,18 +52,6 @@ async def create_job(
     db.add(job)
     await db.commit()
 
-    # 3. Generate embedding and store in Qdrant
-    query_text = f"{parsed.get('title', '')}. {raw_text[:1000]}"
-    embedding = await embed_document(query_text)
-    await index_job(
-        job_id=str(job.id),
-        embedding=embedding,
-        payload={
-            "job_id": str(job.id),
-            "title": job.title,
-            "seniority": parsed.get("seniority", ""),
-        },
-    )
     job.embedding_id = str(job.id)
     await db.commit()
 
