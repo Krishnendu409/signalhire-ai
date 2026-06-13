@@ -19,11 +19,13 @@ export interface Evidence {
 }
 
 export interface Scores {
-  technical: number;
-  production: number;
-  leadership: number;
-  evaluation: number;
-  hireability: number;
+  experience_affinity: number;
+  skill_depth: number;
+  credential_affinity: number;
+  availability_affinity: number;
+  responsiveness_affinity: number;
+  trajectory_affinity: number;
+  domain_authenticity: number;
 }
 
 export interface FinalScores {
@@ -31,8 +33,9 @@ export interface FinalScores {
   titleAffinity: number;
   skillAffinity: number;
   careerAffinity: number;
-  semantic: number;
-  bm25: number;
+  experienceAffinity: number;
+  skillDepth: number;
+  domainAuthenticity: number;
   quality: number;
   penalties: number;
 }

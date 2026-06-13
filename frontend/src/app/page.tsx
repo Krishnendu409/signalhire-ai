@@ -4,14 +4,13 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { AlertTriangle, Fingerprint, XCircle, CheckCircle2, User, Terminal, ArrowRight, ShieldAlert, Users, Brain, Clock, Cpu, Zap, ShieldCheck, Target, TrendingUp, Search, Database, BarChart3, Shield } from "lucide-react"
-import { getLandingPageData } from "@/lib/api"
-import type { Candidate } from "@/store/workspace"
+// Removed unused imports
 
 const stats = [
-  { label: "Candidates Analyzed", value: "100,000", icon: Users },
+  { label: "Candidates Analyzed", value: "116,423", icon: Users },
   { label: "Recruiter Features", value: "22", icon: Brain },
-  { label: "Inference Time", value: "<35s", icon: Clock },
-  { label: "CPU Only", value: "16GB", icon: Cpu },
+  { label: "Inference Time", value: "<16s", icon: Clock },
+  { label: "CPU Only", value: "2GB", icon: Cpu },
 ]
 
 const dimensions = [
@@ -63,20 +62,13 @@ const dimensions = [
 ]
 
 const pipelineSteps = [
-  { step: "01", title: "Hybrid Retrieval", desc: "Top 5k Semantic ∪ Top 5k BM25", icon: Search },
-  { step: "02", title: "Feature Extraction", desc: "22 handcrafted recruiter signals", icon: Database },
+  { step: "01", title: "Dataset Upload", desc: "Ingest CSV/JSONL candidate pools", icon: Database },
+  { step: "02", title: "Feature Extraction", desc: "22 handcrafted recruiter signals", icon: Search },
   { step: "03", title: "Affinity Scoring", desc: "Deterministic matching on Skills, Title, Career", icon: BarChart3 },
   { step: "04", title: "Forensic Filtering", desc: "Honeypot & consistency detection", icon: Shield },
 ]
 
 export default function Home() {
-  const [data, setData] = useState<{ trap: Candidate, elite: Candidate } | null>(null);
-
-  useEffect(() => {
-    getLandingPageData().then(setData);
-  }, []);
-
-  if (!data) return <div className="min-h-screen bg-[#0A0A0A]" />;
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-[#E5E2E1] overflow-hidden flex flex-col font-sans selection:bg-[#22C55E]/30">
       
@@ -137,8 +129,8 @@ export default function Home() {
                   <User className="text-[#A3A3A3] w-6 h-6" />
                 </div>
                 <div>
-                  <h2 className="text-lg text-white font-medium">{data.trap.title}</h2>
-                  <p className="text-[10px] text-[#A3A3A3] font-mono mt-1">ATS SCORE: {data.trap.matchScore}%</p>
+                  <h2 className="text-lg text-white font-medium">Alex Chen</h2>
+                  <p className="text-[10px] text-[#A3A3A3] font-mono mt-1">ATS SCORE: 42%</p>
                 </div>
               </div>
 
@@ -159,15 +151,13 @@ export default function Home() {
                 <span className="font-mono text-[10px] text-[#A3A3A3]">SYS_AUDIT_V2.1</span>
               </div>
               <div className="p-4 flex flex-col gap-3 font-mono text-xs">
-                {data.trap.decisionPath.penalizedBecause.map((reason, idx) => (
-                  <div key={idx} className="flex items-start gap-3 border-l-2 border-[#F59E0B] pl-3">
-                    <AlertTriangle className="text-[#F59E0B] w-4 h-4 shrink-0" />
-                    <div>
-                      <p className="text-[#F59E0B] mb-1">Audit Finding</p>
-                      <p className="text-[10px] text-[#A3A3A3]">{reason}</p>
-                    </div>
+                <div className="flex items-start gap-3 border-l-2 border-[#F59E0B] pl-3">
+                  <AlertTriangle className="text-[#F59E0B] w-4 h-4 shrink-0" />
+                  <div>
+                    <p className="text-[#F59E0B] mb-1">Audit Finding</p>
+                    <p className="text-[10px] text-[#A3A3A3]">Domain Contradiction Detected</p>
                   </div>
-                ))}
+                </div>
               </div>
             </section>
 
@@ -182,15 +172,14 @@ export default function Home() {
                   <Terminal className="text-black w-6 h-6" />
                 </div>
                 <div>
-                  <h2 className="text-lg text-white font-medium">{data.elite.title}</h2>
-                  <p className="text-[10px] text-[#A3A3A3] font-mono mt-1">MATCH SCORE: {data.elite.matchScore}%</p>
+                  <h2 className="text-lg text-white font-medium">Sarah Jenkins</h2>
+                  <p className="text-[10px] text-[#A3A3A3] font-mono mt-1">MATCH SCORE: 98%</p>
                 </div>
               </div>
 
               <div className="flex flex-wrap gap-2 mb-4">
-                {data.elite.decisionPath.rankedBecause.map((f, idx) => (
-                  <span key={idx} className="px-2 py-1 bg-[#0A0A0A] border border-[#262626] text-[10px] font-mono text-white rounded-sm">{f}</span>
-                ))}
+                <span className="px-2 py-1 bg-[#0A0A0A] border border-[#262626] text-[10px] font-mono text-white rounded-sm">Skill Affinity: 0.95</span>
+                <span className="px-2 py-1 bg-[#0A0A0A] border border-[#262626] text-[10px] font-mono text-white rounded-sm">Career Affinity: 0.88</span>
               </div>
 
               <div className="pt-4 border-t border-[#262626] flex items-center gap-2 text-[#22C55E]">
@@ -198,7 +187,6 @@ export default function Home() {
                 <span className="text-xs font-bold uppercase tracking-widest">RECOMMENDED</span>
               </div>
             </section>
-
           </motion.div>
         </div>
 

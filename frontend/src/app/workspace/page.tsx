@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Fingerprint, Play, Square, FileSearch, Database, BookOpen, AlertTriangle, CheckCircle } from "lucide-react";
+import { Fingerprint, Play, Square, FileSearch, Database, BookOpen, AlertTriangle, CheckCircle, Users, Search } from "lucide-react";
 import { useWorkspaceStore } from "@/store/workspace";
 import { ComparisonView } from "@/components/ComparisonView";
 import { getCombinedShortlist, getRankingMetadata } from "@/lib/api";
@@ -12,6 +12,11 @@ import { getCombinedShortlist, getRankingMetadata } from "@/lib/api";
 function WorkspaceContent() {
   const searchParams = useSearchParams();
   const invId = searchParams.get("id");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [minScore, setMinScore] = useState<number>(0);
+  const [minExperience, setMinExperience] = useState<number>(0);
+  const [minDomainAuth, setMinDomainAuth] = useState<number>(0);
+  const [reqAvailability, setReqAvailability] = useState<boolean>(false);
 
   const {
     candidates,
@@ -20,13 +25,21 @@ function WorkspaceContent() {
     setCandidates,
     setSelectedCandidate,
     setComparisonCandidate,
+    rankingMetadata,
     setRankingMetadata,
     clearComparison,
   } = useWorkspaceStore();
 
   const rankedCandidates = candidates.filter((c) => c.rank <= 100).sort((a, b) => a.rank - b.rank);
   const unrankedCandidates = candidates.filter((c) => c.rank > 100).sort((a, b) => b.rank - a.rank);
-  const displayCandidates = [...rankedCandidates, ...unrankedCandidates];
+  const displayCandidates = [...rankedCandidates, ...unrankedCandidates].filter(c => {
+    if (searchQuery && !c.name.toLowerCase().includes(searchQuery.toLowerCase()) && !c.title.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+    if (minScore > 0 && c.matchScore < minScore) return false;
+    if (minExperience > 0 && (c.scores?.experience_affinity || 0) < minExperience) return false;
+    if (minDomainAuth > 0 && (c.scores?.domain_authenticity || 0) < minDomainAuth) return false;
+    if (reqAvailability && (c.scores?.availability_affinity || 0) < 1.0) return false;
+    return true;
+  });
 
   // Load data from backend on mount
   useEffect(() => {
@@ -83,14 +96,13 @@ function WorkspaceContent() {
       {/* Secondary Nav: Investigation Summary */}
       <div className="fixed top-14 w-full z-40 bg-[#0A0A0A] border-b border-[#262626] px-4 md:px-10 h-10 flex items-center justify-between text-[10px] font-mono text-[#c4c7c8] uppercase tracking-wider">
         <div className="flex items-center gap-6">
-          <span className="font-bold text-white">INV #2026-001</span>
-          <span><span className="text-[#A3A3A3]">JD:</span> Senior Search Engineer</span>
+          <span className="font-bold text-white">INV #{invId?.slice(0,8) || "NEW"}</span>
+          <span><span className="text-[#A3A3A3]">JD:</span> {rankingMetadata?.jdTitle || "Unknown Role"}</span>
         </div>
         <div className="flex items-center gap-6">
-          <span><span className="text-[#A3A3A3]">Analyzed:</span> 100,000</span>
-          <span><span className="text-[#A3A3A3]">Retrieved:</span> 5,000</span>
-          <span><span className="text-[#A3A3A3]">Ranked:</span> 1,000</span>
-          <span className="text-[#22C55E] font-bold">Shortlisted: 100</span>
+          <span><span className="text-[#A3A3A3]">Analyzed:</span> {rankingMetadata?.totalEvaluated?.toLocaleString() || "--"}</span>
+          <span><span className="text-[#A3A3A3]">Processed:</span> {rankingMetadata?.ranked?.toLocaleString() || "--"}</span>
+          <span className="text-[#22C55E] font-bold">Shortlisted: {rankingMetadata?.shortlisted?.toLocaleString() || "--"}</span>
         </div>
       </div>
 
@@ -98,14 +110,69 @@ function WorkspaceContent() {
       <main className="pt-24 h-screen flex flex-col md:flex-row overflow-hidden">
         
         {/* Column 1: Candidate Queue */}
-        <aside className="w-full md:w-[280px] shrink-0 bg-[#111111] border-r border-[#262626] flex flex-col overflow-hidden">
-          
-          {/* Shortlisted Section */}
-          <div className="p-4 border-b border-[#262626] flex justify-between items-center bg-[#141313]">
-            <span className="text-xs text-[#c4c7c8] uppercase tracking-widest font-semibold flex items-center gap-2">
-              <CheckCircle className="w-3 h-3 text-[#22C55E]" /> Shortlisted
-            </span>
-            <span className="bg-[#353434] px-2 py-0.5 rounded text-[10px] font-mono">{rankedCandidates.length}</span>
+        <aside className="w-full md:w-80 bg-[#0A0A0A] border-r border-[#262626] flex flex-col h-full shrink-0">
+          <div className="p-4 border-b border-[#262626] flex-shrink-0">
+            <h2 className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-2 mb-3">
+              <Users className="w-4 h-4" />
+              Candidate Queue
+            </h2>
+            <div className="flex gap-2 text-[10px] uppercase font-mono mb-3">
+              <button className="flex-1 bg-white text-black py-1 rounded font-bold">Shortlist</button>
+              <button className="flex-1 text-[#A3A3A3] hover:text-white transition-colors">Rejected</button>
+            </div>
+            
+            {/* Filters */}
+            <div className="space-y-2">
+              <div className="relative">
+                <Search className="w-3 h-3 absolute left-2 top-2 text-[#A3A3A3]" />
+                <input 
+                  type="text" 
+                  placeholder="Search by name or title..." 
+                  className="w-full bg-[#141313] border border-[#262626] rounded text-xs px-7 py-1.5 text-white placeholder:text-[#A3A3A3] focus:outline-none focus:border-[#22C55E]"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] text-[#A3A3A3]">Min Score: {minScore}%</span>
+                <input 
+                  type="range" 
+                  min="0" max="100" 
+                  className="w-24 accent-[#22C55E]"
+                  value={minScore}
+                  onChange={(e) => setMinScore(parseInt(e.target.value))}
+                />
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <span className="text-[10px] text-[#A3A3A3]">Min Experience: {minExperience.toFixed(1)}</span>
+                <input 
+                  type="range" 
+                  min="0" max="2" step="0.1"
+                  className="w-24 accent-[#22C55E]"
+                  value={minExperience}
+                  onChange={(e) => setMinExperience(parseFloat(e.target.value))}
+                />
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <span className="text-[10px] text-[#A3A3A3]">Domain Auth: {minDomainAuth.toFixed(1)}</span>
+                <input 
+                  type="range" 
+                  min="0" max="2" step="0.1"
+                  className="w-24 accent-[#22C55E]"
+                  value={minDomainAuth}
+                  onChange={(e) => setMinDomainAuth(parseFloat(e.target.value))}
+                />
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <span className="text-[10px] text-[#A3A3A3]">Req Availability</span>
+                <input 
+                  type="checkbox"
+                  className="accent-[#22C55E]"
+                  checked={reqAvailability}
+                  onChange={(e) => setReqAvailability(e.target.checked)}
+                />
+              </div>
+            </div>
           </div>
           <div className="flex-1 overflow-y-auto p-2 gap-2 flex flex-col scrollbar-thin scrollbar-thumb-[#262626]">
             {rankedCandidates.map(candidate => {
@@ -120,9 +187,22 @@ function WorkspaceContent() {
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className={`font-mono text-[10px] ${isSelected ? "text-white" : "text-[#c4c7c8]"} opacity-60`}>
-                      ID: {candidate.id.split('_')[1]}
+                      ID: {candidate.id.split('_')[1] || candidate.id}
                     </span>
-                    {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>}
+                    <div className="flex items-center gap-2">
+                      {!isSelected && selectedCandidate && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setComparisonCandidate(candidate);
+                          }}
+                          className="text-[9px] font-bold bg-[#353434] px-1.5 py-0.5 rounded text-[#A3A3A3] hover:text-white hover:bg-[#404040] transition-colors"
+                        >
+                          VS
+                        </button>
+                      )}
+                      {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>}
+                    </div>
                   </div>
                   <h3 className={`text-sm font-semibold truncate ${isSelected ? "text-white" : "text-[#c4c7c8]"}`}>
                     {candidate.name}
@@ -259,16 +339,16 @@ function WorkspaceContent() {
                       <div className="text-sm font-mono text-white">{selectedCandidate.finalScores?.careerAffinity.toFixed(3) || 0}</div>
                     </div>
                     <div className="bg-[#141313] p-3 rounded border border-[#262626]">
-                      <div className="text-[10px] text-[#A3A3A3] uppercase tracking-wider mb-1">Semantic Sim</div>
-                      <div className="text-sm font-mono text-white">{selectedCandidate.finalScores?.semantic.toFixed(3) || 0}</div>
+                      <div className="text-[10px] text-[#A3A3A3] uppercase tracking-wider mb-1">Exp. Affinity</div>
+                      <div className="text-sm font-mono text-white">{selectedCandidate.finalScores?.experienceAffinity?.toFixed(3) || 0}</div>
                     </div>
                     <div className="bg-[#141313] p-3 rounded border border-[#262626]">
-                      <div className="text-[10px] text-[#A3A3A3] uppercase tracking-wider mb-1">BM25 Score</div>
-                      <div className="text-sm font-mono text-white">{selectedCandidate.finalScores?.bm25.toFixed(3) || 0}</div>
+                      <div className="text-[10px] text-[#A3A3A3] uppercase tracking-wider mb-1">Skill Depth</div>
+                      <div className="text-sm font-mono text-white">{selectedCandidate.finalScores?.skillDepth?.toFixed(3) || 0}</div>
                     </div>
                     <div className="bg-[#141313] p-3 rounded border border-[#262626]">
-                      <div className="text-[10px] text-[#A3A3A3] uppercase tracking-wider mb-1">Quality Score</div>
-                      <div className="text-sm font-mono text-white">{selectedCandidate.finalScores?.quality.toFixed(3) || 0}</div>
+                      <div className="text-[10px] text-[#A3A3A3] uppercase tracking-wider mb-1">Authenticity</div>
+                      <div className="text-sm font-mono text-white">{selectedCandidate.finalScores?.domainAuthenticity?.toFixed(3) || 0}</div>
                     </div>
                     <div className={`bg-[#141313] p-3 rounded border ${(selectedCandidate.finalScores?.penalties || 0) < 0 ? 'border-[#EF4444]/30' : 'border-[#262626]'}`}>
                       <div className={`text-[10px] ${(selectedCandidate.finalScores?.penalties || 0) < 0 ? 'text-[#EF4444]' : 'text-[#A3A3A3]'} uppercase tracking-wider mb-1`}>Penalties</div>

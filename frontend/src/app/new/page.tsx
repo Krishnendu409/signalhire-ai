@@ -29,37 +29,38 @@ export default function NewInvestigationPage() {
 
     // 1. Start Investigation via API
     try {
-      const startUrl = new URL(`${API_BASE}/investigations`);
+      const startUrl = new URL(`${API_BASE}/jobs`);
+      const formData = new FormData();
+      formData.append("title", "Senior Search Engineer");
+      formData.append("file", new Blob([jdText], { type: "text/plain" }), "jd.txt");
+
       const response = await fetch(startUrl.toString(), {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          raw_text: jdText
-        })
+        body: formData
       });
       const data = await response.json();
-      const invId = data.investigation_id;
+      const jobId = data.id;
+
+      // Start Ranking
+      const rankUrl = new URL(`${API_BASE}/rankings/${jobId}`);
+      await fetch(rankUrl.toString(), { method: "POST" });
 
       // 2. Poll Status
       setCurrentStage(1);
       
       const poll = setInterval(async () => {
         try {
-          const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-          if (!UUID_REGEX.test(invId)) {
-            throw new Error("Invalid investigation id");
-          }
-          const statusUrl = new URL(`${API_BASE}/investigations/${invId}/status`);
+          const statusUrl = new URL(`${API_BASE}/rankings/${jobId}/latest`);
           const statusRes = await fetch(statusUrl.toString());
           const statusData = await statusRes.json();
           
-          if (statusData.status === "COMPLETED") {
+          if (statusData.status === "completed") {
             clearInterval(poll);
             setCurrentStage(PIPELINE_STAGES.length - 1);
             setTimeout(() => {
-              router.push(`/workspace?id=${invId}`);
+              router.push(`/workspace?id=${jobId}`);
             }, 800);
-          } else if (statusData.status === "FAILED") {
+          } else if (statusData.status === "failed") {
             clearInterval(poll);
             alert("Investigation failed!");
             setIsExecuting(false);
