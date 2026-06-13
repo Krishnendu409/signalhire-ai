@@ -27,7 +27,7 @@ async def test():
         print(f"Status: {result.get('current_employment_status')}")
         print(f"Open to Work: {result.get('open_to_work')}")
         print(f"Notice Period: {result.get('notice_period')}")
-        print(f"Expected Salary: {result.get('expected_salary')}")
+        print(f"Expected Salary: {'[REDACTED]' if result.get('expected_salary') else None}")
         print("---")
 
 asyncio.run(test())
