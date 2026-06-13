@@ -1,10 +1,9 @@
 import io
 import copy
 import fitz  # PyMuPDF
-import pytesseract
 from PIL import Image
 from app.services.ai import AIPipeline
-from app.services.skill_taxonomy import normalize_skills
+from app.services.normalization import normalize_skills_list, extract_skills_from_text
 
 UNCERTAINTY_THRESHOLD = 0.8
 
@@ -37,24 +36,47 @@ async def extract_text_from_pdf(file_bytes: bytes) -> tuple[str, float]:
     return text.strip(), layout_complexity
 
 
+async def extract_text_from_docx(file_bytes: bytes) -> tuple[str, float]:
+    """
+    Extract text from a DOCX file using built-in zipfile and XML parsing.
+    Returns (text, layout_complexity_score).
+    """
+    import zipfile
+    import xml.etree.ElementTree as ET
+    try:
+        doc = zipfile.ZipFile(io.BytesIO(file_bytes))
+        xml_content = doc.read('word/document.xml')
+        tree = ET.XML(xml_content)
+        # Extract text from all nodes, adding newlines for paragraphs
+        namespace = {'w': 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}
+        text = '\n'.join(node.text for node in tree.findall('.//w:t', namespace) if node.text)
+        return text.strip(), 0.1
+    except Exception as e:
+        return f"DOCX parsing error: {str(e)}", 1.0
+
+
 async def extract_text_from_image(file_bytes: bytes) -> tuple[str, float]:
     """
-    Extract text from an image using Tesseract OCR.
+    Extract text from an image using EasyOCR.
     Returns (text, layout_complexity_score).
     """
     try:
+        import easyocr
+        import numpy as np
         image = Image.open(io.BytesIO(file_bytes))
-        # Ensure image is in RGB for better OCR
         if image.mode != "RGB":
             image = image.convert("RGB")
+            
+        reader = easyocr.Reader(['en'])
+        result = reader.readtext(np.array(image))
+        text = " ".join([text for (bbox, text, prob) in result])
         
-        text = pytesseract.image_to_string(image)
         if not text.strip():
             return "OCR failed to extract readable text. Image may be blurry or low resolution.", 1.0
             
         return text.strip(), 0.9
     except Exception as e:
-        return f"OCR processing error: {str(e)}. Ensure Tesseract-OCR is installed on the server.", 1.0
+        return f"OCR processing error: {str(e)}. Ensure EasyOCR is installed.", 1.0
 
 
 async def parse_resume_bytes(file_bytes: bytes, filename: str) -> dict:
@@ -68,6 +90,8 @@ async def parse_resume_bytes(file_bytes: bytes, filename: str) -> dict:
     # Step 1: Text extraction
     if filename.lower().endswith(".pdf"):
         text, layout_complexity = await extract_text_from_pdf(file_bytes)
+    elif filename.lower().endswith(".docx"):
+        text, layout_complexity = await extract_text_from_docx(file_bytes)
     else:
         text, layout_complexity = await extract_text_from_image(file_bytes)
 
@@ -77,13 +101,14 @@ async def parse_resume_bytes(file_bytes: bytes, filename: str) -> dict:
     # Step 2: AI structured extraction
     parsed = await AIPipeline.parse_resume(text)
 
-    # Step 3: Normalize and calibrate skills through taxonomy
+    # Step 3: Normalize skills through ontology
     if "skills" in parsed:
         raw_skills = copy.deepcopy(parsed["skills"])
-        normalized_skills = normalize_skills(copy.deepcopy(parsed["skills"]))
-        parsed["skills"] = normalized_skills
+        normalized_skills = normalize_skills_list(copy.deepcopy(parsed["skills"]))
+        parsed["skills"] = [{"name": s["name"], "type": s.get("type", "hard")} for s in normalized_skills]
+        parsed["normalized_skills"] = normalized_skills
         parsed["raw_extracted_skills"] = raw_skills
-        parsed["scoring_skills"] = [s for s in normalized_skills if s.get("is_scoring_eligible", False)]
+        parsed["scoring_skills"] = [s for s in normalized_skills if s.get("is_scoring_eligible", True)]
         parsed["negated_skills"] = [s for s in normalized_skills if s.get("negated", False)]
 
     # Step 4: Attach parsing metadata (for calibrated uncertainty UI)
