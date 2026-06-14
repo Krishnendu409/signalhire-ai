@@ -1,3 +1,6 @@
+from app.services.comparison import ComparisonService
+from pydantic import BaseModel
+from typing import List, Optional
 from fastapi import APIRouter, UploadFile, Depends, HTTPException, File
 from sqlalchemy import select
 from app.core.deps import get_current_user
@@ -68,7 +71,7 @@ async def get_candidate_file(
     from app.services.storage import download_resume
 
     result = await db.execute(
-        select(Candidate).where(Candidate.id == candidate_id, Candidate.recruiter_id == user.id)
+        select(Candidate).where(Candidate.id == candidate_id, Candidate.recruiter_id == uuid.UUID(str(user.id)))
     )
     candidate = result.scalar_one_or_none()
     if not candidate:
@@ -89,7 +92,7 @@ async def list_candidates(
     """List all candidates for the current recruiter."""
     result = await db.execute(
         select(Candidate)
-        .where(Candidate.recruiter_id == user.id)
+        .where(Candidate.recruiter_id == uuid.UUID(str(user.id)))
         .order_by(Candidate.created_at.desc())
     )
     candidates = result.scalars().all()
@@ -107,6 +110,81 @@ async def list_candidates(
     ]
 
 
+class CompareRequest(BaseModel):
+    candidate_ids: List[str]
+
+@router.post("/compare")
+async def compare_candidates(
+    req: CompareRequest,
+    user: User = Depends(get_current_user),
+    db=Depends(get_db),
+):
+    result = await db.execute(
+        select(Candidate).where(
+            Candidate.id.in_([uuid.UUID(str(cid)) for cid in req.candidate_ids]),
+            Candidate.recruiter_id == uuid.UUID(str(user.id))
+        )
+    )
+    candidates = result.scalars().all()
+    if not candidates:
+        raise HTTPException(status_code=404, detail="Candidates not found")
+        
+    c_data = []
+    for c in candidates:
+        c_data.append({
+            "id": str(c.id),
+            "parsed_data": c.parsed_data
+        })
+        
+    return ComparisonService.compare_candidates(c_data)
+
+@router.get("/search")
+async def search_candidates(
+    q: Optional[str] = None,
+    skills: Optional[str] = None,
+    title: Optional[str] = None,
+    experience_min: Optional[int] = None,
+    experience_max: Optional[int] = None,
+    user: User = Depends(get_current_user),
+    db=Depends(get_db),
+):
+    result = await db.execute(
+        select(Candidate).where(Candidate.recruiter_id == uuid.UUID(str(user.id)))
+    )
+    candidates = result.scalars().all()
+    
+    filtered = []
+    for c in candidates:
+        parsed = c.parsed_data or {}
+        
+        if title and title.lower() not in parsed.get("current_title", "").lower():
+            continue
+            
+        yoe = parsed.get("experience_years", 0)
+        if experience_min is not None and yoe < experience_min:
+            continue
+        if experience_max is not None and yoe > experience_max:
+            continue
+            
+        if skills:
+            req_skills = [s.strip().lower() for s in skills.split(",")]
+            cand_skills = [s.get("name", "").lower() for s in parsed.get("skills", []) if s.get("name")]
+            if not all(any(rs in cs for cs in cand_skills) for rs in req_skills):
+                continue
+                
+        if q:
+            q_lower = q.lower()
+            text_blob = str(parsed).lower()
+            if q_lower not in text_blob:
+                continue
+                
+        filtered.append({
+            "id": str(c.id),
+            "parsed_data": parsed
+        })
+        
+    return filtered
+
 @router.get("/{candidate_id}")
 async def get_candidate(
     candidate_id: str,
@@ -117,7 +195,7 @@ async def get_candidate(
     result = await db.execute(
         select(Candidate).where(
             Candidate.id == candidate_id,
-            Candidate.recruiter_id == user.id,
+            Candidate.recruiter_id == uuid.UUID(str(user.id)),
         )
     )
     candidate = result.scalar_one_or_none()
@@ -143,7 +221,7 @@ async def delete_candidate(
     result = await db.execute(
         select(Candidate).where(
             Candidate.id == candidate_id,
-            Candidate.recruiter_id == user.id,
+            Candidate.recruiter_id == uuid.UUID(str(user.id)),
         )
     )
     candidate = result.scalar_one_or_none()
@@ -153,3 +231,4 @@ async def delete_candidate(
     await db.delete(candidate)
     await db.commit()
     return {"status": "deleted"}
+

@@ -30,6 +30,13 @@ function mapToUICandidate(sub: any, record: any): Candidate {
   rankingEvidence.push(`Experience Affinity: ${(sub?.dimension_scores?.experience_affinity?.score ?? 0).toFixed(2)}`);
   rankingEvidence.push(`Skill Depth: ${(sub?.dimension_scores?.skill_depth?.score ?? 0).toFixed(2)}`);
 
+  
+  if (sub?.adaptation_risk === 'high') {
+    rankingEvidence.push(`High Adaptation Risk: No adjacent skills detected`);
+  } else if (sub?.adaptation_risk === 'low' || sub?.adaptation_risk === 'medium') {
+    (sub?.transferability_evidence || []).forEach((e: string) => rankingEvidence.push(e));
+  }
+
   const penalties = sub?.Penalties ?? sub?.penalties ?? 0;
 
   return {
@@ -158,4 +165,26 @@ export async function getLandingPageData() {
     trap: null as any,
     elite: null as any
   };
+}
+
+
+export async function compareCandidates(candidateIds: string[]) {
+  const url = new URL('/api/candidates/compare', 'http://localhost:8000');
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ candidate_ids: candidateIds })
+  });
+  if (!res.ok) throw new Error("Failed to compare");
+  return res.json();
+}
+
+export async function searchCandidates(params: {q?: string, skills?: string, title?: string, experience_min?: number, experience_max?: number}) {
+  const url = new URL('/api/candidates/search', 'http://localhost:8000');
+  Object.entries(params).forEach(([k, v]) => {
+    if (v !== undefined && v !== "") url.searchParams.append(k, String(v));
+  });
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) throw new Error("Search failed");
+  return res.json();
 }
