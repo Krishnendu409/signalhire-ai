@@ -1,0 +1,4 @@
+Dataset Cut,Size,Top 100 Overlap (w/ Full),Recall,Honeypots in Top 100,Title Diversity (Top 100)
+Removed Dominant Titles,35502,1,10949,0,4
+Random 10% Sample,10024,6,4853,0,22
+Random 50% Sample,49834,40,23896,0,17

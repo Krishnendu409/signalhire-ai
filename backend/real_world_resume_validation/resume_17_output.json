@@ -1,0 +1,217 @@
+{
+  "resume_id": "resume_17",
+  "parsed_output": {
+    "full_name": "Bob Davis 17",
+    "current_title": "Frontend Developer",
+    "raw_title": "Frontend Engineer",
+    "normalized_title": "Frontend Developer",
+    "title_confidence": 90,
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 17.25,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "user17@example.com Experienced Frontend Developer with 15 years of experience.",
+    "contact": {
+      "email": "user17@example.com",
+      "phone": ""
+    },
+    "career_history": [
+      {
+        "title": "Frontend Developer",
+        "company": "Company 17",
+        "start_date": "Jan 2011",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 185,
+        "start_abs_months": 24133,
+        "end_abs_months": 24318,
+        "bullets": [
+          "Developed multiple applications.",
+          "Junior Frontend Developer",
+          "Old Company"
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Frontend Developer",
+          "Company found: Company 17",
+          "Valid dates: Jan 2011 - Present"
+        ]
+      },
+      {
+        "title": "Junior Frontend Developer",
+        "company": "Old Company",
+        "start_date": "Feb 2009",
+        "end_date": "Dec 2010",
+        "is_current": false,
+        "duration_months": 22,
+        "start_abs_months": 24110,
+        "end_abs_months": 24132,
+        "bullets": [
+          "Maintained legacy systems."
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Junior Frontend Developer",
+          "Company found: Old Company",
+          "Valid dates: Feb 2009 - Dec 2010"
+        ]
+      }
+    ],
+    "raw_experience_blocks": [
+      {
+        "pre_date_text": "Frontend Developer\nCompany 17",
+        "start_date": "Jan 2011",
+        "end_date": "Present",
+        "desc_text": "Developed multiple applications.\nJunior Frontend Developer\nOld Company"
+      },
+      {
+        "pre_date_text": "Developed multiple applications.\nJunior Frontend Developer\nOld Company",
+        "start_date": "Feb 2009",
+        "end_date": "Dec 2010",
+        "desc_text": "Maintained legacy systems."
+      }
+    ],
+    "education": [
+      {
+        "degree": "BA",
+        "institution": "Graphic Design",
+        "field_of_study": "",
+        "evidence": "BA Graphic Design University 17"
+      }
+    ],
+    "skills": [
+      {
+        "name": "C++",
+        "type": "hard"
+      },
+      {
+        "name": "Kubernetes",
+        "type": "hard"
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "C++",
+        "type": "hard",
+        "raw": "C++",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kubernetes",
+        "type": "hard",
+        "raw": "Kubernetes",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard",
+        "raw": "TensorFlow",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": [],
+    "career_graph": {
+      "total_years": 17.25,
+      "relevant_years": 17.25,
+      "leadership_years": 0,
+      "promotion_count": 0,
+      "company_count": 2,
+      "career_velocity": 0.0,
+      "inversion_count": 2
+    },
+    "raw_extracted_skills": [
+      {
+        "name": "C++",
+        "type": "hard"
+      },
+      {
+        "name": "Kubernetes",
+        "type": "hard"
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard"
+      }
+    ],
+    "scoring_skills": [
+      {
+        "name": "C++",
+        "type": "hard",
+        "raw": "C++",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kubernetes",
+        "type": "hard",
+        "raw": "Kubernetes",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard",
+        "raw": "TensorFlow",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "negated_skills": [],
+    "_meta": {
+      "layout_complexity": 0.3,
+      "extraction_confidence": 0.9,
+      "parser_warnings": [],
+      "raw_extracted_text": ""
+    }
+  }
+}

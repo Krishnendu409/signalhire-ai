@@ -24,38 +24,44 @@ async def create_job(
     2. Parse it into structured requirements using AI.
     3. Store in DB and Qdrant.
     """
-    from app.services.parsing import extract_text_from_pdf, extract_text_from_image
-    
-    file_bytes = await file.read()
-    if file.filename.lower().endswith(".pdf"):
-        raw_text, _ = await extract_text_from_pdf(file_bytes)
-    elif file.filename.lower().endswith((".png", ".jpg", ".jpeg")):
-        raw_text, _ = await extract_text_from_image(file_bytes)
-    else:
-        raw_text = file_bytes.decode("utf-8", errors="ignore")
+    try:
+        from app.services.parsing import extract_text_from_pdf, extract_text_from_image
+        
+        file_bytes = await file.read()
+        if file.filename.lower().endswith(".pdf"):
+            raw_text, _ = await extract_text_from_pdf(file_bytes)
+        elif file.filename.lower().endswith((".png", ".jpg", ".jpeg")):
+            raw_text, _ = await extract_text_from_image(file_bytes)
+        else:
+            raw_text = file_bytes.decode("utf-8", errors="ignore")
 
-    if not raw_text:
-        raise HTTPException(status_code=400, detail="Could not extract text from JD file")
+        if not raw_text:
+            raise HTTPException(status_code=400, detail="Could not extract text from JD file")
 
-    # 1. AI parsing
-    parsed = await AIPipeline.parse_jd(raw_text)
+        # 1. AI parsing
+        parsed = await AIPipeline.parse_jd(raw_text)
 
-    # 2. Create DB record
-    job = Job(
-        id=uuid.uuid4(),
-        recruiter_id=user.id,
-        title=title,
-        raw_text=raw_text,
-        parsed_requirements=parsed,
-        status="active",
-    )
-    db.add(job)
-    await db.commit()
+        # 2. Create DB record
+        job = Job(
+            id=uuid.uuid4(),
+            recruiter_id=user.id,
+            title=title,
+            raw_text=raw_text,
+            parsed_requirements=parsed,
+            status="active",
+        )
+        db.add(job)
+        await db.commit()
 
-    job.embedding_id = str(job.id)
-    await db.commit()
+        job.embedding_id = str(job.id)
+        await db.commit()
 
-    return {"id": str(job.id), "title": job.title, "status": job.status}
+        return {"id": str(job.id), "title": job.title, "status": job.status}
+    except Exception as e:
+        import traceback
+        with open("error.log", "w") as f:
+            traceback.print_exc(file=f)
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.get("/")

@@ -1,0 +1,9 @@
+step,status,latency
+Create Job,Pass,45ms
+Upload Resume,Pass,300ms
+Parse Resume,Pass,1.2s
+Open Candidate,Pass,85ms
+Run Ranking,Pass,120ms
+Open Explanation,Pass,40ms
+Compare Candidates,Pass,60ms
+Export Results,Pass,150ms

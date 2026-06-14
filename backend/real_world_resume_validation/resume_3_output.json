@@ -1,0 +1,331 @@
+{
+  "resume_id": "resume_3",
+  "parsed_output": {
+    "full_name": "Quinn Ross 3",
+    "current_title": "Frontend Developer",
+    "raw_title": "Frontend Engineer",
+    "normalized_title": "Frontend Developer",
+    "title_confidence": 90,
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 7.25,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "user3@example.com Experienced Frontend Developer with 5 years of experience.",
+    "contact": {
+      "email": "user3@example.com",
+      "phone": ""
+    },
+    "career_history": [
+      {
+        "title": "Frontend Developer",
+        "company": "Company 3",
+        "start_date": "Jan 2021",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 65,
+        "start_abs_months": 24253,
+        "end_abs_months": 24318,
+        "bullets": [
+          "Developed multiple applications.",
+          "Junior Frontend Developer",
+          "Old Company"
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Frontend Developer",
+          "Company found: Company 3",
+          "Valid dates: Jan 2021 - Present"
+        ]
+      },
+      {
+        "title": "Junior Frontend Developer",
+        "company": "Old Company",
+        "start_date": "Feb 2019",
+        "end_date": "Dec 2020",
+        "is_current": false,
+        "duration_months": 22,
+        "start_abs_months": 24230,
+        "end_abs_months": 24252,
+        "bullets": [
+          "Maintained legacy systems."
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Junior Frontend Developer",
+          "Company found: Old Company",
+          "Valid dates: Feb 2019 - Dec 2020"
+        ]
+      }
+    ],
+    "raw_experience_blocks": [
+      {
+        "pre_date_text": "Frontend Developer\nCompany 3",
+        "start_date": "Jan 2021",
+        "end_date": "Present",
+        "desc_text": "Developed multiple applications.\nJunior Frontend Developer\nOld Company"
+      },
+      {
+        "pre_date_text": "Developed multiple applications.\nJunior Frontend Developer\nOld Company",
+        "start_date": "Feb 2019",
+        "end_date": "Dec 2020",
+        "desc_text": "Maintained legacy systems."
+      }
+    ],
+    "education": [
+      {
+        "degree": "PhD",
+        "institution": "Machine Learning",
+        "field_of_study": "",
+        "evidence": "PhD Machine Learning University 3"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "type": "hard"
+      },
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "React",
+        "type": "hard"
+      },
+      {
+        "name": "Docker",
+        "type": "hard"
+      },
+      {
+        "name": "Kubernetes",
+        "type": "hard"
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Python",
+        "type": "hard",
+        "raw": "Python",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Java",
+        "type": "hard",
+        "raw": "Java",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "React",
+        "type": "hard",
+        "raw": "React",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Docker",
+        "type": "hard",
+        "raw": "Docker",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kubernetes",
+        "type": "hard",
+        "raw": "Kubernetes",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard",
+        "raw": "PyTorch",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [
+      "Azure Fundamentals",
+      "CISSP"
+    ],
+    "certifications_detail": [
+      {
+        "name": "Azure Fundamentals",
+        "evidence": "CISSP, Azure Fundamentals"
+      },
+      {
+        "name": "CISSP",
+        "evidence": "CISSP, Azure Fundamentals"
+      }
+    ],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": [],
+    "career_graph": {
+      "total_years": 7.25,
+      "relevant_years": 7.25,
+      "leadership_years": 0,
+      "promotion_count": 0,
+      "company_count": 2,
+      "career_velocity": 0.0,
+      "inversion_count": 2
+    },
+    "raw_extracted_skills": [
+      {
+        "name": "Python",
+        "type": "hard"
+      },
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "React",
+        "type": "hard"
+      },
+      {
+        "name": "Docker",
+        "type": "hard"
+      },
+      {
+        "name": "Kubernetes",
+        "type": "hard"
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard"
+      }
+    ],
+    "scoring_skills": [
+      {
+        "name": "Python",
+        "type": "hard",
+        "raw": "Python",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Java",
+        "type": "hard",
+        "raw": "Java",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "React",
+        "type": "hard",
+        "raw": "React",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Docker",
+        "type": "hard",
+        "raw": "Docker",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kubernetes",
+        "type": "hard",
+        "raw": "Kubernetes",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard",
+        "raw": "PyTorch",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "negated_skills": [],
+    "_meta": {
+      "layout_complexity": 0.3,
+      "extraction_confidence": 0.9,
+      "parser_warnings": [],
+      "raw_extracted_text": ""
+    }
+  }
+}

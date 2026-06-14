@@ -1,0 +1,13 @@
+{
+  "title": "Embedded Systems Engineer",
+  "domain_knowledge": "Hardware",
+  "must_have_experience": "3 years",
+  "required_hard_skills": [
+    "C",
+    "C++",
+    "RTOS",
+    "Microcontrollers",
+    "SPI",
+    "I2C"
+  ]
+}

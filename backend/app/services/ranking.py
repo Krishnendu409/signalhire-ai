@@ -12,13 +12,16 @@ logger = logging.getLogger(__name__)
 
 # Scoring weights from the PRD
 SCORING_WEIGHTS = {
-    "semantic_relevance": 0.35,
-    "experience_depth": 0.20,
-    "career_trajectory": 0.15,
-    "project_relevance": 0.10,
-    "behavioral_indicators": 0.10,
-    "domain_alignment": 0.05,
-    "adaptability": 0.05,
+    "skill_match": 0.25,
+    "title_match": 0.15,
+    "experience_match": 0.15,
+    "education_match": 0.05,
+    "certification_match": 0.05,
+    "project_match": 0.10,
+    "domain_match": 0.10,
+    "career_progression": 0.05,
+    "recency": 0.05,
+    "adjacency": 0.05,
 }
 
 
@@ -92,7 +95,7 @@ async def rank_candidates_for_job(
         
         # Classify trajectory
         trajectory = classify_trajectory(
-            parsed.get("experiences", []),
+            parsed.get("career_history", []),
             parsed.get("trajectory_events", []),
         )
         parsed["_trajectory"] = trajectory

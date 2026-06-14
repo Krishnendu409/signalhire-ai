@@ -1,0 +1,2 @@
+step,status,latency,error
+E2E Traversal,FAILED,N/A,Backend not listening on port 3000 or 8000. Start script not running.

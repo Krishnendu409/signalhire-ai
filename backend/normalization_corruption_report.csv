@@ -1,0 +1,14 @@
+input_title,output_title,rule_name,function_name,line_number,occurrences
+*Efficient Management And Leadership Ability,Lead,partial lookup alias substring match,_normalize_title,123,1
+*Electrical Engineering Technology,Engineer,partial lookup alias substring match,_normalize_title,123,1
+*Leader Worksite Safety,Lead,partial lookup alias substring match,_normalize_title,123,1
+*Learning To Lead Certificate,Lead,partial lookup alias substring match,_normalize_title,123,1
+Analyst,Analyst,partial lookup alias substring match,_normalize_title,123,2
+Configuration Of Mpls Wan Routers  Cisco Call Manager And,Manager,partial lookup alias substring match,_normalize_title,123,1
+Consultant,Consultant,partial lookup alias substring match,_normalize_title,123,4
+Director,Director,partial lookup alias substring match,_normalize_title,123,10
+Engineer,Engineer,partial lookup alias substring match,_normalize_title,123,21
+Excellent Leadership Skills,Lead,partial lookup alias substring match,_normalize_title,123,1
+Manager,Manager,partial lookup alias substring match,_normalize_title,123,127
+"Of The House Manager, Kitchen Manager, And Bar Manager.",Manager,partial lookup alias substring match,_normalize_title,123,1
+�  L2000  Leadership Academy,Lead,partial lookup alias substring match,_normalize_title,123,1

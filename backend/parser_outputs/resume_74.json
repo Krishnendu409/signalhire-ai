@@ -1,0 +1,55 @@
+{
+  "raw_text": "Sample text for C:\\Users\\krish\\Documents\\signalhire\\backend\\uploads\\522cc1b7-58af-4269-8562-3e2aa2ba608c.pdf",
+  "parsed": {
+    "full_name": "Sample text for C:\\Users\\krish\\Documents\\signalhire\\backend\\uploads\\522cc1b7",
+    "current_title": "Sample text for C:\\Users\\krish\\Documents\\signalhire\\backend\\uploads\\522cc1b7",
+    "normalized_title": "Sample text for C:\\Users\\krish\\Documents\\signalhire\\backend\\uploads\\522cc1b7",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 45,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "Deterministically extracted resume profile.",
+    "contact": {
+      "email": "",
+      "phone": "4269-8562-3"
+    },
+    "experiences": [
+      {
+        "title": "Sample text for C:\\Users\\krish\\Documents\\signalhire\\backend\\uploads\\522cc1b7-58af-",
+        "company": "Company",
+        "start_date": "4269",
+        "end_date": "8562",
+        "is_current": false,
+        "duration_months": 60,
+        "bullets": [
+          "-3e2aa2ba608c.pdf"
+        ],
+        "evidence": "Sample text for C:\\Users\\krish\\Documents\\signalhire\\backend\\uploads\\522cc1b7-58af- at Company (4269 \u2013 8562)"
+      }
+    ],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "Sample text for C:\\Users\\krish\\Documents\\signalhire\\backend\\uploads\\522cc1b7-58af-4269-8562-3e2aa2ba608c.pdf"
+      },
+      {
+        "degree": "BA",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "Sample text for C:\\Users\\krish\\Documents\\signalhire\\backend\\uploads\\522cc1b7-58af-4269-8562-3e2aa2ba608c.pdf"
+      }
+    ],
+    "skills": [],
+    "normalized_skills": [],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

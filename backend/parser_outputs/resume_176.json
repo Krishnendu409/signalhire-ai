@@ -1,0 +1,70 @@
+{
+  "raw_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nCurabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.\n",
+  "parsed": {
+    "full_name": "Candidate",
+    "current_title": "Software Professional",
+    "normalized_title": "Software Professional",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 3,
+    "current_employment_status": "Unknown",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien ",
+    "contact": {
+      "email": "",
+      "phone": ""
+    },
+    "experiences": [],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, q"
+      },
+      {
+        "degree": "BE",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, q"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Active Directory",
+        "type": "hard"
+      },
+      {
+        "name": "SEM",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Active Directory",
+        "evidence": "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Du",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SEM",
+        "evidence": "esque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

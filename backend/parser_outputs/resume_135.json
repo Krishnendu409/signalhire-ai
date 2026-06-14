@@ -1,0 +1,106 @@
+{
+  "raw_text": "Copyright (c) 2005-2020, Ilya Etingof <etingof@gmail.com>\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n  * Redistributions of source code must retain the above copyright notice, \n    this list of conditions and the following disclaimer.\n\n  * Redistributions in binary form must reproduce the above copyright notice,\n    this list of conditions and the following disclaimer in the documentation\n    and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE \nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE \nARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE\nLIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR\nCONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\nSUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS\nINTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN\nCONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\nARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\nPOSSIBILITY OF SUCH DAMAGE. \n",
+  "parsed": {
+    "full_name": "All rights reserved.",
+    "current_title": "Copyright (c)",
+    "normalized_title": "Copyright (c)",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 15,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "All rights reserved. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS",
+    "contact": {
+      "email": "etingof@gmail.com",
+      "phone": ""
+    },
+    "experiences": [
+      {
+        "title": "Copyright (c)",
+        "company": "Company",
+        "start_date": "2005",
+        "end_date": "2020",
+        "is_current": false,
+        "duration_months": 180,
+        "bullets": [
+          ", Ilya Etingof <etingof@gmail.com>",
+          "All rights reserved.",
+          "Redistribution and use in source and binary forms, with or without",
+          "modification, are permitted provided that the following conditions are met:",
+          "* Redistributions of source code must retain the above copyright notice,"
+        ],
+        "evidence": "Copyright (c) at Company (2005 \u2013 2020)"
+      }
+    ],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "University",
+        "field_of_study": "source and binary forms",
+        "evidence": "Copyright (c) 2005-2020, Ilya Etingof <etingof@gmail.com> All rights reserved.  Redistribution and use in source and binary forms, with or without mod"
+      },
+      {
+        "degree": "BE",
+        "institution": "LIABLE FOR ANY DIRECT",
+        "field_of_study": "source and binary forms",
+        "evidence": "Copyright (c) 2005-2020, Ilya Etingof <etingof@gmail.com> All rights reserved.  Redistribution and use in source and binary forms, with or without mod"
+      },
+      {
+        "degree": "BS",
+        "institution": "University",
+        "field_of_study": "source and binary forms",
+        "evidence": "Copyright (c) 2005-2020, Ilya Etingof <etingof@gmail.com> All rights reserved.  Redistribution and use in source and binary forms, with or without mod"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Express",
+        "type": "hard"
+      },
+      {
+        "name": "Supply Chain",
+        "type": "hard"
+      },
+      {
+        "name": "Technical Writing",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Express",
+        "evidence": "OLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE  IMPLIED WARRANTIES OF MERCHANTABILITY AN",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Supply Chain",
+        "evidence": "DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER C",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Technical Writing",
+        "evidence": "ons and the following disclaimer in the documentation     and/or other materials provided with the distribution.  THIS SOFTWARE IS PROVIDED BY THE COPYRI",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

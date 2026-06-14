@@ -1,0 +1,258 @@
+{
+  "resume_id": "resume_22",
+  "parsed_output": {
+    "full_name": "Kelly Ross 22",
+    "current_title": "Chief Software Engineer",
+    "raw_title": "Chief Software Engineer",
+    "normalized_title": "Chief Software Engineer",
+    "title_confidence": 90,
+    "title_family": "Software",
+    "title_seniority": "Chief",
+    "total_years_of_experience": 12.25,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "user22@example.com Experienced Software Engineer with 10 years of experience.",
+    "contact": {
+      "email": "user22@example.com",
+      "phone": ""
+    },
+    "career_history": [
+      {
+        "title": "Software Engineer",
+        "company": "Company 22",
+        "start_date": "Jan 2016",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 125,
+        "start_abs_months": 24193,
+        "end_abs_months": 24318,
+        "bullets": [
+          "Developed multiple applications.",
+          "Junior Software Engineer",
+          "Old Company"
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Software Engineer",
+          "Company found: Company 22",
+          "Valid dates: Jan 2016 - Present"
+        ]
+      },
+      {
+        "title": "Junior Software Engineer",
+        "company": "Old Company",
+        "start_date": "Feb 2014",
+        "end_date": "Dec 2015",
+        "is_current": false,
+        "duration_months": 22,
+        "start_abs_months": 24170,
+        "end_abs_months": 24192,
+        "bullets": [
+          "Maintained legacy systems."
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Junior Software Engineer",
+          "Company found: Old Company",
+          "Valid dates: Feb 2014 - Dec 2015"
+        ]
+      }
+    ],
+    "raw_experience_blocks": [
+      {
+        "pre_date_text": "Software Engineer\nCompany 22",
+        "start_date": "Jan 2016",
+        "end_date": "Present",
+        "desc_text": "Developed multiple applications.\nJunior Software Engineer\nOld Company"
+      },
+      {
+        "pre_date_text": "Developed multiple applications.\nJunior Software Engineer\nOld Company",
+        "start_date": "Feb 2014",
+        "end_date": "Dec 2015",
+        "desc_text": "Maintained legacy systems."
+      }
+    ],
+    "education": [
+      {
+        "degree": "BA",
+        "institution": "Graphic Design",
+        "field_of_study": "",
+        "evidence": "BA Graphic Design University 22"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "type": "hard"
+      },
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard"
+      },
+      {
+        "name": "Node.js",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Python",
+        "type": "hard",
+        "raw": "Python",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Java",
+        "type": "hard",
+        "raw": "Java",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard",
+        "raw": "JavaScript",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Node.js",
+        "type": "hard",
+        "raw": "Node.js",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [
+      "Azure Fundamentals"
+    ],
+    "certifications_detail": [
+      {
+        "name": "Azure Fundamentals",
+        "evidence": "Azure Fundamentals"
+      }
+    ],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": [],
+    "career_graph": {
+      "total_years": 12.25,
+      "relevant_years": 12.25,
+      "leadership_years": 0,
+      "promotion_count": 0,
+      "company_count": 2,
+      "career_velocity": 0.0,
+      "inversion_count": 2
+    },
+    "raw_extracted_skills": [
+      {
+        "name": "Python",
+        "type": "hard"
+      },
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard"
+      },
+      {
+        "name": "Node.js",
+        "type": "hard"
+      }
+    ],
+    "scoring_skills": [
+      {
+        "name": "Python",
+        "type": "hard",
+        "raw": "Python",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Java",
+        "type": "hard",
+        "raw": "Java",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard",
+        "raw": "JavaScript",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Node.js",
+        "type": "hard",
+        "raw": "Node.js",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "negated_skills": [],
+    "_meta": {
+      "layout_complexity": 0.3,
+      "extraction_confidence": 0.9,
+      "parser_warnings": [],
+      "raw_extracted_text": ""
+    }
+  }
+}

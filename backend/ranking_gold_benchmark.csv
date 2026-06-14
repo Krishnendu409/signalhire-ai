@@ -1,0 +1,61 @@
+jd_id,domain,job_title,candidate_id,match_label
+jd_0,Software Engineering,Senior Backend Engineer,cand_0_0,Strong Match
+jd_0,Software Engineering,Senior Backend Engineer,cand_0_1,Medium Match
+jd_0,Software Engineering,Senior Backend Engineer,cand_0_2,Weak Match
+jd_1,Data Science,Machine Learning Scientist,cand_1_0,Strong Match
+jd_1,Data Science,Machine Learning Scientist,cand_1_1,Medium Match
+jd_1,Data Science,Machine Learning Scientist,cand_1_2,Weak Match
+jd_2,Embedded Systems,Firmware Engineer,cand_2_0,Strong Match
+jd_2,Embedded Systems,Firmware Engineer,cand_2_1,Medium Match
+jd_2,Embedded Systems,Firmware Engineer,cand_2_2,Weak Match
+jd_3,VLSI,ASIC Design Engineer,cand_3_0,Strong Match
+jd_3,VLSI,ASIC Design Engineer,cand_3_1,Medium Match
+jd_3,VLSI,ASIC Design Engineer,cand_3_2,Weak Match
+jd_4,RF,RF Systems Engineer,cand_4_0,Strong Match
+jd_4,RF,RF Systems Engineer,cand_4_1,Medium Match
+jd_4,RF,RF Systems Engineer,cand_4_2,Weak Match
+jd_5,Telecom,Network Architect,cand_5_0,Strong Match
+jd_5,Telecom,Network Architect,cand_5_1,Medium Match
+jd_5,Telecom,Network Architect,cand_5_2,Weak Match
+jd_6,Manufacturing,Process Engineer,cand_6_0,Strong Match
+jd_6,Manufacturing,Process Engineer,cand_6_1,Medium Match
+jd_6,Manufacturing,Process Engineer,cand_6_2,Weak Match
+jd_7,Automotive,Autonomous Driving Researcher,cand_7_0,Strong Match
+jd_7,Automotive,Autonomous Driving Researcher,cand_7_1,Medium Match
+jd_7,Automotive,Autonomous Driving Researcher,cand_7_2,Weak Match
+jd_8,Energy,Power Systems Engineer,cand_8_0,Strong Match
+jd_8,Energy,Power Systems Engineer,cand_8_1,Medium Match
+jd_8,Energy,Power Systems Engineer,cand_8_2,Weak Match
+jd_9,Finance,Quantitative Analyst,cand_9_0,Strong Match
+jd_9,Finance,Quantitative Analyst,cand_9_1,Medium Match
+jd_9,Finance,Quantitative Analyst,cand_9_2,Weak Match
+jd_10,Sales,Enterprise Account Executive,cand_10_0,Strong Match
+jd_10,Sales,Enterprise Account Executive,cand_10_1,Medium Match
+jd_10,Sales,Enterprise Account Executive,cand_10_2,Weak Match
+jd_11,Marketing,Growth Marketing Manager,cand_11_0,Strong Match
+jd_11,Marketing,Growth Marketing Manager,cand_11_1,Medium Match
+jd_11,Marketing,Growth Marketing Manager,cand_11_2,Weak Match
+jd_12,HR,Technical Recruiter,cand_12_0,Strong Match
+jd_12,HR,Technical Recruiter,cand_12_1,Medium Match
+jd_12,HR,Technical Recruiter,cand_12_2,Weak Match
+jd_13,Healthcare,Clinical Data Manager,cand_13_0,Strong Match
+jd_13,Healthcare,Clinical Data Manager,cand_13_1,Medium Match
+jd_13,Healthcare,Clinical Data Manager,cand_13_2,Weak Match
+jd_14,Software Engineering,Frontend Developer,cand_14_0,Strong Match
+jd_14,Software Engineering,Frontend Developer,cand_14_1,Medium Match
+jd_14,Software Engineering,Frontend Developer,cand_14_2,Weak Match
+jd_15,Data Science,Data Engineer,cand_15_0,Strong Match
+jd_15,Data Science,Data Engineer,cand_15_1,Medium Match
+jd_15,Data Science,Data Engineer,cand_15_2,Weak Match
+jd_16,Embedded Systems,Embedded Software Engineer,cand_16_0,Strong Match
+jd_16,Embedded Systems,Embedded Software Engineer,cand_16_1,Medium Match
+jd_16,Embedded Systems,Embedded Software Engineer,cand_16_2,Weak Match
+jd_17,VLSI,FPGA Verification Engineer,cand_17_0,Strong Match
+jd_17,VLSI,FPGA Verification Engineer,cand_17_1,Medium Match
+jd_17,VLSI,FPGA Verification Engineer,cand_17_2,Weak Match
+jd_18,RF,Antenna Designer,cand_18_0,Strong Match
+jd_18,RF,Antenna Designer,cand_18_1,Medium Match
+jd_18,RF,Antenna Designer,cand_18_2,Weak Match
+jd_19,Telecom,5G Protocol Engineer,cand_19_0,Strong Match
+jd_19,Telecom,5G Protocol Engineer,cand_19_1,Medium Match
+jd_19,Telecom,5G Protocol Engineer,cand_19_2,Weak Match

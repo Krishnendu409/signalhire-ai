@@ -2,8 +2,8 @@
 echo Starting SignalHire AI Pipeline...
 
 echo Starting FastAPI Backend...
-cd hackathon_pipeline
-start cmd /k "python -m uvicorn server:app --host 0.0.0.0 --port 8000"
+cd backend
+start cmd /k "python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"
 
 echo Starting Next.js Frontend...
 cd ../frontend

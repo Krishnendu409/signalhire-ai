@@ -1,0 +1,36 @@
+{
+  "raw_text": "[distutils.commands]\nalias = setuptools.command.alias:alias\nbdist_egg = setuptools.command.bdist_egg:bdist_egg\nbdist_rpm = setuptools.command.bdist_rpm:bdist_rpm\nbdist_wheel = setuptools.command.bdist_wheel:bdist_wheel\nbuild = setuptools.command.build:build\nbuild_clib = setuptools.command.build_clib:build_clib\nbuild_ext = setuptools.command.build_ext:build_ext\nbuild_py = setuptools.command.build_py:build_py\ndevelop = setuptools.command.develop:develop\ndist_info = setuptools.command.dist_info:dist_info\neasy_install = setuptools.command.easy_install:easy_install\neditable_wheel = setuptools.command.editable_wheel:editable_wheel\negg_info = setuptools.command.egg_info:egg_info\ninstall = setuptools.command.install:install\ninstall_egg_info = setuptools.command.install_egg_info:install_egg_info\ninstall_lib = setuptools.command.install_lib:install_lib\ninstall_scripts = setuptools.command.install_scripts:install_scripts\nrotate = setuptools.command.rotate:rotate\nsaveopts = setuptools.command.saveopts:saveopts\nsdist = setuptools.command.sdist:sdist\nsetopt = setuptools.command.setopt:setopt\n\n[distutils.setup_keywords]\ndependency_links = setuptools.dist:assert_string_list\neager_resources = setuptools.dist:assert_string_list\nentry_points = setuptools.dist:check_entry_points\nexclude_package_data = setuptools.dist:check_package_data\nextras_require = setuptools.dist:check_extras\ninclude_package_data = setuptools.dist:assert_bool\ninstall_requires = setuptools.dist:check_requirements\nnamespace_packages = setuptools.dist:check_nsp\npackage_data = setuptools.dist:check_package_data\npackages = setuptools.dist:check_packages\npython_requires = setuptools.dist:check_specifier\nsetup_requires = setuptools.dist:check_requirements\nuse_2to3 = setuptools.dist:invalid_unless_false\nzip_safe = setuptools.dist:assert_bool\n\n[egg_info.writers]\nPKG-INFO = setuptools.command.egg_info:write_pkg_info\ndependency_links.txt = setuptools.command.egg_info:overwrite_arg\neager_resources.txt = setuptools.command.egg_info:overwrite_arg\nentry_points.txt = setuptools.command.egg_info:write_entries\nnamespace_packages.txt = setuptools.command.egg_info:overwrite_arg\nrequires.txt = setuptools.command.egg_info:write_requirements\ntop_level.txt = setuptools.command.egg_info:write_toplevel_names\n\n[setuptools.finalize_distribution_options]\nkeywords = setuptools.dist:Distribution._finalize_setup_keywords\nparent_finalize = setuptools.dist:_Distribution.finalize_options\n",
+  "parsed": {
+    "full_name": "[distutils.commands]",
+    "current_title": "Software Professional",
+    "normalized_title": "Software Professional",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 3,
+    "current_employment_status": "Unknown",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "alias = setuptools.command.alias:alias bdist_egg = setuptools.command.bdist_egg:bdist_egg bdist_rpm = setuptools.command.bdist_rpm:bdist_rpm bdist_wheel = setuptools.command.bdist_wheel:bdist_wheel build = setuptools.command.build:build build_clib = setuptools.command.build_clib:build_clib build_ext = setuptools.command.build_ext:build_ext build_py = setuptools.command.build_py:build_py develop = setuptools.command.develop:develop dist_info = setuptools.command.dist_info:dist_info easy_install =",
+    "contact": {
+      "email": "",
+      "phone": ""
+    },
+    "experiences": [],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "[distutils.commands] alias = setuptools.command.alias:alias bdist_egg = setuptools.command.bdist_egg:bdist_egg bdist_rpm = setuptools.command.bdist_rp"
+      }
+    ],
+    "skills": [],
+    "normalized_skills": [],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

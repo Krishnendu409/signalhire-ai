@@ -1,0 +1,106 @@
+{
+  "raw_text": "NetworkX is distributed with the 3-clause BSD license.\n\n::\n\n   Copyright (c) 2004-2025, NetworkX Developers\n   Aric Hagberg <hagberg@lanl.gov>\n   Dan Schult <dschult@colgate.edu>\n   Pieter Swart <swart@lanl.gov>\n   All rights reserved.\n\n   Redistribution and use in source and binary forms, with or without\n   modification, are permitted provided that the following conditions are\n   met:\n\n     * Redistributions of source code must retain the above copyright\n       notice, this list of conditions and the following disclaimer.\n\n     * Redistributions in binary form must reproduce the above\n       copyright notice, this list of conditions and the following\n       disclaimer in the documentation and/or other materials provided\n       with the distribution.\n\n     * Neither the name of the NetworkX Developers nor the names of its\n       contributors may be used to endorse or promote products derived\n       from this software without specific prior written permission.\n\n   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n   \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\n   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\n   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\n   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\n   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\n   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\n   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+  "parsed": {
+    "full_name": "::",
+    "current_title": "Copyright (c)",
+    "normalized_title": "Copyright (c)",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 21,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": ":: Copyright (c) 2004-2025, NetworkX Developers Aric Hagberg <hagberg@lanl.gov> Dan Schult <dschult@colgate.edu> Pieter Swart <swart@lanl.gov> All rights reserved. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in binary form must reproduce the above copyrigh",
+    "contact": {
+      "email": "hagberg@lanl.gov",
+      "phone": ""
+    },
+    "experiences": [
+      {
+        "title": "Copyright (c)",
+        "company": "NetworkX is distributed with the 3-clause BSD license.",
+        "start_date": "2004",
+        "end_date": "2025",
+        "is_current": false,
+        "duration_months": 252,
+        "bullets": [
+          ", NetworkX Developers",
+          "Aric Hagberg <hagberg@lanl.gov>",
+          "Dan Schult <dschult@colgate.edu>",
+          "Pieter Swart <swart@lanl.gov>",
+          "All rights reserved."
+        ],
+        "evidence": "Copyright (c) at NetworkX is distributed with the 3-clause BSD license. (2004 \u2013 2025)"
+      }
+    ],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "of the NetworkX Developers nor the names of its",
+        "field_of_study": "",
+        "evidence": "NetworkX is distributed with the 3-clause BSD license.  ::     Copyright (c) 2004-2025, NetworkX Developers    Aric Hagberg <hagberg@lanl.gov>    Dan "
+      },
+      {
+        "degree": "BE",
+        "institution": "used to endorse or promote products derived",
+        "field_of_study": "",
+        "evidence": "NetworkX is distributed with the 3-clause BSD license.  ::     Copyright (c) 2004-2025, NetworkX Developers    Aric Hagberg <hagberg@lanl.gov>    Dan "
+      },
+      {
+        "degree": "BS",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "NetworkX is distributed with the 3-clause BSD license.  ::     Copyright (c) 2004-2025, NetworkX Developers    Aric Hagberg <hagberg@lanl.gov>    Dan "
+      }
+    ],
+    "skills": [
+      {
+        "name": "Express",
+        "type": "hard"
+      },
+      {
+        "name": "Supply Chain",
+        "type": "hard"
+      },
+      {
+        "name": "Technical Writing",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Express",
+        "evidence": "ERS AND CONTRIBUTORS    \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Supply Chain",
+        "evidence": "AGES (INCLUDING, BUT NOT    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,    DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVE",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Technical Writing",
+        "evidence": "the following        disclaimer in the documentation and/or other materials provided        with the distribution.       * Neither the name of the Netwo",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

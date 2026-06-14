@@ -1,0 +1,1957 @@
+{
+  "raw_text": "# REAL RESUME VALIDATION RAW DATA\n\n## Resume 1\n### Raw Extracted Text\n```text\nAlice Johnson\nalice.j@email.com\n\nObjective: Seeking a Senior Software Engineer position.\n\nProfessional Experience:\nGoogle - Senior Software Engineer\nFeb 2018 - Present\nLed the development of scalable microservices using Go and Python.\n\nAmazon - Software Development Engineer II\nJun 2015 - Jan 2018\nDeveloped AWS Lambda functions using Node.js.\n\nEducation:\nMaster of Science in Computer Science, Stanford University\n\nSkills:\nPython, Go, Node.js, AWS, Kubernetes, Microservices\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Alice Johnson\",\n  \"current_title\": \"Google - Senior Software Engineer\",\n  \"total_years_of_experience\": 11,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"alice.j@email.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Google - Senior Software Engineer\",\n      \"company\": \"Company\",\n      \"start_date\": \"Feb 2018\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 96,\n      \"bullets\": [\n        \"Led the development of scalable microservices using Go and Python. Amazon - Software Development Engineer II\"\n      ]\n    },\n    {\n      \"title\": \"Amazon - Software Development Engineer II\",\n      \"company\": \"Led the development of scalable microservices using Go and Python.\",\n      \"start_date\": \"Jun 2015\",\n      \"end_date\": \"Jan 2018\",\n      \"duration_months\": 36,\n      \"bullets\": [\n        \"Developed AWS Lambda functions using Node.js.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"MS\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Go\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"JavaScript\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Microservices\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Python\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"AWS\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Kubernetes\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Node.js\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Go', 'JavaScript', 'Microservices', 'Python', 'AWS', 'Kubernetes', 'Node.js']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['MS']\n**Extracted Certifications**: []\n\n## Resume 2\n### Raw Extracted Text\n```text\nBob Smith | DevOps Engineer | bobs@outlook.com\n\nEXPERIENCE\nDevOps Engineer @ Netflix\nJanuary 2020 - Current\nManaged Kubernetes clusters and CI/CD pipelines.\n\nSystems Administrator @ Oracle\nMarch 2016 - December 2019\nMaintained Linux infrastructure.\n\nEDUCATION\nBachelor of Engineering in IT\n\nCERTIFICATIONS\nAWS Certified Solutions Architect, CKA\n\nTECHNICAL SKILLS\nDocker, Kubernetes, Jenkins, AWS, Bash, Linux\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"EXPERIENCE\",\n  \"current_title\": \"DevOps Engineer\",\n  \"total_years_of_experience\": 10,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"bobs@outlook.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"DevOps Engineer\",\n      \"company\": \"Netflix\",\n      \"start_date\": \"January 2020\",\n      \"end_date\": \"Current\",\n      \"duration_months\": 72,\n      \"bullets\": [\n        \"Managed Kubernetes clusters and CI/CD pipelines. Systems Administrator @ Oracle\"\n      ]\n    },\n    {\n      \"title\": \"Systems Administrator\",\n      \"company\": \"Oracle\",\n      \"start_date\": \"March 2016\",\n      \"end_date\": \"December 2019\",\n      \"duration_months\": 36,\n      \"bullets\": [\n        \"Maintained Linux infrastructure.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BE\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"CI/CD\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Docker\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"AWS\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Linux\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Kubernetes\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [\n    \"AWS Certified Solutions Architect\",\n    \"CKA\"\n  ],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['CI/CD', 'Docker', 'AWS', 'Linux', 'Kubernetes']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['BE']\n**Extracted Certifications**: ['AWS Certified Solutions Architect', 'CKA']\n\n## Resume 3\n### Raw Extracted Text\n```text\nCAROL DAVIS\ncarol.davis@work.com\n\nSummary: Data Scientist with expertise in NLP.\n\nWork History:\nData Scientist | OpenAI\nMarch 2021 to Present\nTrained large language models using PyTorch.\n\nData Analyst | Meta\nJuly 2018 to February 2021\nAnalyzed user data using SQL and Python.\n\nEducation:\nPh.D. in Machine Learning\n\nSkills:\nPython, PyTorch, SQL, NLP, TensorFlow\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"CAROL DAVIS\",\n  \"current_title\": \"Data Scientist\",\n  \"total_years_of_experience\": 8,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"carol.davis@work.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Data Scientist\",\n      \"company\": \"Company\",\n      \"start_date\": \"March 2021\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 60,\n      \"bullets\": [\n        \"Trained large language models using PyTorch. Data Analyst | Meta\"\n      ]\n    },\n    {\n      \"title\": \"Data Analyst\",\n      \"company\": \"Trained large language models using PyTorch.\",\n      \"start_date\": \"July 2018\",\n      \"end_date\": \"February 2021\",\n      \"duration_months\": 36,\n      \"bullets\": [\n        \"Analyzed user data using SQL and Python.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"PhD\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Python\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"PyTorch\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Data Analysis\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Machine Learning\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"SQL\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"NLP\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"TensorFlow\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Python', 'PyTorch', 'Data Analysis', 'Machine Learning', 'SQL', 'NLP', 'TensorFlow']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['PhD']\n**Extracted Certifications**: []\n\n## Resume 4\n### Raw Extracted Text\n```text\nDavid Lee - Frontend Developer\ndavid.lee@web.com\n\nEXPERIENCE:\nFrontend Developer, Airbnb (Jan 2019 - Present)\nBuilt highly interactive UIs using React and TypeScript.\n\nWeb Developer, StartUp Inc (Jun 2017 - Dec 2018)\nDeveloped HTML/CSS templates.\n\nEDUCATION:\nB.Tech in Computer Science\n\nSKILLS:\nReact, TypeScript, JavaScript, HTML, CSS\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"David Lee\",\n  \"current_title\": \"Frontend Developer\",\n  \"total_years_of_experience\": 9,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"david.lee@web.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Frontend Developer\",\n      \"company\": \"Company\",\n      \"start_date\": \"Jan 2019\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 84,\n      \"bullets\": [\n        \") Built highly interactive UIs using React and TypeScript. Web Developer, StartUp Inc (\"\n      ]\n    },\n    {\n      \"title\": \"Web Developer\",\n      \"company\": \"Built highly interactive UIs using React and TypeScript.\",\n      \"start_date\": \"Jun 2017\",\n      \"end_date\": \"Dec 2018\",\n      \"duration_months\": 12,\n      \"bullets\": [\n        \") Developed HTML/CSS templates.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BTech\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"JavaScript\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"HTML\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"CSS\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"React\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"TypeScript\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['JavaScript', 'HTML', 'CSS', 'React', 'TypeScript']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['BTech']\n**Extracted Certifications**: []\n\n## Resume 5\n### Raw Extracted Text\n```text\nEMILY CHEN\nemilyc@gmail.com\n\nExperience\nProduct Manager at Uber\nAug 2017 - Present\nDefined product roadmap and led agile teams.\n\nEducation\nMBA, Harvard Business School\n\nSkills\nAgile, Scrum, Product Strategy, JIRA, Confluence\n\nCertifications\nScrum Master\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"EMILY CHEN\",\n  \"current_title\": \"Product Manager\",\n  \"total_years_of_experience\": 9,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"emilyc@gmail.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Product Manager\",\n      \"company\": \"Uber\",\n      \"start_date\": \"Aug 2017\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 108,\n      \"bullets\": [\n        \"Defined product roadmap and led agile teams.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"MBA\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Confluence\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Scrum\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Product Strategy\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Agile\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Jira\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [\n    \"Scrum Master\"\n  ],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Confluence', 'Scrum', 'Product Strategy', 'Agile', 'Jira']\n**Extracted Experience**: 1 entries\n**Extracted Education**: ['MBA']\n**Extracted Certifications**: ['Scrum Master']\n\n## Resume 6\n### Raw Extracted Text\n```text\nFrank Wright\nfrankw@domain.com\n\nCareer:\nFull Stack Engineer - Stripe\n05/2018 to Present\nDeveloped backend APIs in Ruby and frontend in React.\n\nSoftware Engineer - Square\n02/2015 to 04/2018\nBuilt payment processing systems.\n\nEducation:\nBS Computer Science\n\nSkills:\nRuby, React, PostgreSQL, JavaScript, REST APIs\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Frank Wright\",\n  \"current_title\": \"Full Stack Engineer - Stripe\",\n  \"total_years_of_experience\": 11,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"frankw@domain.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Full Stack Engineer - Stripe\",\n      \"company\": \"Company\",\n      \"start_date\": \"05/2018\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 96,\n      \"bullets\": [\n        \"Developed backend APIs in Ruby and frontend in React. Software Engineer - Square\"\n      ]\n    },\n    {\n      \"title\": \"Software Engineer - Square\",\n      \"company\": \"Developed backend APIs in Ruby and frontend in React.\",\n      \"start_date\": \"02/2015\",\n      \"end_date\": \"04/2018\",\n      \"duration_months\": 36,\n      \"bullets\": [\n        \"Built payment processing systems.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BS\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"JavaScript\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Ruby\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"React\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"REST API\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"PostgreSQL\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['JavaScript', 'Ruby', 'React', 'REST API', 'PostgreSQL']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['BS']\n**Extracted Certifications**: []\n\n## Resume 7\n### Raw Extracted Text\n```text\nGrace Taylor - Security Engineer\ngrace.t@sec.com\n\nExperience\nSecurity Engineer, CrowdStrike\nJan 2020 - Present\nPerformed penetration testing and vulnerability assessments.\n\nSecurity Analyst, FireEye\nJun 2016 - Dec 2019\nMonitored network traffic.\n\nEducation\nB.S. in Cybersecurity\n\nCertifications\nCISSP, CEH\n\nSkills\nPenetration Testing, Python, Network Security\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Grace Taylor\",\n  \"current_title\": \"Security Engineer\",\n  \"total_years_of_experience\": 10,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"grace.t@sec.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Security Engineer\",\n      \"company\": \"Company\",\n      \"start_date\": \"Jan 2020\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 72,\n      \"bullets\": [\n        \"Performed penetration testing and vulnerability assessments. Security Analyst, FireEye\"\n      ]\n    },\n    {\n      \"title\": \"Security Analyst\",\n      \"company\": \"Performed penetration testing and vulnerability assessments.\",\n      \"start_date\": \"Jun 2016\",\n      \"end_date\": \"Dec 2019\",\n      \"duration_months\": 36,\n      \"bullets\": [\n        \"Monitored network traffic.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BS\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Python\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Penetration Testing\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Network Security\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [\n    \"CISSP\",\n    \"CEH\"\n  ],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Python', 'Penetration Testing', 'Network Security']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['BS']\n**Extracted Certifications**: ['CISSP', 'CEH']\n\n## Resume 8\n### Raw Extracted Text\n```text\nHenry Adams\nhenry.adams@test.org\n\nExperience:\nBackend Developer | Twitter\n2019 - Present\nScaled Scala microservices.\n\nJunior Developer | Tech Corp\n2017 - 2019\nWrote Java applications.\n\nEducation:\nBachelor of Technology\n\nSkills:\nScala, Java, Microservices, Kafka, Redis\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Henry Adams\",\n  \"current_title\": \"Backend Developer\",\n  \"total_years_of_experience\": 9,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"henry.adams@test.org\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Backend Developer\",\n      \"company\": \"Company\",\n      \"start_date\": \"2019\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 84,\n      \"bullets\": [\n        \"Scaled Scala microservices. Junior Developer | Tech Corp\"\n      ]\n    },\n    {\n      \"title\": \"Junior Developer\",\n      \"company\": \"Scaled Scala microservices.\",\n      \"start_date\": \"2017\",\n      \"end_date\": \"2019\",\n      \"duration_months\": 24,\n      \"bullets\": [\n        \"Wrote Java applications.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BTech\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Microservices\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Kafka\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Java\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Redis\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Microservices', 'Kafka', 'Java', 'Redis']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['BTech']\n**Extracted Certifications**: []\n\n## Resume 9\n### Raw Extracted Text\n```text\nIsabella Moore | Mobile Developer\nisa.moore@mobile.com\n\nEmployment\niOS Developer @ Apple\nMarch 2018 to Present\nDeveloped core iOS features in Swift.\n\nApp Developer @ Startup\nAugust 2015 to February 2018\nBuilt Android apps in Kotlin.\n\nEducation\nMSc in Software Engineering\n\nSkills\nSwift, Kotlin, iOS, Android, Mobile Development\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Isabella Moore\",\n  \"current_title\": \"iOS Developer\",\n  \"total_years_of_experience\": 11,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"isa.moore@mobile.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"iOS Developer\",\n      \"company\": \"Apple\",\n      \"start_date\": \"March 2018\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 96,\n      \"bullets\": [\n        \"Developed core iOS features in Swift. App Developer @ Startup\"\n      ]\n    },\n    {\n      \"title\": \"App Developer\",\n      \"company\": \"Startup\",\n      \"start_date\": \"August 2015\",\n      \"end_date\": \"February 2018\",\n      \"duration_months\": 36,\n      \"bullets\": [\n        \"Built Android apps in Kotlin.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"MSc\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Swift\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Mobile Development\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Android\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"iOS\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Kotlin\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Swift', 'Mobile Development', 'Android', 'iOS', 'Kotlin']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['MSc']\n**Extracted Certifications**: []\n\n## Resume 10\n### Raw Extracted Text\n```text\nJack Wilson - Cloud Architect\njack.w@cloudarch.com\n\nWork Experience\nCloud Architect, AWS\nJanuary 2017 - Current\nDesigned multi-region cloud architectures.\n\nEducation\nB.E. Computer Engineering\n\nCertifications\nAWS Certified Solutions Architect\n\nSkills\nAWS, Cloud Architecture, Terraform, Kubernetes\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Jack Wilson\",\n  \"current_title\": \"Cloud Architect\",\n  \"total_years_of_experience\": 9,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"jack.w@cloudarch.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Cloud Architect\",\n      \"company\": \"Company\",\n      \"start_date\": \"January 2017\",\n      \"end_date\": \"Current\",\n      \"duration_months\": 108,\n      \"bullets\": [\n        \"Designed multi-region cloud architectures.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BE\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"AWS\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Cloud Architecture\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Terraform\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Kubernetes\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [\n    \"AWS Certified Solutions Architect\"\n  ],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['AWS', 'Cloud Architecture', 'Terraform', 'Kubernetes']\n**Extracted Experience**: 1 entries\n**Extracted Education**: ['BE']\n**Extracted Certifications**: ['AWS Certified Solutions Architect']\n\n## Resume 11\n### Raw Extracted Text\n```text\nKaren Thomas\nkaren.t@data.io\n\nExperience:\nData Engineer, Snowflake\nMay 2019 - Present\nBuilt data pipelines using Python and SQL.\n\nData Analyst, RetailCo\nJune 2016 - April 2019\nCreated reports.\n\nEducation:\nBachelors in Computer Science\n\nSkills:\nPython, SQL, Data Pipelines, ETL, Snowflake\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Karen Thomas\",\n  \"current_title\": \"Data Engineer\",\n  \"total_years_of_experience\": 10,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"karen.t@data.io\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Data Engineer\",\n      \"company\": \"Company\",\n      \"start_date\": \"May 2019\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 84,\n      \"bullets\": [\n        \"Built data pipelines using Python and SQL. Data Analyst, RetailCo\"\n      ]\n    },\n    {\n      \"title\": \"Data Analyst\",\n      \"company\": \"Built data pipelines using Python and SQL.\",\n      \"start_date\": \"June 2016\",\n      \"end_date\": \"April 2019\",\n      \"duration_months\": 36,\n      \"bullets\": [\n        \"Created reports.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BS\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Python\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Data Analysis\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"SQL\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Data Pipelines\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Snowflake\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"ETL\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Python', 'Data Analysis', 'SQL', 'Data Pipelines', 'Snowflake', 'ETL']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['BS']\n**Extracted Certifications**: []\n\n## Resume 12\n### Raw Extracted Text\n```text\nLeo Garcia | Machine Learning Engineer\nleo.g@ai.com\n\nExperience\nMachine Learning Engineer - DeepMind\nFeb 2020 - Present\nResearched reinforcement learning models.\n\nSoftware Engineer - Google\nJan 2018 - Jan 2020\nDeveloped backend systems.\n\nEducation\nPh.D. Computer Science\n\nSkills\nMachine Learning, Python, TensorFlow, Reinforcement Learning, C++\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Experience\",\n  \"current_title\": \"Machine Learning Engineer - DeepMind\",\n  \"total_years_of_experience\": 8,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"leo.g@ai.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Machine Learning Engineer - DeepMind\",\n      \"company\": \"Company\",\n      \"start_date\": \"Feb 2020\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 72,\n      \"bullets\": [\n        \"Researched reinforcement learning models. Software Engineer - Google\"\n      ]\n    },\n    {\n      \"title\": \"Software Engineer - Google\",\n      \"company\": \"Researched reinforcement learning models.\",\n      \"start_date\": \"Jan 2018\",\n      \"end_date\": \"Jan 2020\",\n      \"duration_months\": 24,\n      \"bullets\": [\n        \"Developed backend systems.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"PhD\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Python\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Machine Learning\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Reinforcement Learning\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"TensorFlow\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"C++\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Python', 'Machine Learning', 'Reinforcement Learning', 'TensorFlow', 'C++']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['PhD']\n**Extracted Certifications**: []\n\n## Resume 13\n### Raw Extracted Text\n```text\nMia Martinez - QA Automation Engineer\nmia.m@qa.com\n\nEmployment History\nQA Automation Engineer | Selenium Inc\nMarch 2017 - Present\nWrote automated test scripts using Python and Selenium.\n\nEducation\nDiploma in Software Testing\n\nSkills\nSelenium, Python, Cypress, Automated Testing\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Employment History\",\n  \"current_title\": \"QA Automation Engineer\",\n  \"total_years_of_experience\": 9,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"mia.m@qa.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"QA Automation Engineer\",\n      \"company\": \"Company\",\n      \"start_date\": \"March 2017\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 108,\n      \"bullets\": [\n        \"Wrote automated test scripts using Python and Selenium.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"Diploma\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Cypress\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Selenium\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Python\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Automated Testing\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Cypress', 'Selenium', 'Python', 'Automated Testing']\n**Extracted Experience**: 1 entries\n**Extracted Education**: ['Diploma']\n**Extracted Certifications**: []\n\n## Resume 14\n### Raw Extracted Text\n```text\nNathan White\nnathan.white@crypto.io\n\nExperience:\nBlockchain Developer at Coinbase\n2018 - Present\nDeveloped smart contracts in Solidity.\n\nEducation:\nBTech Information Technology\n\nSkills:\nSolidity, Blockchain, Ethereum, JavaScript\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Nathan White\",\n  \"current_title\": \"Blockchain Developer\",\n  \"total_years_of_experience\": 8,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"nathan.white@crypto.io\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Blockchain Developer\",\n      \"company\": \"Coinbase\",\n      \"start_date\": \"2018\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 96,\n      \"bullets\": [\n        \"Developed smart contracts in Solidity.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BTech\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Blockchain\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"JavaScript\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Solidity\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Ethereum\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Blockchain', 'JavaScript', 'Solidity', 'Ethereum']\n**Extracted Experience**: 1 entries\n**Extracted Education**: ['BTech']\n**Extracted Certifications**: []\n\n## Resume 15\n### Raw Extracted Text\n```text\nOlivia Hall | UI/UX Designer\nolivia.h@design.com\n\nExperience\nUI/UX Designer, Figma\nAugust 2019 - Present\nDesigned user interfaces.\n\nGraphic Designer, AdAgency\nMay 2016 - July 2019\nCreated marketing materials.\n\nEducation\nBachelor of Arts in Design\n\nSkills\nUI/UX, Figma, Adobe XD, Sketch\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Olivia Hall\",\n  \"current_title\": \"UI/UX Designer\",\n  \"total_years_of_experience\": 10,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"olivia.h@design.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"UI/UX Designer\",\n      \"company\": \"Company\",\n      \"start_date\": \"August 2019\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 84,\n      \"bullets\": [\n        \"Designed user interfaces. Graphic Designer, AdAgency\"\n      ]\n    },\n    {\n      \"title\": \"Graphic Designer\",\n      \"company\": \"Designed user interfaces.\",\n      \"start_date\": \"May 2016\",\n      \"end_date\": \"July 2019\",\n      \"duration_months\": 36,\n      \"bullets\": [\n        \"Created marketing materials.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BA\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Sketch\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"UI/UX\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Figma\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Adobe XD\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Sketch', 'UI/UX', 'Figma', 'Adobe XD']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['BA']\n**Extracted Certifications**: []\n\n## Resume 16\n### Raw Extracted Text\n```text\nPaul King - SRE\npaul.king@sre.com\n\nWork\nSite Reliability Engineer @ GitHub\nJan 2020 - Present\nMaintained high availability.\n\nSysadmin @ ServerHub\nJan 2015 - Dec 2019\nManaged servers.\n\nEducation\nB.S. Computer Science\n\nSkills\nLinux, Kubernetes, Go, Python, SRE\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Paul King\",\n  \"current_title\": \"Site Reliability Engineer\",\n  \"total_years_of_experience\": 11,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"paul.king@sre.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Site Reliability Engineer\",\n      \"company\": \"GitHub\",\n      \"start_date\": \"Jan 2020\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 72,\n      \"bullets\": [\n        \"Maintained high availability.  Sysadmin @ ServerHub\"\n      ]\n    },\n    {\n      \"title\": \"Sysadmin\",\n      \"company\": \"ServerHub\",\n      \"start_date\": \"Jan 2015\",\n      \"end_date\": \"Dec 2019\",\n      \"duration_months\": 48,\n      \"bullets\": [\n        \"Managed servers.  Education B.S. Computer Science  Skills Linux, Kubernetes, Go, Python, SRE\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BS\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Go\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Python\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Git\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"SRE\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Linux\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Kubernetes\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Go', 'Python', 'Git', 'SRE', 'Linux', 'Kubernetes']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['BS']\n**Extracted Certifications**: []\n\n## Resume 17\n### Raw Extracted Text\n```text\nQuinn Scott\nquinn.s@network.com\n\nExperience:\nNetwork Engineer, Cisco\nMar 2016 - Present\nConfigured enterprise networks.\n\nEducation:\nB.E. Electronics\n\nCertifications:\nCCNA, CCNP\n\nSkills:\nNetworking, Cisco, BGP, OSPF\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Quinn Scott\",\n  \"current_title\": \"Network Engineer\",\n  \"total_years_of_experience\": 10,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"quinn.s@network.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Network Engineer\",\n      \"company\": \"Company\",\n      \"start_date\": \"Mar 2016\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 120,\n      \"bullets\": [\n        \"Configured enterprise networks.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BE\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"OSPF\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"BGP\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Networking\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Cisco\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [\n    \"CCNA\",\n    \"CCNP\"\n  ],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['OSPF', 'BGP', 'Networking', 'Cisco']\n**Extracted Experience**: 1 entries\n**Extracted Education**: ['BE']\n**Extracted Certifications**: ['CCNA', 'CCNP']\n\n## Resume 18\n### Raw Extracted Text\n```text\nRachel Green - Data Analyst\nrachel.g@data.net\n\nEXPERIENCE\nData Analyst | Tableau\nJun 2018 - Present\nBuilt business intelligence dashboards.\n\nEDUCATION\nMaster of Science in Analytics\n\nSKILLS\nTableau, SQL, Data Analysis, Excel\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Rachel Green\",\n  \"current_title\": \"Data Analyst\",\n  \"total_years_of_experience\": 8,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"rachel.g@data.net\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Data Analyst\",\n      \"company\": \"Company\",\n      \"start_date\": \"Jun 2018\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 96,\n      \"bullets\": [\n        \"Built business intelligence dashboards.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"MS\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"C#\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Tableau\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Data Analysis\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"SQL\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Excel\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['C#', 'Tableau', 'Data Analysis', 'SQL', 'Excel']\n**Extracted Experience**: 1 entries\n**Extracted Education**: ['MS']\n**Extracted Certifications**: []\n\n## Resume 19\n### Raw Extracted Text\n```text\nSamuel Baker | Game Developer\nsam.baker@games.com\n\nExperience\nGame Developer, Epic Games\nJan 2019 - Present\nDeveloped gameplay mechanics in Unreal Engine.\n\nJunior Programmer, Indie Studio\nJul 2016 - Dec 2018\nWrote Unity scripts.\n\nEducation\nBachelors in Game Design\n\nSkills\nC++, Unreal Engine, Unity, C#\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Samuel Baker\",\n  \"current_title\": \"Game Developer\",\n  \"total_years_of_experience\": 10,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"sam.baker@games.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Game Developer\",\n      \"company\": \"Company\",\n      \"start_date\": \"Jan 2019\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 84,\n      \"bullets\": [\n        \"Developed gameplay mechanics in Unreal Engine. Junior Programmer, Indie Studio\"\n      ]\n    },\n    {\n      \"title\": \"Junior Programmer\",\n      \"company\": \"Developed gameplay mechanics in Unreal Engine.\",\n      \"start_date\": \"Jul 2016\",\n      \"end_date\": \"Dec 2018\",\n      \"duration_months\": 24,\n      \"bullets\": [\n        \"Wrote Unity scripts.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BS\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"C#\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Unreal Engine\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Game Development\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"C++\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Unity\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['C#', 'Unreal Engine', 'Game Development', 'C++', 'Unity']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['BS']\n**Extracted Certifications**: []\n\n## Resume 20\n### Raw Extracted Text\n```text\nTina Adams - IT Support Specialist\ntina.a@it.com\n\nExperience:\nIT Support Specialist, TechCare\nFeb 2017 - Present\nProvided Tier 2 support.\n\nEducation:\nDiploma in Computer Applications\n\nSkills:\nIT Support, Troubleshooting, Windows Server, Active Directory\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Experience:\",\n  \"current_title\": \"IT Support Specialist\",\n  \"total_years_of_experience\": 9,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"tina.a@it.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"IT Support Specialist\",\n      \"company\": \"Company\",\n      \"start_date\": \"Feb 2017\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 108,\n      \"bullets\": [\n        \"Provided Tier 2 support.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"Diploma\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Troubleshooting\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Windows Server\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Active Directory\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"IT Support\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Troubleshooting', 'Windows Server', 'Active Directory', 'IT Support']\n**Extracted Experience**: 1 entries\n**Extracted Education**: ['Diploma']\n**Extracted Certifications**: []\n\n## Resume 21\n### Raw Extracted Text\n```text\nUma Patel | Solutions Architect\numa.p@solutions.com\n\nWork History\nSolutions Architect - Microsoft\nNov 2018 - Present\nDesigned Azure architectures.\n\nEducation\nM.Tech in Computer Science\n\nCertifications\nAzure Fundamentals\n\nSkills\nAzure, Cloud Computing, System Design\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Uma Patel\",\n  \"current_title\": \"Solutions Architect - Microsoft\",\n  \"total_years_of_experience\": 8,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"uma.p@solutions.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Solutions Architect - Microsoft\",\n      \"company\": \"Company\",\n      \"start_date\": \"Nov 2018\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 96,\n      \"bullets\": [\n        \"Designed Azure architectures.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"MTech\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"System Design\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Cloud Computing\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Azure\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [\n    \"Azure Fundamentals\"\n  ],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['System Design', 'Cloud Computing', 'Azure']\n**Extracted Experience**: 1 entries\n**Extracted Education**: ['MTech']\n**Extracted Certifications**: ['Azure Fundamentals']\n\n## Resume 22\n### Raw Extracted Text\n```text\nVictor Cruz - Embedded Systems Engineer\nvictor.cruz@hardware.com\n\nExperience\nEmbedded Engineer, Intel\nJan 2015 - Present\nDeveloped firmware for IoT devices.\n\nEducation\nB.E. Electrical Engineering\n\nSkills\nC, C++, Firmware, IoT, Microcontrollers\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Experience\",\n  \"current_title\": \"Embedded Engineer\",\n  \"total_years_of_experience\": 11,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"victor.cruz@hardware.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Embedded Engineer\",\n      \"company\": \"Company\",\n      \"start_date\": \"Jan 2015\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 132,\n      \"bullets\": [\n        \"Developed firmware for IoT devices.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BE\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Microcontrollers\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"C\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"IoT\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Firmware\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"C++\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Microcontrollers', 'C', 'IoT', 'Firmware', 'C++']\n**Extracted Experience**: 1 entries\n**Extracted Education**: ['BE']\n**Extracted Certifications**: []\n\n## Resume 23\n### Raw Extracted Text\n```text\nWendy Hill\nwendy.h@software.com\n\nExperience:\nSoftware Engineer, IBM\nOct 2017 - Present\nMaintained enterprise Java applications.\n\nEducation:\nBS Computer Science\n\nSkills:\nJava, Spring, Enterprise Software\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Wendy Hill\",\n  \"current_title\": \"Software Engineer\",\n  \"total_years_of_experience\": 9,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"wendy.h@software.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Software Engineer\",\n      \"company\": \"Company\",\n      \"start_date\": \"Oct 2017\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 108,\n      \"bullets\": [\n        \"Maintained enterprise Java applications.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BS\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"Enterprise Software\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Spring\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Java\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['Enterprise Software', 'Spring', 'Java']\n**Extracted Experience**: 1 entries\n**Extracted Education**: ['BS']\n**Extracted Certifications**: []\n\n## Resume 24\n### Raw Extracted Text\n```text\nXavier Long | Tech Lead\nxavier.l@startup.io\n\nExperience\nTech Lead @ FastGrowth\nJan 2021 - Present\nLed a team of 10 engineers.\n\nSenior Developer @ MediumCorp\nMar 2015 - Dec 2020\nBuilt core infrastructure.\n\nEducation\nPh.D. in Computer Science\n\nSkills\nLeadership, System Architecture, Node.js, React\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Xavier Long\",\n  \"current_title\": \"Tech Lead\",\n  \"total_years_of_experience\": 11,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"xavier.l@startup.io\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Tech Lead\",\n      \"company\": \"FastGrowth\",\n      \"start_date\": \"Jan 2021\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 60,\n      \"bullets\": [\n        \"Led a team of 10 engineers. Senior Developer @ MediumCorp\"\n      ]\n    },\n    {\n      \"title\": \"Senior Developer\",\n      \"company\": \"MediumCorp\",\n      \"start_date\": \"Mar 2015\",\n      \"end_date\": \"Dec 2020\",\n      \"duration_months\": 60,\n      \"bullets\": [\n        \"Built core infrastructure.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"PhD\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"JavaScript\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"System Design\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"React\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Leadership\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"Node.js\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['JavaScript', 'System Design', 'React', 'Leadership', 'Node.js']\n**Extracted Experience**: 2 entries\n**Extracted Education**: ['PhD']\n**Extracted Certifications**: []\n\n## Resume 25\n### Raw Extracted Text\n```text\nYara Silva - Web Developer\nyara.s@webdev.com\n\nWork Experience\nWeb Developer, Digital Agency\nApril 2019 - Present\nCreated WordPress sites.\n\nEducation\nBA Graphic Design\n\nSkills\nWordPress, PHP, HTML, CSS\n```\n\n### Parsed JSON\n```json\n{\n  \"full_name\": \"Yara Silva\",\n  \"current_title\": \"Web Developer\",\n  \"total_years_of_experience\": 7,\n  \"current_employment_status\": \"Employed\",\n  \"open_to_work\": true,\n  \"notice_period\": 30,\n  \"expected_salary\": 0,\n  \"summary\": \"Deterministically extracted resume profile.\",\n  \"contact\": {\n    \"email\": \"yara.s@webdev.com\",\n    \"phone\": \"\"\n  },\n  \"experiences\": [\n    {\n      \"title\": \"Web Developer\",\n      \"company\": \"Company\",\n      \"start_date\": \"April 2019\",\n      \"end_date\": \"Present\",\n      \"duration_months\": 84,\n      \"bullets\": [\n        \"Created WordPress sites.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"degree\": \"BA\",\n      \"institution\": \"University\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"name\": \"HTML\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"WordPress\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"CSS\",\n      \"type\": \"hard\"\n    },\n    {\n      \"name\": \"PHP\",\n      \"type\": \"hard\"\n    }\n  ],\n  \"certifications\": [],\n  \"projects\": [],\n  \"career_gaps\": [],\n  \"trajectory_events\": []\n}\n```\n\n**Extracted Skills**: ['HTML', 'WordPress', 'CSS', 'PHP']\n**Extracted Experience**: 1 entries\n**Extracted Education**: ['BA']\n**Extracted Certifications**: []\n\n## COMPUTED METRICS\nSkill Precision: 92.15%\nSkill Recall: 96.07%\nTitle Accuracy: 100.00%\nYears of Experience Error: 0.24 years\n\n## RANK SHIFTS\nMean Rank Shift: 1.84\nMedian Rank Shift: 1.00\nP95 Rank Shift: 4\nMax Rank Shift: 6\n\n## TOP FALSE NEGATIVES\n- jenkins (1)\n- bash (1)\n- rest apis (1)\n- scala (1)\n- system architecture (1)\n\n## TOP FALSE POSITIVES\n- javascript (2)\n- data analysis (2)\n- ci/cd (1)\n- machine learning (1)\n- rest api (1)\n- git (1)\n- c# (1)\n- game development (1)\n- system design (1)\n",
+  "parsed": {
+    "full_name": "# REAL RESUME VALIDATION RAW DATA",
+    "current_title": "Senior Software Engineer",
+    "normalized_title": "Senior Software Engineer",
+    "title_family": "Software Engineering",
+    "title_seniority": "senior",
+    "total_years_of_experience": 11,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "## Resume 1 ### Raw Extracted Text ```text Alice Johnson alice.j@email.com",
+    "contact": {
+      "email": "alice.j@email.com",
+      "phone": "2017 - 2019"
+    },
+    "experiences": [
+      {
+        "title": "Senior Software Engineer",
+        "company": "Google",
+        "start_date": "Feb 2018",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 96,
+        "bullets": [
+          "Led the development of scalable microservices using Go and Python.",
+          "Amazon - Software Development Engineer II"
+        ],
+        "evidence": "Senior Software Engineer at Google (Feb 2018 \u2013 Present)"
+      },
+      {
+        "title": "Software Development Engineer II",
+        "company": "Amazon",
+        "start_date": "Jun 2015",
+        "end_date": "Jan 2018",
+        "is_current": false,
+        "duration_months": 36,
+        "bullets": [
+          "Developed AWS Lambda functions using Node.js.",
+          "DevOps Engineer @ Netflix"
+        ],
+        "evidence": "Software Development Engineer II at Amazon (Jun 2015 \u2013 Jan 2018)"
+      },
+      {
+        "title": "DevOps Engineer",
+        "company": "Netflix",
+        "start_date": "January 2020",
+        "end_date": "Current",
+        "is_current": true,
+        "duration_months": 72,
+        "bullets": [
+          "Managed Kubernetes clusters and CI/CD pipelines.",
+          "Systems Administrator @ Oracle"
+        ],
+        "evidence": "DevOps Engineer at Netflix (January 2020 \u2013 Current)"
+      },
+      {
+        "title": "Systems Administrator",
+        "company": "Oracle",
+        "start_date": "March 2016",
+        "end_date": "December 2019",
+        "is_current": false,
+        "duration_months": 36,
+        "bullets": [
+          "Maintained Linux infrastructure.",
+          "Data Scientist | OpenAI"
+        ],
+        "evidence": "Systems Administrator at Oracle (March 2016 \u2013 December 2019)"
+      },
+      {
+        "title": "Data Scientist",
+        "company": "OpenAI",
+        "start_date": "March 2021",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 60,
+        "bullets": [
+          "Trained large language models using PyTorch.",
+          "Data Analyst | Meta"
+        ],
+        "evidence": "Data Scientist at OpenAI (March 2021 \u2013 Present)"
+      },
+      {
+        "title": "Data Analyst",
+        "company": "Meta",
+        "start_date": "July 2018",
+        "end_date": "February 2021",
+        "is_current": false,
+        "duration_months": 36,
+        "bullets": [
+          "Analyzed user data using SQL and Python.",
+          "Frontend Developer, Airbnb ("
+        ],
+        "evidence": "Data Analyst at Meta (July 2018 \u2013 February 2021)"
+      },
+      {
+        "title": "Frontend Developer",
+        "company": "Analyzed user data using SQL and Python.",
+        "start_date": "Jan 2019",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 84,
+        "bullets": [
+          ")",
+          "Built highly interactive UIs using React and TypeScript.",
+          "Web Developer, StartUp Inc ("
+        ],
+        "evidence": "Frontend Developer at Analyzed user data using SQL and Python. (Jan 2019 \u2013 Present)"
+      },
+      {
+        "title": "Web Developer",
+        "company": "Built highly interactive UIs using React and TypeScript.",
+        "start_date": "Jun 2017",
+        "end_date": "Dec 2018",
+        "is_current": false,
+        "duration_months": 12,
+        "bullets": [
+          ")",
+          "Developed HTML/CSS templates.",
+          "Product Manager at Uber"
+        ],
+        "evidence": "Web Developer at Built highly interactive UIs using React and TypeScript. (Jun 2017 \u2013 Dec 2018)"
+      },
+      {
+        "title": "Product Manager",
+        "company": "Uber",
+        "start_date": "Aug 2017",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 108,
+        "bullets": [
+          "Defined product roadmap and led agile teams.",
+          "Full Stack Engineer - Stripe"
+        ],
+        "evidence": "Product Manager at Uber (Aug 2017 \u2013 Present)"
+      },
+      {
+        "title": "Full Stack Engineer",
+        "company": "Stripe",
+        "start_date": "05/2018",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 96,
+        "bullets": [
+          "Developed backend APIs in Ruby and frontend in React.",
+          "Software Engineer - Square"
+        ],
+        "evidence": "Full Stack Engineer at Stripe (05/2018 \u2013 Present)"
+      },
+      {
+        "title": "Software Engineer",
+        "company": "Square",
+        "start_date": "02/2015",
+        "end_date": "04/2018",
+        "is_current": false,
+        "duration_months": 36,
+        "bullets": [
+          "Built payment processing systems.",
+          "Security Engineer, CrowdStrike"
+        ],
+        "evidence": "Software Engineer at Square (02/2015 \u2013 04/2018)"
+      },
+      {
+        "title": "Security Engineer",
+        "company": "Built payment processing systems.",
+        "start_date": "Jan 2020",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 72,
+        "bullets": [
+          "Performed penetration testing and vulnerability assessments.",
+          "Security Analyst, FireEye"
+        ],
+        "evidence": "Security Engineer at Built payment processing systems. (Jan 2020 \u2013 Present)"
+      },
+      {
+        "title": "Security Analyst",
+        "company": "Performed penetration testing and vulnerability assessments.",
+        "start_date": "Jun 2016",
+        "end_date": "Dec 2019",
+        "is_current": false,
+        "duration_months": 36,
+        "bullets": [
+          "Monitored network traffic.",
+          "Backend Developer | Twitter"
+        ],
+        "evidence": "Security Analyst at Performed penetration testing and vulnerability assessments. (Jun 2016 \u2013 Dec 2019)"
+      },
+      {
+        "title": "Backend Developer",
+        "company": "Twitter",
+        "start_date": "2019",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 84,
+        "bullets": [
+          "Scaled Scala microservices.",
+          "Junior Developer | Tech Corp"
+        ],
+        "evidence": "Backend Developer at Twitter (2019 \u2013 Present)"
+      },
+      {
+        "title": "Junior Developer",
+        "company": "Tech Corp",
+        "start_date": "2017",
+        "end_date": "2019",
+        "is_current": false,
+        "duration_months": 24,
+        "bullets": [
+          "Wrote Java applications.",
+          "iOS Developer @ Apple"
+        ],
+        "evidence": "Junior Developer at Tech Corp (2017 \u2013 2019)"
+      },
+      {
+        "title": "iOS Developer",
+        "company": "Apple",
+        "start_date": "March 2018",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 96,
+        "bullets": [
+          "Developed core iOS features in Swift.",
+          "App Developer @ Startup"
+        ],
+        "evidence": "iOS Developer at Apple (March 2018 \u2013 Present)"
+      },
+      {
+        "title": "App Developer",
+        "company": "Startup",
+        "start_date": "August 2015",
+        "end_date": "February 2018",
+        "is_current": false,
+        "duration_months": 36,
+        "bullets": [
+          "Built Android apps in Kotlin.",
+          "Cloud Architect, AWS"
+        ],
+        "evidence": "App Developer at Startup (August 2015 \u2013 February 2018)"
+      },
+      {
+        "title": "Cloud Architect",
+        "company": "Built Android apps in Kotlin.",
+        "start_date": "January 2017",
+        "end_date": "Current",
+        "is_current": true,
+        "duration_months": 108,
+        "bullets": [
+          "Designed multi-region cloud architectures.",
+          "Data Engineer, Snowflake"
+        ],
+        "evidence": "Cloud Architect at Built Android apps in Kotlin. (January 2017 \u2013 Current)"
+      },
+      {
+        "title": "Data Engineer",
+        "company": "Designed multi-region cloud architectures.",
+        "start_date": "May 2019",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 84,
+        "bullets": [
+          "Built data pipelines using Python and SQL.",
+          "Data Analyst, RetailCo"
+        ],
+        "evidence": "Data Engineer at Designed multi-region cloud architectures. (May 2019 \u2013 Present)"
+      },
+      {
+        "title": "Data Analyst",
+        "company": "Built data pipelines using Python and SQL.",
+        "start_date": "June 2016",
+        "end_date": "April 2019",
+        "is_current": false,
+        "duration_months": 36,
+        "bullets": [
+          "Created reports.",
+          "Machine Learning Engineer - DeepMind"
+        ],
+        "evidence": "Data Analyst at Built data pipelines using Python and SQL. (June 2016 \u2013 April 2019)"
+      },
+      {
+        "title": "Machine Learning Engineer",
+        "company": "DeepMind",
+        "start_date": "Feb 2020",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 72,
+        "bullets": [
+          "Researched reinforcement learning models.",
+          "Software Engineer - Google"
+        ],
+        "evidence": "Machine Learning Engineer at DeepMind (Feb 2020 \u2013 Present)"
+      },
+      {
+        "title": "Software Engineer",
+        "company": "Google",
+        "start_date": "Jan 2018",
+        "end_date": "Jan 2020",
+        "is_current": false,
+        "duration_months": 24,
+        "bullets": [
+          "Developed backend systems.",
+          "QA Automation Engineer | Selenium Inc"
+        ],
+        "evidence": "Software Engineer at Google (Jan 2018 \u2013 Jan 2020)"
+      },
+      {
+        "title": "QA Automation Engineer",
+        "company": "Selenium Inc",
+        "start_date": "March 2017",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 108,
+        "bullets": [
+          "Wrote automated test scripts using Python and Selenium.",
+          "Blockchain Developer at Coinbase"
+        ],
+        "evidence": "QA Automation Engineer at Selenium Inc (March 2017 \u2013 Present)"
+      },
+      {
+        "title": "Blockchain Developer",
+        "company": "Coinbase",
+        "start_date": "2018",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 96,
+        "bullets": [
+          "Developed smart contracts in Solidity.",
+          "UI/UX Designer, Figma"
+        ],
+        "evidence": "Blockchain Developer at Coinbase (2018 \u2013 Present)"
+      },
+      {
+        "title": "UI/UX Designer",
+        "company": "Developed smart contracts in Solidity.",
+        "start_date": "August 2019",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 84,
+        "bullets": [
+          "Designed user interfaces.",
+          "Graphic Designer, AdAgency"
+        ],
+        "evidence": "UI/UX Designer at Developed smart contracts in Solidity. (August 2019 \u2013 Present)"
+      },
+      {
+        "title": "Graphic Designer",
+        "company": "Designed user interfaces.",
+        "start_date": "May 2016",
+        "end_date": "July 2019",
+        "is_current": false,
+        "duration_months": 36,
+        "bullets": [
+          "Created marketing materials.",
+          "Site Reliability Engineer @ GitHub"
+        ],
+        "evidence": "Graphic Designer at Designed user interfaces. (May 2016 \u2013 July 2019)"
+      },
+      {
+        "title": "Site Reliability Engineer",
+        "company": "GitHub",
+        "start_date": "Jan 2020",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 72,
+        "bullets": [
+          "Maintained high availability.",
+          "Sysadmin @ ServerHub"
+        ],
+        "evidence": "Site Reliability Engineer at GitHub (Jan 2020 \u2013 Present)"
+      },
+      {
+        "title": "Sysadmin",
+        "company": "ServerHub",
+        "start_date": "Jan 2015",
+        "end_date": "Dec 2019",
+        "is_current": false,
+        "duration_months": 48,
+        "bullets": [
+          "Managed servers.",
+          "Network Engineer, Cisco"
+        ],
+        "evidence": "Sysadmin at ServerHub (Jan 2015 \u2013 Dec 2019)"
+      },
+      {
+        "title": "Network Engineer",
+        "company": "Managed servers.",
+        "start_date": "Mar 2016",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 120,
+        "bullets": [
+          "Configured enterprise networks.",
+          "Data Analyst | Tableau"
+        ],
+        "evidence": "Network Engineer at Managed servers. (Mar 2016 \u2013 Present)"
+      },
+      {
+        "title": "Data Analyst",
+        "company": "Tableau",
+        "start_date": "Jun 2018",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 96,
+        "bullets": [
+          "Built business intelligence dashboards.",
+          "Game Developer, Epic Games"
+        ],
+        "evidence": "Data Analyst at Tableau (Jun 2018 \u2013 Present)"
+      },
+      {
+        "title": "Game Developer",
+        "company": "Built business intelligence dashboards.",
+        "start_date": "Jan 2019",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 84,
+        "bullets": [
+          "Developed gameplay mechanics in Unreal Engine.",
+          "Junior Programmer, Indie Studio"
+        ],
+        "evidence": "Game Developer at Built business intelligence dashboards. (Jan 2019 \u2013 Present)"
+      },
+      {
+        "title": "Junior Programmer",
+        "company": "Developed gameplay mechanics in Unreal Engine.",
+        "start_date": "Jul 2016",
+        "end_date": "Dec 2018",
+        "is_current": false,
+        "duration_months": 24,
+        "bullets": [
+          "Wrote Unity scripts.",
+          "IT Support Specialist, TechCare"
+        ],
+        "evidence": "Junior Programmer at Developed gameplay mechanics in Unreal Engine. (Jul 2016 \u2013 Dec 2018)"
+      },
+      {
+        "title": "IT Support Specialist",
+        "company": "Wrote Unity scripts.",
+        "start_date": "Feb 2017",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 108,
+        "bullets": [
+          "Provided Tier 2 support.",
+          "Solutions Architect - Microsoft"
+        ],
+        "evidence": "IT Support Specialist at Wrote Unity scripts. (Feb 2017 \u2013 Present)"
+      },
+      {
+        "title": "Solutions Architect",
+        "company": "Microsoft",
+        "start_date": "Nov 2018",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 96,
+        "bullets": [
+          "Designed Azure architectures.",
+          "Embedded Engineer, Intel"
+        ],
+        "evidence": "Solutions Architect at Microsoft (Nov 2018 \u2013 Present)"
+      },
+      {
+        "title": "Embedded Engineer",
+        "company": "Designed Azure architectures.",
+        "start_date": "Jan 2015",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 132,
+        "bullets": [
+          "Developed firmware for IoT devices.",
+          "Software Engineer, IBM"
+        ],
+        "evidence": "Embedded Engineer at Designed Azure architectures. (Jan 2015 \u2013 Present)"
+      },
+      {
+        "title": "Software Engineer",
+        "company": "Developed firmware for IoT devices.",
+        "start_date": "Oct 2017",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 108,
+        "bullets": [
+          "Maintained enterprise Java applications.",
+          "Tech Lead @ FastGrowth"
+        ],
+        "evidence": "Software Engineer at Developed firmware for IoT devices. (Oct 2017 \u2013 Present)"
+      },
+      {
+        "title": "Tech Lead",
+        "company": "FastGrowth",
+        "start_date": "Jan 2021",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 60,
+        "bullets": [
+          "Led a team of 10 engineers.",
+          "Senior Developer @ MediumCorp"
+        ],
+        "evidence": "Tech Lead at FastGrowth (Jan 2021 \u2013 Present)"
+      },
+      {
+        "title": "Senior Developer",
+        "company": "MediumCorp",
+        "start_date": "Mar 2015",
+        "end_date": "Dec 2020",
+        "is_current": false,
+        "duration_months": 60,
+        "bullets": [
+          "Built core infrastructure.",
+          "Web Developer, Digital Agency"
+        ],
+        "evidence": "Senior Developer at MediumCorp (Mar 2015 \u2013 Dec 2020)"
+      },
+      {
+        "title": "Web Developer",
+        "company": "Built core infrastructure.",
+        "start_date": "April 2019",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 84,
+        "bullets": [
+          "Created WordPress sites."
+        ],
+        "evidence": "Web Developer at Built core infrastructure. (April 2019 \u2013 Present)"
+      }
+    ],
+    "education": [
+      {
+        "degree": "PhD",
+        "institution": "in Machine Learning",
+        "field_of_study": "Science in Computer Science",
+        "evidence": "Master of Science in Computer Science, Stanford University Bachelor of Engineering in IT Ph.D. in Machine Learning B.Tech in Computer Science MBA, Har"
+      },
+      {
+        "degree": "MBA",
+        "institution": "Harvard Business School",
+        "field_of_study": "Science in Computer Science",
+        "evidence": "Master of Science in Computer Science, Stanford University Bachelor of Engineering in IT Ph.D. in Machine Learning B.Tech in Computer Science MBA, Har"
+      },
+      {
+        "degree": "MTech",
+        "institution": "in Computer Science",
+        "field_of_study": "Science in Computer Science",
+        "evidence": "Master of Science in Computer Science, Stanford University Bachelor of Engineering in IT Ph.D. in Machine Learning B.Tech in Computer Science MBA, Har"
+      },
+      {
+        "degree": "MSc",
+        "institution": "in Software Engineering",
+        "field_of_study": "Science in Computer Science",
+        "evidence": "Master of Science in Computer Science, Stanford University Bachelor of Engineering in IT Ph.D. in Machine Learning B.Tech in Computer Science MBA, Har"
+      },
+      {
+        "degree": "MS",
+        "institution": "in Computer Science",
+        "field_of_study": "Science in Computer Science",
+        "evidence": "Master of Science in Computer Science, Stanford University Bachelor of Engineering in IT Ph.D. in Machine Learning B.Tech in Computer Science MBA, Har"
+      },
+      {
+        "degree": "ME",
+        "institution": "Design",
+        "field_of_study": "Science in Computer Science",
+        "evidence": "Master of Science in Computer Science, Stanford University Bachelor of Engineering in IT Ph.D. in Machine Learning B.Tech in Computer Science MBA, Har"
+      },
+      {
+        "degree": "BTech",
+        "institution": "in Computer Science",
+        "field_of_study": "Science in Computer Science",
+        "evidence": "Master of Science in Computer Science, Stanford University Bachelor of Engineering in IT Ph.D. in Machine Learning B.Tech in Computer Science MBA, Har"
+      },
+      {
+        "degree": "BE",
+        "institution": "Computer Engineering",
+        "field_of_study": "Science in Computer Science",
+        "evidence": "Master of Science in Computer Science, Stanford University Bachelor of Engineering in IT Ph.D. in Machine Learning B.Tech in Computer Science MBA, Har"
+      },
+      {
+        "degree": "BS",
+        "institution": "Computer Science",
+        "field_of_study": "Science in Computer Science",
+        "evidence": "Master of Science in Computer Science, Stanford University Bachelor of Engineering in IT Ph.D. in Machine Learning B.Tech in Computer Science MBA, Har"
+      },
+      {
+        "degree": "BA",
+        "institution": "Graphic Design",
+        "field_of_study": "Science in Computer Science",
+        "evidence": "Master of Science in Computer Science, Stanford University Bachelor of Engineering in IT Ph.D. in Machine Learning B.Tech in Computer Science MBA, Har"
+      },
+      {
+        "degree": "Diploma",
+        "institution": "in Software Testing",
+        "field_of_study": "Software Testing",
+        "evidence": "Master of Science in Computer Science, Stanford University Bachelor of Engineering in IT Ph.D. in Machine Learning B.Tech in Computer Science MBA, Har"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "type": "hard"
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard"
+      },
+      {
+        "name": "TypeScript",
+        "type": "hard"
+      },
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "C++",
+        "type": "hard"
+      },
+      {
+        "name": "C#",
+        "type": "hard"
+      },
+      {
+        "name": "Go",
+        "type": "hard"
+      },
+      {
+        "name": "Kotlin",
+        "type": "hard"
+      },
+      {
+        "name": "Swift",
+        "type": "hard"
+      },
+      {
+        "name": "Ruby",
+        "type": "hard"
+      },
+      {
+        "name": "PHP",
+        "type": "hard"
+      },
+      {
+        "name": "Scala",
+        "type": "hard"
+      },
+      {
+        "name": "Bash",
+        "type": "hard"
+      },
+      {
+        "name": "React",
+        "type": "hard"
+      },
+      {
+        "name": "Spring",
+        "type": "hard"
+      },
+      {
+        "name": "AWS",
+        "type": "hard"
+      },
+      {
+        "name": "Azure",
+        "type": "hard"
+      },
+      {
+        "name": "Docker",
+        "type": "hard"
+      },
+      {
+        "name": "Kubernetes",
+        "type": "hard"
+      },
+      {
+        "name": "Terraform",
+        "type": "hard"
+      },
+      {
+        "name": "Jenkins",
+        "type": "hard"
+      },
+      {
+        "name": "CI/CD",
+        "type": "hard"
+      },
+      {
+        "name": "Linux",
+        "type": "hard"
+      },
+      {
+        "name": "Windows Server",
+        "type": "hard"
+      },
+      {
+        "name": "Active Directory",
+        "type": "hard"
+      },
+      {
+        "name": "SQL",
+        "type": "hard"
+      },
+      {
+        "name": "PostgreSQL",
+        "type": "hard"
+      },
+      {
+        "name": "Oracle Database",
+        "type": "hard"
+      },
+      {
+        "name": "Redis",
+        "type": "hard"
+      },
+      {
+        "name": "Snowflake",
+        "type": "hard"
+      },
+      {
+        "name": "Kafka",
+        "type": "hard"
+      },
+      {
+        "name": "ETL",
+        "type": "hard"
+      },
+      {
+        "name": "Data Pipelines",
+        "type": "hard"
+      },
+      {
+        "name": "Data Analysis",
+        "type": "hard"
+      },
+      {
+        "name": "Data Visualization",
+        "type": "hard"
+      },
+      {
+        "name": "Tableau",
+        "type": "hard"
+      },
+      {
+        "name": "Excel",
+        "type": "hard"
+      },
+      {
+        "name": "Machine Learning",
+        "type": "hard"
+      },
+      {
+        "name": "NLP",
+        "type": "hard"
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard"
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard"
+      },
+      {
+        "name": "LLMs",
+        "type": "hard"
+      },
+      {
+        "name": "Reinforcement Learning",
+        "type": "hard"
+      },
+      {
+        "name": "Penetration Testing",
+        "type": "hard"
+      },
+      {
+        "name": "Network Security",
+        "type": "hard"
+      },
+      {
+        "name": "CISSP",
+        "type": "hard"
+      },
+      {
+        "name": "CEH",
+        "type": "hard"
+      },
+      {
+        "name": "SOC",
+        "type": "hard"
+      },
+      {
+        "name": "Networking",
+        "type": "hard"
+      },
+      {
+        "name": "Cisco",
+        "type": "hard"
+      },
+      {
+        "name": "BGP",
+        "type": "hard"
+      },
+      {
+        "name": "OSPF",
+        "type": "hard"
+      },
+      {
+        "name": "CCNA",
+        "type": "hard"
+      },
+      {
+        "name": "CCNP",
+        "type": "hard"
+      },
+      {
+        "name": "REST API",
+        "type": "hard"
+      },
+      {
+        "name": "HTML",
+        "type": "hard"
+      },
+      {
+        "name": "CSS",
+        "type": "hard"
+      },
+      {
+        "name": "UI/UX",
+        "type": "hard"
+      },
+      {
+        "name": "Figma",
+        "type": "hard"
+      },
+      {
+        "name": "Adobe XD",
+        "type": "hard"
+      },
+      {
+        "name": "Sketch",
+        "type": "hard"
+      },
+      {
+        "name": "WordPress",
+        "type": "hard"
+      },
+      {
+        "name": "iOS",
+        "type": "hard"
+      },
+      {
+        "name": "Android",
+        "type": "hard"
+      },
+      {
+        "name": "Mobile Development",
+        "type": "hard"
+      },
+      {
+        "name": "Selenium",
+        "type": "hard"
+      },
+      {
+        "name": "Cypress",
+        "type": "hard"
+      },
+      {
+        "name": "Automated Testing",
+        "type": "hard"
+      },
+      {
+        "name": "Git",
+        "type": "hard"
+      },
+      {
+        "name": "Jira",
+        "type": "hard"
+      },
+      {
+        "name": "Confluence",
+        "type": "hard"
+      },
+      {
+        "name": "Agile",
+        "type": "hard"
+      },
+      {
+        "name": "Scrum",
+        "type": "hard"
+      },
+      {
+        "name": "DevOps",
+        "type": "hard"
+      },
+      {
+        "name": "SRE",
+        "type": "hard"
+      },
+      {
+        "name": "Microservices",
+        "type": "hard"
+      },
+      {
+        "name": "System Design",
+        "type": "hard"
+      },
+      {
+        "name": "Cloud Architecture",
+        "type": "hard"
+      },
+      {
+        "name": "Cloud Computing",
+        "type": "hard"
+      },
+      {
+        "name": "Blockchain",
+        "type": "hard"
+      },
+      {
+        "name": "Solidity",
+        "type": "hard"
+      },
+      {
+        "name": "Ethereum",
+        "type": "hard"
+      },
+      {
+        "name": "Smart Contracts",
+        "type": "hard"
+      },
+      {
+        "name": "Game Development",
+        "type": "hard"
+      },
+      {
+        "name": "Unity",
+        "type": "hard"
+      },
+      {
+        "name": "Unreal Engine",
+        "type": "hard"
+      },
+      {
+        "name": "Embedded Systems",
+        "type": "hard"
+      },
+      {
+        "name": "Firmware",
+        "type": "hard"
+      },
+      {
+        "name": "IoT",
+        "type": "hard"
+      },
+      {
+        "name": "Microcontrollers",
+        "type": "hard"
+      },
+      {
+        "name": "Quality Management",
+        "type": "hard"
+      },
+      {
+        "name": "Payment Systems",
+        "type": "hard"
+      },
+      {
+        "name": "Product Management",
+        "type": "hard"
+      },
+      {
+        "name": "Leadership",
+        "type": "hard"
+      },
+      {
+        "name": "Product Strategy",
+        "type": "hard"
+      },
+      {
+        "name": "IT Support",
+        "type": "hard"
+      },
+      {
+        "name": "Troubleshooting",
+        "type": "hard"
+      },
+      {
+        "name": "AWS Certified Solutions Architect",
+        "type": "hard"
+      },
+      {
+        "name": "CKA",
+        "type": "hard"
+      },
+      {
+        "name": "Serverless",
+        "type": "hard"
+      },
+      {
+        "name": "Data Science",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Python",
+        "evidence": "of scalable microservices using Go and Python.  Amazon - Software Development Engineer II Jun 2015 - Jan 2018 Developed AWS Lambda functions usin",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "JavaScript",
+        "evidence": "pe\": \"hard\"     },     {       \"name\": \"JavaScript\",       \"type\": \"hard\"     },     {       \"name\": \"Microservices\",       \"type\": \"hard\"     },",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TypeScript",
+        "evidence": "highly interactive UIs using React and TypeScript.  Web Developer, StartUp Inc (Jun 2017 - Dec 2018) Developed HTML/CSS templates.  EDUCATION: B.Tech",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Java",
+        "evidence": "Developer | Tech Corp 2017 - 2019 Wrote Java applications.  Education: Bachelor of Technology  Skills: Scala, Java, Microservices, Kafka, Redis",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "C++",
+        "evidence": "on, TensorFlow, Reinforcement Learning, C++ ```  ### Parsed JSON ```json {   \"full_name\": \"Experience\",   \"current_title\": \"Machine Learning En",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "C#",
+        "evidence": "sign  Skills C++, Unreal Engine, Unity, C# ```  ### Parsed JSON ```json {   \"full_name\": \"Samuel Baker\",   \"current_title\": \"Game Developer\",",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Go",
+        "evidence": "lopment of scalable microservices using Go and Python.  Amazon - Software Development Engineer II Jun 2015 - Jan 2018 Developed AWS Lambda fun",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kotlin",
+        "evidence": "to February 2018 Built Android apps in Kotlin.  Education MSc in Software Engineering  Skills Swift, Kotlin, iOS, Android, Mobile Development ```",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Swift",
+        "evidence": "Present Developed core iOS features in Swift.  App Developer @ Startup August 2015 to February 2018 Built Android apps in Kotlin.  Education MSc",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Ruby",
+        "evidence": "18 to Present Developed backend APIs in Ruby and frontend in React.  Software Engineer - Square 02/2015 to 04/2018 Built payment processing syst",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PHP",
+        "evidence": "on BA Graphic Design  Skills WordPress, PHP, HTML, CSS ```  ### Parsed JSON ```json {   \"full_name\": \"Yara Silva\",   \"current_title\": \"Web Deve",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Scala",
+        "evidence": "veloper | Twitter 2019 - Present Scaled Scala microservices.  Junior Developer | Tech Corp 2017 - 2019 Wrote Java applications.  Education: Bache",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Bash",
+        "evidence": "KILLS Docker, Kubernetes, Jenkins, AWS, Bash, Linux ```  ### Parsed JSON ```json {   \"full_name\": \"EXPERIENCE\",   \"current_title\": \"DevOps Engin",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "React",
+        "evidence": "ent) Built highly interactive UIs using React and TypeScript.  Web Developer, StartUp Inc (Jun 2017 - Dec 2018) Developed HTML/CSS templates.  ED",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Spring",
+        "evidence": "ion: BS Computer Science  Skills: Java, Spring, Enterprise Software ```  ### Parsed JSON ```json {   \"full_name\": \"Wendy Hill\",   \"current_title\":",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "AWS",
+        "evidence": "gineer II Jun 2015 - Jan 2018 Developed AWS Lambda functions using Node.js.  Education: Master of Science in Computer Science, Stanford University  Sk",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Azure",
+        "evidence": "- Microsoft Nov 2018 - Present Designed Azure architectures.  Education M.Tech in Computer Science  Certifications Azure Fundamentals  Skills Azu",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Docker",
+        "evidence": "utions Architect, CKA  TECHNICAL SKILLS Docker, Kubernetes, Jenkins, AWS, Bash, Linux ```  ### Parsed JSON ```json {   \"full_name\": \"EXPERIENCE\",",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kubernetes",
+        "evidence": "sity  Skills: Python, Go, Node.js, AWS, Kubernetes, Microservices ```  ### Parsed JSON ```json {   \"full_name\": \"Alice Johnson\",   \"current_title\": \"G",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Terraform",
+        "evidence": "hitect  Skills AWS, Cloud Architecture, Terraform, Kubernetes ```  ### Parsed JSON ```json {   \"full_name\": \"Jack Wilson\",   \"current_title\": \"Cloud",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Jenkins",
+        "evidence": "A  TECHNICAL SKILLS Docker, Kubernetes, Jenkins, AWS, Bash, Linux ```  ### Parsed JSON ```json {   \"full_name\": \"EXPERIENCE\",   \"current_title\": \"D",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CI/CD",
+        "evidence": "Current Managed Kubernetes clusters and CI/CD pipelines.  Systems Administrator @ Oracle March 2016 - December 2019 Maintained Linux infrastructu",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Linux",
+        "evidence": "e March 2016 - December 2019 Maintained Linux infrastructure.  EDUCATION Bachelor of Engineering in IT  CERTIFICATIONS AWS Certified Solutions Ar",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Windows Server",
+        "evidence": "s  Skills: IT Support, Troubleshooting, Windows Server, Active Directory ```  ### Parsed JSON ```json {   \"full_name\": \"Experience:\",   \"current_title\": \"",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Active Directory",
+        "evidence": "pport, Troubleshooting, Windows Server, Active Directory ```  ### Parsed JSON ```json {   \"full_name\": \"Experience:\",   \"current_title\": \"IT Support Special",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SQL",
+        "evidence": "February 2021 Analyzed user data using SQL and Python.  Education: Ph.D. in Machine Learning  Skills: Python, PyTorch, SQL, NLP, TensorFlow ``",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PostgreSQL",
+        "evidence": "Computer Science  Skills: Ruby, React, PostgreSQL, JavaScript, REST APIs ```  ### Parsed JSON ```json {   \"full_name\": \"Frank Wright\",   \"current_tit",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Oracle Database",
+        "evidence": "/CD pipelines.  Systems Administrator @ Oracle March 2016 - December 2019 Maintained Linux infrastructure.  EDUCATION Bachelor of Engineering in I",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Redis",
+        "evidence": "lls: Scala, Java, Microservices, Kafka, Redis ```  ### Parsed JSON ```json {   \"full_name\": \"Henry Adams\",   \"current_title\": \"Backend Developer\"",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Snowflake",
+        "evidence": "n.t@data.io  Experience: Data Engineer, Snowflake May 2019 - Present Built data pipelines using Python and SQL.  Data Analyst, RetailCo June 2016 - A",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kafka",
+        "evidence": "gy  Skills: Scala, Java, Microservices, Kafka, Redis ```  ### Parsed JSON ```json {   \"full_name\": \"Henry Adams\",   \"current_title\": \"Backend Dev",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "ETL",
+        "evidence": "e  Skills: Python, SQL, Data Pipelines, ETL, Snowflake ```  ### Parsed JSON ```json {   \"full_name\": \"Karen Thomas\",   \"current_title\": \"Data E",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Data Pipelines",
+        "evidence": "eer, Snowflake May 2019 - Present Built data pipelines using Python and SQL.  Data Analyst, RetailCo June 2016 - April 2019 Created reports.  Education: B",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Data Analysis",
+        "evidence": "pe\": \"hard\"     },     {       \"name\": \"Data Analysis\",       \"type\": \"hard\"     },     {       \"name\": \"Machine Learning\",       \"type\": \"hard\"     },",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Data Visualization",
+        "evidence": "lyst | Tableau Jun 2018 - Present Built business intelligence dashboards.  EDUCATION Master of Science in Analytics  SKILLS Tableau, SQL, Data Analysis, Excel ```  ### Pars",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Tableau",
+        "evidence": "l.g@data.net  EXPERIENCE Data Analyst | Tableau Jun 2018 - Present Built business intelligence dashboards.  EDUCATION Master of Science in Analytic",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Excel",
+        "evidence": "cs  SKILLS Tableau, SQL, Data Analysis, Excel ```  ### Parsed JSON ```json {   \"full_name\": \"Rachel Green\",   \"current_title\": \"Data Analyst\",",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Machine Learning",
+        "evidence": "ng SQL and Python.  Education: Ph.D. in Machine Learning  Skills: Python, PyTorch, SQL, NLP, TensorFlow ```  ### Parsed JSON ```json {   \"full_name\": \"CAROL",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "NLP",
+        "evidence": "Learning  Skills: Python, PyTorch, SQL, NLP, TensorFlow ```  ### Parsed JSON ```json {   \"full_name\": \"CAROL DAVIS\",   \"current_title\": \"Data S",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TensorFlow",
+        "evidence": "ing  Skills: Python, PyTorch, SQL, NLP, TensorFlow ```  ### Parsed JSON ```json {   \"full_name\": \"CAROL DAVIS\",   \"current_title\": \"Data Scientist\",",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PyTorch",
+        "evidence": "ent Trained large language models using PyTorch.  Data Analyst | Meta July 2018 to February 2021 Analyzed user data using SQL and Python.  Educatio",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "LLMs",
+        "evidence": "| OpenAI March 2021 to Present Trained large language models using PyTorch.  Data Analyst | Meta July 2018 to February 2021 Analyzed user data using SQL and Pyt",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Reinforcement Learning",
+        "evidence": "DeepMind Feb 2020 - Present Researched reinforcement learning models.  Software Engineer - Google Jan 2018 - Jan 2020 Developed backend systems.  Education Ph.D.",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Penetration Testing",
+        "evidence": "rowdStrike Jan 2020 - Present Performed penetration testing and vulnerability assessments.  Security Analyst, FireEye Jun 2016 - Dec 2019 Monitored network tra",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Network Security",
+        "evidence": "EH  Skills Penetration Testing, Python, Network Security ```  ### Parsed JSON ```json {   \"full_name\": \"Grace Taylor\",   \"current_title\": \"Security Engineer",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CISSP",
+        "evidence": "n B.S. in Cybersecurity  Certifications CISSP, CEH  Skills Penetration Testing, Python, Network Security ```  ### Parsed JSON ```json {   \"full_n",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CEH",
+        "evidence": "in Cybersecurity  Certifications CISSP, CEH  Skills Penetration Testing, Python, Network Security ```  ### Parsed JSON ```json {   \"full_name\":",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SOC",
+        "evidence": "testing and vulnerability assessments.  Security Analyst, FireEye Jun 2016 - Dec 2019 Monitored network traffic.  Education B.S. in Cybersecurity  Certifica",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Networking",
+        "evidence": "cs  Certifications: CCNA, CCNP  Skills: Networking, Cisco, BGP, OSPF ```  ### Parsed JSON ```json {   \"full_name\": \"Quinn Scott\",   \"current_title\": \"",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Cisco",
+        "evidence": "work.com  Experience: Network Engineer, Cisco Mar 2016 - Present Configured enterprise networks.  Education: B.E. Electronics  Certifications: CC",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "BGP",
+        "evidence": "CCNA, CCNP  Skills: Networking, Cisco, BGP, OSPF ```  ### Parsed JSON ```json {   \"full_name\": \"Quinn Scott\",   \"current_title\": \"Network Engi",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "OSPF",
+        "evidence": ", CCNP  Skills: Networking, Cisco, BGP, OSPF ```  ### Parsed JSON ```json {   \"full_name\": \"Quinn Scott\",   \"current_title\": \"Network Engineer\",",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CCNA",
+        "evidence": "tion: B.E. Electronics  Certifications: CCNA, CCNP  Skills: Networking, Cisco, BGP, OSPF ```  ### Parsed JSON ```json {   \"full_name\": \"Quinn Sc",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CCNP",
+        "evidence": "B.E. Electronics  Certifications: CCNA, CCNP  Skills: Networking, Cisco, BGP, OSPF ```  ### Parsed JSON ```json {   \"full_name\": \"Quinn Scott\",",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "REST API",
+        "evidence": "pe\": \"hard\"     },     {       \"name\": \"REST API\",       \"type\": \"hard\"     },     {       \"name\": \"PostgreSQL\",       \"type\": \"hard\"     }   ],   \"",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "HTML",
+        "evidence": "tUp Inc (Jun 2017 - Dec 2018) Developed HTML/CSS templates.  EDUCATION: B.Tech in Computer Science  SKILLS: React, TypeScript, JavaScript, HTML,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CSS",
+        "evidence": "nc (Jun 2017 - Dec 2018) Developed HTML/CSS templates.  EDUCATION: B.Tech in Computer Science  SKILLS: React, TypeScript, JavaScript, HTML, CSS",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "UI/UX",
+        "evidence": "aw Extracted Text ```text Olivia Hall | UI/UX Designer olivia.h@design.com  Experience UI/UX Designer, Figma August 2019 - Present Designed user",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Figma",
+        "evidence": "@design.com  Experience UI/UX Designer, Figma August 2019 - Present Designed user interfaces.  Graphic Designer, AdAgency May 2016 - July 2019 Cr",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Adobe XD",
+        "evidence": "of Arts in Design  Skills UI/UX, Figma, Adobe XD, Sketch ```  ### Parsed JSON ```json {   \"full_name\": \"Olivia Hall\",   \"current_title\": \"UI/UX Desi",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Sketch",
+        "evidence": "Design  Skills UI/UX, Figma, Adobe XD, Sketch ```  ### Parsed JSON ```json {   \"full_name\": \"Olivia Hall\",   \"current_title\": \"UI/UX Designer\",",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "WordPress",
+        "evidence": "tal Agency April 2019 - Present Created WordPress sites.  Education BA Graphic Design  Skills WordPress, PHP, HTML, CSS ```  ### Parsed JSON ```json",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "iOS",
+        "evidence": "eloper isa.moore@mobile.com  Employment iOS Developer @ Apple March 2018 to Present Developed core iOS features in Swift.  App Developer @ Star",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Android",
+        "evidence": "rtup August 2015 to February 2018 Built Android apps in Kotlin.  Education MSc in Software Engineering  Skills Swift, Kotlin, iOS, Android, Mobile",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Mobile Development",
+        "evidence": "ng  Skills Swift, Kotlin, iOS, Android, Mobile Development ```  ### Parsed JSON ```json {   \"full_name\": \"Isabella Moore\",   \"current_title\": \"iOS Developer\",",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Selenium",
+        "evidence": "oyment History QA Automation Engineer | Selenium Inc March 2017 - Present Wrote automated test scripts using Python and Selenium.  Education Diploma",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Cypress",
+        "evidence": "tware Testing  Skills Selenium, Python, Cypress, Automated Testing ```  ### Parsed JSON ```json {   \"full_name\": \"Employment History\",   \"current_t",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Automated Testing",
+        "evidence": "ting  Skills Selenium, Python, Cypress, Automated Testing ```  ### Parsed JSON ```json {   \"full_name\": \"Employment History\",   \"current_title\": \"QA Automati",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Git",
+        "evidence": "- machine learning (1) - rest api (1) - git (1) - c# (1) - game development (1) - system design (1)",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Jira",
+        "evidence": "Skills Agile, Scrum, Product Strategy, JIRA, Confluence  Certifications Scrum Master ```  ### Parsed JSON ```json {   \"full_name\": \"EMILY CHEN\"",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Confluence",
+        "evidence": "s Agile, Scrum, Product Strategy, JIRA, Confluence  Certifications Scrum Master ```  ### Parsed JSON ```json {   \"full_name\": \"EMILY CHEN\",   \"current",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Agile",
+        "evidence": "Present Defined product roadmap and led agile teams.  Education MBA, Harvard Business School  Skills Agile, Scrum, Product Strategy, JIRA, Conflu",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Scrum",
+        "evidence": "ategy, JIRA, Confluence  Certifications Scrum Master ```  ### Parsed JSON ```json {   \"full_name\": \"EMILY CHEN\",   \"current_title\": \"Product Manager\",",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "DevOps",
+        "evidence": "Raw Extracted Text ```text Bob Smith | DevOps Engineer | bobs@outlook.com  EXPERIENCE DevOps Engineer @ Netflix January 2020 - Current Managed Ku",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SRE",
+        "evidence": "Paul King - SRE paul.king@sre.com  Work Site Reliability Engineer @ GitHub Jan 2020 - Present Maintained high availability.  Sysadmin @ ServerHub Jan 2015 - Dec 2019",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Microservices",
+        "evidence": "Present Led the development of scalable microservices using Go and Python.  Amazon - Software Development Engineer II Jun 2015 - Jan 2018 Developed AWS L",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "System Design",
+        "evidence": "in Computer Science  Skills Leadership, System Architecture, Node.js, React ```  ### Parsed JSON ```json {   \"full_name\": \"Xavier Long\",   \"current_title\": \"Te",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Cloud Architecture",
+        "evidence": "tified Solutions Architect  Skills AWS, Cloud Architecture, Terraform, Kubernetes ```  ### Parsed JSON ```json {   \"full_name\": \"Jack Wilson\",   \"current_titl",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Cloud Computing",
+        "evidence": "tions Azure Fundamentals  Skills Azure, Cloud Computing, System Design ```  ### Parsed JSON ```json {   \"full_name\": \"Uma Patel\",   \"current_title\": \"Solut",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Blockchain",
+        "evidence": "ite nathan.white@crypto.io  Experience: Blockchain Developer at Coinbase 2018 - Present Developed smart contracts in Solidity.  Education: BTech Infor",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Solidity",
+        "evidence": "- Present Developed smart contracts in Solidity.  Education: BTech Information Technology  Skills: Solidity, Blockchain, Ethereum, JavaScript ```",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Ethereum",
+        "evidence": "chnology  Skills: Solidity, Blockchain, Ethereum, JavaScript ```  ### Parsed JSON ```json {   \"full_name\": \"Nathan White\",   \"current_title\": \"Block",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Smart Contracts",
+        "evidence": "er at Coinbase 2018 - Present Developed smart contracts in Solidity.  Education: BTech Information Technology  Skills: Solidity, Blockchain, Ethereum, Java",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Game Development",
+        "evidence": "pe\": \"hard\"     },     {       \"name\": \"Game Development\",       \"type\": \"hard\"     },     {       \"name\": \"C++\",       \"type\": \"hard\"     },     {       \"n",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Unity",
+        "evidence": "Indie Studio Jul 2016 - Dec 2018 Wrote Unity scripts.  Education Bachelors in Game Design  Skills C++, Unreal Engine, Unity, C# ```  ### Parsed",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Unreal Engine",
+        "evidence": "Present Developed gameplay mechanics in Unreal Engine.  Junior Programmer, Indie Studio Jul 2016 - Dec 2018 Wrote Unity scripts.  Education Bachelors in",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Embedded Systems",
+        "evidence": "aw Extracted Text ```text Victor Cruz - Embedded Systems Engineer victor.cruz@hardware.com  Experience Embedded Engineer, Intel Jan 2015 - Present Developed",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Firmware",
+        "evidence": "eer, Intel Jan 2015 - Present Developed firmware for IoT devices.  Education B.E. Electrical Engineering  Skills C, C++, Firmware, IoT, Microcontrol",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "IoT",
+        "evidence": "n 2015 - Present Developed firmware for IoT devices.  Education B.E. Electrical Engineering  Skills C, C++, Firmware, IoT, Microcontrollers ```",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Microcontrollers",
+        "evidence": "ineering  Skills C, C++, Firmware, IoT, Microcontrollers ```  ### Parsed JSON ```json {   \"full_name\": \"Experience\",   \"current_title\": \"Embedded Engineer\",",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Quality Management",
+        "evidence": "w Extracted Text ```text Mia Martinez - QA Automation Engineer mia.m@qa.com  Employment History QA Automation Engineer | Selenium Inc March 20",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Payment Systems",
+        "evidence": "ineer - Square 02/2015 to 04/2018 Built payment processing systems.  Education: BS Computer Science  Skills: Ruby, React, PostgreSQL, JavaScript, REST APIs ``",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Product Management",
+        "evidence": "EMILY CHEN emilyc@gmail.com  Experience Product Manager at Uber Aug 2017 - Present Defined product roadmap and led agile teams.  Education MBA, Harvard Bus",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Leadership",
+        "evidence": "ation Ph.D. in Computer Science  Skills Leadership, System Architecture, Node.js, React ```  ### Parsed JSON ```json {   \"full_name\": \"Xavier Long\",",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Product Strategy",
+        "evidence": "d Business School  Skills Agile, Scrum, Product Strategy, JIRA, Confluence  Certifications Scrum Master ```  ### Parsed JSON ```json {   \"full_name\": \"EMILY",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "IT Support",
+        "evidence": "t, TechCare Feb 2017 - Present Provided Tier 2 support.  Education: Diploma in Computer Applications  Skills: IT Support, Troubleshooting, Windows Server,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Troubleshooting",
+        "evidence": "puter Applications  Skills: IT Support, Troubleshooting, Windows Server, Active Directory ```  ### Parsed JSON ```json {   \"full_name\": \"Experience:\",   \"c",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "AWS Certified Solutions Architect",
+        "evidence": "or of Engineering in IT  CERTIFICATIONS AWS Certified Solutions Architect, CKA  TECHNICAL SKILLS Docker, Kubernetes, Jenkins, AWS, Bash, Linux ```  ### Parsed JSON ```json {",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CKA",
+        "evidence": "IONS AWS Certified Solutions Architect, CKA  TECHNICAL SKILLS Docker, Kubernetes, Jenkins, AWS, Bash, Linux ```  ### Parsed JSON ```json {   \"f",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Serverless",
+        "evidence": "gineer II Jun 2015 - Jan 2018 Developed AWS Lambda functions using Node.js.  Education: Master of Science in Computer Science, Stanford University  Sk",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Data Science",
+        "evidence": "OL DAVIS carol.davis@work.com  Summary: Data Scientist with expertise in NLP.  Work History: Data Scientist | OpenAI March 2021 to Present Trained large l",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [
+      "AWS Certified Solutions Architect",
+      "Azure Fundamentals",
+      "CKA - Certified Kubernetes Administrator",
+      "CISSP",
+      "CEH - Certified Ethical Hacker",
+      "CCNA",
+      "CCNP"
+    ],
+    "certifications_detail": [
+      {
+        "name": "AWS Certified Solutions Architect",
+        "evidence": "AWS Certified Solutions Architect, CKA Scrum Master ``` ### Parsed JSON ```json { \"full_name\": \"EMILY CHEN\", \"cur"
+      },
+      {
+        "name": "Azure Fundamentals",
+        "evidence": "rchitect CCNA, CCNP Azure Fundamentals"
+      },
+      {
+        "name": "CKA - Certified Kubernetes Administrator",
+        "evidence": "olutions Architect, CKA Scrum Master ``` ### Parsed JSON ```json { \"full_name\": \"EMILY CHEN\", \"current_"
+      },
+      {
+        "name": "CISSP",
+        "evidence": "t frankw@domain.com CISSP, CEH AWS Certified Solutions Architect CCNA, CCNP Azure Fundamentals"
+      },
+      {
+        "name": "CEH - Certified Ethical Hacker",
+        "evidence": "w@domain.com CISSP, CEH AWS Certified Solutions Architect CCNA, CCNP Azure Fundamentals"
+      },
+      {
+        "name": "CCNA",
+        "evidence": "Solutions Architect CCNA, CCNP Azure Fundamentals"
+      },
+      {
+        "name": "CCNP",
+        "evidence": "ons Architect CCNA, CCNP Azure Fundamentals"
+      }
+    ],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

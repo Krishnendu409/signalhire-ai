@@ -72,7 +72,7 @@ def _experience_label(exp: dict) -> str:
 
 
 def classify_trajectory(
-    experiences: list[dict],
+    career_history: list[dict],
     trajectory_events: list[dict],
 ) -> dict:
     """
@@ -84,7 +84,7 @@ def classify_trajectory(
 
     Returns dict with archetype, score (0-1), and supporting details.
     """
-    if not experiences:
+    if not career_history:
         return {
             "archetype": "unknown",
             "score": 0.5,
@@ -96,7 +96,7 @@ def classify_trajectory(
     start_dates = []
     end_dates = []
     tenures = []
-    for exp in experiences:
+    for exp in career_history:
         sd = parse_date(exp.get("start_date", ""))
         raw_end = exp.get("end_date", "")
         ed = parse_date(raw_end)
@@ -123,7 +123,7 @@ def classify_trajectory(
     career_years = max(0.5, (career_end - career_start).days / 365.25)
 
     # Count jobs and average tenure
-    num_jobs = len(experiences)
+    num_jobs = len(career_history)
     avg_tenure_years = (sum(tenures) / len(tenures)) if tenures else (career_years / max(1, num_jobs))
 
     # Count promotions from trajectory_events
@@ -135,11 +135,11 @@ def classify_trajectory(
     lateral_rate = len(lateral_moves) / career_years
 
     # Detect industry patterns
-    companies = [exp.get("company", "").strip().lower() for exp in experiences if exp.get("company")]
+    companies = [exp.get("company", "").strip().lower() for exp in career_history if exp.get("company")]
     unique_companies = len(set(companies))
     industries = {
         exp.get("industry", "").strip().lower()
-        for exp in experiences
+        for exp in career_history
         if exp.get("industry")
     }
     if industries:
@@ -147,7 +147,7 @@ def classify_trajectory(
     else:
         industry_diversity = min(1.0, unique_companies / max(1, num_jobs))
 
-    history_snippet = ", then ".join(_experience_label(exp) for exp in experiences[:2])
+    history_snippet = ", then ".join(_experience_label(exp) for exp in career_history[:2])
     history_snippet = history_snippet or "role progression across past experience"
 
     # Classification logic

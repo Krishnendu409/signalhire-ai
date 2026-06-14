@@ -1,0 +1,11 @@
+Resume ID,Ground Truth Certifications,Parsed Certifications,TP,FP,FN
+41,,,0,0,0
+8,Azure Fundamentals; Scrum Master,Azure Fundamentals; Scrum Master,2,0,0
+2,AWS Certified,,0,0,1
+18,Scrum Master; CISSP,Scrum Master; CISSP,2,0,0
+16,Scrum Master,Scrum Master,1,0,0
+15,,,0,0,0
+9,AWS Certified,,0,0,1
+7,AWS Certified; Scrum Master,Scrum Master,1,0,1
+35,AWS Certified; CISSP,CISSP,1,0,1
+6,CISSP,CISSP,1,0,0

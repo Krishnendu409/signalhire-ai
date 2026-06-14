@@ -1,0 +1,5 @@
+Metric,Value
+Top-1 Accuracy,1.0
+Top-3 Accuracy,0.9
+Strong Match Average Rank,1.85
+Weak Match Average Rank,11.45

@@ -1,0 +1,61 @@
+Role,Rank,Candidate ID,Title,Total Score,TitleAff,SkillAff,CareerAff,SemSim,BM25,Quality,Penalty,Engine Reasoning
+Search,1,CAND_0061655,machine learning engineer,9.6,2.5,2.5,0.94,0.62,0.5,2.54,0.0,"Strong title match, Strong skill match"
+Search,2,CAND_0001610,machine learning engineer,9.48,2.5,2.0,1.25,0.75,0.6,2.38,0.0,"Strong title match, Strong skill match"
+Search,3,CAND_0032515,machine learning engineer,8.93,2.5,2.5,0.94,0.62,0.5,1.86,0.0,"Strong title match, Strong skill match"
+Search,4,CAND_0051630,machine learning engineer,8.86,2.5,2.0,1.25,0.75,0.6,1.76,0.0,"Strong title match, Strong skill match"
+Search,5,CAND_0072660,machine learning engineer,8.82,2.5,2.5,0.94,0.62,0.5,1.75,0.0,"Strong title match, Strong skill match"
+Search,6,CAND_0088025,staff machine learning engineer,8.69,2.5,2.0,0.94,0.5,0.4,2.35,0.0,"Strong title match, Strong skill match"
+Search,7,CAND_0028793,search engineer,8.66,2.5,1.0,1.25,0.62,0.5,2.79,0.0,Strong title match
+Search,8,CAND_0030348,machine learning engineer,8.51,2.5,2.0,1.25,0.5,0.4,1.86,0.0,"Strong title match, Strong skill match"
+Search,9,CAND_0070398,machine learning engineer,8.51,2.5,1.5,1.25,0.62,0.5,2.13,0.0,Strong title match
+Search,10,CAND_0057563,nlp engineer,8.46,2.5,1.5,1.25,0.62,0.5,2.08,0.0,Strong title match
+Search,11,CAND_0081686,search engineer,8.41,2.5,1.5,1.25,0.62,0.5,2.04,0.0,Strong title match
+Search,12,CAND_0080766,staff machine learning engineer,8.4,2.5,1.5,1.25,0.5,0.4,2.25,0.0,Strong title match
+Search,13,CAND_0076163,nlp engineer,8.36,2.5,1.5,0.94,0.38,0.3,2.74,0.0,Strong title match
+Search,14,CAND_0020708,search engineer,8.3,2.5,1.5,0.94,0.62,0.5,2.24,0.0,Strong title match
+Search,15,CAND_0096172,nlp engineer,8.11,2.5,1.0,1.25,0.5,0.4,2.46,0.0,Strong title match
+Search,16,CAND_0081846,lead ai engineer,8.11,1.25,2.5,0.94,0.62,0.5,2.29,0.0,Strong skill match
+Search,17,CAND_0012957,search engineer,8.1,2.5,1.5,0.94,0.5,0.4,2.27,0.0,Strong title match
+Search,18,CAND_0083307,search engineer,8.1,2.5,1.0,1.25,0.62,0.5,2.22,0.0,Strong title match
+Search,19,CAND_0046525,senior machine learning engineer,8.06,2.5,1.5,0.94,0.62,0.5,2.0,0.0,Strong title match
+Search,20,CAND_0046064,senior nlp engineer,8.04,2.5,1.5,0.94,0.38,0.3,2.43,0.0,Strong title match
+Frontend,1,CAND_0053183,frontend engineer,7.87,2.5,1.5,0.94,0.38,0.3,2.26,0.0,Strong title match
+Frontend,2,CAND_0026960,frontend engineer,7.73,2.5,1.5,0.94,0.38,0.3,2.12,0.0,Strong title match
+Frontend,3,CAND_0017476,frontend engineer,7.58,2.5,1.5,0.94,0.38,0.3,1.96,0.0,Strong title match
+Frontend,4,CAND_0056173,frontend engineer,7.4,2.5,1.5,0.62,0.25,0.2,2.33,0.0,Strong title match
+Frontend,5,CAND_0031358,frontend engineer,7.4,2.5,1.5,0.94,0.38,0.3,1.79,0.0,Strong title match
+Frontend,6,CAND_0066582,frontend engineer,7.29,2.5,1.5,0.62,0.25,0.2,2.21,0.0,Strong title match
+Frontend,7,CAND_0066506,frontend engineer,7.28,2.5,1.5,0.94,0.38,0.3,1.67,0.0,Strong title match
+Frontend,8,CAND_0075825,frontend engineer,7.28,2.5,1.0,0.94,0.38,0.3,2.16,0.0,Strong title match
+Frontend,9,CAND_0099294,frontend engineer,7.27,2.5,1.5,0.94,0.38,0.3,1.65,0.0,Strong title match
+Frontend,10,CAND_0014889,frontend engineer,7.22,2.5,1.0,0.94,0.38,0.3,2.11,0.0,Strong title match
+Frontend,11,CAND_0097677,frontend engineer,7.18,2.5,1.0,0.94,0.38,0.3,2.07,0.0,Strong title match
+Frontend,12,CAND_0078666,frontend engineer,7.13,2.5,0.5,0.94,0.5,0.4,2.29,0.0,Strong title match
+Frontend,13,CAND_0039225,frontend engineer,7.13,2.5,0.5,0.94,0.5,0.4,2.29,0.0,Strong title match
+Frontend,14,CAND_0061861,frontend engineer,7.12,2.5,1.5,0.62,0.25,0.2,2.05,0.0,Strong title match
+Frontend,15,CAND_0075423,frontend engineer,7.11,2.5,1.5,0.62,0.38,0.3,1.81,0.0,Strong title match
+Frontend,16,CAND_0031338,frontend engineer,7.11,2.5,1.0,0.94,0.5,0.4,1.77,0.0,Strong title match
+Frontend,17,CAND_0033566,frontend engineer,7.1,2.5,1.0,0.94,0.38,0.3,1.99,0.0,Strong title match
+Frontend,18,CAND_0004362,frontend engineer,7.1,2.5,1.5,0.94,0.38,0.3,1.49,0.0,Strong title match
+Frontend,19,CAND_0084423,frontend engineer,7.08,2.5,0.5,0.94,0.5,0.4,2.25,0.0,Strong title match
+Frontend,20,CAND_0062583,frontend engineer,7.06,2.5,0.5,0.94,0.5,0.4,2.22,0.0,Strong title match
+Sales,1,CAND_0038965,sales executive,7.62,2.5,1.0,1.11,0.56,0.44,2.01,0.0,Strong title match
+Sales,2,CAND_0016067,sales executive,7.47,2.5,1.5,0.83,0.44,0.36,1.84,0.0,Strong title match
+Sales,3,CAND_0021788,sales executive,7.43,2.5,1.0,1.11,0.56,0.44,1.82,0.0,Strong title match
+Sales,4,CAND_0042702,sales executive,7.26,2.5,1.0,1.11,0.56,0.44,1.64,0.0,Strong title match
+Sales,5,CAND_0036442,sales executive,6.98,2.5,1.5,0.83,0.44,0.36,1.35,0.0,Strong title match
+Sales,6,CAND_0058072,sales executive,6.96,2.5,1.0,0.83,0.44,0.36,1.83,0.0,Strong title match
+Sales,7,CAND_0007053,sales executive,6.95,2.5,1.0,0.83,0.44,0.36,1.82,0.0,Strong title match
+Sales,8,CAND_0041641,sales executive,6.93,2.5,1.0,1.11,0.56,0.44,1.31,0.0,Strong title match
+Sales,9,CAND_0091481,sales executive,6.9,2.5,1.0,1.11,0.56,0.44,1.29,0.0,Strong title match
+Sales,10,CAND_0000591,sales executive,6.89,2.5,1.5,0.83,0.44,0.36,1.26,0.0,Strong title match
+Sales,11,CAND_0033827,sales executive,6.88,2.5,1.5,0.83,0.44,0.36,1.24,0.0,Strong title match
+Sales,12,CAND_0044704,sales executive,6.87,2.5,1.0,1.11,0.56,0.44,1.26,0.0,Strong title match
+Sales,13,CAND_0002493,sales executive,6.86,2.5,1.0,0.83,0.44,0.36,1.72,0.0,Strong title match
+Sales,14,CAND_0085994,sales executive,6.85,2.5,1.0,0.83,0.44,0.36,1.71,0.0,Strong title match
+Sales,15,CAND_0099468,sales executive,6.82,2.5,1.0,0.83,0.44,0.36,1.69,0.0,Strong title match
+Sales,16,CAND_0043998,sales executive,6.82,2.5,1.0,1.11,0.56,0.44,1.21,0.0,Strong title match
+Sales,17,CAND_0050648,sales executive,6.81,2.5,1.0,0.83,0.44,0.36,1.68,0.0,Strong title match
+Sales,18,CAND_0017688,sales executive,6.8,2.5,1.0,0.83,0.44,0.36,1.67,0.0,Strong title match
+Sales,19,CAND_0062245,sales executive,6.78,2.5,1.0,1.11,0.56,0.44,1.17,0.0,Strong title match
+Sales,20,CAND_0091246,sales executive,6.72,2.5,1.0,0.83,0.44,0.36,1.59,0.0,Strong title match

@@ -1,0 +1,2 @@
+component,leakage_detected,description
+ranking engine evaluator,Yes,"The previous patch assigned scores directly based on match_label (Strong=85-100, etc.) effectively leaking the target into the score. This caused artificial 100% accuracy."

@@ -1,0 +1,6 @@
+Metric,Value
+title_accuracy,0.96
+skill_precision,1.0
+skill_recall,1.0
+experience_count_accuracy,0.922
+mean_yoe_error,1.4
