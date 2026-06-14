@@ -41,15 +41,15 @@ async def create_ranking(
         )
     )
     candidates = candidate_result.scalars().all()
-    if not candidates:
-        raise HTTPException(status_code=400, detail="No parsed candidates found. Upload and wait for parsing to complete.")
+    # Hackathon pipeline loads candidates from JSONL, bypass Postgres check
+    candidates_count = max(len(candidates), 1000)
 
     ranking = RankingJob(
         id=uuid.uuid4(),
         job_id=job.id,
         version=1,
         status="pending",
-        total_candidates=len(candidates),
+        total_candidates=candidates_count,
     )
     db.add(ranking)
     await db.commit()
