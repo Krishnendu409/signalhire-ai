@@ -20,6 +20,7 @@ export default function NewInvestigationPage() {
   const [isExecuting, setIsExecuting] = useState(false);
   const [currentStage, setCurrentStage] = useState(-1);
   const [jdText, setJdText] = useState("Role: Senior Search Engineer\nSkills: FAISS, Qdrant, Learning-to-Rank, Python\nExperience: Production ML infrastructure");
+  const [files, setFiles] = useState<File[]>([]);
 
   const handleRun = async () => {
     setIsExecuting(true);
@@ -41,9 +42,33 @@ export default function NewInvestigationPage() {
       const data = await response.json();
       const jobId = data.id;
 
-      // Start Ranking
+      // Upload candidates
+      if (files && files.length > 0) {
+        for (const file of files) {
+          const uploadData = new FormData();
+          uploadData.append("file", file);
+          uploadData.append("job_id", jobId);
+          await fetch(`${API_BASE}/candidates/upload`, {
+            method: "POST",
+            body: uploadData
+          });
+        }
+        // Give parser a moment to start processing the backgrounds
+        await new Promise(r => setTimeout(r, 2000));
+      }
+
+      // Start Ranking - wait until parsing is done
       const rankUrl = new URL(`${API_BASE}/rankings/${jobId}`);
-      await fetch(rankUrl.toString(), { method: "POST" });
+      let rankStarted = false;
+      while (!rankStarted) {
+        const rankRes = await fetch(rankUrl.toString(), { method: "POST" });
+        if (rankRes.ok) {
+          rankStarted = true;
+        } else {
+          // Wait 2 seconds and try again (parsing is still happening)
+          await new Promise(r => setTimeout(r, 2000));
+        }
+      }
 
       // 2. Poll Status
       setCurrentStage(1);
@@ -122,11 +147,18 @@ export default function NewInvestigationPage() {
                   <Database className="w-5 h-5 text-white" />
                   <h2 className="text-sm font-semibold text-white uppercase tracking-widest">Candidate Data</h2>
                 </div>
-                <div className="border-2 border-dashed border-[#262626] rounded-lg p-8 flex flex-col items-center justify-center text-center hover:bg-[#141313] transition-colors cursor-pointer">
+                <label className="border-2 border-dashed border-[#262626] rounded-lg p-8 flex flex-col items-center justify-center text-center hover:bg-[#141313] transition-colors cursor-pointer relative block">
+                  <input type="file" multiple className="hidden" onChange={(e) => {
+                    if (e.target.files) {
+                      setFiles(Array.from(e.target.files));
+                    }
+                  }} />
                   <Upload className="w-6 h-6 text-[#A3A3A3] mb-3" />
-                  <p className="text-sm text-white font-medium">Upload candidates.jsonl or submission.csv</p>
-                  <p className="text-[10px] text-[#A3A3A3] mt-1 uppercase tracking-widest">Or drag and drop</p>
-                </div>
+                  <p className="text-sm text-white font-medium">Upload candidate resumes (PDFs)</p>
+                  <p className="text-[10px] text-[#A3A3A3] mt-1 uppercase tracking-widest">
+                    {files.length > 0 ? `${files.length} file(s) selected` : "Click to select files"}
+                  </p>
+                </label>
               </div>
 
               {/* Actions */}
