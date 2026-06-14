@@ -61,7 +61,11 @@ def _extract_skills_with_evidence(text: str) -> list[dict]:
             if alias.lower() not in lower_txt:
                 continue
             pattern = _make_pattern(alias)
-            m = re.search(pattern, text, re.IGNORECASE | re.MULTILINE)
+            pattern = _make_pattern(alias)
+            if len(alias) <= 3 and alias.lower() in ['c', 'r', 'sta', 'ads', 'c++']:
+                m = re.search(pattern, text, re.MULTILINE)  # Case sensitive for short tokens
+            else:
+                m = re.search(pattern, text, re.IGNORECASE | re.MULTILINE)
             if m:
                 s = max(0, m.start() - 40)
                 e = min(len(text), m.end() + 100)
