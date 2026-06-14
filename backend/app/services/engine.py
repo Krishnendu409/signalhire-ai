@@ -115,7 +115,7 @@ class RankingEngine:
         
         t_hits_series = pd.Series(0, index=feat.index)
         for w in title_terms:
-            t_hits_series += t_text_series.str.contains(r'\b' + re.escape(w.lower()) + r'\b', regex=True).astype(int)
+            t_hits_series += t_text_series.str.contains(r'\b' + re.escape(w.lower()) + r'\b', regex=True, case=False).astype(int)
         feat['title_affinity'] = (t_hits_series / 2.0).clip(upper=1.0)
         
         sk_hits_series = pd.Series(0, index=feat.index)
@@ -123,13 +123,13 @@ class RankingEngine:
         missing_sk_list = []
         for idx in feat.index:
             s_txt = s_text_series[idx]
-            m_s = [w for w in req_skills if re.search(r'\b' + re.escape(w.lower()) + r'\b', s_txt)]
+            m_s = [w for w in req_skills if re.search(r'\b' + re.escape(w.lower()) + r'\b', s_txt, re.IGNORECASE)]
             mi_s = [w for w in req_skills if w not in m_s]
             matched_sk_list.append(','.join(m_s))
             missing_sk_list.append(','.join(mi_s))
             
         for w in req_skills:
-            sk_hits_series += s_text_series.str.contains(r'\b' + re.escape(w.lower()) + r'\b', regex=True).astype(int)
+            sk_hits_series += s_text_series.str.contains(r'\b' + re.escape(w.lower()) + r'\b', regex=True, case=False).astype(int)
             
         feat['skill_affinity'] = sk_hits_series / max(len(req_skills), 1)
         feat['matched_skills'] = matched_sk_list
@@ -237,6 +237,9 @@ class RankingEngine:
             feat['final_score'] += feat[k] * self.config['weights'][k]
             
         feat['final_score'] += feat['penalties']
+        
+        total_max = sum(w for k, w in self.config['weights'].items() if k != 'consistency_penalty')
+        feat['final_score'] = (feat['final_score'] / total_max) * 100.0
             
         return feat.sort_values(by='final_score', ascending=False)
 
