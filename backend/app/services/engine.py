@@ -46,15 +46,16 @@ class RankingEngine:
             return df, raw_data
 
         # Safely extract current title
-        def get_title(ch):
+        def get_title(row):
+            t = row.get('current_title')
+            if isinstance(t, str) and t.strip():
+                return t.lower()
+            ch = row.get('career_history', [])
             if isinstance(ch, list) and len(ch) > 0 and isinstance(ch[0], dict):
                 return ch[0].get('title', '').lower()
             return ''
         
-        if 'career_history' in df.columns:
-            df['current_title'] = df['career_history'].apply(get_title)
-        else:
-            df['current_title'] = ''
+        df['current_title'] = df.apply(get_title, axis=1)
 
         def get_skills(row):
             s_list = row.get('skills', [])
@@ -96,7 +97,16 @@ class RankingEngine:
     def _extract_features(self, df, jd_data):
         import re
         feat = df[['candidate_id', 'current_title', 'quality_score', 'skills_text', 'desc_text']].copy()
-        jd_fam = jd_data['family']
+        jd_fam = jd_data.get('family', 'Unknown')
+        title_terms = jd_data.get('title_terms', [])
+        if not title_terms and 'title' in jd_data:
+            title_terms = [jd_data['title']] + jd_data['title'].split()
+        req_skills = jd_data.get('req_skills', [])
+        if not req_skills and 'required_hard_skills' in jd_data:
+            req_skills = jd_data['required_hard_skills']
+        keywords = jd_data.get('keywords', [])
+        if not keywords:
+            keywords = jd_data.get('required_soft_skills', []) + jd_data.get('preferred_skills', [])
         
         t_text_series = feat['current_title'].fillna('')
         s_text_series = feat['skills_text'].fillna('')
@@ -104,24 +114,36 @@ class RankingEngine:
         full_series = s_text_series + " " + d_text_series
         
         t_hits_series = pd.Series(0, index=feat.index)
-        for w in jd_data['title_terms']:
+        for w in title_terms:
             t_hits_series += t_text_series.str.contains(r'\b' + re.escape(w.lower()) + r'\b', regex=True).astype(int)
         feat['title_affinity'] = (t_hits_series / 2.0).clip(upper=1.0)
         
         sk_hits_series = pd.Series(0, index=feat.index)
-        for w in jd_data['req_skills']:
+        matched_sk_list = []
+        missing_sk_list = []
+        for idx in feat.index:
+            s_txt = s_text_series[idx]
+            m_s = [w for w in req_skills if re.search(r'\b' + re.escape(w.lower()) + r'\b', s_txt)]
+            mi_s = [w for w in req_skills if w not in m_s]
+            matched_sk_list.append(','.join(m_s))
+            missing_sk_list.append(','.join(mi_s))
+            
+        for w in req_skills:
             sk_hits_series += s_text_series.str.contains(r'\b' + re.escape(w.lower()) + r'\b', regex=True).astype(int)
-        feat['skill_affinity'] = sk_hits_series / max(len(jd_data['req_skills']), 1)
+            
+        feat['skill_affinity'] = sk_hits_series / max(len(req_skills), 1)
+        feat['matched_skills'] = matched_sk_list
+        feat['missing_skills'] = missing_sk_list
         
         c_hits_series = pd.Series(0, index=feat.index)
-        for w in jd_data['keywords']:
+        for w in keywords:
             c_hits_series += d_text_series.str.contains(r'\b' + re.escape(w.lower()) + r'\b', regex=True).astype(int)
-        feat['career_affinity'] = c_hits_series / max(len(jd_data['keywords']), 1)
+        feat['career_affinity'] = c_hits_series / max(len(keywords), 1)
         
         sem_hits_series = pd.Series(0, index=feat.index)
-        for w in jd_data['keywords']:
+        for w in keywords:
             sem_hits_series += full_series.str.contains(r'\b' + re.escape(w.lower()) + r'\b', regex=True).astype(int)
-        feat['semantic_sim'] = sem_hits_series / max(len(jd_data['keywords']), 1)
+        feat['semantic_sim'] = sem_hits_series / max(len(keywords), 1)
         feat['bm25_score'] = feat['semantic_sim'] * 0.8
         
         t_fam_df = pd.DataFrame(index=feat.index)
@@ -152,9 +174,15 @@ class RankingEngine:
         feat['c_fam'] = feat['c_fam'].where(c_fam_df.max(axis=1) > 0, 'Unknown')
         
         feat['is_consistent'] = (feat['t_fam'] == jd_fam) & (feat['s_fam'] == jd_fam) & (feat['c_fam'] == jd_fam)
-        feat['is_inconsistent'] = (feat['t_fam'] != jd_fam) & (feat['t_fam'] != 'Unknown') & (feat['s_fam'] != jd_fam) & (feat['s_fam'] != 'Unknown') & (feat['c_fam'] != jd_fam) & (feat['c_fam'] != 'Unknown')
-        feat['is_partial'] = ~feat['is_consistent'] & ~feat['is_inconsistent']
         
+        jd_fam_known = jd_fam in self.config['role_families']
+        if jd_fam_known:
+            feat['is_inconsistent'] = (feat['t_fam'] != jd_fam) & (feat['t_fam'] != 'Unknown') & (feat['s_fam'] != jd_fam) & (feat['s_fam'] != 'Unknown') & (feat['c_fam'] != jd_fam) & (feat['c_fam'] != 'Unknown')
+            feat['is_partial'] = ~feat['is_consistent'] & ~feat['is_inconsistent']
+        else:
+            feat['is_inconsistent'] = False
+            feat['is_partial'] = False
+            
         is_sales = (jd_fam == 'Sales Manager')
         if is_sales:
             feat['is_trap'] = feat['current_title'].str.contains('engineer|developer|scientist|data')
@@ -240,10 +268,13 @@ class RankingEngine:
                 'SemSim_Contrib': float(row['semantic_sim'] * self.config['weights']['semantic_sim']),
                 'BM25_Contrib': float(row['bm25_score'] * self.config['weights']['bm25_score']),
                 'Quality_Contrib': float(row['quality_score'] * self.config['weights']['quality_score']),
-                                'Penalties': float(row['penalties']),
+                'Penalties': float(row['penalties']),
                 'adjacent_skills': row.get('adjacent_skills', '').split(',') if row.get('adjacent_skills', '') else [],
                 'adaptation_risk': row.get('adaptation_risk', 'high'),
                 'transferability_evidence': row.get('transferability_evidence', '').split(';') if row.get('transferability_evidence', '') else [],
+                'matched_skills': row.get('matched_skills', '').split(',') if row.get('matched_skills', '') else [],
+                'missing_skills': row.get('missing_skills', '').split(',') if row.get('missing_skills', '') else [],
+                'explanation': f"Match score: {float(row['final_score']):.2f}. Missing skills: {row.get('missing_skills', 'None')}",
 
                 'parsed_data': raw_data.get(row['candidate_id'], {}),
                 'dimension_scores': {
