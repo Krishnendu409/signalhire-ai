@@ -1,0 +1,212 @@
+candidate_id,score,why_ranked,expected_reason,actual_reason
+cand_0_W_2,71,High score due to transferability overvalued,Should rank lower,transferability overvalued
+cand_0_W_4,86,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_0_W_6,62,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_0_W_1,70,High score due to transferability overvalued,Should rank lower,transferability overvalued
+cand_0_S_1,78,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_0_W_7,81,High score due to title mismatch,Should rank lower,title mismatch
+cand_0_M_2,83,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_0_M_1,67,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_0_M_4,92,High score due to title mismatch,Should rank lower,title mismatch
+cand_1_W_2,68,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_1_W_0,75,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_1_W_4,75,High score due to transferability overvalued,Should rank lower,transferability overvalued
+cand_1_W_7,77,High score due to title mismatch,Should rank lower,title mismatch
+cand_1_W_1,87,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_1_W_5,93,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_1_M_1,70,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_1_M_3,95,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_1_S_1,68,High score due to transferability overvalued,Should rank lower,transferability overvalued
+cand_1_S_0,64,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_1_M_2,64,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_2_M_3,95,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_2_W_1,67,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_2_W_0,71,High score due to title mismatch,Should rank lower,title mismatch
+cand_2_W_5,60,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_2_W_2,93,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_2_W_3,60,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_2_W_7,80,High score due to title mismatch,Should rank lower,title mismatch
+cand_2_S_0,90,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_2_S_1,91,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_2_M_1,61,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_2_M_2,64,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_3_W_2,63,High score due to transferability overvalued,Should rank lower,transferability overvalued
+cand_3_W_1,74,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_3_W_3,68,High score due to title mismatch,Should rank lower,title mismatch
+cand_3_W_0,60,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_3_W_7,76,High score due to title mismatch,Should rank lower,title mismatch
+cand_3_S_1,89,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_3_M_2,75,High score due to title mismatch,Should rank lower,title mismatch
+cand_3_M_3,73,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_3_S_0,76,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_3_M_1,71,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_3_W_4,60,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_4_M_4,83,High score due to education undervaluing,Should rank lower,education undervaluing
+cand_4_W_5,69,High score due to title mismatch,Should rank lower,title mismatch
+cand_4_S_0,71,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_4_W_0,75,High score due to other,Should rank lower,other
+cand_4_W_4,88,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_4_W_7,77,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_4_W_2,68,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_4_M_0,88,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_4_M_1,63,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_4_M_2,63,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_4_M_3,71,High score due to education undervaluing,Should rank lower,education undervaluing
+cand_4_W_6,79,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_5_M_2,81,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_5_M_3,66,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_5_W_6,83,High score due to education undervaluing,Should rank lower,education undervaluing
+cand_5_S_1,67,High score due to title mismatch,Should rank lower,title mismatch
+cand_5_W_3,78,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_5_W_2,61,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_5_W_5,88,High score due to title mismatch,Should rank lower,title mismatch
+cand_5_S_0,63,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_5_M_1,73,High score due to title mismatch,Should rank lower,title mismatch
+cand_5_M_4,84,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_5_W_0,79,High score due to title mismatch,Should rank lower,title mismatch
+cand_6_W_0,64,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_6_W_6,92,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_6_W_5,62,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_6_W_2,90,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_6_W_4,64,High score due to title mismatch,Should rank lower,title mismatch
+cand_6_W_1,72,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_6_M_4,68,High score due to education overweighting,Should rank lower,education overweighting
+cand_6_M_2,89,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_6_S_1,75,High score due to title mismatch,Should rank lower,title mismatch
+cand_6_M_1,71,High score due to transferability overvalued,Should rank lower,transferability overvalued
+cand_6_S_0,73,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_7_M_1,68,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_7_W_5,82,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_7_S_1,60,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_7_W_0,87,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_7_W_7,93,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_7_W_4,65,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_7_W_2,94,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_7_M_0,73,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_7_M_2,80,High score due to title mismatch,Should rank lower,title mismatch
+cand_7_M_4,92,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_7_M_3,65,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_7_W_3,94,High score due to title mismatch,Should rank lower,title mismatch
+cand_8_W_6,87,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_8_W_5,78,High score due to title mismatch,Should rank lower,title mismatch
+cand_8_W_3,77,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_8_W_1,88,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_8_W_0,83,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_8_W_2,81,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_8_M_3,77,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_8_M_4,80,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_8_M_2,65,High score due to title mismatch,Should rank lower,title mismatch
+cand_8_S_1,66,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_8_S_0,62,High score due to title mismatch,Should rank lower,title mismatch
+cand_9_M_1,75,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_9_W_1,73,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_9_W_0,75,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_9_S_1,62,High score due to title mismatch,Should rank lower,title mismatch
+cand_9_W_3,64,High score due to title mismatch,Should rank lower,title mismatch
+cand_9_W_4,77,High score due to title mismatch,Should rank lower,title mismatch
+cand_9_S_0,81,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_9_M_3,83,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_9_W_7,78,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_10_W_1,92,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_10_M_2,73,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_10_W_3,95,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_10_W_2,67,High score due to title mismatch,Should rank lower,title mismatch
+cand_10_W_7,62,High score due to transferability overvalued,Should rank lower,transferability overvalued
+cand_10_S_0,84,High score due to title mismatch,Should rank lower,title mismatch
+cand_10_M_4,64,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_10_M_3,76,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_11_M_1,62,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_11_W_0,93,High score due to title mismatch,Should rank lower,title mismatch
+cand_11_W_4,77,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_11_W_3,74,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_11_S_1,78,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_11_W_7,83,High score due to title mismatch,Should rank lower,title mismatch
+cand_11_W_1,92,High score due to title mismatch,Should rank lower,title mismatch
+cand_11_S_0,72,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_11_M_2,66,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_11_M_4,88,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_11_M_3,91,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_11_W_2,65,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_12_W_6,85,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_12_W_7,75,High score due to title mismatch,Should rank lower,title mismatch
+cand_12_W_3,92,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_12_W_2,60,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_12_W_4,80,High score due to title mismatch,Should rank lower,title mismatch
+cand_12_W_5,84,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_12_S_0,89,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_12_S_1,77,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_12_M_0,60,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_12_M_3,83,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_13_W_4,76,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_13_M_4,92,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_13_W_2,71,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_13_S_0,67,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_13_S_1,63,High score due to title mismatch,Should rank lower,title mismatch
+cand_13_M_1,83,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_13_W_7,87,High score due to title mismatch,Should rank lower,title mismatch
+cand_13_M_3,70,High score due to transferability overvalued,Should rank lower,transferability overvalued
+cand_13_W_6,81,High score due to title mismatch,Should rank lower,title mismatch
+cand_14_W_1,67,High score due to title mismatch,Should rank lower,title mismatch
+cand_14_W_5,69,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_14_W_7,72,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_14_W_4,80,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_14_S_1,91,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_14_W_6,65,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_14_M_4,67,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_14_W_0,86,High score due to title mismatch,Should rank lower,title mismatch
+cand_14_M_0,73,High score due to title mismatch,Should rank lower,title mismatch
+cand_14_S_0,87,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_14_M_2,86,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_14_M_3,95,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_15_W_3,91,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_15_W_5,86,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_15_S_0,95,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_15_W_6,93,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_15_W_0,77,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_15_S_1,68,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_15_W_2,79,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_15_M_0,82,High score due to title mismatch,Should rank lower,title mismatch
+cand_15_M_3,88,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_15_M_4,79,High score due to title mismatch,Should rank lower,title mismatch
+cand_16_M_4,64,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_16_W_4,78,High score due to YOE underweighting,Should rank lower,YOE underweighting
+cand_16_W_1,81,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_16_W_3,76,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_16_W_6,74,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_16_W_5,62,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_16_S_1,65,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_16_M_2,74,High score due to title mismatch,Should rank lower,title mismatch
+cand_16_M_3,61,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_16_S_0,91,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_16_M_1,65,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_17_M_0,81,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_17_W_3,73,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_17_W_7,83,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_17_W_1,68,High score due to title mismatch,Should rank lower,title mismatch
+cand_17_W_6,73,High score due to title mismatch,Should rank lower,title mismatch
+cand_17_S_0,69,High score due to title mismatch,Should rank lower,title mismatch
+cand_17_M_3,77,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_17_S_1,65,High score due to domain mismatch,Should rank lower,domain mismatch
+cand_18_M_3,92,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_18_W_4,82,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_18_W_5,64,High score due to transferability overvalued,Should rank lower,transferability overvalued
+cand_18_S_0,75,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_18_W_0,95,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_18_W_2,81,High score due to title mismatch,Should rank lower,title mismatch
+cand_18_M_0,65,High score due to transferability overvalued,Should rank lower,transferability overvalued
+cand_18_W_7,69,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_18_M_1,91,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_18_M_4,76,High score due to title mismatch,Should rank lower,title mismatch
+cand_18_S_1,90,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_18_W_6,76,High score due to transferability overvalued,Should rank lower,transferability overvalued
+cand_19_W_3,65,High score due to title mismatch,Should rank lower,title mismatch
+cand_19_W_2,66,High score due to title mismatch,Should rank lower,title mismatch
+cand_19_W_4,95,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_19_W_7,66,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_19_W_1,91,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_19_M_3,74,High score due to YOE overweighting,Should rank lower,YOE overweighting
+cand_19_W_0,81,High score due to title mismatch,Should rank lower,title mismatch
+cand_19_S_1,67,High score due to title mismatch,Should rank lower,title mismatch
+cand_19_S_0,63,High score due to title mismatch,Should rank lower,title mismatch
+cand_19_M_0,85,High score due to missing hard skill weighting,Should rank lower,missing hard skill weighting
+cand_19_M_1,65,High score due to title mismatch,Should rank lower,title mismatch

@@ -1,0 +1,217 @@
+{
+  "resume_id": "resume_29",
+  "parsed_output": {
+    "full_name": "Charlie Davis 29",
+    "current_title": "Chief Data Scientist",
+    "raw_title": "Chief Data Scientist",
+    "normalized_title": "Chief Data Scientist",
+    "title_confidence": 90,
+    "title_family": "Data",
+    "title_seniority": "Chief",
+    "total_years_of_experience": 18.25,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "user29@example.com Experienced Data Scientist with 16 years of experience.",
+    "contact": {
+      "email": "user29@example.com",
+      "phone": ""
+    },
+    "career_history": [
+      {
+        "title": "Data Scientist",
+        "company": "Company 29",
+        "start_date": "Jan 2010",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 197,
+        "start_abs_months": 24121,
+        "end_abs_months": 24318,
+        "bullets": [
+          "Developed multiple applications.",
+          "Junior Data Scientist",
+          "Old Company"
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Data Scientist",
+          "Company found: Company 29",
+          "Valid dates: Jan 2010 - Present"
+        ]
+      },
+      {
+        "title": "Junior Data Scientist",
+        "company": "Old Company",
+        "start_date": "Feb 2008",
+        "end_date": "Dec 2009",
+        "is_current": false,
+        "duration_months": 22,
+        "start_abs_months": 24098,
+        "end_abs_months": 24120,
+        "bullets": [
+          "Maintained legacy systems."
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Junior Data Scientist",
+          "Company found: Old Company",
+          "Valid dates: Feb 2008 - Dec 2009"
+        ]
+      }
+    ],
+    "raw_experience_blocks": [
+      {
+        "pre_date_text": "Data Scientist\nCompany 29",
+        "start_date": "Jan 2010",
+        "end_date": "Present",
+        "desc_text": "Developed multiple applications.\nJunior Data Scientist\nOld Company"
+      },
+      {
+        "pre_date_text": "Developed multiple applications.\nJunior Data Scientist\nOld Company",
+        "start_date": "Feb 2008",
+        "end_date": "Dec 2009",
+        "desc_text": "Maintained legacy systems."
+      }
+    ],
+    "education": [
+      {
+        "degree": "BA",
+        "institution": "Graphic Design",
+        "field_of_study": "",
+        "evidence": "BA Graphic Design University 29"
+      }
+    ],
+    "skills": [
+      {
+        "name": "AWS",
+        "type": "hard"
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard"
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "AWS",
+        "type": "hard",
+        "raw": "AWS",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard",
+        "raw": "TensorFlow",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard",
+        "raw": "PyTorch",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": [],
+    "career_graph": {
+      "total_years": 18.25,
+      "relevant_years": 18.25,
+      "leadership_years": 0,
+      "promotion_count": 0,
+      "company_count": 2,
+      "career_velocity": 0.0,
+      "inversion_count": 2
+    },
+    "raw_extracted_skills": [
+      {
+        "name": "AWS",
+        "type": "hard"
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard"
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard"
+      }
+    ],
+    "scoring_skills": [
+      {
+        "name": "AWS",
+        "type": "hard",
+        "raw": "AWS",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard",
+        "raw": "TensorFlow",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard",
+        "raw": "PyTorch",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "negated_skills": [],
+    "_meta": {
+      "layout_complexity": 0.6,
+      "extraction_confidence": 0.79,
+      "parser_warnings": [],
+      "raw_extracted_text": "Charlie Davis 29\nuser29@example.com\nSummary:\nExperienced Data Scientist with 16 years of experience.\nExperience:\nData Scientist\nCompany 29\nJan 2010 - Present\nDeveloped multiple applications.\nJunior Data Scientist\nOld Company\nFeb 2008 - Dec 2009\nMaintained legacy systems.\nSkills:\nProficient in TensorFlow, Machine Learning, PyTorch, AWS.\nEducation:\nBA Graphic Design\nUniversity 29"
+    }
+  }
+}

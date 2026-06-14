@@ -1,0 +1,940 @@
+{
+  "raw_text": "Title: ai research engineer | Company: krutrim | Skills: ci/cd, vue.js, statistical modeling, css, pinecone\nTitle: ai research engineer | Company: phonepe | Skills: speech recognition, sentence transformers, faiss, object detection, machine learning\nTitle: ai research engineer | Company: wysa | Skills: agile, gans, hugging face transformers, semantic search, deep learning\nTitle: ai research engineer | Company: verloop.io | Skills: information retrieval, angular, scikit-learn, statistical modeling, machine learning\nTitle: ai research engineer | Company: swiggy | Skills: postgresql, lora, llms, asr, feature engineering\nTitle: ai research engineer | Company: krutrim | Skills: weaviate, feature engineering, mlflow, mlops, yolo\nTitle: ai research engineer | Company: tcs | Skills: information retrieval, graphql, css, yolo, scikit-learn\nTitle: ai research engineer | Company: wysa | Skills: recommendation systems, docker, speech recognition, spring boot, scikit-learn\nTitle: ai research engineer | Company: zoho | Skills: mlops, azure, diffusion models, image classification, elasticsearch\nTitle: ai research engineer | Company: zomato | Skills: milvus, machine learning, ci/cd, python, llamaindex\nTitle: ai research engineer | Company: tcs | Skills: llms, faiss, reinforcement learning, computer vision, elasticsearch\nTitle: ai research engineer | Company: byju's | Skills: diffusion models, speech recognition, scrum, reinforcement learning, grpc\nTitle: ai research engineer | Company: upgrad | Skills: kubeflow, django, bm25, qdrant, marketing\nTitle: ai research engineer | Company: niramai | Skills: statistical modeling, data science, learning to rank, pinecone, next.js\nTitle: ai research engineer | Company: locobuzz | Skills: image classification, machine learning, pgvector, embeddings, fine-tuning llms\nTitle: ai research engineer | Company: sarvam ai | Skills: langchain, object detection, python, prompt engineering, fastapi\nTitle: ai research engineer | Company: upgrad | Skills: yolo, information retrieval, tally, milvus, statistical modeling\nTitle: ai research engineer | Company: unacademy | Skills: opencv, illustrator, computer vision, bentoml, tensorflow\nTitle: ai research engineer | Company: hcl | Skills: semantic search, peft, information retrieval, weights & biases, faiss\nTitle: ai research engineer | Company: swiggy | Skills: pinecone, illustrator, image classification, prompt engineering, forecasting\nTitle: ai research engineer | Company: zomato | Skills: lora, elasticsearch, opencv, gans, tts\nTitle: ai research engineer | Company: wipro | Skills: mlflow, python, powerpoint, scikit-learn, docker\nTitle: ai research engineer | Company: saarthi.ai | Skills: diffusion models, machine learning, semantic search, photoshop, llamaindex\nTitle: ai research engineer | Company: observe.ai | Skills: machine learning, qdrant, go, dbt, hadoop\nTitle: ai research engineer | Company: phonepe | Skills: elasticsearch, object detection, fine-tuning llms, apache beam, scrum\nTitle: ai research engineer | Company: observe.ai | Skills: bentoml, asr, mlops, elasticsearch, peft\nTitle: ai research engineer | Company: aganitha | Skills: pgvector, speech recognition, sentence transformers, feature engineering, hadoop\nTitle: ai research engineer | Company: hcl | Skills: six sigma, qdrant, cnn, qlora, diffusion models\nTitle: ai research engineer | Company: haptik | Skills: python, milvus, recommendation systems, vector search, llamaindex\nTitle: ai research engineer | Company: tcs | Skills: tts, asr, lora, semantic search, python\nTitle: ai research engineer | Company: rephrase.ai | Skills: pinecone, time series, machine learning, gans, graphql\nTitle: ai research engineer | Company: verloop.io | Skills: statistical modeling, scikit-learn, weights & biases, elasticsearch, pinecone\nTitle: ai research engineer | Company: dream11 | Skills: ci/cd, sentence transformers, faiss, forecasting, hugging face transformers\nTitle: ai research engineer | Company: hcl | Skills: yolo, milvus, hugging face transformers, information retrieval, kubeflow\nTitle: ai research engineer | Company: pharmeasy | Skills: faiss, nlp, apache beam, weaviate, computer vision\nTitle: ai research engineer | Company: upgrad | Skills: semantic search, asr, excel, rag, pytorch\nTitle: ai research engineer | Company: nykaa | Skills: pytorch, elasticsearch, feature engineering, forecasting, recommendation systems\nTitle: ai research engineer | Company: swiggy | Skills: pinecone, reinforcement learning, asr, milvus, snowflake\nTitle: ai research engineer | Company: meesho | Skills: time series, kubeflow, machine learning, nlp, lora\nTitle: ai research engineer | Company: paytm | Skills: mlops, haystack, diffusion models, fine-tuning llms, object detection\nTitle: ai research engineer | Company: yellow.ai | Skills: java, dbt, time series, data science, image classification\nTitle: ai research engineer | Company: unacademy | Skills: diffusion models, object detection, scikit-learn, webpack, time series\nTitle: ai research engineer | Company: rephrase.ai | Skills: tts, image classification, sentence transformers, deep learning, haystack\nTitle: ai research engineer | Company: flipkart | Skills: statistical modeling, diffusion models, opencv, machine learning, angular\nTitle: ai research engineer | Company: wysa | Skills: python, opencv, pytorch, sales, pgvector\nTitle: ai research engineer | Company: byju's | Skills: seo, asr, time series, gans, tts\nTitle: ai research engineer | Company: razorpay | Skills: diffusion models, gans, mlflow, bentoml, reinforcement learning\nTitle: ai research engineer | Company: cred | Skills: airflow, recommendation systems, statistical modeling, redis, object detection\nTitle: ai research engineer | Company: genpact ai | Skills: weaviate, computer vision, image classification, semantic search, rest apis\nTitle: ai research engineer | Company: krutrim | Skills: cnn, javascript, diffusion models, time series, gans\nTitle: ai research engineer | Company: observe.ai | Skills: yolo, hadoop, sql, qdrant, forecasting\nTitle: ai research engineer | Company: tech mahindra | Skills: hugging face transformers, flask, data science, machine learning, reinforcement learning\nTitle: ai research engineer | Company: cred | Skills: weaviate, recommendation systems, kubeflow, tally, langchain\nTitle: ai research engineer | Company: flipkart | Skills: pytorch, weights & biases, data science, langchain, forecasting\nTitle: ai research engineer | Company: mad street den | Skills: agile, haystack, sales, java, speech recognition\nTitle: ai research engineer | Company: razorpay | Skills: deep learning, reinforcement learning, qdrant, nlp, peft\nTitle: lead ai engineer | Company: razorpay | Skills: data science, information retrieval, llamaindex, pgvector, forecasting\nTitle: ai research engineer | Company: infosys | Skills: diffusion models, kubeflow, langchain, sentence transformers, sql\nTitle: ai research engineer | Company: razorpay | Skills: bm25, kubernetes, python, peft, computer vision\nTitle: ai research engineer | Company: wipro | Skills: fastapi, weights & biases, hugging face transformers, opensearch, diffusion models\nTitle: ai research engineer | Company: phonepe | Skills: object detection, hadoop, data pipelines, time series, speech recognition\nTitle: ai research engineer | Company: wysa | Skills: hugging face transformers, reinforcement learning, diffusion models, prompt engineering, redux\nTitle: ai research engineer | Company: haptik | Skills: mlflow, python, photoshop, milvus, java\nTitle: ai research engineer | Company: zomato | Skills: tensorflow, pinecone, python, diffusion models, haystack\nTitle: ai research engineer | Company: inmobi | Skills: recommendation systems, typescript, sentence transformers, asr, python\nTitle: ai research engineer | Company: policybazaar | Skills: hugging face transformers, learning to rank, diffusion models, opencv, cnn\nTitle: ai research engineer | Company: byju's | Skills: ci/cd, speech recognition, image classification, microservices, pytorch\nTitle: ai research engineer | Company: pharmeasy | Skills: scikit-learn, etl, bm25, forecasting, opensearch\nTitle: ai research engineer | Company: inmobi | Skills: statistical modeling, image classification, qdrant, machine learning, recommendation systems\nTitle: ai research engineer | Company: freshworks | Skills: llms, snowflake, recommendation systems, tts, scikit-learn\nTitle: applied ml engineer | Company: freshworks | Skills: sql, qdrant, mlops, faiss, scikit-learn\nTitle: ai research engineer | Company: haptik | Skills: faiss, rust, forecasting, llms, bentoml\nTitle: ai research engineer | Company: aganitha | Skills: lora, feature engineering, bentoml, prompt engineering, fastapi\nTitle: ai research engineer | Company: zoho | Skills: embeddings, information retrieval, llms, learning to rank, forecasting\nTitle: ai research engineer | Company: sarvam ai | Skills: elasticsearch, lora, time series, kubeflow, css\nTitle: senior machine learning engineer | Company: phonepe | Skills: llms, rag, python, qlora, kubeflow\nTitle: ai research engineer | Company: yellow.ai | Skills: typescript, tts, opensearch, speech recognition, object detection\nTitle: ai research engineer | Company: observe.ai | Skills: lora, embeddings, gans, python, peft\nTitle: ai research engineer | Company: rephrase.ai | Skills: milvus, fine-tuning llms, haystack, semantic search, statistical modeling\nTitle: ai research engineer | Company: haptik | Skills: speech recognition, asr, data science, recommendation systems, azure\nTitle: ai research engineer | Company: vedantu | Skills: image classification, speech recognition, cnn, postgresql, prompt engineering\nTitle: ai research engineer | Company: rephrase.ai | Skills: peft, semantic search, weaviate, vue.js, mlflow\nTitle: senior ai engineer | Company: netflix | Skills: lora, learning to rank, weaviate, peft, bm25\nTitle: ai research engineer | Company: dream11 | Skills: mlops, cnn, deep learning, reinforcement learning, scrum\nTitle: ai research engineer | Company: mad street den | Skills: tensorflow, semantic search, deep learning, data science, weights & biases\nTitle: ai engineer | Company: apple | Skills: milvus, computer vision, feature engineering, semantic search, diffusion models\nTitle: ai research engineer | Company: niramai | Skills: langchain, project management, forecasting, statistical modeling, kubeflow\nTitle: applied ml engineer | Company: rephrase.ai | Skills: yolo, rag, prompt engineering, llamaindex, machine learning\nTitle: junior ml engineer | Company: mad street den | Skills: bigquery, faiss, fine-tuning llms, learning to rank, gcp\nTitle: ai research engineer | Company: wysa | Skills: pinecone, gans, weaviate, computer vision, tts\nTitle: ai research engineer | Company: haptik | Skills: qdrant, image classification, weights & biases, data science, feature engineering\nTitle: ai research engineer | Company: policybazaar | Skills: mlops, tensorflow, mongodb, llms, machine learning\nTitle: ai research engineer | Company: paytm | Skills: cnn, data science, flask, gans, pgvector\nTitle: ai research engineer | Company: policybazaar | Skills: information retrieval, llms, computer vision, scrum, mlops\nTitle: ai research engineer | Company: observe.ai | Skills: yolo, sentence transformers, time series, object detection, semantic search\nTitle: ai research engineer | Company: nykaa | Skills: yolo, feature engineering, haystack, langchain, llms\nTitle: ai research engineer | Company: unacademy | Skills: weights & biases, speech recognition, data science, agile, sentence transformers\nTitle: senior ai engineer | Company: apple | Skills: diffusion models, faiss, tensorflow, scikit-learn, opensearch\nTitle: ai research engineer | Company: tcs | Skills: bm25, learning to rank, diffusion models, excel, opencv\nTitle: ai research engineer | Company: wipro | Skills: vector search, yolo, pytorch, recommendation systems, kafka\n",
+  "parsed": {
+    "full_name": "Candidate",
+    "current_title": "machine learning engineer",
+    "normalized_title": "Machine Learning Engineer",
+    "title_family": "Data Science",
+    "title_seniority": "mid",
+    "total_years_of_experience": 3,
+    "current_employment_status": "Unknown",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "Title: ai research engineer | Company: phonepe | Skills: speech recognition, sentence transformers, faiss, object detection, machine learning Title: ai research engineer | Company: wysa | Skills: agile, gans, hugging face transformers, semantic search, deep learning Title: ai research engineer | Company: verloop.io | Skills: information retrieval, angular, scikit-learn, statistical modeling, machine learning Title: ai research engineer | Company: swiggy | Skills: postgresql, lora, llms, asr, fea",
+    "contact": {
+      "email": "",
+      "phone": ""
+    },
+    "experiences": [],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "series",
+        "field_of_study": "",
+        "evidence": "Title: ai research engineer | Company: krutrim | Skills: ci/cd, vue.js, statistical modeling, css, pinecone Title: ai research engineer | Company: pho"
+      },
+      {
+        "degree": "BE",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "Title: ai research engineer | Company: krutrim | Skills: ci/cd, vue.js, statistical modeling, css, pinecone Title: ai research engineer | Company: pho"
+      },
+      {
+        "degree": "BS",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "Title: ai research engineer | Company: krutrim | Skills: ci/cd, vue.js, statistical modeling, css, pinecone Title: ai research engineer | Company: pho"
+      },
+      {
+        "degree": "BA",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "Title: ai research engineer | Company: krutrim | Skills: ci/cd, vue.js, statistical modeling, css, pinecone Title: ai research engineer | Company: pho"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "type": "hard"
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard"
+      },
+      {
+        "name": "TypeScript",
+        "type": "hard"
+      },
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "Go",
+        "type": "hard"
+      },
+      {
+        "name": "Rust",
+        "type": "hard"
+      },
+      {
+        "name": "Angular",
+        "type": "hard"
+      },
+      {
+        "name": "Vue",
+        "type": "hard"
+      },
+      {
+        "name": "Next.js",
+        "type": "hard"
+      },
+      {
+        "name": "Django",
+        "type": "hard"
+      },
+      {
+        "name": "Flask",
+        "type": "hard"
+      },
+      {
+        "name": "FastAPI",
+        "type": "hard"
+      },
+      {
+        "name": "Spring",
+        "type": "hard"
+      },
+      {
+        "name": "GraphQL",
+        "type": "hard"
+      },
+      {
+        "name": "gRPC",
+        "type": "hard"
+      },
+      {
+        "name": "Redux",
+        "type": "hard"
+      },
+      {
+        "name": "Google Cloud Platform",
+        "type": "hard"
+      },
+      {
+        "name": "Azure",
+        "type": "hard"
+      },
+      {
+        "name": "Docker",
+        "type": "hard"
+      },
+      {
+        "name": "Kubernetes",
+        "type": "hard"
+      },
+      {
+        "name": "CI/CD",
+        "type": "hard"
+      },
+      {
+        "name": "Apache",
+        "type": "hard"
+      },
+      {
+        "name": "SQL",
+        "type": "hard"
+      },
+      {
+        "name": "PostgreSQL",
+        "type": "hard"
+      },
+      {
+        "name": "MongoDB",
+        "type": "hard"
+      },
+      {
+        "name": "Redis",
+        "type": "hard"
+      },
+      {
+        "name": "Elasticsearch",
+        "type": "hard"
+      },
+      {
+        "name": "Snowflake",
+        "type": "hard"
+      },
+      {
+        "name": "BigQuery",
+        "type": "hard"
+      },
+      {
+        "name": "dbt",
+        "type": "hard"
+      },
+      {
+        "name": "Kafka",
+        "type": "hard"
+      },
+      {
+        "name": "Hadoop",
+        "type": "hard"
+      },
+      {
+        "name": "Airflow",
+        "type": "hard"
+      },
+      {
+        "name": "ETL",
+        "type": "hard"
+      },
+      {
+        "name": "Data Pipelines",
+        "type": "hard"
+      },
+      {
+        "name": "Excel",
+        "type": "hard"
+      },
+      {
+        "name": "Statistics",
+        "type": "hard"
+      },
+      {
+        "name": "Machine Learning",
+        "type": "hard"
+      },
+      {
+        "name": "Deep Learning",
+        "type": "hard"
+      },
+      {
+        "name": "NLP",
+        "type": "hard"
+      },
+      {
+        "name": "Computer Vision",
+        "type": "hard"
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard"
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard"
+      },
+      {
+        "name": "Scikit-Learn",
+        "type": "hard"
+      },
+      {
+        "name": "Hugging Face",
+        "type": "hard"
+      },
+      {
+        "name": "LLMs",
+        "type": "hard"
+      },
+      {
+        "name": "Reinforcement Learning",
+        "type": "hard"
+      },
+      {
+        "name": "MLOps",
+        "type": "hard"
+      },
+      {
+        "name": "MLflow",
+        "type": "hard"
+      },
+      {
+        "name": "Kubeflow",
+        "type": "hard"
+      },
+      {
+        "name": "Prompt Engineering",
+        "type": "hard"
+      },
+      {
+        "name": "Generative AI",
+        "type": "hard"
+      },
+      {
+        "name": "RAG",
+        "type": "hard"
+      },
+      {
+        "name": "Vector Databases",
+        "type": "hard"
+      },
+      {
+        "name": "REST API",
+        "type": "hard"
+      },
+      {
+        "name": "CSS",
+        "type": "hard"
+      },
+      {
+        "name": "Agile",
+        "type": "hard"
+      },
+      {
+        "name": "Scrum",
+        "type": "hard"
+      },
+      {
+        "name": "Microservices",
+        "type": "hard"
+      },
+      {
+        "name": "Lean Manufacturing",
+        "type": "hard"
+      },
+      {
+        "name": "Six Sigma",
+        "type": "hard"
+      },
+      {
+        "name": "Financial Analysis",
+        "type": "hard"
+      },
+      {
+        "name": "SEO",
+        "type": "hard"
+      },
+      {
+        "name": "Project Management",
+        "type": "hard"
+      },
+      {
+        "name": "Research",
+        "type": "hard"
+      },
+      {
+        "name": "Data Science",
+        "type": "hard"
+      },
+      {
+        "name": "Apache Beam",
+        "type": "hard"
+      },
+      {
+        "name": "OpenCV",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Python",
+        "evidence": "kills: milvus, machine learning, ci/cd, python, llamaindex Title: ai research engineer | Company: tcs | Skills: llms, faiss, reinforcement learnin",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "JavaScript",
+        "evidence": "ineer | Company: krutrim | Skills: cnn, javascript, diffusion models, time series, gans Title: ai research engineer | Company: observe.ai | Skills: yo",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TypeScript",
+        "evidence": "nmobi | Skills: recommendation systems, typescript, sentence transformers, asr, python Title: ai research engineer | Company: policybazaar | Skills: h",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Java",
+        "evidence": "engineer | Company: yellow.ai | Skills: java, dbt, time series, data science, image classification Title: ai research engineer | Company: unacad",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Go",
+        "evidence": ".ai | Skills: machine learning, qdrant, go, dbt, hadoop Title: ai research engineer | Company: phonepe | Skills: elasticsearch, object detecti",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Rust",
+        "evidence": "neer | Company: haptik | Skills: faiss, rust, forecasting, llms, bentoml Title: ai research engineer | Company: aganitha | Skills: lora, feature",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Angular",
+        "evidence": "oop.io | Skills: information retrieval, angular, scikit-learn, statistical modeling, machine learning Title: ai research engineer | Company: swiggy",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Vue",
+        "evidence": "eer | Company: krutrim | Skills: ci/cd, vue.js, statistical modeling, css, pinecone Title: ai research engineer | Company: phonepe | Skills: speec",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Next.js",
+        "evidence": "ta science, learning to rank, pinecone, next.js Title: ai research engineer | Company: locobuzz | Skills: image classification, machine learning, p",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Django",
+        "evidence": "r | Company: upgrad | Skills: kubeflow, django, bm25, qdrant, marketing Title: ai research engineer | Company: niramai | Skills: statistical model",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Flask",
+        "evidence": "ra | Skills: hugging face transformers, flask, data science, machine learning, reinforcement learning Title: ai research engineer | Company: cred",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "FastAPI",
+        "evidence": "detection, python, prompt engineering, fastapi Title: ai research engineer | Company: upgrad | Skills: yolo, information retrieval, tally, milvus,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Spring",
+        "evidence": "on systems, docker, speech recognition, spring boot, scikit-learn Title: ai research engineer | Company: zoho | Skills: mlops, azure, diffusion mo",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "GraphQL",
+        "evidence": "y: tcs | Skills: information retrieval, graphql, css, yolo, scikit-learn Title: ai research engineer | Company: wysa | Skills: recommendation syste",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "gRPC",
+        "evidence": "gnition, scrum, reinforcement learning, grpc Title: ai research engineer | Company: upgrad | Skills: kubeflow, django, bm25, qdrant, marketing T",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Redux",
+        "evidence": ", diffusion models, prompt engineering, redux Title: ai research engineer | Company: haptik | Skills: mlflow, python, photoshop, milvus, java Tit",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Google Cloud Platform",
+        "evidence": "eer | Company: mad street den | Skills: bigquery, faiss, fine-tuning llms, learning to rank, gcp Title: ai research engineer | Company: wysa | Skill",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Azure",
+        "evidence": "gineer | Company: zoho | Skills: mlops, azure, diffusion models, image classification, elasticsearch Title: ai research engineer | Company: zomat",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Docker",
+        "evidence": "wysa | Skills: recommendation systems, docker, speech recognition, spring boot, scikit-learn Title: ai research engineer | Company: zoho | Skills",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kubernetes",
+        "evidence": "eer | Company: razorpay | Skills: bm25, kubernetes, python, peft, computer vision Title: ai research engineer | Company: wipro | Skills: fastapi, weig",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CI/CD",
+        "evidence": "h engineer | Company: krutrim | Skills: ci/cd, vue.js, statistical modeling, css, pinecone Title: ai research engineer | Company: phonepe | Skill",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Apache",
+        "evidence": "ch, object detection, fine-tuning llms, apache beam, scrum Title: ai research engineer | Company: observe.ai | Skills: bentoml, asr, mlops, elasti",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SQL",
+        "evidence": "any: observe.ai | Skills: yolo, hadoop, sql, qdrant, forecasting Title: ai research engineer | Company: tech mahindra | Skills: hugging face tr",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PostgreSQL",
+        "evidence": "ch engineer | Company: swiggy | Skills: postgresql, lora, llms, asr, feature engineering Title: ai research engineer | Company: krutrim | Skills: weav",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "MongoDB",
+        "evidence": "licybazaar | Skills: mlops, tensorflow, mongodb, llms, machine learning Title: ai research engineer | Company: paytm | Skills: cnn, data science, f",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Redis",
+        "evidence": "endation systems, statistical modeling, redis, object detection Title: ai research engineer | Company: genpact ai | Skills: weaviate, computer vi",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Elasticsearch",
+        "evidence": "diffusion models, image classification, elasticsearch Title: ai research engineer | Company: zomato | Skills: milvus, machine learning, ci/cd, python, ll",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Snowflake",
+        "evidence": "e, reinforcement learning, asr, milvus, snowflake Title: ai research engineer | Company: meesho | Skills: time series, kubeflow, machine learning, nl",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "BigQuery",
+        "evidence": "eer | Company: mad street den | Skills: bigquery, faiss, fine-tuning llms, learning to rank, gcp Title: ai research engineer | Company: wysa | Skill",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "dbt",
+        "evidence": "| Skills: machine learning, qdrant, go, dbt, hadoop Title: ai research engineer | Company: phonepe | Skills: elasticsearch, object detection, f",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kafka",
+        "evidence": "yolo, pytorch, recommendation systems, kafka",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Hadoop",
+        "evidence": "lls: machine learning, qdrant, go, dbt, hadoop Title: ai research engineer | Company: phonepe | Skills: elasticsearch, object detection, fine-tuni",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Airflow",
+        "evidence": "arch engineer | Company: cred | Skills: airflow, recommendation systems, statistical modeling, redis, object detection Title: ai research engineer",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "ETL",
+        "evidence": "pany: pharmeasy | Skills: scikit-learn, etl, bm25, forecasting, opensearch Title: ai research engineer | Company: inmobi | Skills: statistical",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Data Pipelines",
+        "evidence": "epe | Skills: object detection, hadoop, data pipelines, time series, speech recognition Title: ai research engineer | Company: wysa | Skills: hugging face",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Excel",
+        "evidence": "upgrad | Skills: semantic search, asr, excel, rag, pytorch Title: ai research engineer | Company: nykaa | Skills: pytorch, elasticsearch, featur",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Statistics",
+        "evidence": "mpany: krutrim | Skills: ci/cd, vue.js, statistical modeling, css, pinecone Title: ai research engineer | Company: phonepe | Skills: speech recognition, sentenc",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Machine Learning",
+        "evidence": "transformers, faiss, object detection, machine learning Title: ai research engineer | Company: wysa | Skills: agile, gans, hugging face transformers, seman",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Deep Learning",
+        "evidence": "ing face transformers, semantic search, deep learning Title: ai research engineer | Company: verloop.io | Skills: information retrieval, angular, scikit-",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "NLP",
+        "evidence": "r | Company: pharmeasy | Skills: faiss, nlp, apache beam, weaviate, computer vision Title: ai research engineer | Company: upgrad | Skills: sem",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Computer Vision",
+        "evidence": "engineer | Company: unacademy | Skills: opencv, illustrator, computer vision, bentoml, tensorflow Title: ai research engineer | Company: hcl | Ski",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TensorFlow",
+        "evidence": "illustrator, computer vision, bentoml, tensorflow Title: ai research engineer | Company: hcl | Skills: semantic search, peft, information retrieval,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PyTorch",
+        "evidence": "ills: semantic search, asr, excel, rag, pytorch Title: ai research engineer | Company: nykaa | Skills: pytorch, elasticsearch, feature engineering,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Scikit-Learn",
+        "evidence": "Skills: information retrieval, angular, scikit-learn, statistical modeling, machine learning Title: ai research engineer | Company: swiggy | Skills: pos",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Hugging Face",
+        "evidence": "| Company: wysa | Skills: agile, gans, hugging face transformers, semantic search, deep learning Title: ai research engineer | Company: verloop.io | Sk",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "LLMs",
+        "evidence": "any: swiggy | Skills: postgresql, lora, llms, asr, feature engineering Title: ai research engineer | Company: krutrim | Skills: weaviate, featur",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Reinforcement Learning",
+        "evidence": "r | Company: tcs | Skills: llms, faiss, reinforcement learning, computer vision, elasticsearch Title: ai research engineer | Company: byju's | Skills: diffusion m",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "MLOps",
+        "evidence": "weaviate, feature engineering, mlflow, mlops, yolo Title: ai research engineer | Company: tcs | Skills: information retrieval, graphql, css, yol",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "MLflow",
+        "evidence": "Skills: weaviate, feature engineering, mlflow, mlops, yolo Title: ai research engineer | Company: tcs | Skills: information retrieval, graphql, c",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kubeflow",
+        "evidence": "ch engineer | Company: upgrad | Skills: kubeflow, django, bm25, qdrant, marketing Title: ai research engineer | Company: niramai | Skills: statistic",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Prompt Engineering",
+        "evidence": "| Skills: semantic search, asr, excel, rag, pytorch Title: ai research engineer | Company: nykaa | Skills: pytorch, elasticsearch, feature eng",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Generative AI",
+        "evidence": "| Company: zoho | Skills: mlops, azure, diffusion models, image classification, elasticsearch Title: ai research engineer | Company: zomato | Skills: milvus",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "RAG",
+        "evidence": "| Skills: semantic search, asr, excel, rag, pytorch Title: ai research engineer | Company: nykaa | Skills: pytorch, elasticsearch, feature eng",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Vector Databases",
+        "evidence": "pgrad | Skills: kubeflow, django, bm25, qdrant, marketing Title: ai research engineer | Company: niramai | Skills: statistical modeling, data scie",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "REST API",
+        "evidence": "image classification, semantic search, rest apis Title: ai research engineer | Company: krutrim | Skills: cnn, javascript, diffusion models, time se",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CSS",
+        "evidence": "s: ci/cd, vue.js, statistical modeling, css, pinecone Title: ai research engineer | Company: phonepe | Skills: speech recognition, sentence tra",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Agile",
+        "evidence": "arch engineer | Company: wysa | Skills: agile, gans, hugging face transformers, semantic search, deep learning Title: ai research engineer | Comp",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Scrum",
+        "evidence": ": diffusion models, speech recognition, scrum, reinforcement learning, grpc Title: ai research engineer | Company: upgrad | Skills: kubeflow, dja",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Microservices",
+        "evidence": "eech recognition, image classification, microservices, pytorch Title: ai research engineer | Company: pharmeasy | Skills: scikit-learn, etl, bm25, foreca",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Lean Manufacturing",
+        "evidence": "earch engineer | Company: hcl | Skills: six sigma, qdrant, cnn, qlora, diffusion models Title: ai research engineer | Company: haptik | Skills: pytho",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Six Sigma",
+        "evidence": "earch engineer | Company: hcl | Skills: six sigma, qdrant, cnn, qlora, diffusion models Title: ai research engineer | Company: haptik | Skills: pytho",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Financial Analysis",
+        "evidence": "age classification, prompt engineering, forecasting Title: ai research engineer | Company: zomato | Skills: lora, elasticsearch, opencv, gans, tts Titl",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SEO",
+        "evidence": "ch engineer | Company: byju's | Skills: seo, asr, time series, gans, tts Title: ai research engineer | Company: razorpay | Skills: diffusion mo",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Project Management",
+        "evidence": "| Company: niramai | Skills: langchain, project management, forecasting, statistical modeling, kubeflow Title: applied ml engineer | Company: rephrase.ai | Sk",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Research",
+        "evidence": "Title: ai research engineer | Company: krutrim | Skills: ci/cd, vue.js, statistical modeling, css, pinecone Title: ai",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Data Science",
+        "evidence": "niramai | Skills: statistical modeling, data science, learning to rank, pinecone, next.js Title: ai research engineer | Company: locobuzz | Skills: imag",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Apache Beam",
+        "evidence": "ch, object detection, fine-tuning llms, apache beam, scrum Title: ai research engineer | Company: observe.ai | Skills: bentoml, asr, mlops, elasticsear",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "OpenCV",
+        "evidence": "engineer | Company: unacademy | Skills: opencv, illustrator, computer vision, bentoml, tensorflow Title: ai research engineer | Company: hcl | Ski",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

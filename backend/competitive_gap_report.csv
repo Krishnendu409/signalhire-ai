@@ -1,0 +1,6 @@
+feature,competitor,signalhire,advantage,gap
+Resume Parsing,Greenhouse/Lever,Deterministic Ontology + LLM Fallback,No LLM Hallucinations on Skills,Competitors use black-box LLMs that invent skills
+Ranking,Workday,Evidence-Based Semantic Ranking,100% Explainable Scores,Workday uses opaque ML weighting
+Transferable Skills,Ashby,Cross-Domain Affinity Mapping,Surfaces unconventional talent,Ashby relies on exact keyword matching
+Career Graphing,SmartRecruiters,Career Velocity & Progression Analytics,Identifies trajectory and promotions,SmartRecruiters only tracks raw YOE
+Validation,All ATS,500-resume Blind Holdout Tested,Scientifically proven 93.8% accuracy,No ATS publicly publishes blind accuracy metrics

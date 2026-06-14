@@ -469,3 +469,4 @@ export default function WorkspacePage() {
     </Suspense>
   );
 }
+// Patch #2: Export button state update`r`n// <Button disabled={candidates.length === 0} title="No ranking results available." onClick={handleExport}>Export Results</Button>

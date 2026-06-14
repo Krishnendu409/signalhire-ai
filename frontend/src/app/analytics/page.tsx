@@ -86,9 +86,9 @@ export default function AnalyticsPage() {
                     <span className="text-xs text-[#c4c7c8]">{skill}</span>
                     <div className="flex items-center gap-3">
                       <div className="w-32 h-1.5 bg-[#262626] rounded-full overflow-hidden">
-                        <div className="h-full bg-white" style={{ width: `${(count / 100) * 100}%` }} />
+                        <div className="h-full bg-white" style={{ width: `${(Number(count) / 100) * 100}%` }} />
                       </div>
-                      <span className="font-mono text-xs w-6 text-right text-white">{count}</span>
+                      <span className="font-mono text-xs w-6 text-right text-white">{Number(count)}</span>
                     </div>
                   </div>
                 ))}

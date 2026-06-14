@@ -1,0 +1,29 @@
+{
+  "raw_text": "# The facets of a self-dual 4-dim regular polytope\n# with 24 octahedron facets. Taken from cddlib.\n# Format b + Ax >= 0\n 1  1  1  1  1\n 1  1  1  1 -1\n 1  1  1 -1  1\n 1  1  1 -1 -1\n 1  1 -1  1  1\n 1  1 -1  1 -1\n 1  1 -1 -1  1\n 1  1 -1 -1 -1\n 1 -1  1  1  1\n 1 -1  1  1 -1\n 1 -1  1 -1  1\n 1 -1  1 -1 -1\n 1 -1 -1  1  1\n 1 -1 -1  1 -1\n 1 -1 -1 -1  1\n 1 -1 -1 -1 -1\n 1  2  0  0  0\n 1  0  2  0  0\n 1  0  0  2  0\n 1  0  0  0  2\n 1 -2  0  0  0\n 1  0 -2  0  0\n 1  0  0 -2  0\n 1  0  0  0 -2\n",
+  "parsed": {
+    "full_name": "Candidate",
+    "current_title": "Software Professional",
+    "normalized_title": "Software Professional",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 3,
+    "current_employment_status": "Unknown",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "# with 24 octahedron facets. Taken from cddlib. # Format b + Ax >= 0 1  1  1  1  1 1  1  1  1 -1 1  1  1 -1  1 1  1  1 -1 -1 1  1 -1  1  1 1  1 -1  1 -1 1  1 -1 -1  1 1  1 -1 -1 -1 1 -1  1  1  1 1 -1  1  1 -1 1 -1  1 -1  1 1 -1  1 -1 -1 1 -1 -1  1  1 1 -1 -1  1 -1 1 -1 -1 -1  1 1 -1 -1 -1 -1 1  2  0  0  0 1  0  2  0  0 1  0  0  2  0 1  0  0  0  2 1 -2  0  0  0 1  0 -2  0  0 1  0  0 -2  0 1  0  0  0 -2",
+    "contact": {
+      "email": "",
+      "phone": "0\n 1  1  1  1  1\n 1  1  1  1 -1\n 1  1  1 -1  1\n 1  1  1 -1 -1\n 1  1 -1  1  1\n 1  1 -1  1 -1\n 1  1 -1 -1  1\n 1  1 -1 -1 -1\n 1 -1  1  1  1\n 1 -1  1  1 -1\n 1 -1  1 -1  1\n 1 -1  1 -1 -1\n 1 -1 -1  1  1\n 1 -1 -1  1 -1\n 1 -1 -1 -1  1\n 1 -1 -1 -1 -1\n 1  2  0  0  0\n 1  0  2  0  0\n 1  0  0  2  0\n 1  0  0  0  2\n 1 -2  0  0  0\n 1  0 -2  0  0\n 1  0  0 -2  0\n 1  0  0  0 -2"
+    },
+    "experiences": [],
+    "education": [],
+    "skills": [],
+    "normalized_skills": [],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

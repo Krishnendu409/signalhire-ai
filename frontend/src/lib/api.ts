@@ -115,8 +115,8 @@ export async function getRankingMetadata(jobId?: string) {
       featuresExtracted: 22,
       model: "Exhaustive V2 Ranking Engine",
       jdTitle: "Unknown",
-      skills: {},
-      signals: [],
+      skills: {} as Record<string, number>,
+      signals: [] as Array<{name: string, count: number, avgRank: number, avgScore: number}>,
       rejections: []
     };
   } else {
@@ -142,8 +142,8 @@ export async function getRankingMetadata(jobId?: string) {
       featuresExtracted: 22,
       model: "Exhaustive V2 Ranking Engine",
       jdTitle: data.query_text || "Unknown Role",
-      skills: {},
-      signals: [],
+      skills: {} as Record<string, number>,
+      signals: [] as Array<{name: string, count: number, avgRank: number, avgScore: number}>,
       rejections: [
         { reason: "Lacks Domain Authenticity", count: results.filter((r: any) => r.dimension_scores?.domain_authenticity?.score < 50).length },
         { reason: "Missing Hard Skills", count: results.filter((r: any) => r.dimension_scores?.skill_depth?.score < 30).length },
@@ -154,7 +154,7 @@ export async function getRankingMetadata(jobId?: string) {
 
 export async function getLandingPageData() {
   return {
-    trap: null,
-    elite: null
+    trap: null as any,
+    elite: null as any
   };
 }

@@ -1,0 +1,42 @@
+{
+  "raw_text": "Sample text for C:\\Users\\krish\\Documents\\signalhire\\backend\\uploads\\e9a99a43-18c1-4631-b248-691784fa901d.pdf",
+  "parsed": {
+    "full_name": "Sample text for C:\\Users\\krish\\Documents\\signalhire\\backend\\uploads\\e9a99a43",
+    "current_title": "Software Professional",
+    "normalized_title": "Software Professional",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 3,
+    "current_employment_status": "Unknown",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "Deterministically extracted resume profile.",
+    "contact": {
+      "email": "",
+      "phone": "248-691784"
+    },
+    "experiences": [],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "Sample text for C:\\Users\\krish\\Documents\\signalhire\\backend\\uploads\\e9a99a43-18c1-4631-b248-691784fa901d.pdf"
+      },
+      {
+        "degree": "BA",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "Sample text for C:\\Users\\krish\\Documents\\signalhire\\backend\\uploads\\e9a99a43-18c1-4631-b248-691784fa901d.pdf"
+      }
+    ],
+    "skills": [],
+    "normalized_skills": [],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

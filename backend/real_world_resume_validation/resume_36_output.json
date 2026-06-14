@@ -1,0 +1,285 @@
+{
+  "resume_id": "resume_36",
+  "parsed_output": {
+    "full_name": "Quinn Davis 36",
+    "current_title": "Chief Data Scientist",
+    "raw_title": "Chief Data Scientist",
+    "normalized_title": "Chief Data Scientist",
+    "title_confidence": 90,
+    "title_family": "Data",
+    "title_seniority": "Chief",
+    "total_years_of_experience": 15.25,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "user36@example.com Experienced Data Scientist with 13 years of experience.",
+    "contact": {
+      "email": "user36@example.com",
+      "phone": ""
+    },
+    "career_history": [
+      {
+        "title": "Data Scientist",
+        "company": "Company 36",
+        "start_date": "Jan 2013",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 161,
+        "start_abs_months": 24157,
+        "end_abs_months": 24318,
+        "bullets": [
+          "Developed multiple applications.",
+          "Junior Data Scientist",
+          "Old Company"
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Data Scientist",
+          "Company found: Company 36",
+          "Valid dates: Jan 2013 - Present"
+        ]
+      },
+      {
+        "title": "Junior Data Scientist",
+        "company": "Old Company",
+        "start_date": "Feb 2011",
+        "end_date": "Dec 2012",
+        "is_current": false,
+        "duration_months": 22,
+        "start_abs_months": 24134,
+        "end_abs_months": 24156,
+        "bullets": [
+          "Maintained legacy systems."
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Junior Data Scientist",
+          "Company found: Old Company",
+          "Valid dates: Feb 2011 - Dec 2012"
+        ]
+      }
+    ],
+    "raw_experience_blocks": [
+      {
+        "pre_date_text": "Data Scientist\nCompany 36",
+        "start_date": "Jan 2013",
+        "end_date": "Present",
+        "desc_text": "Developed multiple applications.\nJunior Data Scientist\nOld Company"
+      },
+      {
+        "pre_date_text": "Developed multiple applications.\nJunior Data Scientist\nOld Company",
+        "start_date": "Feb 2011",
+        "end_date": "Dec 2012",
+        "desc_text": "Maintained legacy systems."
+      }
+    ],
+    "education": [
+      {
+        "degree": "BA",
+        "institution": "Graphic Design",
+        "field_of_study": "",
+        "evidence": "BA Graphic Design University 36"
+      }
+    ],
+    "skills": [
+      {
+        "name": "SQL",
+        "type": "hard"
+      },
+      {
+        "name": "React",
+        "type": "hard"
+      },
+      {
+        "name": "Node.js",
+        "type": "hard"
+      },
+      {
+        "name": "Docker",
+        "type": "hard"
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "SQL",
+        "type": "hard",
+        "raw": "SQL",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "React",
+        "type": "hard",
+        "raw": "React",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Node.js",
+        "type": "hard",
+        "raw": "Node.js",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Docker",
+        "type": "hard",
+        "raw": "Docker",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard",
+        "raw": "TensorFlow",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": [],
+    "career_graph": {
+      "total_years": 15.25,
+      "relevant_years": 15.25,
+      "leadership_years": 0,
+      "promotion_count": 0,
+      "company_count": 2,
+      "career_velocity": 0.0,
+      "inversion_count": 2
+    },
+    "raw_extracted_skills": [
+      {
+        "name": "SQL",
+        "type": "hard"
+      },
+      {
+        "name": "React",
+        "type": "hard"
+      },
+      {
+        "name": "Node.js",
+        "type": "hard"
+      },
+      {
+        "name": "Docker",
+        "type": "hard"
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard"
+      }
+    ],
+    "scoring_skills": [
+      {
+        "name": "SQL",
+        "type": "hard",
+        "raw": "SQL",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "React",
+        "type": "hard",
+        "raw": "React",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Node.js",
+        "type": "hard",
+        "raw": "Node.js",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Docker",
+        "type": "hard",
+        "raw": "Docker",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard",
+        "raw": "TensorFlow",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "negated_skills": [],
+    "_meta": {
+      "layout_complexity": 0.3,
+      "extraction_confidence": 0.9,
+      "parser_warnings": [],
+      "raw_extracted_text": ""
+    }
+  }
+}

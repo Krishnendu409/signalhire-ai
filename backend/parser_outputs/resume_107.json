@@ -1,0 +1,106 @@
+{
+  "raw_text": "BSD 3-Clause License\n\nCopyright (c) 2008-2021, The joblib developers.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n* Redistributions of source code must retain the above copyright notice, this\n  list of conditions and the following disclaimer.\n\n* Redistributions in binary form must reproduce the above copyright notice,\n  this list of conditions and the following disclaimer in the documentation\n  and/or other materials provided with the distribution.\n\n* Neither the name of the copyright holder nor the names of its\n  contributors may be used to endorse or promote products derived from\n  this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+  "parsed": {
+    "full_name": "BSD 3",
+    "current_title": "Copyright (c)",
+    "normalized_title": "Copyright (c)",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 13,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "Copyright (c) 2008-2021, The joblib developers. All rights reserved. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or othe",
+    "contact": {
+      "email": "",
+      "phone": ""
+    },
+    "experiences": [
+      {
+        "title": "Copyright (c)",
+        "company": "BSD 3-Clause License",
+        "start_date": "2008",
+        "end_date": "2021",
+        "is_current": false,
+        "duration_months": 156,
+        "bullets": [
+          ", The joblib developers.",
+          "All rights reserved.",
+          "Redistribution and use in source and binary forms, with or without",
+          "modification, are permitted provided that the following conditions are met:",
+          "* Redistributions of source code must retain the above copyright notice, this"
+        ],
+        "evidence": "Copyright (c) at BSD 3-Clause License (2008 \u2013 2021)"
+      }
+    ],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "of the copyright holder nor the names of its",
+        "field_of_study": "source and binary forms",
+        "evidence": "BSD 3-Clause License  Copyright (c) 2008-2021, The joblib developers. All rights reserved.  Redistribution and use in source and binary forms, with or"
+      },
+      {
+        "degree": "BE",
+        "institution": "used to endorse or promote products derived from",
+        "field_of_study": "source and binary forms",
+        "evidence": "BSD 3-Clause License  Copyright (c) 2008-2021, The joblib developers. All rights reserved.  Redistribution and use in source and binary forms, with or"
+      },
+      {
+        "degree": "BS",
+        "institution": "University",
+        "field_of_study": "source and binary forms",
+        "evidence": "BSD 3-Clause License  Copyright (c) 2008-2021, The joblib developers. All rights reserved.  Redistribution and use in source and binary forms, with or"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Express",
+        "type": "hard"
+      },
+      {
+        "name": "Supply Chain",
+        "type": "hard"
+      },
+      {
+        "name": "Technical Writing",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Express",
+        "evidence": "OLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Supply Chain",
+        "evidence": "DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER C",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Technical Writing",
+        "evidence": "ons and the following disclaimer in the documentation   and/or other materials provided with the distribution.  * Neither the name of the copyright holde",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

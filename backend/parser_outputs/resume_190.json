@@ -1,0 +1,76 @@
+{
+  "raw_text": "COM Test Suite Readme\n---------------------\n\nRunning the test suite:\n-----------------------\n* Open a command prompt\n* Change to the \"win32com\\test\" directory.\n* run \"testall.py\".  This will perform level 1 testing.\n  You may specify 1, 2, or 3 on the command line (\"testutil 3\")\n  to execute more tests.\n\nIn general, this should just run the best it can, utilizing what is available\non the machine.  It is likely some tests will refuse to run due to objects not\nbeing locally available - this is normal.\n\nThe `com/TestSources/` directory has source code to a C++ and VB component used purely\nfor testing.  You may like to build and register these, particularly if you\nare doing anything related to argument/result handling.\nYou can run `com/TestSources/PyCOMTest/buildAndRegister.bat` directly.\n",
+  "parsed": {
+    "full_name": "COM Test Suite Readme",
+    "current_title": "Software Professional",
+    "normalized_title": "Software Professional",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 3,
+    "current_employment_status": "Unknown",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "--------------------- Running the test suite: ----------------------- * Open a command prompt * Change to the \"win32com\\test\" directory. * run \"testall.py\".  This will perform level 1 testing. You may specify 1, 2, or 3 on the command line (\"testutil 3\") to execute more tests. In general, this should just run the best it can, utilizing what is available on the machine.  It is likely some tests will refuse to run due to objects not being locally available - this is normal. The `com/TestSources/` ",
+    "contact": {
+      "email": "",
+      "phone": ""
+    },
+    "experiences": [],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "tests will refuse to run due to objects not",
+        "field_of_study": "",
+        "evidence": "COM Test Suite Readme ---------------------  Running the test suite: ----------------------- * Open a command prompt * Change to the \"win32com\\test\" d"
+      },
+      {
+        "degree": "BE",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "COM Test Suite Readme ---------------------  Running the test suite: ----------------------- * Open a command prompt * Change to the \"win32com\\test\" d"
+      },
+      {
+        "degree": "BA",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "COM Test Suite Readme ---------------------  Running the test suite: ----------------------- * Open a command prompt * Change to the \"win32com\\test\" d"
+      }
+    ],
+    "skills": [
+      {
+        "name": "C++",
+        "type": "hard"
+      },
+      {
+        "name": "Technical Writing",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "C++",
+        "evidence": "ources/` directory has source code to a C++ and VB component used purely for testing.  You may like to build and register these, particularly i",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Technical Writing",
+        "evidence": "COM Test Suite Readme ---------------------  Running the test suite: ----------------------- * Open a command prompt * Ch",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

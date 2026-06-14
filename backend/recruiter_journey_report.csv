@@ -1,0 +1,9 @@
+step,request,response,status,render_result
+Create Job,POST /jobs,201 Created,Success,Job created UI
+Upload Resume,POST /upload,202 Accepted,Success,Upload progress bar
+Wait For Parse,GET /status,200 OK,Success,Pipeline complete
+View Candidate,GET /candidates/1,200 OK,Success,Candidate profile
+Run Ranking,POST /rank,200 OK,Success,Ranked list
+Open Candidate,GET /candidates/1/detail,200 OK,Success,Detailed explanation
+Compare Candidates,"GET /compare?ids=1,2",200 OK,Success,Side-by-side view
+Export Results,GET /export,200 OK,Success,CSV downloaded

@@ -1,0 +1,319 @@
+{
+  "resume_id": "resume_50",
+  "parsed_output": {
+    "full_name": "Kelly Davis 50",
+    "current_title": "Machine Learning Engineer",
+    "raw_title": "Machine Learning Engineer",
+    "normalized_title": "Machine Learning Engineer",
+    "title_confidence": 80,
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 14.25,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "user50@example.com Experienced Machine Learning Engineer with 12 years of experience.",
+    "contact": {
+      "email": "user50@example.com",
+      "phone": ""
+    },
+    "career_history": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "Company 50",
+        "start_date": "Jan 2014",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 149,
+        "start_abs_months": 24169,
+        "end_abs_months": 24318,
+        "bullets": [
+          "Developed multiple applications.",
+          "Junior Machine Learning Engineer",
+          "Old Company"
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Machine Learning Engineer",
+          "Company found: Company 50",
+          "Valid dates: Jan 2014 - Present"
+        ]
+      },
+      {
+        "title": "Junior Machine Learning Engineer",
+        "company": "Old Company",
+        "start_date": "Feb 2012",
+        "end_date": "Dec 2013",
+        "is_current": false,
+        "duration_months": 22,
+        "start_abs_months": 24146,
+        "end_abs_months": 24168,
+        "bullets": [
+          "Maintained legacy systems."
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Junior Machine Learning Engineer",
+          "Company found: Old Company",
+          "Valid dates: Feb 2012 - Dec 2013"
+        ]
+      }
+    ],
+    "raw_experience_blocks": [
+      {
+        "pre_date_text": "Machine Learning Engineer\nCompany 50",
+        "start_date": "Jan 2014",
+        "end_date": "Present",
+        "desc_text": "Developed multiple applications.\nJunior Machine Learning Engineer\nOld Company"
+      },
+      {
+        "pre_date_text": "Developed multiple applications.\nJunior Machine Learning Engineer\nOld Company",
+        "start_date": "Feb 2012",
+        "end_date": "Dec 2013",
+        "desc_text": "Maintained legacy systems."
+      }
+    ],
+    "education": [
+      {
+        "degree": "BA",
+        "institution": "Graphic Design",
+        "field_of_study": "",
+        "evidence": "BA Graphic Design University 50"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "type": "hard"
+      },
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "C++",
+        "type": "hard"
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard"
+      },
+      {
+        "name": "SQL",
+        "type": "hard"
+      },
+      {
+        "name": "Node.js",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Python",
+        "type": "hard",
+        "raw": "Python",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Java",
+        "type": "hard",
+        "raw": "Java",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "C++",
+        "type": "hard",
+        "raw": "C++",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard",
+        "raw": "JavaScript",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SQL",
+        "type": "hard",
+        "raw": "SQL",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Node.js",
+        "type": "hard",
+        "raw": "Node.js",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": [],
+    "career_graph": {
+      "total_years": 14.25,
+      "relevant_years": 14.25,
+      "leadership_years": 0,
+      "promotion_count": 0,
+      "company_count": 2,
+      "career_velocity": 0.0,
+      "inversion_count": 2
+    },
+    "raw_extracted_skills": [
+      {
+        "name": "Python",
+        "type": "hard"
+      },
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "C++",
+        "type": "hard"
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard"
+      },
+      {
+        "name": "SQL",
+        "type": "hard"
+      },
+      {
+        "name": "Node.js",
+        "type": "hard"
+      }
+    ],
+    "scoring_skills": [
+      {
+        "name": "Python",
+        "type": "hard",
+        "raw": "Python",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Java",
+        "type": "hard",
+        "raw": "Java",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "C++",
+        "type": "hard",
+        "raw": "C++",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard",
+        "raw": "JavaScript",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SQL",
+        "type": "hard",
+        "raw": "SQL",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Node.js",
+        "type": "hard",
+        "raw": "Node.js",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "negated_skills": [],
+    "_meta": {
+      "layout_complexity": 0.6,
+      "extraction_confidence": 0.79,
+      "parser_warnings": [],
+      "raw_extracted_text": "Kelly Davis 50\nuser50@example.com\nSummary:\nExperienced Machine Learning Engineer with 12 years of experience.\nExperience:\nMachine Learning Engineer\nCompany 50\nJan 2014 - Present\nDeveloped multiple applications.\nJunior Machine Learning Engineer\nOld Company\nFeb 2012 - Dec 2013\nMaintained legacy systems.\nSkills:\nProficient in SQL, Node.js, Java, JavaScript, C++, Python.\nEducation:\nBA Graphic Design\nUniversity 50"
+    }
+  }
+}

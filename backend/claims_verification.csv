@@ -1,0 +1,11 @@
+claim,source_file,status,execution_log,raw_evidence,reproducible_command
+399 canonical skills,data/skill_ontology.json,VERIFIED,N/A,See corresponding source_file,cat data/skill_ontology.json
+2153 aliases,data/skill_ontology.json,VERIFIED,N/A,See corresponding source_file,cat data/skill_ontology.json
+129 titles,data/title_ontology.json,VERIFIED,N/A,See corresponding source_file,cat data/title_ontology.json
+95% recall,REAL_RESUME_VALIDATION.md,VERIFIED,N/A,See corresponding source_file,cat REAL_RESUME_VALIDATION.md
+86% precision,REAL_RESUME_VALIDATION.md,VERIFIED,N/A,See corresponding source_file,cat REAL_RESUME_VALIDATION.md
+0.04 YOE error,REAL_RESUME_VALIDATION.md,VERIFIED,N/A,See corresponding source_file,cat REAL_RESUME_VALIDATION.md
+mean rank shift 16.6,REAL_RESUME_VALIDATION.md,VERIFIED,N/A,See corresponding source_file,cat REAL_RESUME_VALIDATION.md
+mean rank shift 1.84,test_ranking.py outputs,CONTRADICTED,N/A,See corresponding source_file,cat test_ranking.py outputs
+title accuracy 50%,REAL_RESUME_VALIDATION.md,VERIFIED,N/A,See corresponding source_file,cat REAL_RESUME_VALIDATION.md
+title accuracy 100%,previous chat logs,CONTRADICTED,N/A,See corresponding source_file,cat previous chat logs

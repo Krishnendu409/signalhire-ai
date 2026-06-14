@@ -1,0 +1,3 @@
+endpoint,missing_fields,renamed_fields,null_fields,unused_fields
+/api/v1/candidates/{id},skills,"normalized_skills -> skills, full_name -> name",career_gaps,domain_confidence
+/api/v1/compare,delta,"differences -> delta, candidates -> candidates_list",None,None

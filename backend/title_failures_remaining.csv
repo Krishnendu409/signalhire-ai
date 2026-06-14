@@ -1,0 +1,86 @@
+resume_id,ground_truth_title,parsed_title,normalized_title,root_cause
+25834360,Specialist,Specialist,Specialist,seniority mismatch
+16985289,Manager,Manager,Manager,industry qualifier mismatch
+87520378,Specialist,Specialist,Specialist,seniority mismatch
+24964303,Director,Manager,Manager,seniority mismatch
+17483843,Specialist,Engineer,Engineer,seniority mismatch
+30563572,Manager,Manager,Manager,seniority mismatch
+21866029,Analyst,Manager,Manager,industry qualifier mismatch
+38663892,Specialist,Manager,Manager,headline selection failure
+35121930,Professional,Engineer,Engineer,latest-role selection failure
+29211919,Professional,Lead,Lead,seniority mismatch
+27980446,Manager,Manager,Manager,industry qualifier mismatch
+13411858,Consultant,Consultant,Consultant,abbreviation mismatch
+20879311,Director,Manager,Manager,seniority mismatch
+14248724,Professional,,,seniority mismatch
+20748468,Executive,Manager,Manager,abbreviation mismatch
+80162314,Manager,Manager,Manager,seniority mismatch
+29161565,Professional,Engineer,Engineer,seniority mismatch
+17254634,Professional,Lead,Lead,seniority mismatch
+12071138,Director,Manager,Manager,industry qualifier mismatch
+28126340,Developer,Engineer,Engineer,abbreviation mismatch
+29930479,Professional,Teacher,Teacher,seniority mismatch
+19201175,Specialist,Manager,Manager,seniority mismatch
+18927233,Professional,Coordinator,Coordinator,abbreviation mismatch
+26908066,Executive,Manager,Manager,industry qualifier mismatch
+14304010,Director,Manager,Manager,industry qualifier mismatch
+37792474,Engineer,Manager,Manager,latest-role selection failure
+29486525,Professional,Teacher,Teacher,latest-role selection failure
+45475027,Manager,*Leader Worksite Safety,*Leader Worksite Safety,seniority mismatch
+24592627,Officer,Manager,Manager,headline selection failure
+38108845,Manager,Manager,Manager,industry qualifier mismatch
+51209395,Professional,Lead,Lead,latest-role selection failure
+17660419,Professional,Specialist,Specialist,industry qualifier mismatch
+26330995,Manager,Manager,Manager,seniority mismatch
+18236085,Director,Manager,Manager,seniority mismatch
+13072019,Executive,Manager,Manager,seniority mismatch
+17915015,Manager,Manager,Manager,industry qualifier mismatch
+17111768,Manager,Manager,Manager,seniority mismatch
+31761591,Manager,Manager,Manager,seniority mismatch
+51638201,Manager,Manager,Manager,latest-role selection failure
+29640922,Analyst,Analyst,Analyst,seniority mismatch
+22323967,Specialist,Manager,Manager,seniority mismatch
+24983760,Specialist,(K-12 Literacy Specialist),(K-12 Literacy Specialist),seniority mismatch
+21773106,Officer,Officer,Officer,industry qualifier mismatch
+24709432,Specialist,Manager,Manager,industry qualifier mismatch
+19234823,Director,Manager,Manager,abbreviation mismatch
+27096796,Professional,Lead,Lead,multi-role ambiguity
+11759079,Professional,Director,Director,abbreviation mismatch
+19545827,Manager,Manager,Manager,seniority mismatch
+40018190,Professional,Director,Director,seniority mismatch
+43685045,Professional,Lead,Lead,seniority mismatch
+27099856,Manager,Manager,Manager,seniority mismatch
+25924968,Executive,Manager,Manager,industry qualifier mismatch
+73157997,Manager,Manager,Manager,seniority mismatch
+35325329,Director,Analyst,Analyst,seniority mismatch
+23398733,Manager,Manager,Manager,industry qualifier mismatch
+26921245,Professional,Lead,Lead,seniority mismatch
+18208580,Manager,Manager,Manager,industry qualifier mismatch
+18132924,Executive,Manager,Manager,seniority mismatch
+16203589,Manager,Manager,Manager,multi-role ambiguity
+24349611,Specialist,Manager,Manager,seniority mismatch
+52684666,Professional,Specialist,Specialist,seniority mismatch
+12415691,Developer,Manager,Manager,seniority mismatch
+14413148,Manager,Manager,Manager,seniority mismatch
+19786924,Director,Director,Director,industry qualifier mismatch
+73497035,Analyst,Manager,Manager,seniority mismatch
+32965335,Engineer,Manager,Manager,headline selection failure
+10464113,Executive,Manager,Manager,seniority mismatch
+24068423,Officer,Consultant,Consultant,abbreviation mismatch
+57364820,Consultant,Manager,Manager,industry qualifier mismatch
+16861758,Director,Manager,Manager,industry qualifier mismatch
+13367322,Specialist,Specialist,Specialist,abbreviation mismatch
+27084878,Manager,Manager,Manager,industry qualifier mismatch
+14209965,Manager,Manager,Manager,industry qualifier mismatch
+64468610,Manager,Manager,Manager,seniority mismatch
+66741193,Director,Manager,Manager,seniority mismatch
+74236636,Manager,Manager,Manager,seniority mismatch
+25723793,Analyst,Manager,Manager,industry qualifier mismatch
+27091280,Specialist,Manager,Manager,headline selection failure
+33236701,Professional,Lead,Lead,seniority mismatch
+28198029,Consultant,Consultant,Consultant,abbreviation mismatch
+82118447,Manager,Manager,Manager,seniority mismatch
+11995013,Professional,Lead,Lead,seniority mismatch
+17481570,Professional,Teacher,Teacher,seniority mismatch
+18293620,Manager,Manager,Manager,industry qualifier mismatch
+18975686,Manager,Manager,Manager,seniority mismatch

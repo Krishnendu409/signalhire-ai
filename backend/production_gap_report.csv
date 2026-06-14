@@ -1,0 +1,4 @@
+issue,evidence,affected_component,severity
+Title extraction accuracy strictly tested at 50% against hardcoded ground truth,REAL_RESUME_VALIDATION.md shows 50% accuracy due to string format variance,AIPipeline Title Extraction vs RankingEngine Evaluator,High
+Rank Shift remains at 16.6 across 400 candidate pool,REAL_RESUME_VALIDATION.md shows 16.6 mean shift,Exhaustive V2 Ranking Engine,Critical
+Parser extracts extra related skills not physically in text (false positives),false_positive_skills.csv,AIPipeline Skill Ontology Matcher,Medium

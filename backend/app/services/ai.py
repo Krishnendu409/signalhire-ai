@@ -53,10 +53,13 @@ def _extract_skills_with_evidence(text: str) -> list[dict]:
     found: dict[str, dict] = {}
 
     ont = _SKILL_ONT or {}
+    lower_txt = text.lower()
     for canonical, data in ont.items():
         if canonical in found:
             continue
         for alias in data.get("aliases", []):
+            if alias.lower() not in lower_txt:
+                continue
             pattern = _make_pattern(alias)
             m = re.search(pattern, text, re.IGNORECASE | re.MULTILINE)
             if m:
@@ -120,40 +123,317 @@ def _normalize_title(raw: str) -> dict:
         return {"normalized": best, "family": meta.get("family", ""), "seniority": meta.get("seniority", ""), "match_method": "partial"}
 
     return {"normalized": raw, "family": "", "seniority": "", "match_method": "none"}
+import datetime
+
+ROLE_KEYWORDS = re.compile(
+    r'(?:engineer|developer|architect|scientist|analyst|manager|lead|director|'
+    r'designer|specialist|administrator|consultant|officer|researcher|support|'
+    r'technician|programmer|sre|devops|cto|ciso|vp|intern|founder|owner|scrum\s+master)', 
+    re.IGNORECASE
+)
+
+def _is_role_title(text: str) -> bool:
+    return bool(ROLE_KEYWORDS.search(text))
+
+def _parse_dates(start_str: str, end_str: str):
+    s_yr_match = re.search(r'\d{4}', start_str)
+    e_yr_match = re.search(r'\d{4}', end_str)
+    is_current = bool(re.search(r'(?i)present|current|now|ongoing|till date', end_str))
+    
+    sy = int(s_yr_match.group()) if s_yr_match else None
+    current_year = datetime.datetime.now().year
+    ey = current_year if is_current else (int(e_yr_match.group()) if e_yr_match else sy)
+    
+    if sy is None:
+        return 0, False, None, None
+    if ey is None:
+        ey = sy
+    if ey < sy:
+        ey = sy
+        
+    months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+    sm = 1
+    em = 12 if not is_current else datetime.datetime.now().month
+    
+    for i, m in enumerate(months):
+        if re.search(rf'(?i)\b{m}', start_str): sm = i + 1
+        if re.search(rf'(?i)\b{m}', end_str): em = i + 1
+            
+    sm_match = re.search(r'(\d{1,2})[\/\-]\d{4}', start_str)
+    if sm_match: sm = int(sm_match.group(1))
+    em_match = re.search(r'(\d{1,2})[\/\-]\d{4}', end_str)
+    if em_match: em = int(em_match.group(1))
+
+    duration_months = max(1, (ey - sy) * 12 + (em - sm))
+    start_abs_months = sy * 12 + sm
+    end_abs_months = ey * 12 + em
+    return duration_months, is_current, start_abs_months, end_abs_months
+
+def _reconstruct_career_history(exp_lines: list[str], full_text: str):
+    date_pattern = re.compile(
+        r'\b((?:(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+)?\d{4}|\d{1,2}[\/\-]\d{4})\s*(?:–|—|-|to)\s*((?:(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+)?\d{4}|\d{1,2}[\/\-]\d{4}|Present|Current|Now|Till Date|Ongoing)\b',
+        re.IGNORECASE
+    )
+    
+    exp_text = "\n".join(exp_lines) if len(exp_lines) > 2 else full_text
+    matches = list(date_pattern.finditer(exp_text))
+    
+    career_history = []
+    raw_blocks = []
+    
+    if not matches:
+        # Fallback to line-by-line parsing if no dates found
+        for line in exp_lines:
+            line = line.strip()
+            if not line: continue
+            if _is_role_title(line):
+                inline_split = re.split(r'\s+[-–—\|@,]\s+|\s+at\s+', line, flags=re.IGNORECASE)
+                if len(inline_split) >= 2:
+                    a_role = _is_role_title(inline_split[0])
+                    t_val = inline_split[0].strip() if a_role else inline_split[-1].strip()
+                    c_val = inline_split[-1].strip() if a_role else inline_split[0].strip()
+                    career_history.append({
+                        "title": t_val,
+                        "company": c_val,
+                        "start_date": "", "end_date": "", "is_current": False, "duration_months": 0, "start_abs_months": None, "end_abs_months": None, "bullets": [],
+                        "confidence": 0.6, "evidence": ["Role keyword inline match"]
+                    })
+                else:
+                    career_history.append({
+                        "title": line,
+                        "company": "",
+                        "start_date": "", "end_date": "", "is_current": False, "duration_months": 0, "start_abs_months": None, "end_abs_months": None, "bullets": [],
+                        "confidence": 0.5, "evidence": ["Role keyword match"]
+                    })
+        return career_history, 0, 0, 0, 0, 0, 0.0, []
+        
+    last_idx = 0
+    blocks = []
+    for m in matches:
+        blocks.append(exp_text[last_idx:m.start()].strip())
+        blocks.append(m.group(1).strip())
+        blocks.append(m.group(2).strip())
+        last_idx = m.end()
+    blocks.append(exp_text[last_idx:].strip())
+    
+    current_company = "Unknown Company"
+    parsed_periods = []
+    inversion_count = 0
+    idx = 1
+    
+    while idx < len(blocks) - 1:
+        start_date = blocks[idx]
+        end_date = blocks[idx + 1]
+        desc_text = blocks[idx + 2] if idx + 2 < len(blocks) else ""
+        pre_text = blocks[idx - 1]
+        
+        raw_blocks.append({
+            "pre_date_text": pre_text,
+            "start_date": start_date,
+            "end_date": end_date,
+            "desc_text": desc_text[:200]
+        })
+        
+        pre_lines = [ln.strip() for ln in pre_text.split('\n') if 2 < len(ln.strip()) < 120]
+        title, company = "", ""
+        HEADER_WORDS = {"experience", "employment", "work history", "career", "professional experience", "work experience", "positions held"}
+        pre_lines = [l for l in pre_lines if l.lower() not in HEADER_WORDS]
+        
+        if pre_lines:
+            line1 = pre_lines[-1]
+            line2 = pre_lines[-2] if len(pre_lines) >= 2 else ""
+            
+            inline_split = re.split(r'\s+[-–—\|@,]\s+|\s+at\s+', line1, flags=re.IGNORECASE)
+            
+            if len(inline_split) >= 2:
+                part_a = inline_split[0].strip()
+                part_b = inline_split[-1].strip()
+                a_role = _is_role_title(part_a)
+                b_role = _is_role_title(part_b)
+                if a_role and not b_role: title, company = part_a, part_b
+                elif b_role and not a_role: 
+                    title, company = part_b, part_a
+                    inversion_count += 1
+                else: title, company = (part_a, part_b) if a_role else (part_b, part_a)
+            elif line2:
+                l1_role = _is_role_title(line1)
+                l2_role = _is_role_title(line2)
+                if l1_role and not l2_role: title, company = line1, line2
+                elif l2_role and not l1_role: 
+                    title, company = line2, line1
+                    inversion_count += 1
+                else: title, company = line1, line2
+            else:
+                title = line1
+        
+        if company and company != "Unknown Company": current_company = company
+        elif not company: company = current_company
+            
+        dur_months, is_current, start_abs_months, end_abs_months = _parse_dates(start_date, end_date)
+        if start_abs_months and end_abs_months: parsed_periods.append((start_abs_months, end_abs_months))
+            
+        bullet_lines = [b.strip() for b in desc_text.split('\n') if b.strip() and not re.match(date_pattern, b.strip())][:5]
+        
+        title_val = title if title and title != "Unknown Title" else ""
+        company_val = company if company and company != "Unknown Company" else ""
+        
+        # Confidence and evidence
+        evidence = []
+        conf = 0.5
+        if title_val:
+            if _is_role_title(title_val):
+                conf += 0.2
+                evidence.append(f"Title matched ontology: {title_val}")
+            else:
+                conf += 0.1
+                evidence.append(f"Title found: {title_val}")
+        if company_val:
+            conf += 0.2
+            evidence.append(f"Company found: {company_val}")
+        if start_abs_months and end_abs_months:
+            conf += 0.1
+            evidence.append(f"Valid dates: {start_date} - {end_date}")
+        conf = min(1.0, conf)
+
+        career_history.append({
+            "title": title_val,
+            "company": company_val,
+            "start_date": start_date,
+            "end_date": end_date,
+            "is_current": is_current,
+            "duration_months": dur_months,
+            "start_abs_months": start_abs_months,
+            "end_abs_months": end_abs_months,
+            "bullets": bullet_lines,
+            "confidence": conf,
+            "evidence": evidence
+        })
+        idx += 3
+        
+    total_months = 0
+    if parsed_periods:
+        parsed_periods.sort()
+        merged = [parsed_periods[0]]
+        for s, e in parsed_periods[1:]:
+            if s <= merged[-1][1]: merged[-1] = (merged[-1][0], max(merged[-1][1], e))
+            else: merged.append((s, e))
+        total_months = sum(e - s for s, e in merged)
+    total_years = max(0, total_months / 12)
+    
+    # Domain-aware relevant years logic
+    relevant_months = 0
+    rel_periods = []
+    for exp in career_history:
+        if _is_role_title(exp['title']) and exp.get('start_abs_months') and exp.get('end_abs_months'):
+            rel_periods.append((exp['start_abs_months'], exp['end_abs_months']))
+    if rel_periods:
+        rel_periods.sort()
+        merged_rel = [rel_periods[0]]
+        for s, e in rel_periods[1:]:
+            if s <= merged_rel[-1][1]: merged_rel[-1] = (merged_rel[-1][0], max(merged_rel[-1][1], e))
+            else: merged_rel.append((s, e))
+        relevant_months = sum(e - s for s, e in merged_rel)
+    relevant_years = max(0, relevant_months / 12)
+    
+    leadership_years = sum(max(1, exp['duration_months'] // 12) for exp in career_history if re.search(r'(?i)lead|manager|director|vp|chief|head', exp['title']))
+    
+    companies_seen = {}
+    promotion_count = 0
+    # Reversed goes from oldest to newest if career_history is newest first
+    for exp in reversed(career_history):
+        c = exp['company'].lower()
+        t = exp['title'].lower()
+        if c in companies_seen: 
+            # Same company seen earlier, if different title, it's a promotion
+            if companies_seen[c] != t:
+                promotion_count += 1
+        companies_seen[c] = t
+        
+    company_count = len(companies_seen)
+    career_velocity = round(promotion_count / max(1, total_years) * 10, 1)
+    
+    return career_history, total_years, relevant_years, leadership_years, promotion_count, company_count, career_velocity, inversion_count, raw_blocks
 
 
 class AIPipeline:
 
     @staticmethod
     async def parse_jd(raw_text: str) -> dict:
-        """Deterministic, offline regex-based JD parser."""
+        """Deterministic ontology-driven JD parser."""
         logger.info("[DETERMINISTIC_PARSER] Parsing JD without LLM.")
-        title_match = re.search(r"Role:\s*(.*)", raw_text, re.IGNORECASE)
-        title = title_match.group(1).strip() if title_match else "Unknown Role"
-
-        seniority = "senior"
-        if "junior" in raw_text.lower(): seniority = "junior"
-        elif "mid" in raw_text.lower(): seniority = "mid"
-        elif "lead" in raw_text.lower(): seniority = "lead"
-
-        skills_match = re.search(r"Skills:\s*(.*)", raw_text, re.IGNORECASE)
-        if skills_match:
-            skills = [s.strip() for s in skills_match.group(1).split(",") if s.strip()]
+        
+        # 1. Title Extraction
+        t_norm = _normalize_title(raw_text)
+        if t_norm["match_method"] != "none":
+            title = t_norm["normalized"]
         else:
-            skills = []
+            m = re.search(r'(Engineer|Developer|Manager|Analyst|Scientist|Architect|Associate|Director|VP|Lead)', raw_text, re.IGNORECASE)
+            if m:
+                m_full = re.search(r'([a-zA-Z\s]{0,20}' + m.group(1) + r')', raw_text, re.IGNORECASE)
+                title = m_full.group(1).strip() if m_full else m.group(1)
+            else:
+                title = ""
+        
+        seniority = "mid"
+        lower_txt = raw_text.lower()
+        if "senior" in lower_txt: seniority = "senior"
+        elif "junior" in lower_txt: seniority = "junior"
+        elif "lead" in lower_txt or "manager" in lower_txt: seniority = "lead"
+        
+        # 2. Skills
+        extracted = _extract_skills_with_evidence(raw_text)
+        hard = [s["name"] for s in extracted if s["type"] == "hard"]
+        soft = [s["name"] for s in extracted if s["type"] == "soft"]
+        
+        # 3. Experience
+        exp_match = re.search(r'(\d+)\+?\s*(?:years?|yrs?)\s*(?:of\s+)?experience', raw_text, re.IGNORECASE)
+        experience = exp_match.group(1) + " years" if exp_match else ""
+        if not experience:
+            if seniority == "senior": experience = "5 years"
+            elif seniority == "lead": experience = "8 years"
+            elif seniority == "junior": experience = "1 year"
+            else: experience = "3 years"
+        
+        # 4. Certifications
+        certs = []
+        for s in extracted:
+            if s["name"].endswith("Certified") or "Certification" in s["name"]:
+                certs.append(s["name"])
+                
+        # 5. Domain Inference via Ontology
+        domain_counts = {}
+        for s in extracted:
+            if s.get("type") == "hard" and "category" in s:
+                cat = s["category"]
+                domain_counts[cat] = domain_counts.get(cat, 0) + 1
+        
+        domain = ""
+        domain_confidence = 0
+        supporting_evidence = []
+        if domain_counts:
+            best_domain = max(domain_counts.items(), key=lambda x: x[1])
+            domain = best_domain[0]
+            domain_confidence = min(100, int((best_domain[1] / max(1, len(hard))) * 100))
+            supporting_evidence = [s["name"] for s in extracted if s.get("category") == domain]
 
-        exp_match = re.search(r"Experience:\s*(.*)", raw_text, re.IGNORECASE)
-        experience = exp_match.group(1).strip() if exp_match else ""
+        missing_extractions = {}
+        if not title: missing_extractions["title"] = "No matching title found in ontology or regex"
+        if not hard: missing_extractions["skills"] = "No hard skills matched in ontology"
+        if not domain: missing_extractions["domain"] = "No domain inferred from extracted skills"
 
         return {
             "title": title,
             "seniority": seniority,
-            "required_hard_skills": skills,
-            "required_soft_skills": [],
+            "required_hard_skills": hard,
+            "required_soft_skills": soft,
+            "preferred_skills": [],
             "must_have_experience": experience,
-            "nice_to_have": [],
-            "hidden_competencies": [],
-            "domain_knowledge": ""
+            "certifications": certs,
+            "domain": domain,
+            "domain_knowledge": domain,
+            "domain_confidence": domain_confidence,
+            "supporting_evidence": supporting_evidence[:5],
+            "missing_extractions": missing_extractions
         }
 
     @staticmethod
@@ -178,7 +458,7 @@ class AIPipeline:
         phone = phone_match.group(0).strip() if phone_match else ""
 
         # ── 3. Name ──────────────────────────────────────────────────────────
-        name = "Candidate"
+        name = None
         ignore_words = {"resume", "cv", "curriculum vitae", "profile", "summary", "objective",
                         "experience", "education", "skills", "certifications"}
         for line in lines[:6]:
@@ -229,12 +509,24 @@ class AIPipeline:
 
         for line in lines[1:]:
             lower_clean = line.lower().strip().rstrip(':').rstrip('—').strip()
+
             matched = False
             for k, v in SECTION_MAP.items():
-                if lower_clean == k or lower_clean.startswith(k + ':') or lower_clean.startswith(k + ' —'):
+                if lower_clean == k:
                     current_section = v
                     matched = True
                     break
+                elif lower_clean.startswith(k + ':') or lower_clean.startswith(k + ' —'):
+                    current_section = v
+                    matched = True
+                    # Append the rest of the line to the section!
+                    rest = line[line.lower().find(k) + len(k) + 1:].strip()
+                    if rest.startswith('-') or rest.startswith('—'):
+                        rest = rest[1:].strip()
+                    if rest:
+                        sections[current_section].append(rest)
+                    break
+
             if not matched:
                 sections[current_section].append(line)
 
@@ -243,170 +535,14 @@ class AIPipeline:
         skill_results = _extract_skills_with_evidence(skill_text)
 
         # ── 6. Experience Reconstruction & YOE ──────────────────────────────
-        experiences = []
-        parsed_periods: list[tuple[int, int]] = []
-        current_title = ""
-
-        # Expanded date pattern: handles month/year, year-only, slash format
-        date_pattern = re.compile(
-            r'\b('
-            r'(?:(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|'
-            r'Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)'
-            r'\s+)?\d{4}'
-            r'|\d{1,2}[\/\-]\d{4}'
-            r')'
-            r'\s*(?:–|—|-|to)\s*'
-            r'('
-            r'(?:(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|'
-            r'Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)'
-            r'\s+)?\d{4}'
-            r'|\d{1,2}[\/\-]\d{4}'
-            r'|Present|Current|Now|Till Date|Ongoing'
-            r')\b',
-            re.IGNORECASE
-        )
-
-        exp_text = "\n".join(sections["Experience"]) if len(sections["Experience"]) > 2 else text
-        matches = list(date_pattern.finditer(exp_text))
-
-        if matches:
-            blocks = []
-            last_idx = 0
-            for m in matches:
-                blocks.append(exp_text[last_idx:m.start()].strip())
-                blocks.append(m.group(1).strip())
-                blocks.append(m.group(2).strip())
-                last_idx = m.end()
-            blocks.append(exp_text[last_idx:].strip())
-
-            idx = 1
-            while idx < len(blocks) - 1:
-                start_date = blocks[idx]
-                end_date = blocks[idx + 1]
-                desc_text = blocks[idx + 2] if idx + 2 < len(blocks) else ""
-
-                # Title/company extraction from pre-date block
-                pre_lines = [ln.strip() for ln in blocks[idx - 1].split('\n')
-                             if 2 < len(ln.strip()) < 120 and len(ln.strip().split()) < 15]
-
-                title = "Professional"
-                company = "Company"
-
-                # Clean header keywords that aren't titles
-                HEADER_WORDS = {"experience", "employment", "work history", "career",
-                                "professional experience", "work experience", "positions held"}
-
-                if pre_lines:
-                    # Try "Title @ Company" or "Title at Company" patterns
-                    last_line = pre_lines[-1]
-                    at_split = re.split(r'\s+(?:at|@)\s+', last_line, flags=re.IGNORECASE)
-                    dash_split = re.split(r'\s+[-–—]\s+', last_line)
-                    pipe_split = last_line.split('|')
-                    comma_split = last_line.split(',')
-
-                    if len(at_split) == 2:
-                        title = at_split[0].split('|')[0].strip()
-                        company = at_split[1].strip()
-                    elif len(pipe_split) >= 2:
-                        title = pipe_split[0].strip()
-                        company = pipe_split[1].strip()
-                    elif len(comma_split) >= 2 and len(pre_lines) == 1:
-                        title = comma_split[0].strip()
-                        company = comma_split[1].strip()
-                    elif len(dash_split) == 2:
-                        # Determine which part is role vs company using role keywords
-                        ROLE_KW = re.compile(r'engineer|developer|architect|scientist|analyst|manager|lead|'
-                                             r'director|designer|specialist|administrator|consultant|officer|'
-                                             r'researcher|support|technician|programmer|sre|devops|cto|ciso|vp|'
-                                             r'intern|founder|owner|scrum\s+master', re.IGNORECASE)
-                        part_a, part_b = dash_split[0].strip(), dash_split[1].strip()
-                        a_is_role = bool(ROLE_KW.search(part_a))
-                        b_is_role = bool(ROLE_KW.search(part_b))
-                        if a_is_role and not b_is_role:
-                            title = part_a
-                            company = part_b
-                        elif b_is_role and not a_is_role:
-                            title = part_b
-                            company = part_a
-                        else:
-                            # Both or neither — default: first=company, second=title for "Company - Title"
-                            # unless first part is single word (likely company name)
-                            if len(part_a.split()) == 1:
-                                title = part_b
-                                company = part_a
-                            else:
-                                title = part_a
-                                company = part_b
-                    elif len(pre_lines) >= 2:
-                        t_candidate = pre_lines[-1].split('|')[0].split(',')[0].strip()
-                        c_candidate = pre_lines[-2].split('|')[0].split(',')[0].strip()
-                        if c_candidate.lower() not in HEADER_WORDS:
-                            title = t_candidate if len(t_candidate.split()) <= 8 else "Professional"
-                            company = c_candidate
-                        else:
-                            title = t_candidate
-                    else:
-                        t_candidate = last_line.split('|')[0].split(',')[0].strip()
-                        if t_candidate.lower() not in HEADER_WORDS:
-                            title = t_candidate
-
-                # Sanitize
-                if title.lower() in HEADER_WORDS or len(title) < 2:
-                    title = "Software Professional"
-
-                if not current_title or current_title in ("Software Professional", "Professional"):
-                    current_title = title
-
-                # Parse years
-                s_yr = re.search(r'\d{4}', start_date)
-                e_yr = re.search(r'\d{4}', end_date)
-                is_current = bool(re.search(r'present|current|now|ongoing|till date', end_date, re.IGNORECASE))
-
-                dur = 12
-                if s_yr:
-                    sy = int(s_yr.group())
-                    ey = 2026 if is_current else (int(e_yr.group()) if e_yr else sy)
-                    if ey < sy: ey = sy
-                    dur = max((ey - sy) * 12, 6)
-                    if dur > 600: dur = 60
-                    parsed_periods.append((sy, ey))
-
-                # Collect bullet evidence
-                bullet_lines = [b.strip() for b in desc_text.split('\n')
-                                if b.strip() and not re.match(date_pattern, b.strip())][:5]
-                bullets = bullet_lines if bullet_lines else [desc_text[:200].replace('\n', ' ')]
-
-                experiences.append({
-                    "title": title,
-                    "company": company,
-                    "start_date": start_date,
-                    "end_date": end_date,
-                    "is_current": is_current,
-                    "duration_months": dur,
-                    "bullets": bullets,
-                    "evidence": f"{title} at {company} ({start_date} – {end_date})"
-                })
-                idx += 3
-
-        # YOE from disjoint date ranges (prevents double-counting)
-        if parsed_periods:
-            # Merge overlapping intervals
-            parsed_periods.sort()
-            merged = [parsed_periods[0]]
-            for s, e in parsed_periods[1:]:
-                if s <= merged[-1][1]:
-                    merged[-1] = (merged[-1][0], max(merged[-1][1], e))
-                else:
-                    merged.append((s, e))
-            yoe_years = sum(e - s for s, e in merged)
-            if yoe_years < 1:
-                yoe_years = 1
-        else:
+        career_history, total_years, relevant_years, leadership_years, promotion_count, company_count, career_velocity, inversion_count, raw_blocks = _reconstruct_career_history(sections["Experience"], text)
+        
+        if total_years < 1:
             yoe_match = re.search(r'(\d+)\+?\s*(?:years?|yrs?)\s*(?:of\s+)?experience', text, re.IGNORECASE)
-            yoe_years = int(yoe_match.group(1)) if yoe_match else 3
-
-        # Ensure reasonable range
-        yoe_years = min(yoe_years, 45)
+            total_years = int(yoe_match.group(1)) if yoe_match else 3
+            
+        yoe_years = min(total_years, 45)
+        current_title = career_history[0]["title"] if career_history else ""
 
         # ── 7. Title Normalization ────────────────────────────────────────────
         # Clean up raw title strings before normalization
@@ -442,62 +578,55 @@ class AIPipeline:
 
         current_title = _clean_raw_title(current_title)
 
-        # Fallback: scan text for known title patterns if title still looks wrong
-        if not current_title or current_title in ("Software Professional", "Professional", "Candidate") \
-                or len(current_title) < 3:
-            if sections["Experience"]:
-                first_exp_line = sections["Experience"][0]
-                cleaned = _clean_raw_title(first_exp_line[:100])
-                t_norm = _normalize_title(cleaned)
-                if t_norm["match_method"] != "none":
-                    current_title = t_norm["normalized"]
-                else:
-                    current_title = cleaned[:60]
+        # Title extraction rebuild based on priority: headline -> latest role -> summary -> ontology inference
+        raw_title = None
+        normalized_title = None
+        title_confidence = 0
 
-        # Broad title regex fallback on full text
-        TITLE_PATTERNS = [
-            r'Senior\s+Software\s+Engineer', r'Staff\s+Software\s+Engineer', r'Principal\s+(?:Software\s+)?Engineer',
-            r'Backend\s+(?:Developer|Engineer)', r'Frontend\s+(?:Developer|Engineer)',
-            r'Full[\s\-]Stack\s+(?:Developer|Engineer)', r'Data\s+Scientist',
-            r'Machine\s+Learning\s+Engineer', r'ML(?:Ops)?\s+Engineer', r'AI\s+Engineer',
-            r'Data\s+Engineer', r'Senior\s+DevOps\s+Engineer', r'DevOps\s+Engineer',
-            r'Cloud\s+(?:Engineer|Architect)', r'Solutions?\s+Architect', r'Site\s+Reliability\s+Engineer',
-            r'SRE\b', r'Platform\s+Engineer', r'Infrastructure\s+Engineer',
-            r'Product\s+Manager', r'Senior\s+Product\s+Manager', r'Product\s+Owner',
-            r'QA\s+(?:Automation\s+)?Engineer', r'Security\s+Engineer', r'Security\s+Analyst',
-            r'Penetration\s+Tester', r'SOC\s+Analyst', r'Malware\s+Analyst', r'GRC\s+Analyst',
-            r'Network\s+(?:Engineer|Administrator)', r'iOS\s+Developer', r'Android\s+Developer',
-            r'Mobile\s+Developer', r'UI/UX\s+Designer', r'UX\s+(?:Researcher|Designer)',
-            r'Blockchain\s+Developer', r'Web\s+Developer',
-            r'Embedded\s+(?:Systems\s+)?Engineer', r'Firmware\s+Engineer', r'FPGA\s+Engineer',
-            r'Hardware\s+Engineer', r'ASIC\s+Design\s+Engineer',
-            r'Data\s+Analyst', r'BI\s+(?:Developer|Analyst)', r'Analytics\s+Engineer',
-            r'Tech(?:nical)?\s+Lead', r'Engineering\s+Manager', r'CTO\b', r'CISO\b', r'VP\s+Engineering',
-            r'IT\s+(?:Support|Manager|Consultant)', r'Scrum\s+Master', r'Business\s+Analyst',
-            r'Research\s+Scientist', r'NLP\s+Engineer', r'Computer\s+Vision\s+Engineer',
-            r'(?:Manufacturing|Process|Quality|Supply\s+Chain|CAD|Robotics)\s+Engineer',
-            r'(?:Automotive|ADAS|Firmware)\s+(?:Software\s+)?Engineer',
-            r'Game\s+Developer', r'PHP\s+Developer', r'Systems?\s+Administrator',
-            r'Software\s+(?:Engineer|Developer|Architect)',
-        ]
+        # Try to extract title directly from early text lines (headline)
+        headline_title = ""
+        for line in lines[:8]:
+            if line.strip() == name: continue
+            cleaned = _clean_raw_title(line[:100])
+            tn = _normalize_title(cleaned)
+            if tn["match_method"] != "none":
+                headline_title = tn["normalized"]
+                break
 
-        if not current_title or current_title in ("Software Professional", "Professional", "Candidate") \
-                or len(current_title) < 3:
-            for tp in TITLE_PATTERNS:
-                m = re.search(tp, text, re.IGNORECASE)
-                if m:
-                    current_title = m.group(0)
-                    break
-            else:
-                current_title = "Software Professional"
+        # Priority 1: Headline
+        if headline_title:
+            raw_title = headline_title
+            title_confidence = 90
+        # Priority 2: Latest Role
+        elif career_history and career_history[0].get('title'):
+            raw_title = career_history[0].get('title')
+            title_confidence = 80
+        # Priority 3: Summary
+        elif sections["Summary"]:
+            summary_text = " ".join(sections["Summary"])
+            tn = _normalize_title(summary_text[:200])
+            if tn["match_method"] != "none":
+                raw_title = tn["normalized"]
+                title_confidence = 70
+        # Priority 4: Ontology Inference
+        if not raw_title and skill_results:
+            top_cat = max([s.get("category") for s in skill_results if s.get("category")], default="", key=lambda c: sum(1 for x in skill_results if x.get("category") == c))
+            if top_cat:
+                raw_title = f"{top_cat} Specialist"
+                title_confidence = 50
 
-        # Final clean: remove trailing company names
-        current_title = _clean_raw_title(current_title)
-
-        title_norm = _normalize_title(current_title)
-        normalized_title = title_norm["normalized"]
-        title_family = title_norm["family"]
-        title_seniority = title_norm["seniority"]
+        if raw_title:
+            title_norm = _normalize_title(raw_title)
+            normalized_title = title_norm["normalized"]
+            title_family = title_norm["family"]
+            title_seniority = title_norm["seniority"]
+        else:
+            raw_title = None
+            normalized_title = None
+            title_family = ""
+            title_seniority = ""
+            
+        current_title = raw_title
 
         # ── 8. Education Extraction ───────────────────────────────────────────
         education = []
@@ -615,18 +744,21 @@ class AIPipeline:
         # ── 10. Build final output ────────────────────────────────────────────
         return {
             "full_name": name,
-            "current_title": normalized_title if normalized_title else current_title,
+            "current_title": normalized_title if normalized_title else raw_title,
+            "raw_title": raw_title,
             "normalized_title": normalized_title,
+            "title_confidence": title_confidence,
             "title_family": title_family,
             "title_seniority": title_seniority,
             "total_years_of_experience": yoe_years,
-            "current_employment_status": "Employed" if parsed_periods else "Unknown",
+            "current_employment_status": "Employed" if career_history and career_history[0].get("is_current") else "Unknown",
             "open_to_work": True,
             "notice_period": 30,
             "expected_salary": 0,
             "summary": " ".join(sections["Summary"])[:500] if sections["Summary"] else "Deterministically extracted resume profile.",
             "contact": {"email": email, "phone": phone},
-            "experiences": experiences,
+            "career_history": career_history,
+            "raw_experience_blocks": raw_blocks,
             "education": education,
             "skills": [{"name": s["name"], "type": s["type"]} for s in skill_results],
             "normalized_skills": skill_results,
@@ -634,17 +766,177 @@ class AIPipeline:
             "certifications_detail": certifications,
             "projects": [],
             "career_gaps": [],
-            "trajectory_events": []
+            "trajectory_events": [],
+            "career_graph": {
+                "total_years": total_years,
+                "relevant_years": relevant_years,
+                "leadership_years": leadership_years,
+                "promotion_count": promotion_count,
+                "company_count": company_count,
+                "career_velocity": career_velocity,
+                "inversion_count": inversion_count
+            }
+        }
+
+    @staticmethod
+    async def rerank_candidate(job_req: dict, candidate_parsed: dict) -> dict:
+        """Evidence-based candidate evaluation."""
+        # 1. Skill Match
+        req_skills = set(s.lower().strip() for s in job_req.get("required_hard_skills", []))
+        cand_skills = set(s.get("name", "").lower().strip() for s in candidate_parsed.get("skills", []))
+        if req_skills:
+            matched = list(req_skills.intersection(cand_skills))
+            missing = list(req_skills - cand_skills)
+            skill_score = int((len(matched) / len(req_skills)) * 100)
+            skill_match = {"score": skill_score, "matched": matched, "missing": missing}
+        else:
+            skill_match = {"score": 100, "matched": list(cand_skills)[:5], "missing": []}
+
+        # 2. Title Match
+        req_title = job_req.get("title", "").lower()
+        cand_title = candidate_parsed.get("normalized_title", "").lower() or candidate_parsed.get("current_title", "").lower()
+        if not req_title: title_match = {"score": 100, "required": "", "candidate": cand_title, "match_type": "none"}
+        elif req_title == cand_title: title_match = {"score": 100, "required": req_title, "candidate": cand_title, "match_type": "exact"}
+        elif req_title in cand_title or cand_title in req_title: title_match = {"score": 80, "required": req_title, "candidate": cand_title, "match_type": "partial"}
+        else: title_match = {"score": 40, "required": req_title, "candidate": cand_title, "match_type": "none"}
+
+        # 3. Experience Match
+        cand_yoe = candidate_parsed.get("total_years_of_experience", 0)
+        req_exp_str = job_req.get("must_have_experience", "")
+        exp_match = re.search(r'\d+', req_exp_str)
+        req_yoe = int(exp_match.group(0)) if exp_match else 0
+        if req_yoe == 0: exp_score = {"score": 100, "required_years": 0, "candidate_years": cand_yoe, "status": "no_requirement"}
+        elif cand_yoe >= req_yoe: exp_score = {"score": min(100, 80 + int((cand_yoe - req_yoe) * 5)), "required_years": req_yoe, "candidate_years": cand_yoe, "status": "exceeds"}
+        else: exp_score = {"score": max(0, int((cand_yoe / req_yoe) * 100)), "required_years": req_yoe, "candidate_years": cand_yoe, "status": "shortfall"}
+
+        # 4. Domain Match
+        req_domain = job_req.get("domain_knowledge", "").lower()
+        if req_domain:
+            found = [exp.get("company", "Unknown") for exp in candidate_parsed.get("career_history", []) if req_domain in exp.get("company", "").lower() or req_domain in str(exp.get("bullets", [])).lower()]
+            domain_match = {"score": 100 if found else 0, "required_domain": req_domain, "found_in": list(set(found))}
+        else:
+            domain_match = {"score": 100, "required_domain": "None", "found_in": []}
+
+        # 5. Education Match
+        edu_score = 100 if candidate_parsed.get("education") else 60
+        education_match = {"score": edu_score, "degrees": [e.get("degree") for e in candidate_parsed.get("education", [])]}
+
+        # 6. Certification Match
+        cert_score = 100 if candidate_parsed.get("certifications") else 60
+        cert_match = {"score": cert_score, "certifications": candidate_parsed.get("certifications", [])}
+
+        # 7. Project Match
+        proj_score = 100 if candidate_parsed.get("projects") else 70
+        proj_match = {"score": proj_score, "projects_found": len(candidate_parsed.get("projects", []))}
+
+        # 8. Career Progression
+        traj = candidate_parsed.get("_trajectory", {})
+        archetype = traj.get("archetype", "unknown")
+        traj_score = {"fast_climber": 100, "stable_performer": 80, "chaotic_hopper": 40}.get(archetype, 60)
+        career_progression = {"score": traj_score, "archetype": archetype, "details": traj.get("details", "")}
+
+        # 9. Recency
+        exps = candidate_parsed.get("career_history", [])
+        latest = exps[0] if exps else {}
+        is_current = latest.get("is_current", False)
+        recency = {"score": 100 if is_current else 60, "latest_role": latest.get("title", ""), "is_current": is_current}
+
+        # 10. Transferable Skills Intelligence
+        _TRANSFERABILITY_MAP = {
+            "react": {"vue": {"risk": "Low", "reason": "Both are component-based JS frameworks."}, "angular": {"risk": "Medium", "reason": "Different architecture but similar frontend concepts."}, "svelte": {"risk": "Low", "reason": "Component-based architecture."}},
+            "python": {"ruby": {"risk": "Low", "reason": "Both are dynamic scripting languages."}, "java": {"risk": "Medium", "reason": "Different paradigms but strong OOP foundation."}},
+            "aws": {"gcp": {"risk": "Low", "reason": "Equivalent cloud infrastructure concepts."}, "azure": {"risk": "Low", "reason": "Equivalent cloud concepts."}},
+            "sql": {"nosql": {"risk": "Medium", "reason": "Different data models but general database familiarity."}, "postgresql": {"risk": "Low", "reason": "Direct SQL dialect."}},
+            "c++": {"c": {"risk": "Low", "reason": "Same family of systems languages."}, "rust": {"risk": "Medium", "reason": "Memory management paradigms differ."}},
+            "machine learning": {"data analysis": {"risk": "High", "reason": "Foundational statistics but lacks model building."}, "deep learning": {"risk": "Low", "reason": "Advanced ML application."}},
+            "kubernetes": {"docker swarm": {"risk": "Medium", "reason": "Container orchestration concepts transfer."}},
+            "node.js": {"express": {"risk": "Low", "reason": "Express is a Node.js framework."}},
+            "java": {"c#": {"risk": "Low", "reason": "Very similar syntax and OOP paradigms."}}
+        }
+        
+        transferable_found = []
+        adaptation_risks = []
+        for m_skill in missing:
+            m_lower = m_skill.lower()
+            if m_lower in _TRANSFERABILITY_MAP:
+                for alt_skill, alt_data in _TRANSFERABILITY_MAP[m_lower].items():
+                    if alt_skill in cand_skills:
+                        transferable_found.append({
+                            "missing_requirement": m_skill,
+                            "candidate_skill": alt_skill,
+                            "adaptation_risk": alt_data["risk"],
+                            "reasoning": alt_data["reason"]
+                        })
+                        adaptation_risks.append(alt_data["risk"])
+                        break
+
+        if "High" in adaptation_risks: overall_risk = "High"
+        elif "Medium" in adaptation_risks: overall_risk = "Medium"
+        elif "Low" in adaptation_risks: overall_risk = "Low"
+        else: overall_risk = "None"
+
+        adj_score = 50 + (len(transferable_found) * 15)
+        adj_score = min(100, adj_score)
+
+        adjacency = {
+            "score": adj_score, 
+            "adjacent_skills": [t["candidate_skill"] for t in transferable_found],
+            "transferable_intelligence": transferable_found,
+            "overall_adaptation_risk": overall_risk
+        }
+
+        return {
+            "skill_match": skill_match,
+            "title_match": title_match,
+            "experience_match": exp_score,
+            "education_match": education_match,
+            "certification_match": cert_match,
+            "project_match": proj_match,
+            "domain_match": domain_match,
+            "career_progression": career_progression,
+            "recency": recency,
+            "adjacency": adjacency
+        }
+
+    @staticmethod
+    async def generate_explanation(job_req: dict, candidate_parsed: dict, scores: dict) -> dict:
+        """Deterministic evidence-backed explanation generator."""
+        sm = scores.get("skill_match", {})
+        missing = sm.get("missing", [])
+        matched = sm.get("matched", [])
+        
+        yoe = candidate_parsed.get("total_years_of_experience", 0)
+        strengths = []
+        if matched: strengths.append(f"Strong match for core skills: {', '.join(matched[:3])}")
+        strengths.append(f"{yoe} years of professional experience.")
+        
+        req_yoe = scores.get("experience_match", {}).get("required_years", 0)
+        domain = scores.get("domain_match", {}).get("required_domain", "")
+
+        overall = f"Matched: {', '.join(matched[:5]) if matched else 'None'} | Missing: {', '.join(missing[:5]) if missing else 'None'} | YOE: {yoe} vs required {req_yoe} | Domain: {domain}"
+
+        evidence = []
+        if matched: evidence.append({"claim": "Skill Match", "evidence": f"Found skills: {', '.join(matched)}"})
+        evidence.append({"claim": "Experience", "evidence": f"{yoe} years vs required {req_yoe} years."})
+        evidence.append({"claim": "Domain", "evidence": f"Matched in domain: {domain}" if scores.get("domain_match", {}).get("score", 0) > 0 else "No domain match found."})
+        
+        return {
+            "top_strengths": strengths,
+            "missing_skills": missing,
+            "adjacent_skills": scores.get("adjacency", {}).get("adjacent_skills", []),
+            "risk_factors": ["Career trajectory needs manual review."] if scores.get("career_progression", {}).get("score", 0) < 50 else [],
+            "overall_assessment": overall,
+            "extracted_evidence": evidence
         }
 
     @staticmethod
     def _default_resume():
         return {
-            "full_name": "Unknown", "current_title": "Software Professional",
-            "normalized_title": "Software Engineer", "title_family": "", "title_seniority": "",
+            "full_name": "", "current_title": "",
+            "normalized_title": "", "title_family": "", "title_seniority": "",
             "total_years_of_experience": 0, "current_employment_status": "Unknown",
             "open_to_work": True, "notice_period": 30, "expected_salary": 0,
-            "summary": "", "contact": {"email": "", "phone": ""}, "experiences": [],
+            "summary": "", "contact": {"email": "", "phone": ""}, "career_history": [], "raw_experience_blocks": [],
             "education": [], "skills": [], "normalized_skills": [], "certifications": [],
             "certifications_detail": [], "projects": [], "career_gaps": [], "trajectory_events": []
         }

@@ -1,0 +1,89 @@
+{
+  "raw_text": "Copyright 2010 Pallets\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are\nmet:\n\n1.  Redistributions of source code must retain the above copyright\n    notice, this list of conditions and the following disclaimer.\n\n2.  Redistributions in binary form must reproduce the above copyright\n    notice, this list of conditions and the following disclaimer in the\n    documentation and/or other materials provided with the distribution.\n\n3.  Neither the name of the copyright holder nor the names of its\n    contributors may be used to endorse or promote products derived from\n    this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A\nPARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\nHOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\nSPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED\nTO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\nPROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\nLIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\nNEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+  "parsed": {
+    "full_name": "Copyright 2010 Pallets",
+    "current_title": "Software Professional",
+    "normalized_title": "Software Professional",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 3,
+    "current_employment_status": "Unknown",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. 2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. 3.  Neither the name ",
+    "contact": {
+      "email": "",
+      "phone": ""
+    },
+    "experiences": [],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "of the copyright holder nor the names of its",
+        "field_of_study": "source and binary forms",
+        "evidence": "Copyright 2010 Pallets  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following con"
+      },
+      {
+        "degree": "BE",
+        "institution": "used to endorse or promote products derived from",
+        "field_of_study": "source and binary forms",
+        "evidence": "Copyright 2010 Pallets  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following con"
+      },
+      {
+        "degree": "BS",
+        "institution": "University",
+        "field_of_study": "source and binary forms",
+        "evidence": "Copyright 2010 Pallets  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following con"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Express",
+        "type": "hard"
+      },
+      {
+        "name": "Supply Chain",
+        "type": "hard"
+      },
+      {
+        "name": "Technical Writing",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Express",
+        "evidence": "OLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Supply Chain",
+        "evidence": "DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER C",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Technical Writing",
+        "evidence": "and the following disclaimer in the     documentation and/or other materials provided with the distribution.  3.  Neither the name of the copyright holde",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

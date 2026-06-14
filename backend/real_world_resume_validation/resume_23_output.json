@@ -1,0 +1,251 @@
+{
+  "resume_id": "resume_23",
+  "parsed_output": {
+    "full_name": "Charlie Smith 23",
+    "current_title": "Backend Engineer",
+    "raw_title": "Backend Engineer",
+    "normalized_title": "Backend Engineer",
+    "title_confidence": 80,
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 13.25,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "user23@example.com Experienced Backend Engineer with 11 years of experience.",
+    "contact": {
+      "email": "user23@example.com",
+      "phone": ""
+    },
+    "career_history": [
+      {
+        "title": "Backend Engineer",
+        "company": "Company 23",
+        "start_date": "Jan 2015",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 137,
+        "start_abs_months": 24181,
+        "end_abs_months": 24318,
+        "bullets": [
+          "Developed multiple applications.",
+          "Junior Backend Engineer",
+          "Old Company"
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Backend Engineer",
+          "Company found: Company 23",
+          "Valid dates: Jan 2015 - Present"
+        ]
+      },
+      {
+        "title": "Junior Backend Engineer",
+        "company": "Old Company",
+        "start_date": "Feb 2013",
+        "end_date": "Dec 2014",
+        "is_current": false,
+        "duration_months": 22,
+        "start_abs_months": 24158,
+        "end_abs_months": 24180,
+        "bullets": [
+          "Maintained legacy systems."
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Junior Backend Engineer",
+          "Company found: Old Company",
+          "Valid dates: Feb 2013 - Dec 2014"
+        ]
+      }
+    ],
+    "raw_experience_blocks": [
+      {
+        "pre_date_text": "Backend Engineer\nCompany 23",
+        "start_date": "Jan 2015",
+        "end_date": "Present",
+        "desc_text": "Developed multiple applications.\nJunior Backend Engineer\nOld Company"
+      },
+      {
+        "pre_date_text": "Developed multiple applications.\nJunior Backend Engineer\nOld Company",
+        "start_date": "Feb 2013",
+        "end_date": "Dec 2014",
+        "desc_text": "Maintained legacy systems."
+      }
+    ],
+    "education": [
+      {
+        "degree": "BA",
+        "institution": "Graphic Design",
+        "field_of_study": "",
+        "evidence": "BA Graphic Design University 23"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "type": "hard"
+      },
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard"
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Python",
+        "type": "hard",
+        "raw": "Python",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Java",
+        "type": "hard",
+        "raw": "Java",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard",
+        "raw": "JavaScript",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard",
+        "raw": "PyTorch",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": [],
+    "career_graph": {
+      "total_years": 13.25,
+      "relevant_years": 13.25,
+      "leadership_years": 0,
+      "promotion_count": 0,
+      "company_count": 2,
+      "career_velocity": 0.0,
+      "inversion_count": 2
+    },
+    "raw_extracted_skills": [
+      {
+        "name": "Python",
+        "type": "hard"
+      },
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard"
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard"
+      }
+    ],
+    "scoring_skills": [
+      {
+        "name": "Python",
+        "type": "hard",
+        "raw": "Python",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Java",
+        "type": "hard",
+        "raw": "Java",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard",
+        "raw": "JavaScript",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PyTorch",
+        "type": "hard",
+        "raw": "PyTorch",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "negated_skills": [],
+    "_meta": {
+      "layout_complexity": 0.6,
+      "extraction_confidence": 0.79,
+      "parser_warnings": [],
+      "raw_extracted_text": "Charlie Smith 23\nuser23@example.com\nSummary:\nExperienced Backend Engineer with 11 years of experience.\nExperience:\nBackend Engineer\nCompany 23\nJan 2015 - Present\nDeveloped multiple applications.\nJunior Backend Engineer\nOld Company\nFeb 2013 - Dec 2014\nMaintained legacy systems.\nSkills:\nProficient in Python, PyTorch, Java, JavaScript.\nEducation:\nBA Graphic Design\nUniversity 23"
+    }
+  }
+}

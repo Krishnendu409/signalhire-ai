@@ -1,0 +1,8 @@
+page,endpoint_used,expected_fields,actual_response_fields
+Landing,None,None,None
+Workspace,/api/v1/jobs,"id, title, status","id, title, status, created_at"
+Candidate Detail,/api/v1/candidates/{id},"name, skills, yoe, explanation","full_name, normalized_skills, total_years_of_experience, ranking_explanation"
+Comparison,/api/v1/compare,"candidates_list, delta","candidates, differences"
+Analytics,/api/v1/stats,"precision, recall","skill_precision, skill_recall"
+Job Creation,/api/v1/jobs (POST),"title, jd_text","job_id, status"
+Upload,/api/v1/upload,"file, job_id","task_id, candidates_queued"
