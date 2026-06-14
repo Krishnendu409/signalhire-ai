@@ -133,6 +133,16 @@ ROLE_KEYWORDS = re.compile(
 )
 
 def _is_role_title(text: str) -> bool:
+    import re
+    invalid_patterns = [
+        r'(?i)seeking\s+a', r'(?i)to\s+obtain', r'(?i)professional\s+summary',
+        r'(?i)career\s+objective', r'(?i)objective:', r'(?i)summary:', r'(?i)seeking\s+an'
+    ]
+    for p in invalid_patterns:
+        if re.search(p, text):
+            return False
+    if len(text) > 100:
+        return False
     return bool(ROLE_KEYWORDS.search(text))
 
 def _parse_dates(start_str: str, end_str: str):
