@@ -7,15 +7,16 @@ from app.models.ranking import RankingJob
 from app.services.parsing import parse_resume_bytes
 from app.services.storage import download_resume
 from app.services.ranking import rank_candidates_for_job
-from app.services.embeddings import embed_document
-from app.services.vector_store import index_candidate
+
 
 logger = logging.getLogger("signalhire.tasks")
+
+import uuid
 
 async def process_resume(candidate_id: str):
     """Background task to parse a resume and index it."""
     async with async_session() as session:
-        result = await session.execute(select(Candidate).where(Candidate.id == candidate_id))
+        result = await session.execute(select(Candidate).where(Candidate.id == uuid.UUID(candidate_id)))
         candidate = result.scalar_one_or_none()
         if not candidate:
             logger.error(f"Candidate {candidate_id} not found")
@@ -29,33 +30,7 @@ async def process_resume(candidate_id: str):
             candidate.layout_complexity = parsed.get("_meta", {}).get("layout_complexity", 0)
             candidate.extraction_confidence = parsed.get("_meta", {}).get("extraction_confidence", 0)
             
-            try:
-                scoring_skills = parsed.get("scoring_skills") or [
-                    s for s in parsed.get("skills", [])
-                    if s.get("is_scoring_eligible", not s.get("negated", False))
-                ]
-                skills = " ".join([
-                    s.get("canonical_name", s.get("name", ""))
-                    for s in scoring_skills
-                ])
-                index_text = f"{parsed.get('full_name', '')} {parsed.get('current_title', '')} {skills} {parsed.get('summary', '')}"
-                embedding = await embed_document(index_text)
-                
-                await index_candidate(
-                    candidate_id=str(candidate.id),
-                    embedding=embedding,
-                    payload={
-                        "full_name": parsed.get("full_name", ""),
-                        "current_title": parsed.get("current_title", ""),
-                        "skills": [
-                            s.get("canonical_name", s.get("name", ""))
-                            for s in scoring_skills
-                        ]
-                    }
-                )
-            except Exception as ve:
-                logger.warning(f"Vector indexing skipped for {candidate_id}: {ve}")
-            
+
             await session.commit()
             logger.info(f"Successfully processed resume for candidate {candidate_id}")
             return {"candidate_id": candidate_id, "parsed": True}
@@ -68,7 +43,7 @@ async def process_resume(candidate_id: str):
 async def process_ranking(ranking_job_id: str):
     """Background task to run the full ranking pipeline."""
     async with async_session() as session:
-        res = await session.execute(select(RankingJob).where(RankingJob.id == ranking_job_id))
+        res = await session.execute(select(RankingJob).where(RankingJob.id == uuid.UUID(ranking_job_id)))
         ranking_job = res.scalar_one_or_none()
         if not ranking_job:
             return {"error": "Ranking job not found"}

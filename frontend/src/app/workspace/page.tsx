@@ -41,19 +41,31 @@ function WorkspaceContent() {
     return true;
   });
 
-  // Load data from backend on mount
+  // Load data from backend on mount or when invId changes
   useEffect(() => {
+    let active = true;
     async function loadData() {
-      const metadata = await getRankingMetadata();
-      setRankingMetadata(metadata);
-      
-      const realCandidates = await getCombinedShortlist(invId || undefined);
-      setCandidates(realCandidates);
+      try {
+        const metadata = await getRankingMetadata(invId || undefined);
+        if (active) setRankingMetadata(metadata);
+        
+        const realCandidates = await getCombinedShortlist(invId || undefined);
+        if (active) {
+          setCandidates(realCandidates);
+          setSelectedCandidate(null); // Reset selection
+        }
+      } catch (err) {
+        console.error("Failed to load workspace data:", err);
+      }
     }
-    if (candidates.length === 0) {
-      loadData();
-    }
-  }, [invId, candidates.length, setCandidates, setRankingMetadata]);
+    
+    // Always load when invId changes
+    loadData();
+    
+    return () => {
+      active = false;
+    };
+  }, [invId, setCandidates, setRankingMetadata, setSelectedCandidate]);
 
   // Set initial selected candidate if none
   useEffect(() => {

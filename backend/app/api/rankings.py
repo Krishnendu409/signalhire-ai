@@ -26,7 +26,7 @@ async def create_ranking(
     4. Stores the complete ranked list.
     """
     result = await db.execute(
-        select(Job).where(Job.id == job_id, Job.recruiter_id == user.id)
+        select(Job).where(Job.id == uuid.UUID(job_id), Job.recruiter_id == user.id)
     )
     job = result.scalar_one_or_none()
     if not job:
@@ -43,7 +43,6 @@ async def create_ranking(
     candidates = candidate_result.scalars().all()
     if not candidates:
         raise HTTPException(status_code=400, detail="No parsed candidates found. Upload and wait for parsing to complete.")
-
     ranking = RankingJob(
         id=uuid.uuid4(),
         job_id=job.id,
@@ -74,7 +73,7 @@ async def get_latest_ranking(
     """Get the latest completed ranking for a job with ownership verification."""
     # Verify job ownership first
     job_result = await db.execute(
-        select(Job).where(Job.id == job_id, Job.recruiter_id == user.id)
+        select(Job).where(Job.id == uuid.UUID(job_id), Job.recruiter_id == user.id)
     )
     job = job_result.scalar_one_or_none()
     if not job:
@@ -128,7 +127,7 @@ async def export_ranking_csv(
 
     # Verify job ownership
     job_result = await db.execute(
-        select(Job).where(Job.id == job_id, Job.recruiter_id == user.id)
+        select(Job).where(Job.id == uuid.UUID(job_id), Job.recruiter_id == user.id)
     )
     if not job_result.scalar_one_or_none():
         raise HTTPException(status_code=404, detail="Job not found or unauthorized")

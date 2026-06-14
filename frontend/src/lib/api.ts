@@ -3,7 +3,9 @@
 import type { Candidate, CareerStep } from '../store/workspace';
 
 function mapToUICandidate(sub: any, record: any): Candidate {
-  const isRejected = sub.rank > 100;
+  const technicalScore = Math.round((sub?.final_score ?? 0) * 10);
+  const matchScore = technicalScore;
+  const isRejected = matchScore < 30; // Reject if score is too low
   
   // Extract career trajectory
   const career: CareerStep[] = (record?.career_history || []).map((c: any) => ({
@@ -28,8 +30,7 @@ function mapToUICandidate(sub: any, record: any): Candidate {
   rankingEvidence.push(`Experience Affinity: ${(sub?.dimension_scores?.experience_affinity?.score ?? 0).toFixed(2)}`);
   rankingEvidence.push(`Skill Depth: ${(sub?.dimension_scores?.skill_depth?.score ?? 0).toFixed(2)}`);
 
-  const technicalScore = Math.round((sub?.final_score ?? 0) * 10);
-  const matchScore = technicalScore;
+  const penalties = sub?.Penalties ?? sub?.penalties ?? 0;
 
   return {
     id: sub.candidate_id,
@@ -37,14 +38,14 @@ function mapToUICandidate(sub: any, record: any): Candidate {
     title: sub.title || record?.profile?.current_title || "Unknown Title",
     company: record?.profile?.current_company || "Unknown Company",
     trajectory,
-    rank: sub.rank,
+    rank: isRejected ? 101 + sub.rank : sub.rank, // Force rank > 100 if rejected
     matchScore: matchScore,
-    whyHere: isRejected ? ["Keyword Match"] : ["Domain Affinity"],
-    risks: (sub?.Penalties ?? 0) < 0 ? ["Inconsistent Profile"] : [],
+    whyHere: isRejected ? ["Low Match Score"] : ["Domain Affinity"],
+    risks: penalties < 0 ? ["Inconsistent Profile"] : [],
     decisionPath: {
       enteredVia: "Exhaustive Pipeline",
       rankedBecause: sub?.explanation?.top_strengths || ["Met requirement threshold"],
-      penalizedBecause: (sub?.penalties ?? 0) < 0 ? ["Inconsistency Detected"] : [],
+      penalizedBecause: penalties < 0 ? ["Inconsistency Detected"] : [],
     },
     evidence: {
       retrieval: retrievalEvidence,
