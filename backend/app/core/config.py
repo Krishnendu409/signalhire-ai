@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # Database
-    database_url: str = "postgresql+asyncpg://user:password@localhost:5432/signalhire"
+    database_url: str = "sqlite+aiosqlite:///./signalhire.db"
 
     # Redis (Upstash free tier or local)
     redis_url: str = "redis://localhost:6379"

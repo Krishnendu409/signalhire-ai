@@ -54,7 +54,7 @@ async def rank_candidates_for_job(
     }
     
     # Run the determinisitc pipeline
-    results = engine.run_pipeline(jd_data, top_k=100)
+    results = engine.run_pipeline(jd_data, candidates, top_k=100)
     
     # Calculate total and query string
     query_text = title + " " + " ".join(req_skills)

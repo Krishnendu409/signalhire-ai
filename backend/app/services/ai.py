@@ -205,7 +205,7 @@ def _reconstruct_career_history(exp_lines: list[str], full_text: str):
                         "start_date": "", "end_date": "", "is_current": False, "duration_months": 0, "start_abs_months": None, "end_abs_months": None, "bullets": [],
                         "confidence": 0.5, "evidence": ["Role keyword match"]
                     })
-        return career_history, 0, 0, 0, 0, 0, 0.0, []
+        return career_history, 0, 0, 0, 0, 0, 0.0, 0, []
         
     last_idx = 0
     blocks = []

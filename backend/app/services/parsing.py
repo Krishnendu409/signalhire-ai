@@ -3,7 +3,7 @@ import copy
 import fitz  # PyMuPDF
 from PIL import Image
 from app.services.ai import AIPipeline
-from app.services.normalization import normalize_skills_list, extract_skills_from_text
+
 
 UNCERTAINTY_THRESHOLD = 0.8
 
@@ -104,12 +104,10 @@ async def parse_resume_bytes(file_bytes: bytes, filename: str) -> dict:
     # Step 3: Normalize skills through ontology
     if "skills" in parsed:
         raw_skills = copy.deepcopy(parsed["skills"])
-        normalized_skills = normalize_skills_list(copy.deepcopy(parsed["skills"]))
-        parsed["skills"] = [{"name": s["name"], "type": s.get("type", "hard")} for s in normalized_skills]
-        parsed["normalized_skills"] = normalized_skills
-        parsed["raw_extracted_skills"] = raw_skills
-        parsed["scoring_skills"] = [s for s in normalized_skills if s.get("is_scoring_eligible", True)]
-        parsed["negated_skills"] = [s for s in normalized_skills if s.get("negated", False)]
+        # Removed normalization, simply ensure skills are available
+        parsed["normalized_skills"] = raw_skills
+        parsed["scoring_skills"] = raw_skills
+        parsed["negated_skills"] = []
 
     # Step 4: Attach parsing metadata (for calibrated uncertainty UI)
     extraction_confidence = _compute_extraction_confidence(layout_complexity)

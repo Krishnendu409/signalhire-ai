@@ -1,5 +1,0 @@
-Scenario,Penalty Value,Top 100 Overlap,Recall (>0 score),Avg Rank Shift (Orig Top 100),Honeypots in Top 100
-Baseline,-2.0,100,48087,0.0,0
-Disabled,0.0,89,100000,3.43,0
-Reduced 50%,-1.0,99,87562,0.25,0
-Increased 50%,-3.0,100,14103,0.02,0

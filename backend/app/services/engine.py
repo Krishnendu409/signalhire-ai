@@ -5,9 +5,8 @@ import os
 import time
 
 class RankingEngine:
-    _df_cache = None
-    def __init__(self, dataset_path=None):
-        print("Initializing Frozen Ranking Engine v1.0...")
+    def __init__(self):
+        print("Initializing Deterministic Ranking Engine v1.0...")
         self.config = {
             "weights": {
                 'title_affinity': 2.50,
@@ -30,54 +29,73 @@ class RankingEngine:
             },
             "trap_titles": ['marketing', 'sales', 'hr', 'recruiter', 'manager', 'project manager', 'product manager', 'analyst', 'support', 'executive', 'director', 'accountant']
         }
-        
-        self.dataset_path = dataset_path or os.path.join(os.path.dirname(__file__), '..', '..', 'gold_dataset', 'candidates.jsonl')
-        self._load_dataset()
 
-    def _load_dataset(self):
-        if RankingEngine._df_cache is not None:
-            self.df = RankingEngine._df_cache.copy()
-            return
+    def _prepare_df(self, candidates: list[dict]):
         records = []
         raw_data = {}
-        with open(self.dataset_path, 'r', encoding='utf-8') as f:
-            for line in f:
-                if line.strip():
-                    try:
-                        record = json.loads(line)
-                        records.append(record)
-                        raw_data[record['candidate_id']] = record
-                    except:
-                        pass
-        
-        RankingEngine._raw_data_cache = raw_data
+        for c in candidates:
+            # Flatten parsed_data with candidate_id
+            record = c.get('parsed_data', {}).copy()
+            cid = str(c.get('id', ''))
+            record['candidate_id'] = cid
+            records.append(record)
+            raw_data[cid] = record
 
-        self.df = pd.DataFrame(records)
-        self.df['current_title'] = [ch[0].get('title', '').lower() if ch else '' for ch in self.df['career_history']]
+        df = pd.DataFrame(records)
+        if df.empty:
+            return df, raw_data
+
+        # Safely extract current title
+        def get_title(ch):
+            if isinstance(ch, list) and len(ch) > 0 and isinstance(ch[0], dict):
+                return ch[0].get('title', '').lower()
+            return ''
+        
+        if 'career_history' in df.columns:
+            df['current_title'] = df['career_history'].apply(get_title)
+        else:
+            df['current_title'] = ''
 
         def get_skills(row):
-            s_list = row.get('skills', []) or []
+            s_list = row.get('skills', [])
+            if not isinstance(s_list, list): return ""
             return " ".join([s.get('name', '').lower() for s in s_list if isinstance(s, dict)])
-        self.df['skills_text'] = self.df.apply(get_skills, axis=1)
+        
+        if 'skills' in df.columns:
+            df['skills_text'] = df.apply(get_skills, axis=1)
+        else:
+            df['skills_text'] = ''
 
         def get_desc(row):
             ch = row.get('career_history', [])
+            if not isinstance(ch, list): return ""
             return " ".join([c.get('description', '').lower() for c in ch if isinstance(c, dict)])
-        self.df['desc_text'] = self.df.apply(get_desc, axis=1)
+        
+        if 'career_history' in df.columns:
+            df['desc_text'] = df.apply(get_desc, axis=1)
+        else:
+            df['desc_text'] = ''
 
         def calc_quality(c):
             s = c.get('redrob_signals', {})
+            if not isinstance(s, dict): return 0.0
             q = 0.0
             q += (s.get('profile_completeness_score', 50) / 100.0)
             q += min((s.get('github_activity_score', 0) / 100.0), 1.0)
             if s.get('verified_email'): q += 0.5
             if s.get('linkedin_connected'): q += 0.5
             return q
-        self.df['quality_score'] = self.df.apply(calc_quality, axis=1)
+            
+        if 'redrob_signals' in df.columns:
+            df['quality_score'] = df.apply(calc_quality, axis=1)
+        else:
+            df['quality_score'] = 0.5
 
-    def _extract_features(self, jd_data):
+        return df, raw_data
+
+    def _extract_features(self, df, jd_data):
         import re
-        feat = self.df[['candidate_id', 'current_title', 'quality_score', 'skills_text', 'skills', 'desc_text']].copy()
+        feat = df[['candidate_id', 'current_title', 'quality_score', 'skills_text', 'desc_text']].copy()
         jd_fam = jd_data['family']
         
         t_text_series = feat['current_title'].fillna('')
@@ -156,14 +174,16 @@ class RankingEngine:
             
         return feat.sort_values(by='final_score', ascending=False)
 
-    def run_pipeline(self, jd_data, top_k=100):
+    def run_pipeline(self, jd_data, candidates: list[dict], top_k=100):
         """
         Executes the frozen ranking pipeline for a given JD.
         jd_data must have: 'family', 'keywords', 'title_terms', 'req_skills'
         """
-        start_time = time.time()
-        
-        feat_base = self._extract_features(jd_data)
+        df, raw_data = self._prepare_df(candidates)
+        if df.empty:
+            return []
+
+        feat_base = self._extract_features(df, jd_data)
         ranked = self._rank_features(feat_base)
         
         top100 = ranked.head(top_k)
@@ -182,7 +202,7 @@ class RankingEngine:
                 'BM25_Contrib': float(row['bm25_score'] * self.config['weights']['bm25_score']),
                 'Quality_Contrib': float(row['quality_score'] * self.config['weights']['quality_score']),
                 'Penalties': float(row['penalties']),
-                'parsed_data': self._raw_data_cache.get(row['candidate_id'], {}),
+                'parsed_data': raw_data.get(row['candidate_id'], {}),
                 'dimension_scores': {
                     'experience_affinity': {'score': float(row['career_affinity'] * 100)},
                     'skill_depth': {'score': float(row['skill_affinity'] * 100)}

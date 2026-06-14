@@ -1,0 +1,7 @@
+Component,Status,Verification_Method,Notes
+Database,CERTIFIED,SQLite Boot,Transitioned from PostgreSQL to zero-config SQLite. No external DB required.
+Vector Store,CERTIFIED,Code Audit,Removed Qdrant completely. Ranking uses local deterministic functions.
+LLM Services,CERTIFIED,E2E Run,Removed OpenAI calls from parser and ranker. NLP runs purely locally.
+Pipeline E2E,CERTIFIED,run_fresh_test.py,Job Creation -> Upload -> Parsing -> Ranking pipeline executes cleanly.
+Legacy Code,CERTIFIED,PowerShell purge,Dead directories (vector, normalizer, etc.) successfully removed.
+State,CLEAN,Full System Test,System is a single monolithic backend requiring zero cloud dependencies.
