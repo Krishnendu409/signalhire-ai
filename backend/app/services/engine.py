@@ -163,6 +163,44 @@ class RankingEngine:
         
         return feat
 
+
+    def _apply_transferable_skills(self, jd_data, candidates_df):
+        transfer_map = {
+            "vue": "react",
+            "angular": "react",
+            "rabbitmq": "kafka",
+            "pytorch": "tensorflow",
+            "tensorflow": "pytorch",
+            "c": "c++",
+            "c++": "rust",
+            "mysql": "postgresql",
+        }
+        
+        req_skills = [s.lower() for s in jd_data.get('req_skills', [])]
+        
+        for idx, row in candidates_df.iterrows():
+            cand_skills_text = row['skills_text']
+            adjacent = []
+            evidence = []
+            bonus = 0.0
+            
+            for have, need in transfer_map.items():
+                if need in req_skills and have in cand_skills_text and need not in cand_skills_text:
+                    adjacent.append(have)
+                    evidence.append(f"Candidate has {have.capitalize()} which transfers well to {need.capitalize()}")
+                    bonus += 0.5
+            
+            if adjacent:
+                candidates_df.at[idx, 'skill_affinity'] += bonus * (1.0 / max(len(req_skills), 1))
+                candidates_df.at[idx, 'adaptation_risk'] = 'low' if bonus > 1.0 else 'medium'
+                candidates_df.at[idx, 'adjacent_skills'] = ','.join(adjacent)
+                candidates_df.at[idx, 'transferability_evidence'] = ';'.join(evidence)
+            else:
+                candidates_df.at[idx, 'adaptation_risk'] = 'high'
+                candidates_df.at[idx, 'adjacent_skills'] = ''
+                candidates_df.at[idx, 'transferability_evidence'] = ''
+        return candidates_df
+
     def _rank_features(self, feat):
         feat['final_score'] = 0.0
         feat['penalties'] = np.where(feat['is_inconsistent'] | feat['is_partial'], self.config['weights']['consistency_penalty'], 0.0)
@@ -184,6 +222,7 @@ class RankingEngine:
             return []
 
         feat_base = self._extract_features(df, jd_data)
+        feat_base = self._apply_transferable_skills(jd_data, feat_base)
         ranked = self._rank_features(feat_base)
         
         top100 = ranked.head(top_k)
@@ -201,7 +240,11 @@ class RankingEngine:
                 'SemSim_Contrib': float(row['semantic_sim'] * self.config['weights']['semantic_sim']),
                 'BM25_Contrib': float(row['bm25_score'] * self.config['weights']['bm25_score']),
                 'Quality_Contrib': float(row['quality_score'] * self.config['weights']['quality_score']),
-                'Penalties': float(row['penalties']),
+                                'Penalties': float(row['penalties']),
+                'adjacent_skills': row.get('adjacent_skills', '').split(',') if row.get('adjacent_skills', '') else [],
+                'adaptation_risk': row.get('adaptation_risk', 'high'),
+                'transferability_evidence': row.get('transferability_evidence', '').split(';') if row.get('transferability_evidence', '') else [],
+
                 'parsed_data': raw_data.get(row['candidate_id'], {}),
                 'dimension_scores': {
                     'experience_affinity': {'score': float(row['career_affinity'] * 100)},
