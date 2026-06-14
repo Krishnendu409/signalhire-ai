@@ -14,7 +14,7 @@ print(f".env loaded: {loaded}")
 print(f"Loaded from path: {os.path.abspath(env_path)}")
 print(f"GEMINI_API_KEY exists: {'YES' if key else 'NO'}")
 if key:
-    print(f"Key prefix: {key[:8]}")
+    print("Key prefix: [REDACTED]")
     print(f"Key length: {len(key)}")
 print(f"Process: {sys.executable}\n")
 
