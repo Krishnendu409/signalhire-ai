@@ -110,10 +110,17 @@ async def test():
         if i == 0:
             print("\nPIPELINE TRACE FOR RESUME 1:")
             print("1. Parsed JSON snippet:", json.dumps({k: res[k] for k in ["total_years_of_experience", "open_to_work"]}, indent=2))
-            safe_flat_c_for_log = json.loads(json.dumps(flat_c))
-            if "redrob_signals" in safe_flat_c_for_log and "expected_salary_range_inr_lpa" in safe_flat_c_for_log["redrob_signals"]:
-                safe_flat_c_for_log["redrob_signals"]["expected_salary_range_inr_lpa"]["max"] = "[REDACTED]"
-            print("2. Schema Mapped Engine Input:", json.dumps(safe_flat_c_for_log, indent=2))
+            safe_trace_summary = {
+                "candidate_id": flat_c.get("candidate_id"),
+                "current_title": flat_c.get("profile", {}).get("current_title"),
+                "years_of_experience": flat_c.get("profile", {}).get("years_of_experience"),
+                "open_to_work_flag": flat_c.get("redrob_signals", {}).get("open_to_work_flag"),
+                "skills_count": len(flat_c.get("skills", [])),
+                "education_count": len(flat_c.get("education", [])),
+                "certifications_count": len(flat_c.get("certifications", [])),
+                "career_history_count": len(flat_c.get("career_history", []))
+            }
+            print("2. Schema Mapped Engine Input (sanitized summary):", json.dumps(safe_trace_summary, indent=2))
             
     # Rank through engine
     jd = {
