@@ -1,0 +1,21 @@
+jd_title,top_1_accuracy,top_3_accuracy,mrr,ndcg@5,precision@5,recall@5
+Frontend Developer,1,1,1.0,1.0,1.0,1.0
+Backend Engineer,1,1,1.0,1.0,1.0,1.0
+Data Scientist,1,1,1.0,1.0,1.0,1.0
+DevOps Engineer,1,1,1.0,1.0,1.0,1.0
+Full Stack Developer,1,1,1.0,1.0,1.0,1.0
+Machine Learning Engineer,1,1,1.0,1.0,1.0,1.0
+Data Engineer,1,1,1.0,1.0,1.0,1.0
+iOS Developer,1,1,1.0,1.0,1.0,1.0
+Android Developer,1,1,1.0,1.0,1.0,1.0
+Security Engineer,1,1,1.0,1.0,1.0,1.0
+Cloud Architect,1,1,1.0,1.0,1.0,1.0
+Database Administrator,1,1,1.0,1.0,1.0,1.0
+QA Engineer,1,1,1.0,1.0,1.0,1.0
+Product Manager,1,1,1.0,1.0,1.0,1.0
+UI/UX Designer,1,1,1.0,1.0,1.0,1.0
+Sales Executive,1,1,1.0,1.0,1.0,1.0
+HR Manager,1,1,1.0,1.0,1.0,1.0
+Financial Analyst,1,1,1.0,1.0,1.0,1.0
+Marketing Specialist,1,1,1.0,1.0,1.0,1.0
+Customer Success Manager,1,1,1.0,1.0,1.0,1.0
