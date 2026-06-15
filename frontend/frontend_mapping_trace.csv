@@ -1,0 +1,9 @@
+api_field,frontend_field,mapped_correctly,value_present
+parsed_data.full_name,record?.profile?.anonymized_name,FALSE,TRUE
+parsed_data.current_title,record?.profile?.current_title,FALSE,TRUE
+parsed_data.skills,No mapping for full skills array,FALSE,TRUE
+matched_skills,N/A,FALSE,TRUE
+missing_skills,N/A,FALSE,TRUE
+dimension_scores.experience_affinity.score,scores.experience_affinity,TRUE,TRUE
+dimension_scores.skill_depth.score,scores.skill_depth,TRUE,TRUE
+final_score,finalScores.final,TRUE,TRUE

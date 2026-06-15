@@ -41,9 +41,9 @@ function mapToUICandidate(sub: any, record: any): Candidate {
 
   return {
     id: sub.candidate_id,
-    name: record?.profile?.anonymized_name || "Unknown Candidate",
-    title: sub.title || record?.profile?.current_title || "Unknown Title",
-    company: record?.profile?.current_company || "Unknown Company",
+    name: record?.full_name || record?.profile?.anonymized_name || "Unknown Candidate",
+    title: sub.title || record?.current_title || record?.profile?.current_title || "Unknown Title",
+    company: record?.current_company || record?.profile?.current_company || "Unknown Company",
     trajectory,
     rank: isRejected ? 101 + sub.rank : sub.rank, // Force rank > 100 if rejected
     matchScore: matchScore,
