@@ -140,11 +140,8 @@ class RankingEngine:
             c_hits_series += d_text_series.str.contains(r'\b' + re.escape(w.lower()) + r'\b', regex=True).astype(int)
         feat['career_affinity'] = c_hits_series / max(len(keywords), 1)
         
-        sem_hits_series = pd.Series(0, index=feat.index)
-        for w in keywords:
-            sem_hits_series += full_series.str.contains(r'\b' + re.escape(w.lower()) + r'\b', regex=True).astype(int)
-        feat['semantic_sim'] = sem_hits_series / max(len(keywords), 1)
-        feat['bm25_score'] = feat['semantic_sim'] * 0.8
+        feat['semantic_sim'] = 0.0
+        feat['bm25_score'] = 0.0
         
         t_fam_df = pd.DataFrame(index=feat.index)
         for fam, terms in self.config['role_families'].items():
@@ -170,6 +167,10 @@ class RankingEngine:
         feat['s_fam'] = s_fam_df.idxmax(axis=1)
         feat['s_fam'] = feat['s_fam'].where(s_fam_df.max(axis=1) > 0, 'Unknown')
         
+        # Phase 3: Fix family classification - override if target family threshold met (e.g. >= 2)
+        if jd_fam in s_fam_df.columns:
+            feat['s_fam'] = np.where(s_fam_df[jd_fam] >= 2, jd_fam, feat['s_fam'])
+        
         feat['c_fam'] = c_fam_df.idxmax(axis=1)
         feat['c_fam'] = feat['c_fam'].where(c_fam_df.max(axis=1) > 0, 'Unknown')
         
@@ -194,14 +195,12 @@ class RankingEngine:
 
     def _apply_transferable_skills(self, jd_data, candidates_df):
         transfer_map = {
-            "vue": "react",
-            "angular": "react",
-            "rabbitmq": "kafka",
-            "pytorch": "tensorflow",
-            "tensorflow": "pytorch",
-            "c": "c++",
-            "c++": "rust",
-            "mysql": "postgresql",
+            "neural networks": "ai",
+            "tensorflow": "machine learning",
+            "pytorch": "deep learning",
+            "faiss": "vector search",
+            "qdrant": "vector database",
+            "learning to rank": "search relevance"
         }
         
         req_skills = [s.lower() for s in jd_data.get('req_skills', [])]
@@ -231,12 +230,13 @@ class RankingEngine:
 
     def _rank_features(self, feat):
         feat['final_score'] = 0.0
-        feat['penalties'] = np.where(feat['is_inconsistent'] | feat['is_partial'], self.config['weights']['consistency_penalty'], 0.0)
+        feat['penalties'] = 0.0
         
         for k in ['title_affinity', 'skill_affinity', 'career_affinity', 'semantic_sim', 'bm25_score', 'quality_score']:
             feat['final_score'] += feat[k] * self.config['weights'][k]
             
-        feat['final_score'] += feat['penalties']
+        mask = feat['is_inconsistent'] | feat['is_partial']
+        feat['final_score'] = np.where(mask, feat['final_score'] * 0.8, feat['final_score'])
         
         total_max = sum(w for k, w in self.config['weights'].items() if k != 'consistency_penalty')
         feat['final_score'] = (feat['final_score'] / total_max) * 100.0

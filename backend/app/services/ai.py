@@ -167,13 +167,36 @@ def _is_role_title(text: str) -> bool:
     import re
     invalid_patterns = [
         r'(?i)seeking\s+a', r'(?i)to\s+obtain', r'(?i)professional\s+summary',
-        r'(?i)career\s+objective', r'(?i)objective:', r'(?i)summary:', r'(?i)seeking\s+an'
+        r'(?i)career\s+objective', r'(?i)objective:', r'(?i)summary:', r'(?i)seeking\s+an',
+        r'(?i)\bsummary\b', r'(?i)\bobjective\b', r'(?i)\btechnical skills\b', r'(?i)\beducation\b',
+        r'(?i)\bprojects\b', r'(?i)\bcertifications\b', r'(?i)\bexperience\b', r'(?i)\breferences\b',
+        r'(?i)\b[A-Z][a-z]+(?: [A-Z][a-z]+)*,\s*(?:AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY)\b',
+        r'(?i)\b(?:Morrisville|Dallas|Chicago|New York|Seattle),\s*[A-Z]{2}\b',
+        r'(?i)state of \w+',
+        r'[\w\.\+\-]+@[\w\.\-]+\.[a-z]{2,}',
+        r'[\+\(]?[\d][\d\s\-\(\)\.]{8,}[\d]'
     ]
     for p in invalid_patterns:
         if re.search(p, text):
             return False
+            
+    address_pattern = re.compile(r'\b(?:street|st|avenue|ave|road|rd|boulevard|blvd|lane|ln|drive|dr|court|ct)\b', re.IGNORECASE)
+    if address_pattern.search(text):
+        return False
+        
     if len(text) > 100:
         return False
+        
+    allowed_titles = [
+        r'(?i)software engineer', r'(?i)java developer', r'(?i)senior java developer',
+        r'(?i)technical lead', r'(?i)engineering manager', r'(?i)principal engineer',
+        r'(?i)data scientist', r'(?i)machine learning engineer', r'(?i)backend engineer',
+        r'(?i)frontend engineer', r'(?i)devops engineer'
+    ]
+    for at in allowed_titles:
+        if re.search(at, text):
+            return True
+            
     return bool(ROLE_KEYWORDS.search(text))
 
 def _parse_dates(start_str: str, end_str: str):
@@ -501,8 +524,13 @@ class AIPipeline:
         # ── 3. Name ──────────────────────────────────────────────────────────
         name = None
         name_confidence = 0.0
-        ignore_words = {"resume", "cv", "curriculum vitae", "profile", "summary", "objective",
-                        "experience", "education", "skills", "certifications", "page", "portfolio"}
+        
+        REJECT_WORDS = {
+            "summary", "professional summary", "objective", "skills", "technical skills", 
+            "education", "experience", "projects", "certifications", "references", 
+            "resume", "cv", "curriculum vitae", "profile", "page", "portfolio"
+        }
+        STATES = {"al", "ak", "az", "ar", "ca", "co", "ct", "de", "fl", "ga", "hi", "id", "il", "in", "ia", "ks", "ky", "la", "me", "md", "ma", "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "ny", "nc", "nd", "oh", "ok", "or", "pa", "ri", "sc", "sd", "tn", "tx", "ut", "vt", "va", "wa", "wv", "wi", "wy"}
         
         name_candidates = []
         for i, line in enumerate(lines[:50]):
@@ -512,23 +540,47 @@ class AIPipeline:
             if len(words) > 5 or len(words) < 1: continue
             
             lower_cl = cl.lower()
-            if lower_cl in ignore_words or lower_cl.startswith("page"): continue
-            if "@" in cl or "http" in cl or "www." in cl or any(c.isdigit() for c in cl): continue
+            if lower_cl in REJECT_WORDS or lower_cl.startswith("page"): continue
+            if any(rw == lower_cl for rw in REJECT_WORDS): continue
             
+            if "@" in cl or "http" in cl or "www." in cl: continue
+            if "," in cl: continue
+            
+            has_state = any(word.lower() in STATES for word in re.split(r'\W+', cl))
+            if has_state and len(words) <= 3: continue
+            
+            address_pattern = re.compile(r'\b(?:street|st|avenue|ave|road|rd|boulevard|blvd|lane|ln|drive|dr|court|ct)\b', re.IGNORECASE)
+            if address_pattern.search(cl): continue
+
             candidate_name = re.split(r'\s*[\|\-–—]\s*', cl)[0].strip()
             if len(candidate_name) < 2: continue
+            if candidate_name.lower() in REJECT_WORDS: continue
+            if candidate_name.endswith(':'): continue
+            
+            ROLE_KEYWORDS_REGEX = re.compile(r'(?:engineer|developer|architect|scientist|analyst|manager|lead|director|' \
+                           r'designer|specialist|administrator|consultant|officer|researcher|' \
+                           r'support|technician|programmer|intern|sre|devops|cto|ciso|vp)', re.IGNORECASE)
+            if ROLE_KEYWORDS_REGEX.search(candidate_name): continue
             
             score = 100 - (i * 5)
             
-            if email_match and abs(text.find(email_match.group(0)) - text.find(candidate_name)) < 200:
-                score += 20
-            if phone_match and abs(text.find(phone_match.group(0)) - text.find(candidate_name)) < 200:
-                score += 20
+            c_idx = text.find(candidate_name)
+            if email_match and abs(text.find(email_match.group(0)) - c_idx) < 250:
+                score += 30
+            if phone_match and abs(text.find(phone_match.group(0)) - c_idx) < 250:
+                score += 30
+            
+            link_match = re.search(r'(?:linkedin\.com/in/|github\.com/)[a-zA-Z0-9_-]+', text, re.IGNORECASE)
+            if link_match and abs(link_match.start() - c_idx) < 250:
+                score += 30
                 
             if candidate_name.isupper():
                 score += 15
             elif candidate_name.istitle():
-                score += 10
+                score += 20
+                
+            if len(candidate_name.split()) == 2:
+                score += 15
                 
             name_candidates.append((candidate_name, score))
             
@@ -613,13 +665,26 @@ class AIPipeline:
             """Extract the role title from strings like 'Google - Senior Engineer' or 'SWE at Meta'."""
             if not raw:
                 return raw
-            # Pattern: <Company> - <Title> or <Title> at <Company> or <Title> | <Company>
-            # Try: "Company - Title" or "Title - Company"
+            
+            invalid_patterns = [
+                r'(?i)\bsummary\b', r'(?i)\bprofessional summary\b', r'(?i)\bobjective\b',
+                r'(?i)\btechnical skills\b', r'(?i)\beducation\b', r'(?i)\bexperience\b',
+                r'(?i)\bprojects\b', r'(?i)\bcertifications\b',
+                r'(?i)\b[A-Z][a-z]+(?: [A-Z][a-z]+)*,\s*(?:AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY)\b',
+                r'(?i)\b(?:Morrisville|Dallas|Chicago|New York|Seattle),\s*[A-Z]{2}\b',
+                r'(?i)state of \w+',
+                r'[\w\.\+\-]+@[\w\.\-]+\.[a-z]{2,}',
+                r'[\+\(]?[\d][\d\s\-\(\)\.]{8,}[\d]',
+                r'\b(?:street|st|avenue|ave|road|rd|boulevard|blvd|lane|ln|drive|dr|court|ct)\b'
+            ]
+            for p in invalid_patterns:
+                if re.search(p, raw, re.IGNORECASE):
+                    return ""
+            
             dash_parts = re.split(r'\s*[\-–—]\s*', raw, maxsplit=1)
             at_parts = re.split(r'\s+at\s+|\s*@\s*', raw, maxsplit=1, flags=re.IGNORECASE)
             pipe_parts = raw.split('|', 1)
             
-            # If we have two parts, pick the one that looks more like a title (has role keywords)
             ROLE_KEYWORDS = r'(?:engineer|developer|architect|scientist|analyst|manager|lead|director|' \
                            r'designer|specialist|administrator|consultant|officer|researcher|' \
                            r'support|technician|programmer|intern|sre|devops|cto|ciso|vp)'
@@ -633,10 +698,8 @@ class AIPipeline:
                             candidate_parts.append(p)
             
             if candidate_parts:
-                # Prefer shortest part that has role keywords
                 return sorted(candidate_parts, key=lambda x: len(x))[0]
             
-            # Fall back to first part of any separator
             return dash_parts[0].strip() if len(dash_parts) > 1 else raw.strip()
 
         current_title = _clean_raw_title(current_title)
@@ -659,14 +722,16 @@ class AIPipeline:
             raw_title = headline_title
             title_confidence = 0.90
         elif career_history and career_history[0].get('title'):
-            raw_title = career_history[0].get('title')
+            raw_title = _clean_raw_title(career_history[0].get('title'))
             title_confidence = 0.85
         elif sections["Summary"]:
             summary_text = " ".join(sections["Summary"])
-            tn = _normalize_title(summary_text[:200])
-            if tn["match_method"] != "none":
-                raw_title = tn["normalized"]
-                title_confidence = 0.70
+            cleaned = _clean_raw_title(summary_text[:200])
+            if cleaned:
+                tn = _normalize_title(cleaned)
+                if tn["match_method"] != "none":
+                    raw_title = tn["normalized"]
+                    title_confidence = 0.70
 
         if not raw_title and skill_results:
             top_cat = max([s.get("category") for s in skill_results if s.get("category")], default="", key=lambda c: sum(1 for x in skill_results if x.get("category") == c))
