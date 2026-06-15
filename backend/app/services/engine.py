@@ -240,6 +240,7 @@ class RankingEngine:
         
         total_max = sum(w for k, w in self.config['weights'].items() if k != 'consistency_penalty')
         feat['final_score'] = (feat['final_score'] / total_max) * 100.0
+        feat['final_score'] = feat['final_score'].clip(lower=0.0)
             
         return feat.sort_values(by='final_score', ascending=False)
 

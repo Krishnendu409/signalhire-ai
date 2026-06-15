@@ -64,6 +64,11 @@ export interface Candidate {
   finalScores: FinalScores;
   narrative: string;
   whyNotRanked?: WhyNotRanked;
+  matched_skills?: string[];
+  missing_skills?: string[];
+  explanation?: string;
+  adjacent_skills?: string[];
+  transferability_evidence?: string[];
 }
 
 export interface WorkspaceState {

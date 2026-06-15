@@ -397,14 +397,14 @@ function WorkspaceContent() {
                   <div className="p-4 border border-[#262626] bg-[#171717] rounded-lg">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[10px] font-bold uppercase tracking-widest">ATS ASSESSMENT</span>
-                      <span className={`font-mono text-[11px] uppercase ${selectedCandidate.rank > 100 ? 'text-[#22C55E]' : 'text-[#EF4444]'}`}>
-                        {selectedCandidate.rank > 100 ? 'ACCEPTED' : 'REJECTED'}
+                      <span className={`font-mono text-[11px] uppercase ${selectedCandidate.rank > 100 ? 'text-[#EF4444]' : 'text-[#22C55E]'}`}>
+                        {selectedCandidate.rank > 100 ? 'REJECTED' : 'ACCEPTED'}
                       </span>
                     </div>
                     <p className="text-sm text-[#c4c7c8]">
                       {selectedCandidate.rank > 100 
-                        ? `Automated scoring passed based on heavy keyword matches for generic ML concepts.` 
-                        : `Automated scoring failed. Keyword density for generic skills did not meet threshold.`}
+                        ? `Automated scoring failed. Keyword density for generic skills did not meet threshold.` 
+                        : `Automated scoring passed based on heavy keyword matches for generic ML concepts.`}
                     </p>
                   </div>
                   
