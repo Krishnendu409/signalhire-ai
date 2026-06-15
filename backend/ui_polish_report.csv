@@ -1,6 +1,0 @@
-screen,issue_type,description
-Landing Page,alignment issues,Hero text slightly off-center on mobile views
-Workspace,empty states,"When no jobs exist, the empty state text lacks a clear CTA button"
-Candidate Detail,overflow issues,Long skill names wrap awkwardly instead of truncating cleanly
-Comparison,visual inconsistencies,Delta badges use inconsistent shades of green
-Upload Flow,loading states,Missing skeleton loader during parsing delay

@@ -88,8 +88,6 @@ function WorkspaceContent() {
         <div className="hidden md:flex items-center gap-6">
           <Link className="text-[#c4c7c8] text-xs hover:bg-[#353434] transition-colors px-3 py-1 rounded" href="/new">New Investigation</Link>
           <Link className="text-white font-bold text-xs bg-[#353434] px-3 py-1 rounded" href="/workspace">Workspace</Link>
-          <Link className="text-[#c4c7c8] text-xs hover:bg-[#353434] transition-colors px-3 py-1 rounded" href="/analytics">Analytics</Link>
-          <Link className="text-[#c4c7c8] text-xs hover:bg-[#353434] transition-colors px-3 py-1 rounded" href="/reports">Reports</Link>
         </div>
         <div className="flex items-center gap-4">
           <button
@@ -273,59 +271,57 @@ function WorkspaceContent() {
 
               <div className="space-y-6">
                 
-                {/* Retrieval Evidence */}
+                {/* Transferable Skills Evidence */}
                 <div className="border border-[#262626] bg-[#111111] rounded-lg overflow-hidden transition-colors hover:border-[#404040]">
                   <div className="p-4 border-b border-[#262626] flex items-center justify-between bg-[#171717]">
                     <span className="text-xs font-bold text-white flex items-center gap-2 uppercase tracking-widest">
-                      Claim 01: Retrieval Architecture
+                      Transferable Skills Evidence
                     </span>
-                    <span className="text-[10px] font-mono text-[#c4c7c8]">Source: GitHub / Audit</span>
                   </div>
                   <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#262626]">
                     <div className="p-4">
-                      <h4 className="text-[10px] text-[#c4c7c8] mb-2 uppercase font-semibold">Self-Reported Focus</h4>
-                      <div className="space-y-2">
-                        {selectedCandidate.whyHere.slice(0, 2).map((item, i) => (
-                          <p key={i} className="text-sm text-white">"{item}"</p>
-                        ))}
-                      </div>
+                      <h4 className="text-[10px] text-[#c4c7c8] mb-2 uppercase font-semibold">Adjacent Skills</h4>
+                      <p className="text-sm text-white">
+                        {selectedCandidate.adjacent_skills?.length > 0 ? selectedCandidate.adjacent_skills.join(", ") : "No evidence available."}
+                      </p>
                     </div>
                     <div className="p-4 bg-[#141313]">
-                      <h4 className={`text-[10px] mb-2 uppercase font-semibold flex items-center gap-1 ${selectedCandidate.rank > 100 ? 'text-[#EF4444]' : 'text-[#22C55E]'}`}>
-                        {selectedCandidate.rank > 100 ? 'Audit Finding (Warning)' : 'Verification (Passed)'}
-                      </h4>
+                      <h4 className="text-[10px] text-[#c4c7c8] mb-2 uppercase font-semibold">Evidence</h4>
                       <div className="space-y-2">
-                        {selectedCandidate.evidence.retrieval.map((item, i) => (
+                        {selectedCandidate.transferability_evidence?.length > 0 ? selectedCandidate.transferability_evidence.map((item, i) => (
                           <p key={i} className="text-sm text-[#c4c7c8]">{item}</p>
-                        ))}
+                        )) : <p className="text-sm text-[#c4c7c8]">No evidence available.</p>}
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Ranking Evidence */}
+                {/* Extracted Evidence */}
                 <div className="border border-[#262626] bg-[#111111] rounded-lg overflow-hidden transition-colors hover:border-[#404040]">
                   <div className="p-4 border-b border-[#262626] flex items-center justify-between bg-[#171717]">
                     <span className="text-xs font-bold text-white flex items-center gap-2 uppercase tracking-widest">
-                      Claim 02: Ranking & Production ML
+                      Candidate Evidence
                     </span>
-                    <span className="text-[10px] font-mono text-[#c4c7c8]">Source: Technical Interview</span>
                   </div>
                   <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#262626]">
                     <div className="p-4">
-                      <h4 className="text-[10px] text-[#c4c7c8] mb-2 uppercase font-semibold">Self-Reported Claim</h4>
-                      <p className="text-sm text-white">Production scaling and ranking model deployment.</p>
+                      <h4 className="text-[10px] text-[#c4c7c8] mb-2 uppercase font-semibold">Matched Skills</h4>
+                      <p className="text-sm text-[#22C55E]">
+                        {selectedCandidate.matched_skills?.length > 0 ? selectedCandidate.matched_skills.join(", ") : "No evidence available."}
+                      </p>
                     </div>
                     <div className="p-4 bg-[#141313]">
-                      <h4 className={`text-[10px] mb-2 uppercase font-semibold flex items-center gap-1 ${selectedCandidate.rank > 100 ? 'text-[#EF4444]' : 'text-[#22C55E]'}`}>
-                        {selectedCandidate.rank > 100 ? 'Audit Finding (Failed)' : 'Verification (Passed)'}
-                      </h4>
-                      <div className="space-y-2">
-                        {selectedCandidate.evidence.ranking.map((item, i) => (
-                          <p key={i} className="text-sm text-[#c4c7c8]">{item}</p>
-                        ))}
-                      </div>
+                      <h4 className="text-[10px] text-[#EF4444] mb-2 uppercase font-semibold">Missing Skills</h4>
+                      <p className="text-sm text-[#c4c7c8]">
+                        {selectedCandidate.missing_skills?.length > 0 ? selectedCandidate.missing_skills.join(", ") : "No evidence available."}
+                      </p>
                     </div>
+                  </div>
+                  <div className="p-4 border-t border-[#262626]">
+                    <h4 className="text-[10px] text-[#c4c7c8] mb-2 uppercase font-semibold">Explanation</h4>
+                    <p className="text-sm text-[#c4c7c8] whitespace-pre-wrap">
+                      {selectedCandidate.explanation || "No evidence available."}
+                    </p>
                   </div>
                 </div>
 
@@ -401,14 +397,14 @@ function WorkspaceContent() {
                   <div className="p-4 border border-[#262626] bg-[#171717] rounded-lg">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[10px] font-bold uppercase tracking-widest">ATS ASSESSMENT</span>
-                      <span className={`font-mono text-[11px] uppercase ${selectedCandidate.rank > 100 ? 'text-[#22C55E]' : 'text-[#EF4444]'}`}>
-                        {selectedCandidate.rank > 100 ? 'ACCEPTED' : 'REJECTED'}
+                      <span className={`font-mono text-[11px] uppercase ${selectedCandidate.rank > 100 ? 'text-[#EF4444]' : 'text-[#22C55E]'}`}>
+                        {selectedCandidate.rank > 100 ? 'REJECTED' : 'ACCEPTED'}
                       </span>
                     </div>
                     <p className="text-sm text-[#c4c7c8]">
                       {selectedCandidate.rank > 100 
-                        ? `Automated scoring passed based on heavy keyword matches for generic ML concepts.` 
-                        : `Automated scoring failed. Keyword density for generic skills did not meet threshold.`}
+                        ? `Automated scoring failed. Keyword density for generic skills did not meet threshold.` 
+                        : `Automated scoring passed based on heavy keyword matches for generic ML concepts.`}
                     </p>
                   </div>
                   
@@ -446,11 +442,33 @@ function WorkspaceContent() {
                 </div>
                 
                 <div className="mt-6 space-y-2">
-                  <button className="w-full py-2 bg-white text-black text-xs font-bold rounded hover:opacity-90 transition-opacity uppercase tracking-widest">
+                  <button 
+                    onClick={() => { setSelectedCandidate(null); clearComparison(); }}
+                    className="w-full py-2 bg-white text-black text-xs font-bold rounded hover:opacity-90 transition-opacity uppercase tracking-widest"
+                  >
                     {selectedCandidate.rank > 100 ? 'Close Case' : 'Generate Offer Docs'}
                   </button>
                   <button className="w-full py-2 border border-[#262626] text-white text-xs font-bold rounded hover:bg-[#171717] transition-colors uppercase tracking-widest">
                     Request Second Audit
+                  </button>
+                  <button 
+                    disabled={candidates.length === 0} 
+                    title={candidates.length === 0 ? "No ranking results available." : "Export to CSV"} 
+                    onClick={() => {
+                      const csvContent = "data:text/csv;charset=utf-8," + 
+                        "Rank,Name,Match Score,Status\n" + 
+                        candidates.map(c => `${c.rank},"${c.name}",${c.matchScore},${c.rank <= 100 ? 'RECOMMENDED' : 'REJECTED'}`).join("\n");
+                      const encodedUri = encodeURI(csvContent);
+                      const link = document.createElement("a");
+                      link.setAttribute("href", encodedUri);
+                      link.setAttribute("download", `signalhire_export_${invId}.csv`);
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
+                    className="w-full py-2 border border-[#262626] text-white text-xs font-bold rounded hover:bg-[#171717] transition-colors uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Export Results
                   </button>
                 </div>
               </div>
@@ -481,4 +499,3 @@ export default function WorkspacePage() {
     </Suspense>
   );
 }
-// Patch #2: Export button state update`r`n// <Button disabled={candidates.length === 0} title="No ranking results available." onClick={handleExport}>Export Results</Button>

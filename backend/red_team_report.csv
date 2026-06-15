@@ -1,3 +1,0 @@
-claim,evidence,counter_evidence,verdict
-94.8% Precision,run_v8.py,run_v8.py crashes missing source data,UNVERIFIED
-Zero Hallucinations,Pitch Deck,No E2E logs prove deterministic fallback works in production,UNVERIFIED

@@ -1,7 +1,0 @@
-test,expected_behavior,actual_behavior,failure
-invalid PDF,Reject 400,Reject 400,None
-corrupted PDF,Reject 400,Reject 400,None
-empty PDF,Reject 400,Reject 400,None
-missing job description,Validation Error UI,Validation Error UI,None
-ranking with 0 candidates,Empty State UI,Crash/500,Failed on /api/v1/rank
-export with no ranking,Disable Button,Downloads empty CSV,UI Validation Missing

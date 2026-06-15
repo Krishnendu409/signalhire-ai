@@ -247029,5 +247029,258 @@
     ],
     "category": "Energy",
     "weight": 1.0
+  },
+  "FAISS": {
+    "aliases": [
+      "faiss",
+      "facebook ai similarity search"
+    ],
+    "related_skills": [
+      "Vector Databases",
+      "Machine Learning"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "Qdrant": {
+    "aliases": [
+      "qdrant"
+    ],
+    "related_skills": [
+      "Vector Databases",
+      "Rust"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "Learning-to-Rank": {
+    "aliases": [
+      "learning-to-rank",
+      "learning to rank",
+      "ltr"
+    ],
+    "related_skills": [
+      "Search",
+      "Machine Learning",
+      "Elasticsearch"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "Vector Databases": {
+    "aliases": [
+      "vector databases",
+      "vector database",
+      "vector db",
+      "vectordb"
+    ],
+    "related_skills": [
+      "FAISS",
+      "Qdrant",
+      "Pinecone",
+      "Milvus",
+      "Weaviate"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "Machine Learning": {
+    "aliases": [
+      "machine learning",
+      "ml"
+    ],
+    "related_skills": [
+      "Deep Learning",
+      "Data Science",
+      "Python"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "Pinecone": {
+    "aliases": [
+      "pinecone"
+    ],
+    "related_skills": [
+      "Vector Databases"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "Milvus": {
+    "aliases": [
+      "milvus"
+    ],
+    "related_skills": [
+      "Vector Databases"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "Weaviate": {
+    "aliases": [
+      "weaviate"
+    ],
+    "related_skills": [
+      "Vector Databases"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "OpenSearch": {
+    "aliases": [
+      "opensearch",
+      "open search"
+    ],
+    "related_skills": [
+      "Elasticsearch",
+      "Search"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "BM25": {
+    "aliases": [
+      "bm25",
+      "okapi bm25"
+    ],
+    "related_skills": [
+      "Search",
+      "Elasticsearch"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "Cross Encoder": {
+    "aliases": [
+      "cross encoder",
+      "cross-encoder"
+    ],
+    "related_skills": [
+      "Sentence Transformers",
+      "Machine Learning"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "Sentence Transformers": {
+    "aliases": [
+      "sentence transformers",
+      "sentence-transformers",
+      "sbert"
+    ],
+    "related_skills": [
+      "Machine Learning",
+      "NLP"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "RAG": {
+    "aliases": [
+      "rag",
+      "retrieval augmented generation",
+      "retrieval-augmented generation"
+    ],
+    "related_skills": [
+      "LLM Engineering",
+      "Machine Learning",
+      "Vector Databases"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "LangChain": {
+    "aliases": [
+      "langchain"
+    ],
+    "related_skills": [
+      "LLM Engineering",
+      "Python"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "LangGraph": {
+    "aliases": [
+      "langgraph"
+    ],
+    "related_skills": [
+      "LangChain",
+      "Agents"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "CrewAI": {
+    "aliases": [
+      "crewai",
+      "crew.ai"
+    ],
+    "related_skills": [
+      "Agents",
+      "LLM Engineering"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "AutoGen": {
+    "aliases": [
+      "autogen",
+      "microsoft autogen"
+    ],
+    "related_skills": [
+      "Agents",
+      "LLM Engineering"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "LLM Engineering": {
+    "aliases": [
+      "llm engineering",
+      "llms",
+      "large language models"
+    ],
+    "related_skills": [
+      "Machine Learning",
+      "RAG"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
+  },
+  "Agents": {
+    "aliases": [
+      "agents",
+      "autonomous agents",
+      "ai agents"
+    ],
+    "related_skills": [
+      "LLM Engineering",
+      "LangGraph",
+      "CrewAI",
+      "AutoGen"
+    ],
+    "parent_domains": [
+      "Tech"
+    ]
   }
 }

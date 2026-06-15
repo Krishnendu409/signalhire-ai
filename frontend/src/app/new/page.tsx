@@ -22,6 +22,8 @@ export default function NewInvestigationPage() {
   const [jdText, setJdText] = useState("Role: Senior Search Engineer\nSkills: FAISS, Qdrant, Learning-to-Rank, Python\nExperience: Production ML infrastructure");
   const [files, setFiles] = useState<File[]>([]);
 
+  const [jdFile, setJdFile] = useState<File | null>(null);
+
   const handleRun = async () => {
     setIsExecuting(true);
     setCurrentStage(0);
@@ -33,7 +35,12 @@ export default function NewInvestigationPage() {
       const startUrl = new URL(`${API_BASE}/jobs`);
       const formData = new FormData();
       formData.append("title", "Senior Search Engineer");
-      formData.append("file", new Blob([jdText], { type: "text/plain" }), "jd.txt");
+      
+      if (jdFile) {
+        formData.append("file", jdFile);
+      } else {
+        formData.append("file", new Blob([jdText], { type: "text/plain" }), "jd.txt");
+      }
 
       const response = await fetch(startUrl.toString(), {
         method: "POST",
@@ -129,16 +136,28 @@ export default function NewInvestigationPage() {
             <div className="space-y-8">
               {/* JD Input */}
               <div className="border border-[#262626] bg-[#111111] p-6 rounded-lg">
-                <div className="flex items-center gap-3 mb-4">
-                  <FileText className="w-5 h-5 text-white" />
-                  <h2 className="text-sm font-semibold text-white uppercase tracking-widest">Target Profile</h2>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <FileText className="w-5 h-5 text-white" />
+                    <h2 className="text-sm font-semibold text-white uppercase tracking-widest">Target Profile</h2>
+                  </div>
+                  <label className="cursor-pointer bg-[#171717] hover:bg-[#262626] border border-[#262626] px-3 py-1 rounded text-xs text-white transition-colors">
+                    <input type="file" className="hidden" accept=".pdf,.txt" onChange={(e) => {
+                      if (e.target.files && e.target.files.length > 0) {
+                        setJdFile(e.target.files[0]);
+                      }
+                    }} />
+                    {jdFile ? `Selected: ${jdFile.name}` : "Upload JD File"}
+                  </label>
                 </div>
-                <textarea 
-                  className="w-full h-32 bg-[#141313] border border-[#262626] rounded p-4 text-xs font-mono text-[#c4c7c8] focus:border-[#404040] focus:outline-none resize-none"
-                  placeholder="Paste Job Description or Target Signals here..."
-                  value={jdText}
-                  onChange={(e) => setJdText(e.target.value)}
-                />
+                {!jdFile && (
+                  <textarea 
+                    className="w-full h-32 bg-[#141313] border border-[#262626] rounded p-4 text-xs font-mono text-[#c4c7c8] focus:border-[#404040] focus:outline-none resize-none"
+                    placeholder="Paste Job Description or Target Signals here..."
+                    value={jdText}
+                    onChange={(e) => setJdText(e.target.value)}
+                  />
+                )}
               </div>
 
               {/* Candidates Input */}

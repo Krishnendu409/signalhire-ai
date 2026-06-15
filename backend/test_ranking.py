@@ -1,62 +1,29 @@
-import asyncio, sys
-sys.path.insert(0, '.')
+import asyncio
+from app.db.session import async_session
+from sqlalchemy import select
+from app.models.job import Job
 from app.services.ranking import rank_candidates_for_job
+from app.models.candidate import Candidate
+import json
 
-async def test():
-    job = {
-        "title": "Software Engineer",
-        "family": "Software Engineering",
-        "title_terms": ["software", "engineer"],
-        "req_skills": ["python", "aws", "docker"],
-        "min_experience": 3,
-        "education": "BS"
-    }
+async def main():
+    async with async_session() as session:
+        job_result = await session.execute(select(Job).limit(1))
+        job = job_result.scalar_one_or_none()
+        if not job:
+            print("No job")
+            return
+            
+        cand_result = await session.execute(
+            select(Candidate).where(Candidate.recruiter_id == job.recruiter_id, Candidate.parsed_data.isnot(None))
+        )
+        candidates = [{"id": str(c.id), "parsed_data": c.parsed_data} for c in cand_result.scalars().all()]
+        
+        results = await rank_candidates_for_job(str(job.id), job.parsed_requirements, candidates)
+        
+        print("Top 10:")
+        for r in results.get("results", [])[:10]:
+            print(f"Cand: {r.get('candidate_id')}, Final Score: {r.get('final_score')}, SkillAff: {r.get('SkillAff_Contrib')}, TitleAff: {r.get('TitleAff_Contrib')}, Penalty: {r.get('Penalties')}, Transf: {r.get('transferability_evidence')}")
 
-    # Test: GT vs PA with near-identical data - only title differs
-    cands = [
-        {"id": "gt_0", "parsed_data": {
-            "current_title": "Senior Software Engineer",
-            "total_years_of_experience": 8,
-            "skills": [{"name": "Python"}, {"name": "AWS"}, {"name": "Docker"}],
-            "education": [{"degree": "BS", "institution": "University"}],
-            "certifications": [],
-            "experiences": [{"title": "SWE", "company": "Google", "duration_months": 96, "bullets": ["Built distributed systems"]}]
-        }},
-        {"id": "pa_0", "parsed_data": {
-            "current_title": "Senior Software Engineer Google",
-            "total_years_of_experience": 8,
-            "skills": [{"name": "Python"}, {"name": "AWS"}, {"name": "Docker"}],
-            "education": [{"degree": "BS", "institution": "University"}],
-            "certifications": [],
-            "experiences": [{"title": "SWE", "company": "Google", "duration_months": 96, "bullets": ["Built distributed systems"]}]
-        }},
-        {"id": "gt_1", "parsed_data": {
-            "current_title": "Data Engineer",
-            "total_years_of_experience": 5,
-            "skills": [{"name": "Python"}, {"name": "Spark"}, {"name": "SQL"}],
-            "education": [{"degree": "BTech", "institution": "University"}],
-            "certifications": [],
-            "experiences": [{"title": "Data Engineer", "company": "Snowflake", "duration_months": 60, "bullets": ["Built pipelines"]}]
-        }},
-        {"id": "pa_1", "parsed_data": {
-            "current_title": "Data Engineer Snowflake",
-            "total_years_of_experience": 5,
-            "skills": [{"name": "Python"}, {"name": "Apache Spark"}, {"name": "SQL"}],
-            "education": [{"degree": "BTech", "institution": "University"}],
-            "certifications": [],
-            "experiences": [{"title": "Data Engineer Snowflake", "company": "Snowflake", "duration_months": 60, "bullets": ["Built pipelines"]}]
-        }},
-    ]
-    result = await rank_candidates_for_job("test", job, cands)
-    print("Ranking results:")
-    for r in result["results"]:
-        score = r.get("final_score", "N/A")
-        dims = r.get("dimension_scores", {})
-        print(f"  id={r['id']}  rank={r['rank']}  score={score} dims={dims}")
-
-    # Check if ranking function signature
-    import inspect
-    sig = inspect.signature(rank_candidates_for_job)
-    print(f"\nrank_candidates_for_job signature: {sig}")
-
-asyncio.run(test())
+if __name__ == "__main__":
+    asyncio.run(main())

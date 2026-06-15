@@ -1,0 +1,301 @@
+jd_title,candidate_id,candidate_title,final_score,manual_label
+Frontend Developer,S_0_0,frontend developer,56.52173913043478,STRONG MATCH
+Frontend Developer,S_0_1,frontend developer,56.52173913043478,STRONG MATCH
+Frontend Developer,S_0_2,frontend developer,56.52173913043478,STRONG MATCH
+Frontend Developer,S_0_3,frontend developer,56.52173913043478,STRONG MATCH
+Frontend Developer,S_0_4,frontend developer,56.52173913043478,STRONG MATCH
+Frontend Developer,M_0_0,frontend developer,38.26086956521739,MEDIUM MATCH
+Frontend Developer,M_0_1,frontend developer,38.26086956521739,MEDIUM MATCH
+Frontend Developer,M_0_2,frontend developer,38.26086956521739,MEDIUM MATCH
+Frontend Developer,M_0_3,frontend developer,38.26086956521739,MEDIUM MATCH
+Frontend Developer,M_0_4,frontend developer,38.26086956521739,MEDIUM MATCH
+Frontend Developer,W_0_0,assistant,4.3478260869565215,WEAK MATCH
+Frontend Developer,W_0_1,assistant,4.3478260869565215,WEAK MATCH
+Frontend Developer,W_0_2,assistant,4.3478260869565215,WEAK MATCH
+Frontend Developer,W_0_3,assistant,4.3478260869565215,WEAK MATCH
+Frontend Developer,W_0_4,assistant,4.3478260869565215,WEAK MATCH
+Backend Engineer,S_1_0,backend engineer,56.52173913043478,STRONG MATCH
+Backend Engineer,S_1_1,backend engineer,56.52173913043478,STRONG MATCH
+Backend Engineer,S_1_2,backend engineer,56.52173913043478,STRONG MATCH
+Backend Engineer,S_1_3,backend engineer,56.52173913043478,STRONG MATCH
+Backend Engineer,S_1_4,backend engineer,56.52173913043478,STRONG MATCH
+Backend Engineer,M_1_0,backend engineer,38.26086956521739,MEDIUM MATCH
+Backend Engineer,M_1_1,backend engineer,38.26086956521739,MEDIUM MATCH
+Backend Engineer,M_1_2,backend engineer,38.26086956521739,MEDIUM MATCH
+Backend Engineer,M_1_3,backend engineer,38.26086956521739,MEDIUM MATCH
+Backend Engineer,M_1_4,backend engineer,38.26086956521739,MEDIUM MATCH
+Backend Engineer,W_1_0,assistant,4.3478260869565215,WEAK MATCH
+Backend Engineer,W_1_1,assistant,4.3478260869565215,WEAK MATCH
+Backend Engineer,W_1_2,assistant,4.3478260869565215,WEAK MATCH
+Backend Engineer,W_1_3,assistant,4.3478260869565215,WEAK MATCH
+Backend Engineer,W_1_4,assistant,4.3478260869565215,WEAK MATCH
+Data Scientist,S_2_0,data scientist,56.52173913043478,STRONG MATCH
+Data Scientist,S_2_1,data scientist,56.52173913043478,STRONG MATCH
+Data Scientist,S_2_2,data scientist,56.52173913043478,STRONG MATCH
+Data Scientist,S_2_3,data scientist,56.52173913043478,STRONG MATCH
+Data Scientist,S_2_4,data scientist,56.52173913043478,STRONG MATCH
+Data Scientist,M_2_0,data scientist,38.26086956521739,MEDIUM MATCH
+Data Scientist,M_2_1,data scientist,38.26086956521739,MEDIUM MATCH
+Data Scientist,M_2_2,data scientist,38.26086956521739,MEDIUM MATCH
+Data Scientist,M_2_3,data scientist,38.26086956521739,MEDIUM MATCH
+Data Scientist,M_2_4,data scientist,38.26086956521739,MEDIUM MATCH
+Data Scientist,W_2_0,assistant,4.3478260869565215,WEAK MATCH
+Data Scientist,W_2_1,assistant,4.3478260869565215,WEAK MATCH
+Data Scientist,W_2_2,assistant,4.3478260869565215,WEAK MATCH
+Data Scientist,W_2_3,assistant,4.3478260869565215,WEAK MATCH
+Data Scientist,W_2_4,assistant,4.3478260869565215,WEAK MATCH
+DevOps Engineer,S_3_0,devops engineer,56.52173913043478,STRONG MATCH
+DevOps Engineer,S_3_1,devops engineer,56.52173913043478,STRONG MATCH
+DevOps Engineer,S_3_2,devops engineer,56.52173913043478,STRONG MATCH
+DevOps Engineer,S_3_3,devops engineer,56.52173913043478,STRONG MATCH
+DevOps Engineer,S_3_4,devops engineer,56.52173913043478,STRONG MATCH
+DevOps Engineer,M_3_0,devops engineer,38.26086956521739,MEDIUM MATCH
+DevOps Engineer,M_3_1,devops engineer,38.26086956521739,MEDIUM MATCH
+DevOps Engineer,M_3_2,devops engineer,38.26086956521739,MEDIUM MATCH
+DevOps Engineer,M_3_3,devops engineer,38.26086956521739,MEDIUM MATCH
+DevOps Engineer,M_3_4,devops engineer,38.26086956521739,MEDIUM MATCH
+DevOps Engineer,W_3_0,assistant,4.3478260869565215,WEAK MATCH
+DevOps Engineer,W_3_1,assistant,4.3478260869565215,WEAK MATCH
+DevOps Engineer,W_3_2,assistant,4.3478260869565215,WEAK MATCH
+DevOps Engineer,W_3_3,assistant,4.3478260869565215,WEAK MATCH
+DevOps Engineer,W_3_4,assistant,4.3478260869565215,WEAK MATCH
+Full Stack Developer,S_4_0,full stack developer,56.52173913043478,STRONG MATCH
+Full Stack Developer,S_4_1,full stack developer,56.52173913043478,STRONG MATCH
+Full Stack Developer,S_4_2,full stack developer,56.52173913043478,STRONG MATCH
+Full Stack Developer,S_4_3,full stack developer,56.52173913043478,STRONG MATCH
+Full Stack Developer,S_4_4,full stack developer,56.52173913043478,STRONG MATCH
+Full Stack Developer,M_4_0,full stack developer,38.26086956521739,MEDIUM MATCH
+Full Stack Developer,M_4_1,full stack developer,38.26086956521739,MEDIUM MATCH
+Full Stack Developer,M_4_2,full stack developer,38.26086956521739,MEDIUM MATCH
+Full Stack Developer,M_4_3,full stack developer,38.26086956521739,MEDIUM MATCH
+Full Stack Developer,M_4_4,full stack developer,38.26086956521739,MEDIUM MATCH
+Full Stack Developer,W_4_0,assistant,4.3478260869565215,WEAK MATCH
+Full Stack Developer,W_4_1,assistant,4.3478260869565215,WEAK MATCH
+Full Stack Developer,W_4_2,assistant,4.3478260869565215,WEAK MATCH
+Full Stack Developer,W_4_3,assistant,4.3478260869565215,WEAK MATCH
+Full Stack Developer,W_4_4,assistant,4.3478260869565215,WEAK MATCH
+Machine Learning Engineer,S_5_0,machine learning engineer,56.52173913043478,STRONG MATCH
+Machine Learning Engineer,S_5_1,machine learning engineer,56.52173913043478,STRONG MATCH
+Machine Learning Engineer,S_5_2,machine learning engineer,56.52173913043478,STRONG MATCH
+Machine Learning Engineer,S_5_3,machine learning engineer,56.52173913043478,STRONG MATCH
+Machine Learning Engineer,S_5_4,machine learning engineer,56.52173913043478,STRONG MATCH
+Machine Learning Engineer,M_5_0,machine learning engineer,38.26086956521739,MEDIUM MATCH
+Machine Learning Engineer,M_5_1,machine learning engineer,38.26086956521739,MEDIUM MATCH
+Machine Learning Engineer,M_5_2,machine learning engineer,38.26086956521739,MEDIUM MATCH
+Machine Learning Engineer,M_5_3,machine learning engineer,38.26086956521739,MEDIUM MATCH
+Machine Learning Engineer,M_5_4,machine learning engineer,38.26086956521739,MEDIUM MATCH
+Machine Learning Engineer,W_5_0,assistant,4.3478260869565215,WEAK MATCH
+Machine Learning Engineer,W_5_1,assistant,4.3478260869565215,WEAK MATCH
+Machine Learning Engineer,W_5_2,assistant,4.3478260869565215,WEAK MATCH
+Machine Learning Engineer,W_5_3,assistant,4.3478260869565215,WEAK MATCH
+Machine Learning Engineer,W_5_4,assistant,4.3478260869565215,WEAK MATCH
+Data Engineer,S_6_0,data engineer,56.52173913043478,STRONG MATCH
+Data Engineer,S_6_1,data engineer,56.52173913043478,STRONG MATCH
+Data Engineer,S_6_2,data engineer,56.52173913043478,STRONG MATCH
+Data Engineer,S_6_3,data engineer,56.52173913043478,STRONG MATCH
+Data Engineer,S_6_4,data engineer,56.52173913043478,STRONG MATCH
+Data Engineer,M_6_0,data engineer,38.26086956521739,MEDIUM MATCH
+Data Engineer,M_6_1,data engineer,38.26086956521739,MEDIUM MATCH
+Data Engineer,M_6_2,data engineer,38.26086956521739,MEDIUM MATCH
+Data Engineer,M_6_3,data engineer,38.26086956521739,MEDIUM MATCH
+Data Engineer,M_6_4,data engineer,38.26086956521739,MEDIUM MATCH
+Data Engineer,W_6_0,assistant,4.3478260869565215,WEAK MATCH
+Data Engineer,W_6_1,assistant,4.3478260869565215,WEAK MATCH
+Data Engineer,W_6_2,assistant,4.3478260869565215,WEAK MATCH
+Data Engineer,W_6_3,assistant,4.3478260869565215,WEAK MATCH
+Data Engineer,W_6_4,assistant,4.3478260869565215,WEAK MATCH
+iOS Developer,S_7_0,ios developer,56.52173913043478,STRONG MATCH
+iOS Developer,S_7_1,ios developer,56.52173913043478,STRONG MATCH
+iOS Developer,S_7_2,ios developer,56.52173913043478,STRONG MATCH
+iOS Developer,S_7_3,ios developer,56.52173913043478,STRONG MATCH
+iOS Developer,S_7_4,ios developer,56.52173913043478,STRONG MATCH
+iOS Developer,M_7_0,ios developer,38.26086956521739,MEDIUM MATCH
+iOS Developer,M_7_1,ios developer,38.26086956521739,MEDIUM MATCH
+iOS Developer,M_7_2,ios developer,38.26086956521739,MEDIUM MATCH
+iOS Developer,M_7_3,ios developer,38.26086956521739,MEDIUM MATCH
+iOS Developer,M_7_4,ios developer,38.26086956521739,MEDIUM MATCH
+iOS Developer,W_7_0,assistant,4.3478260869565215,WEAK MATCH
+iOS Developer,W_7_1,assistant,4.3478260869565215,WEAK MATCH
+iOS Developer,W_7_2,assistant,4.3478260869565215,WEAK MATCH
+iOS Developer,W_7_3,assistant,4.3478260869565215,WEAK MATCH
+iOS Developer,W_7_4,assistant,4.3478260869565215,WEAK MATCH
+Android Developer,S_8_0,android developer,56.52173913043478,STRONG MATCH
+Android Developer,S_8_1,android developer,56.52173913043478,STRONG MATCH
+Android Developer,S_8_2,android developer,56.52173913043478,STRONG MATCH
+Android Developer,S_8_3,android developer,56.52173913043478,STRONG MATCH
+Android Developer,S_8_4,android developer,56.52173913043478,STRONG MATCH
+Android Developer,M_8_0,android developer,38.26086956521739,MEDIUM MATCH
+Android Developer,M_8_1,android developer,38.26086956521739,MEDIUM MATCH
+Android Developer,M_8_2,android developer,38.26086956521739,MEDIUM MATCH
+Android Developer,M_8_3,android developer,38.26086956521739,MEDIUM MATCH
+Android Developer,M_8_4,android developer,38.26086956521739,MEDIUM MATCH
+Android Developer,W_8_0,assistant,4.3478260869565215,WEAK MATCH
+Android Developer,W_8_1,assistant,4.3478260869565215,WEAK MATCH
+Android Developer,W_8_2,assistant,4.3478260869565215,WEAK MATCH
+Android Developer,W_8_3,assistant,4.3478260869565215,WEAK MATCH
+Android Developer,W_8_4,assistant,4.3478260869565215,WEAK MATCH
+Security Engineer,S_9_0,security engineer,56.52173913043478,STRONG MATCH
+Security Engineer,S_9_1,security engineer,56.52173913043478,STRONG MATCH
+Security Engineer,S_9_2,security engineer,56.52173913043478,STRONG MATCH
+Security Engineer,S_9_3,security engineer,56.52173913043478,STRONG MATCH
+Security Engineer,S_9_4,security engineer,56.52173913043478,STRONG MATCH
+Security Engineer,M_9_0,security engineer,38.26086956521739,MEDIUM MATCH
+Security Engineer,M_9_1,security engineer,38.26086956521739,MEDIUM MATCH
+Security Engineer,M_9_2,security engineer,38.26086956521739,MEDIUM MATCH
+Security Engineer,M_9_3,security engineer,38.26086956521739,MEDIUM MATCH
+Security Engineer,M_9_4,security engineer,38.26086956521739,MEDIUM MATCH
+Security Engineer,W_9_0,assistant,4.3478260869565215,WEAK MATCH
+Security Engineer,W_9_1,assistant,4.3478260869565215,WEAK MATCH
+Security Engineer,W_9_2,assistant,4.3478260869565215,WEAK MATCH
+Security Engineer,W_9_3,assistant,4.3478260869565215,WEAK MATCH
+Security Engineer,W_9_4,assistant,4.3478260869565215,WEAK MATCH
+Cloud Architect,S_10_0,cloud architect,56.52173913043478,STRONG MATCH
+Cloud Architect,S_10_1,cloud architect,56.52173913043478,STRONG MATCH
+Cloud Architect,S_10_2,cloud architect,56.52173913043478,STRONG MATCH
+Cloud Architect,S_10_3,cloud architect,56.52173913043478,STRONG MATCH
+Cloud Architect,S_10_4,cloud architect,56.52173913043478,STRONG MATCH
+Cloud Architect,M_10_0,cloud architect,38.26086956521739,MEDIUM MATCH
+Cloud Architect,M_10_1,cloud architect,38.26086956521739,MEDIUM MATCH
+Cloud Architect,M_10_2,cloud architect,38.26086956521739,MEDIUM MATCH
+Cloud Architect,M_10_3,cloud architect,38.26086956521739,MEDIUM MATCH
+Cloud Architect,M_10_4,cloud architect,38.26086956521739,MEDIUM MATCH
+Cloud Architect,W_10_0,assistant,4.3478260869565215,WEAK MATCH
+Cloud Architect,W_10_1,assistant,4.3478260869565215,WEAK MATCH
+Cloud Architect,W_10_2,assistant,4.3478260869565215,WEAK MATCH
+Cloud Architect,W_10_3,assistant,4.3478260869565215,WEAK MATCH
+Cloud Architect,W_10_4,assistant,4.3478260869565215,WEAK MATCH
+Database Administrator,S_11_0,database administrator,56.52173913043478,STRONG MATCH
+Database Administrator,S_11_1,database administrator,56.52173913043478,STRONG MATCH
+Database Administrator,S_11_2,database administrator,56.52173913043478,STRONG MATCH
+Database Administrator,S_11_3,database administrator,56.52173913043478,STRONG MATCH
+Database Administrator,S_11_4,database administrator,56.52173913043478,STRONG MATCH
+Database Administrator,M_11_0,database administrator,38.26086956521739,MEDIUM MATCH
+Database Administrator,M_11_1,database administrator,38.26086956521739,MEDIUM MATCH
+Database Administrator,M_11_2,database administrator,38.26086956521739,MEDIUM MATCH
+Database Administrator,M_11_3,database administrator,38.26086956521739,MEDIUM MATCH
+Database Administrator,M_11_4,database administrator,38.26086956521739,MEDIUM MATCH
+Database Administrator,W_11_0,assistant,4.3478260869565215,WEAK MATCH
+Database Administrator,W_11_1,assistant,4.3478260869565215,WEAK MATCH
+Database Administrator,W_11_2,assistant,4.3478260869565215,WEAK MATCH
+Database Administrator,W_11_3,assistant,4.3478260869565215,WEAK MATCH
+Database Administrator,W_11_4,assistant,4.3478260869565215,WEAK MATCH
+QA Engineer,S_12_0,qa engineer,56.52173913043478,STRONG MATCH
+QA Engineer,S_12_1,qa engineer,56.52173913043478,STRONG MATCH
+QA Engineer,S_12_2,qa engineer,56.52173913043478,STRONG MATCH
+QA Engineer,S_12_3,qa engineer,56.52173913043478,STRONG MATCH
+QA Engineer,S_12_4,qa engineer,56.52173913043478,STRONG MATCH
+QA Engineer,M_12_0,qa engineer,38.26086956521739,MEDIUM MATCH
+QA Engineer,M_12_1,qa engineer,38.26086956521739,MEDIUM MATCH
+QA Engineer,M_12_2,qa engineer,38.26086956521739,MEDIUM MATCH
+QA Engineer,M_12_3,qa engineer,38.26086956521739,MEDIUM MATCH
+QA Engineer,M_12_4,qa engineer,38.26086956521739,MEDIUM MATCH
+QA Engineer,W_12_0,assistant,4.3478260869565215,WEAK MATCH
+QA Engineer,W_12_1,assistant,4.3478260869565215,WEAK MATCH
+QA Engineer,W_12_2,assistant,4.3478260869565215,WEAK MATCH
+QA Engineer,W_12_3,assistant,4.3478260869565215,WEAK MATCH
+QA Engineer,W_12_4,assistant,4.3478260869565215,WEAK MATCH
+Product Manager,S_13_0,product manager,56.52173913043478,STRONG MATCH
+Product Manager,S_13_1,product manager,56.52173913043478,STRONG MATCH
+Product Manager,S_13_2,product manager,56.52173913043478,STRONG MATCH
+Product Manager,S_13_3,product manager,56.52173913043478,STRONG MATCH
+Product Manager,S_13_4,product manager,56.52173913043478,STRONG MATCH
+Product Manager,M_13_0,product manager,38.26086956521739,MEDIUM MATCH
+Product Manager,M_13_1,product manager,38.26086956521739,MEDIUM MATCH
+Product Manager,M_13_2,product manager,38.26086956521739,MEDIUM MATCH
+Product Manager,M_13_3,product manager,38.26086956521739,MEDIUM MATCH
+Product Manager,M_13_4,product manager,38.26086956521739,MEDIUM MATCH
+Product Manager,W_13_0,assistant,4.3478260869565215,WEAK MATCH
+Product Manager,W_13_1,assistant,4.3478260869565215,WEAK MATCH
+Product Manager,W_13_2,assistant,4.3478260869565215,WEAK MATCH
+Product Manager,W_13_3,assistant,4.3478260869565215,WEAK MATCH
+Product Manager,W_13_4,assistant,4.3478260869565215,WEAK MATCH
+UI/UX Designer,S_14_0,ui/ux designer,56.52173913043478,STRONG MATCH
+UI/UX Designer,S_14_1,ui/ux designer,56.52173913043478,STRONG MATCH
+UI/UX Designer,S_14_2,ui/ux designer,56.52173913043478,STRONG MATCH
+UI/UX Designer,S_14_3,ui/ux designer,56.52173913043478,STRONG MATCH
+UI/UX Designer,S_14_4,ui/ux designer,56.52173913043478,STRONG MATCH
+UI/UX Designer,M_14_0,ui/ux designer,38.26086956521739,MEDIUM MATCH
+UI/UX Designer,M_14_1,ui/ux designer,38.26086956521739,MEDIUM MATCH
+UI/UX Designer,M_14_2,ui/ux designer,38.26086956521739,MEDIUM MATCH
+UI/UX Designer,M_14_3,ui/ux designer,38.26086956521739,MEDIUM MATCH
+UI/UX Designer,M_14_4,ui/ux designer,38.26086956521739,MEDIUM MATCH
+UI/UX Designer,W_14_0,assistant,4.3478260869565215,WEAK MATCH
+UI/UX Designer,W_14_1,assistant,4.3478260869565215,WEAK MATCH
+UI/UX Designer,W_14_2,assistant,4.3478260869565215,WEAK MATCH
+UI/UX Designer,W_14_3,assistant,4.3478260869565215,WEAK MATCH
+UI/UX Designer,W_14_4,assistant,4.3478260869565215,WEAK MATCH
+Sales Executive,S_15_0,sales executive,56.52173913043478,STRONG MATCH
+Sales Executive,S_15_1,sales executive,56.52173913043478,STRONG MATCH
+Sales Executive,S_15_2,sales executive,56.52173913043478,STRONG MATCH
+Sales Executive,S_15_3,sales executive,56.52173913043478,STRONG MATCH
+Sales Executive,S_15_4,sales executive,56.52173913043478,STRONG MATCH
+Sales Executive,M_15_0,sales executive,38.26086956521739,MEDIUM MATCH
+Sales Executive,M_15_1,sales executive,38.26086956521739,MEDIUM MATCH
+Sales Executive,M_15_2,sales executive,38.26086956521739,MEDIUM MATCH
+Sales Executive,M_15_3,sales executive,38.26086956521739,MEDIUM MATCH
+Sales Executive,M_15_4,sales executive,38.26086956521739,MEDIUM MATCH
+Sales Executive,W_15_0,assistant,4.3478260869565215,WEAK MATCH
+Sales Executive,W_15_1,assistant,4.3478260869565215,WEAK MATCH
+Sales Executive,W_15_2,assistant,4.3478260869565215,WEAK MATCH
+Sales Executive,W_15_3,assistant,4.3478260869565215,WEAK MATCH
+Sales Executive,W_15_4,assistant,4.3478260869565215,WEAK MATCH
+HR Manager,S_16_0,hr manager,56.52173913043478,STRONG MATCH
+HR Manager,S_16_1,hr manager,56.52173913043478,STRONG MATCH
+HR Manager,S_16_2,hr manager,56.52173913043478,STRONG MATCH
+HR Manager,S_16_3,hr manager,56.52173913043478,STRONG MATCH
+HR Manager,S_16_4,hr manager,56.52173913043478,STRONG MATCH
+HR Manager,M_16_0,hr manager,38.26086956521739,MEDIUM MATCH
+HR Manager,M_16_1,hr manager,38.26086956521739,MEDIUM MATCH
+HR Manager,M_16_2,hr manager,38.26086956521739,MEDIUM MATCH
+HR Manager,M_16_3,hr manager,38.26086956521739,MEDIUM MATCH
+HR Manager,M_16_4,hr manager,38.26086956521739,MEDIUM MATCH
+HR Manager,W_16_0,assistant,4.3478260869565215,WEAK MATCH
+HR Manager,W_16_1,assistant,4.3478260869565215,WEAK MATCH
+HR Manager,W_16_2,assistant,4.3478260869565215,WEAK MATCH
+HR Manager,W_16_3,assistant,4.3478260869565215,WEAK MATCH
+HR Manager,W_16_4,assistant,4.3478260869565215,WEAK MATCH
+Financial Analyst,S_17_0,financial analyst,56.52173913043478,STRONG MATCH
+Financial Analyst,S_17_1,financial analyst,56.52173913043478,STRONG MATCH
+Financial Analyst,S_17_2,financial analyst,56.52173913043478,STRONG MATCH
+Financial Analyst,S_17_3,financial analyst,56.52173913043478,STRONG MATCH
+Financial Analyst,S_17_4,financial analyst,56.52173913043478,STRONG MATCH
+Financial Analyst,M_17_0,financial analyst,38.26086956521739,MEDIUM MATCH
+Financial Analyst,M_17_1,financial analyst,38.26086956521739,MEDIUM MATCH
+Financial Analyst,M_17_2,financial analyst,38.26086956521739,MEDIUM MATCH
+Financial Analyst,M_17_3,financial analyst,38.26086956521739,MEDIUM MATCH
+Financial Analyst,M_17_4,financial analyst,38.26086956521739,MEDIUM MATCH
+Financial Analyst,W_17_0,assistant,10.434782608695654,WEAK MATCH
+Financial Analyst,W_17_1,assistant,10.434782608695654,WEAK MATCH
+Financial Analyst,W_17_2,assistant,10.434782608695654,WEAK MATCH
+Financial Analyst,W_17_3,assistant,10.434782608695654,WEAK MATCH
+Financial Analyst,W_17_4,assistant,10.434782608695654,WEAK MATCH
+Marketing Specialist,S_18_0,marketing specialist,56.52173913043478,STRONG MATCH
+Marketing Specialist,S_18_1,marketing specialist,56.52173913043478,STRONG MATCH
+Marketing Specialist,S_18_2,marketing specialist,56.52173913043478,STRONG MATCH
+Marketing Specialist,S_18_3,marketing specialist,56.52173913043478,STRONG MATCH
+Marketing Specialist,S_18_4,marketing specialist,56.52173913043478,STRONG MATCH
+Marketing Specialist,M_18_0,marketing specialist,38.26086956521739,MEDIUM MATCH
+Marketing Specialist,M_18_1,marketing specialist,38.26086956521739,MEDIUM MATCH
+Marketing Specialist,M_18_2,marketing specialist,38.26086956521739,MEDIUM MATCH
+Marketing Specialist,M_18_3,marketing specialist,38.26086956521739,MEDIUM MATCH
+Marketing Specialist,M_18_4,marketing specialist,38.26086956521739,MEDIUM MATCH
+Marketing Specialist,W_18_0,assistant,4.3478260869565215,WEAK MATCH
+Marketing Specialist,W_18_1,assistant,4.3478260869565215,WEAK MATCH
+Marketing Specialist,W_18_2,assistant,4.3478260869565215,WEAK MATCH
+Marketing Specialist,W_18_3,assistant,4.3478260869565215,WEAK MATCH
+Marketing Specialist,W_18_4,assistant,4.3478260869565215,WEAK MATCH
+Customer Success Manager,S_19_0,customer success manager,56.52173913043478,STRONG MATCH
+Customer Success Manager,S_19_1,customer success manager,56.52173913043478,STRONG MATCH
+Customer Success Manager,S_19_2,customer success manager,56.52173913043478,STRONG MATCH
+Customer Success Manager,S_19_3,customer success manager,56.52173913043478,STRONG MATCH
+Customer Success Manager,S_19_4,customer success manager,56.52173913043478,STRONG MATCH
+Customer Success Manager,M_19_0,customer success manager,38.26086956521739,MEDIUM MATCH
+Customer Success Manager,M_19_1,customer success manager,38.26086956521739,MEDIUM MATCH
+Customer Success Manager,M_19_2,customer success manager,38.26086956521739,MEDIUM MATCH
+Customer Success Manager,M_19_3,customer success manager,38.26086956521739,MEDIUM MATCH
+Customer Success Manager,M_19_4,customer success manager,38.26086956521739,MEDIUM MATCH
+Customer Success Manager,W_19_0,assistant,4.3478260869565215,WEAK MATCH
+Customer Success Manager,W_19_1,assistant,4.3478260869565215,WEAK MATCH
+Customer Success Manager,W_19_2,assistant,4.3478260869565215,WEAK MATCH
+Customer Success Manager,W_19_3,assistant,4.3478260869565215,WEAK MATCH
+Customer Success Manager,W_19_4,assistant,4.3478260869565215,WEAK MATCH

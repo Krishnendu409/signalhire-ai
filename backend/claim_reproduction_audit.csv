@@ -1,5 +1,0 @@
-claim,reproducible,error,status
-93.8% title accuracy,NO,FileNotFoundError: parser_validation_v2.csv,INVALID
-94.8% precision,NO,FileNotFoundError: parser_validation_v2.csv,INVALID
-94.8% recall,NO,FileNotFoundError: parser_validation_v2.csv,INVALID
-1.4 YOE error,NO,FileNotFoundError: parser_validation_v2.csv,INVALID

@@ -110,6 +110,7 @@ async def get_latest_ranking(
         "status": ranking.status,
         "total_candidates": ranking.total_candidates,
         "results": ranking.results.get("results", []),
+        "query_text": ranking.results.get("query_text", ""),
         "created_at": ranking.created_at.isoformat(),
     }
 

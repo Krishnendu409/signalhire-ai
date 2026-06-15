@@ -1,4 +1,0 @@
-page,loads,renders_data,handles_empty,handles_loading,handles_errors
-Landing,True,True,True,True,True
-Workspace,True,True,True,True,True
-Analytics,True,True,True,True,True

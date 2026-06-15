@@ -3,7 +3,7 @@
 import type { Candidate, CareerStep } from '../store/workspace';
 
 function mapToUICandidate(sub: any, record: any): Candidate {
-  const technicalScore = Math.round((sub?.final_score ?? 0) * 10);
+  const technicalScore = Math.round(sub?.final_score ?? 0);
   const matchScore = technicalScore;
   const isRejected = matchScore < 30; // Reject if score is too low
   
@@ -41,9 +41,9 @@ function mapToUICandidate(sub: any, record: any): Candidate {
 
   return {
     id: sub.candidate_id,
-    name: record?.profile?.anonymized_name || "Unknown Candidate",
-    title: sub.title || record?.profile?.current_title || "Unknown Title",
-    company: record?.profile?.current_company || "Unknown Company",
+    name: record?.full_name || record?.profile?.anonymized_name || "Unknown Candidate",
+    title: sub.title || record?.current_title || record?.profile?.current_title || "Unknown Title",
+    company: record?.current_company || record?.profile?.current_company || "Unknown Company",
     trajectory,
     rank: isRejected ? 101 + sub.rank : sub.rank, // Force rank > 100 if rejected
     matchScore: matchScore,
@@ -51,7 +51,7 @@ function mapToUICandidate(sub: any, record: any): Candidate {
     risks: penalties < 0 ? ["Inconsistent Profile"] : [],
     decisionPath: {
       enteredVia: "Exhaustive Pipeline",
-      rankedBecause: sub?.explanation?.top_strengths || ["Met requirement threshold"],
+      rankedBecause: typeof sub?.explanation === 'string' && sub.explanation.trim() !== '' ? [sub.explanation] : ["Met requirement threshold"],
       penalizedBecause: penalties < 0 ? ["Inconsistency Detected"] : [],
     },
     evidence: {
@@ -84,6 +84,11 @@ function mapToUICandidate(sub: any, record: any): Candidate {
       penalties: sub?.penalties ?? 0
     },
     narrative: `Final Score: ${(sub?.final_score ?? 0).toFixed(2)}\nTitle Affinity: ${(sub?.TitleAff_Contrib ?? 0).toFixed(2)}\nSkill Affinity: ${(sub?.SkillAff_Contrib ?? 0).toFixed(2)}\nCareer Affinity: ${(sub?.CareerAff_Contrib ?? 0).toFixed(2)}\nPenalties: ${(sub?.Penalties ?? 0).toFixed(2)}`,
+    matched_skills: sub?.matched_skills || [],
+    missing_skills: sub?.missing_skills || [],
+    explanation: typeof sub?.explanation === 'string' ? sub.explanation : "No explanation provided.",
+    adjacent_skills: sub?.adjacent_skills || [],
+    transferability_evidence: sub?.transferability_evidence || [],
   };
 }
 
