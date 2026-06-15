@@ -1,0 +1,93 @@
+{
+  "raw_text": "                    Qhull, Copyright (c) 1993-2020\n                    \n                            C.B. Barber\n                           Arlington, MA \n                          \n                               and\n\n       The National Science and Technology Research Center for\n        Computation and Visualization of Geometric Structures\n                        (The Geometry Center)\n                       University of Minnesota\n\n                       email: qhull@qhull.org\n\nThis software includes Qhull from C.B. Barber and The Geometry Center.  \nFiles derived from Qhull 1.0 are copyrighted by the Geometry Center.  The\nremaining files are copyrighted by C.B. Barber.  Qhull is free software \nand may be obtained via http from www.qhull.org.  It may be freely copied, \nmodified, and redistributed under the following conditions:\n\n1. All copyright notices must remain intact in all files.\n\n2. A copy of this text file must be distributed along with any copies \n   of Qhull that you redistribute; this includes copies that you have \n   modified, or copies of programs or other software products that \n   include Qhull.\n\n3. If you modify Qhull, you must include a notice giving the\n   name of the person performing the modification, the date of\n   modification, and the reason for such modification.\n\n4. When distributing modified versions of Qhull, or other software \n   products that include Qhull, you must provide notice that the original \n   source code may be obtained as noted above.\n\n5. There is no warranty or other guarantee of fitness for Qhull, it is \n   provided solely \"as is\".  Bug reports or fixes may be sent to \n   qhull_bug@qhull.org; the authors may or may not act on them as \n   they desire.\n",
+  "parsed": {
+    "full_name": "Qhull, Copyright (c) 1993",
+    "current_title": "Qhull",
+    "normalized_title": "Qhull",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 27,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "C.B. Barber Arlington, MA and The National Science and Technology Research Center for Computation and Visualization of Geometric Structures (The Geometry Center) University of Minnesota email: qhull@qhull.org This software includes Qhull from C.B. Barber and The Geometry Center. Files derived from Qhull 1.0 are copyrighted by the Geometry Center.  The remaining files are copyrighted by C.B. Barber.  Qhull is free software and may be obtained via http from www.qhull.org.  It may be freely copied,",
+    "contact": {
+      "email": "qhull@qhull.org",
+      "phone": ""
+    },
+    "experiences": [
+      {
+        "title": "Qhull",
+        "company": "Copyright (c)",
+        "start_date": "1993",
+        "end_date": "2020",
+        "is_current": false,
+        "duration_months": 324,
+        "bullets": [
+          "C.B. Barber",
+          "Arlington, MA",
+          "and",
+          "The National Science and Technology Research Center for",
+          "Computation and Visualization of Geometric Structures"
+        ],
+        "evidence": "Qhull at Copyright (c) (1993 \u2013 2020)"
+      }
+    ],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "of the person performing the modification",
+        "field_of_study": "",
+        "evidence": "                    Qhull, Copyright (c) 1993-2020                                                  C.B. Barber                            Arlington, "
+      },
+      {
+        "degree": "BE",
+        "institution": "obtained via http from www.qhull.org.  It may be fr",
+        "field_of_study": "",
+        "evidence": "                    Qhull, Copyright (c) 1993-2020                                                  C.B. Barber                            Arlington, "
+      },
+      {
+        "degree": "BA",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "                    Qhull, Copyright (c) 1993-2020                                                  C.B. Barber                            Arlington, "
+      }
+    ],
+    "skills": [
+      {
+        "name": "Data Visualization",
+        "type": "hard"
+      },
+      {
+        "name": "Research",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Data Visualization",
+        "evidence": "arch Center for         Computation and Visualization of Geometric Structures                         (The Geometry Center)                        Univer",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Research",
+        "evidence": "The National Science and Technology Research Center for         Computation and Visualization of Geometric Structures                         (T",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

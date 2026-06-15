@@ -1,0 +1,152 @@
+absolute_path,extracted_skill,evidence_in_text
+C:\Users\krish\Documents\signalhire\backend\real_validation_output.txt,oracle database,False
+C:\Users\krish\Documents\signalhire\backend\real_validation_output.txt,data visualization,False
+C:\Users\krish\Documents\signalhire\backend\real_validation_output.txt,llms,False
+C:\Users\krish\Documents\signalhire\backend\real_validation_output.txt,soc,False
+C:\Users\krish\Documents\signalhire\backend\real_validation_output.txt,quality management,False
+C:\Users\krish\Documents\signalhire\backend\real_validation_output.txt,payment systems,False
+C:\Users\krish\Documents\signalhire\backend\real_validation_output.txt,product management,False
+C:\Users\krish\Documents\signalhire\backend\real_validation_output.txt,serverless,False
+C:\Users\krish\Documents\signalhire\backend\real_validation_output.txt,data science,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\adodbapi\license.txt,troubleshooting,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\adodbapi\readme.txt,c#,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\adodbapi\readme.txt,3d printing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\adodbapi\readme.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\botocore-1.43.16.dist-info\LICENSE.txt,content marketing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\botocore-1.43.16.dist-info\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\click-8.4.1.dist-info\licenses\LICENSE.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\click-8.4.1.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\colorama-0.4.6.dist-info\licenses\LICENSE.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\colorama-0.4.6.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\h11-0.16.0.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\httplib2\cacerts.txt,c#,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\httplib2\cacerts.txt,cryptography,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\jinja2-3.1.6.dist-info\licenses\LICENSE.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\jinja2-3.1.6.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\joblib-1.5.3.dist-info\licenses\LICENSE.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\joblib-1.5.3.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\markupsafe-3.0.3.dist-info\licenses\LICENSE.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\markupsafe-3.0.3.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\networkx-3.6.1.dist-info\licenses\LICENSE.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\networkx-3.6.1.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\numpy\_core\include\numpy\random\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\numpy-2.4.6.dist-info\licenses\LICENSE.txt,assembly,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\numpy-2.4.6.dist-info\licenses\LICENSE.txt,ui/ux,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\numpy-2.4.6.dist-info\licenses\LICENSE.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\numpy-2.4.6.dist-info\licenses\LICENSE.txt,oil and gas,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\numpy-2.4.6.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\numpy-2.4.6.dist-info\licenses\numpy\linalg\lapack_lite\LICENSE.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\numpy-2.4.6.dist-info\licenses\numpy\linalg\lapack_lite\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\numpy-2.4.6.dist-info\licenses\numpy\_core\include\numpy\libdivide\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\numpy-2.4.6.dist-info\licenses\numpy\_core\src\multiarray\dragon4_LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pip\_vendor\distlib\LICENSE.txt,c#,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pip\_vendor\distlib\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pip\_vendor\urllib3\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pip-26.1.1.dist-info\licenses\AUTHORS.txt,machine learning,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pip-26.1.1.dist-info\licenses\AUTHORS.txt,network automation,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pip-26.1.1.dist-info\licenses\AUTHORS.txt,jamstack,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pip-26.1.1.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pip-26.1.1.dist-info\licenses\src\pip\_vendor\distlib\LICENSE.txt,c#,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pip-26.1.1.dist-info\licenses\src\pip\_vendor\distlib\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pip-26.1.1.dist-info\licenses\src\pip\_vendor\urllib3\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\psycopg-3.3.4.dist-info\licenses\LICENSE.txt,troubleshooting,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\psycopg_binary-3.3.4.dist-info\licenses\LICENSE.txt,troubleshooting,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\psycopg_pool-3.3.1.dist-info\licenses\LICENSE.txt,troubleshooting,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pyasn1_modules-0.4.2.dist-info\licenses\LICENSE.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pyasn1_modules-0.4.2.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pythonwin\license.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\pythonwin\license.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\python_multipart-0.0.29.dist-info\licenses\LICENSE.txt,content marketing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\python_multipart-0.0.29.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\regex-2026.5.9.dist-info\licenses\LICENSE.txt,content marketing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\regex-2026.5.9.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\s3transfer-0.17.1.dist-info\LICENSE.txt,content marketing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\s3transfer-0.17.1.dist-info\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\scipy\spatial\qhull_src\COPYING_QHULL.txt,data visualization,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\scipy-1.17.1.dist-info\LICENSE.txt,assembly,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\scipy-1.17.1.dist-info\LICENSE.txt,ui/ux,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\scipy-1.17.1.dist-info\LICENSE.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\scipy-1.17.1.dist-info\LICENSE.txt,oil and gas,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\scipy-1.17.1.dist-info\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\setuptools\_vendor\jaraco\text\Lorem ipsum.txt,active directory,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\setuptools\_vendor\wheel-0.46.3.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\sklearn\datasets\images\china.jpg,scikit-learn,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\sklearn\datasets\images\flower.jpg,scikit-learn,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\sqlalchemy\dialects\type_migration_guidelines.txt,sql server,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\sympy\parsing\latex\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\urllib3-2.7.0.dist-info\licenses\LICENSE.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\win32\license.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\win32\license.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\win32com\License.txt,supply chain,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\win32com\License.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\backend\venv\Lib\site-packages\win32com\test\readme.txt,technical writing,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Frontend_Engineer.txt,tailwind css,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Frontend_Engineer.txt,google cloud platform,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Frontend_Engineer.txt,apache spark,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Frontend_Engineer.txt,statistics,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Frontend_Engineer.txt,generative ai,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Frontend_Engineer.txt,vector databases,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Frontend_Engineer.txt,lean manufacturing,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Frontend_Engineer.txt,quality management,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Frontend_Engineer.txt,financial analysis,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Sales_Manager.txt,tailwind css,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Sales_Manager.txt,google cloud platform,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Sales_Manager.txt,apache spark,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Sales_Manager.txt,statistics,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Sales_Manager.txt,generative ai,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Sales_Manager.txt,vector databases,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Sales_Manager.txt,lean manufacturing,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Sales_Manager.txt,financial analysis,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Sales_Manager.txt,business analysis,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Search_Engineer.txt,google cloud platform,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Search_Engineer.txt,statistics,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Search_Engineer.txt,generative ai,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Search_Engineer.txt,vector databases,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_new_Search_Engineer.txt,financial analysis,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Frontend_Engineer.txt,tailwind css,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Frontend_Engineer.txt,google cloud platform,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Frontend_Engineer.txt,apache spark,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Frontend_Engineer.txt,statistics,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Frontend_Engineer.txt,generative ai,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Frontend_Engineer.txt,vector databases,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Frontend_Engineer.txt,lean manufacturing,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Frontend_Engineer.txt,financial analysis,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Sales_Manager.txt,tailwind css,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Sales_Manager.txt,google cloud platform,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Sales_Manager.txt,apache spark,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Sales_Manager.txt,statistics,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Sales_Manager.txt,generative ai,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Sales_Manager.txt,lean manufacturing,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Sales_Manager.txt,financial analysis,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Search_Engineer.txt,google cloud platform,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Search_Engineer.txt,statistics,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Search_Engineer.txt,generative ai,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Search_Engineer.txt,vector databases,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Search_Engineer.txt,lean manufacturing,False
+C:\Users\krish\Documents\signalhire\hackathon_pipeline\review_orig_Search_Engineer.txt,financial analysis,False
+C:\Users\krish\Documents\signalhire\scratch\ablation_results.txt,tailwind css,False
+C:\Users\krish\Documents\signalhire\scratch\ablation_results.txt,google cloud platform,False
+C:\Users\krish\Documents\signalhire\scratch\ablation_results.txt,apache spark,False
+C:\Users\krish\Documents\signalhire\scratch\ablation_results.txt,statistics,False
+C:\Users\krish\Documents\signalhire\scratch\ablation_results.txt,generative ai,False
+C:\Users\krish\Documents\signalhire\scratch\ablation_results.txt,vector databases,False
+C:\Users\krish\Documents\signalhire\scratch\ablation_results.txt,lean manufacturing,False
+C:\Users\krish\Documents\signalhire\scratch\ablation_results.txt,financial analysis,False
+C:\Users\krish\Documents\signalhire\scratch\ablation_results.txt,clinical data,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,tailwind css,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,apache spark,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,statistics,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,computer vision,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,generative ai,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,vector databases,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,design patterns,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,cloud computing,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,lean manufacturing,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,supply chain,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,process engineering,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,financial analysis,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,content marketing,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,business analysis,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,computer-aided engineering,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,incident response,False
+C:\Users\krish\Documents\signalhire\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl,data governance,False

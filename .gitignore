@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+backend/.venv/
+venv/
+.venv/
+
+# Build / cache
+.next/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+
+# Local data & logs
+backend/signalhire.db
+backend/*.db
+logs/
+backend/error.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large / generated artifacts
+*.npy
+*.pkl
+*.bin
+*.zip
+kaggle_resumes/
+
+# Resume PDFs (large binaries)
+*.pdf
+
+# Scratch / temp
+screenshots/tmp/
+scratch/

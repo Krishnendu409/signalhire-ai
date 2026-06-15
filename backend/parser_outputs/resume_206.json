@@ -1,0 +1,909 @@
+{
+  "raw_text": "Title: sales executive | Company: wipro | Skills: salesforce crm, rust, powerpoint, computer vision, sap\nTitle: sales executive | Company: globex inc | Skills: data pipelines, excel, salesforce crm, docker, aws\nTitle: sales executive | Company: stark industries | Skills: azure, terraform, bigquery, docker, kubeflow\nTitle: sales executive | Company: wipro | Skills: azure, go, snowflake, accounting, mlflow\nTitle: sales executive | Company: initech | Skills: django, etl, data pipelines, bigquery, salesforce crm\nTitle: sales executive | Company: dunder mifflin | Skills: postgresql, spark, ci/cd, grpc, sql\nTitle: sales executive | Company: stark industries | Skills: kafka, databricks, seo, next.js, typescript\nTitle: sales executive | Company: stark industries | Skills: gcp, vue.js, sap, scrum, feature engineering\nTitle: sales executive | Company: acme corp | Skills: project management, vue.js, typescript, terraform, databricks\nTitle: sales executive | Company: infosys | Skills: etl, apache beam, typescript, hadoop, data pipelines\nTitle: sales executive | Company: tcs | Skills: typescript, gans, go, excel, data pipelines\nTitle: sales executive | Company: initech | Skills: postgresql, spring boot, apache flink, vue.js, react\nTitle: sales executive | Company: stark industries | Skills: snowflake, typescript, salesforce crm, redis, sales\nTitle: sales executive | Company: acme corp | Skills: microservices, object detection, apache beam, rest apis, typescript\nTitle: sales executive | Company: globex inc | Skills: java, salesforce crm, six sigma, sales, mlops\nTitle: sales executive | Company: globex inc | Skills: data pipelines, rest apis, databricks, flask, tailwind\nTitle: sales executive | Company: wipro | Skills: rest apis, salesforce crm, react, sap, graphql\nTitle: sales executive | Company: globex inc | Skills: fastapi, salesforce crm, seo, apache flink, webpack\nTitle: sales executive | Company: hooli | Skills: statistical modeling, node.js, html, powerpoint, microservices\nTitle: sales executive | Company: pied piper | Skills: figma, salesforce crm, vue.js, postgresql, tally\nTitle: sales executive | Company: wipro | Skills: mongodb, apache beam, salesforce crm, javascript, sap\nTitle: sales executive | Company: globex inc | Skills: snowflake, java, redis, spark, photoshop\nTitle: sales executive | Company: acme corp | Skills: salesforce crm, snowflake, java, accounting, sales\nTitle: sales executive | Company: stark industries | Skills: apache beam, time series, agile, next.js, graphql\nTitle: sales executive | Company: initech | Skills: figma, sql, spring boot, redis, diffusion models\nTitle: sales executive | Company: wayne enterprises | Skills: six sigma, graphql, dbt, salesforce crm, bigquery\nTitle: sales executive | Company: pied piper | Skills: speech recognition, six sigma, next.js, css, node.js\nTitle: sales executive | Company: wipro | Skills: postgresql, rest apis, fastapi, time series, java\nTitle: sales executive | Company: stark industries | Skills: redux, webpack, salesforce crm, agile, scrum\nTitle: sales executive | Company: dunder mifflin | Skills: accounting, salesforce crm, seo, postgresql, flask\nTitle: sales executive | Company: dunder mifflin | Skills: java, fastapi, salesforce crm, apache beam, rust\nTitle: sales executive | Company: tcs | Skills: sales, figma, vue.js, apache flink, javascript\nTitle: sales executive | Company: wayne enterprises | Skills: spark, databricks, mlflow, node.js, html\nTitle: sales executive | Company: initech | Skills: fastapi, accounting, redux, go, grpc\nTitle: sales executive | Company: hooli | Skills: salesforce crm, graphql, sales, snowflake, spark\nTitle: sales executive | Company: dunder mifflin | Skills: excel, node.js, salesforce crm, azure, sap\nTitle: sales executive | Company: stark industries | Skills: postgresql, gans, scrum, kubernetes, databricks\nTitle: sales executive | Company: stark industries | Skills: postgresql, angular, spring boot, agile, flask\nTitle: sales executive | Company: stark industries | Skills: gcp, project management, salesforce crm, asr, data pipelines\nTitle: sales executive | Company: wipro | Skills: project management, salesforce crm, html, data pipelines, agile\nTitle: sales executive | Company: wipro | Skills: aws, spark, marketing, azure, salesforce crm\nTitle: sales executive | Company: wipro | Skills: rest apis, data pipelines, agile, accounting, redux\nTitle: sales executive | Company: initech | Skills: dbt, salesforce crm, hadoop, go, ci/cd\nTitle: sales executive | Company: wipro | Skills: rest apis, azure, project management, javascript, aws\nTitle: sales executive | Company: infosys | Skills: node.js, salesforce crm, seo, etl, graphql\nTitle: sales executive | Company: globex inc | Skills: rest apis, salesforce crm, speech recognition, snowflake, seo\nTitle: sales executive | Company: hooli | Skills: salesforce crm, microservices, terraform, apache flink, angular\nTitle: sales executive | Company: wayne enterprises | Skills: hadoop, project management, data pipelines, photoshop, redis\nTitle: sales executive | Company: stark industries | Skills: salesforce crm, tailwind, flask, rust, powerpoint\nTitle: sales executive | Company: dunder mifflin | Skills: salesforce crm, accounting, webpack, rust, content writing\nTitle: sales executive | Company: dunder mifflin | Skills: angular, redis, microservices, snowflake, figma\nTitle: sales executive | Company: infosys | Skills: content writing, rust, accounting, data pipelines, webpack\nTitle: sales executive | Company: hooli | Skills: etl, salesforce crm, django, graphql, rest apis\nTitle: sales executive | Company: globex inc | Skills: kafka, mongodb, airflow, salesforce crm, aws\nTitle: sales executive | Company: pied piper | Skills: kafka, illustrator, node.js, scrum, photoshop\nTitle: sales executive | Company: stark industries | Skills: typescript, tally, java, kubernetes, microservices\nTitle: sales executive | Company: stark industries | Skills: react, css, sales, mlflow, go\nTitle: sales executive | Company: infosys | Skills: excel, docker, spring boot, six sigma, kafka\nTitle: sales executive | Company: infosys | Skills: salesforce crm, sales, graphql, feature engineering, tailwind\nTitle: sales executive | Company: tcs | Skills: salesforce crm, figma, project management, seo, etl\nTitle: sales executive | Company: acme corp | Skills: vue.js, project management, html, salesforce crm, javascript\nTitle: sales executive | Company: dunder mifflin | Skills: html, illustrator, next.js, salesforce crm, figma\nTitle: sales executive | Company: initech | Skills: databricks, tailwind, next.js, powerpoint, django\nTitle: sales executive | Company: wayne enterprises | Skills: rest apis, docker, yolo, css, fastapi\nTitle: sales executive | Company: hooli | Skills: etl, graphql, salesforce crm, fastapi, kafka\nTitle: sales executive | Company: initech | Skills: data pipelines, salesforce crm, angular, figma, django\nTitle: sales executive | Company: tcs | Skills: data pipelines, microservices, salesforce crm, react, html\nTitle: sales executive | Company: acme corp | Skills: spark, scrum, postgresql, redux, ci/cd\nTitle: sales executive | Company: dunder mifflin | Skills: salesforce crm, agile, html, grpc, go\nTitle: sales executive | Company: wipro | Skills: statistical modeling, sales, airflow, rest apis, accounting\nTitle: sales executive | Company: tcs | Skills: css, docker, sql, salesforce crm, mongodb\nTitle: sales executive | Company: tcs | Skills: react, excel, accounting, sales, flask\nTitle: sales executive | Company: pied piper | Skills: etl, flask, illustrator, kubernetes, salesforce crm\nTitle: sales executive | Company: initech | Skills: dbt, node.js, six sigma, javascript, docker\nTitle: sales executive | Company: initech | Skills: mlflow, react, node.js, sap, data pipelines\nTitle: sales executive | Company: dunder mifflin | Skills: powerpoint, sales, figma, six sigma, azure\nTitle: sales executive | Company: acme corp | Skills: tally, speech recognition, marketing, apache beam, salesforce crm\nTitle: sales executive | Company: tcs | Skills: java, rest apis, apache flink, redux, vue.js\nTitle: sales executive | Company: initech | Skills: django, etl, statistical modeling, figma, salesforce crm\nTitle: sales executive | Company: wipro | Skills: hadoop, salesforce crm, tailwind, graphql, ci/cd\nTitle: sales executive | Company: pied piper | Skills: javascript, hadoop, terraform, salesforce crm, ci/cd\nTitle: sales executive | Company: hooli | Skills: tailwind, ci/cd, apache flink, salesforce crm, accounting\nTitle: sales executive | Company: wayne enterprises | Skills: powerpoint, sql, webpack, react, gcp\nTitle: sales executive | Company: wipro | Skills: agile, salesforce crm, typescript, excel, illustrator\nTitle: sales executive | Company: tcs | Skills: excel, forecasting, grpc, redis, typescript\nTitle: sales executive | Company: wipro | Skills: figma, html, javascript, vue.js, content writing\nTitle: sales executive | Company: infosys | Skills: marketing, css, rust, six sigma, scrum\nTitle: sales executive | Company: initech | Skills: rust, apache beam, salesforce crm, go, graphql\nTitle: sales executive | Company: stark industries | Skills: mongodb, django, bigquery, rust, salesforce crm\nTitle: sales executive | Company: dunder mifflin | Skills: salesforce crm, data pipelines, project management, airflow, content writing\nTitle: sales executive | Company: acme corp | Skills: salesforce crm, yolo, databricks, javascript, data pipelines\nTitle: sales executive | Company: hooli | Skills: apache beam, django, salesforce crm, dbt, apache flink\nTitle: sales executive | Company: tcs | Skills: scrum, agile, postgresql, grpc, salesforce crm\nTitle: sales executive | Company: stark industries | Skills: project management, salesforce crm, javascript, data pipelines, django\nTitle: sales executive | Company: globex inc | Skills: scrum, agile, javascript, salesforce crm, mongodb\nTitle: sales executive | Company: acme corp | Skills: css, html, next.js, etl, sales\nTitle: sales executive | Company: wipro | Skills: etl, reinforcement learning, java, sql, rest apis\nTitle: sales executive | Company: hooli | Skills: django, graphql, hadoop, feature engineering, airflow\nTitle: sales executive | Company: dunder mifflin | Skills: tailwind, agile, redis, scrum, mlflow\nTitle: sales executive | Company: initech | Skills: salesforce crm, tailwind, sales, aws, css\n",
+  "parsed": {
+    "full_name": "Candidate",
+    "current_title": "Software Professional",
+    "normalized_title": "Software Professional",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 3,
+    "current_employment_status": "Unknown",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "Title: sales executive | Company: globex inc | Skills: data pipelines, excel, salesforce crm, docker, aws Title: sales executive | Company: stark industries | Skills: azure, terraform, bigquery, docker, kubeflow Title: sales executive | Company: wipro | Skills: azure, go, snowflake, accounting, mlflow Title: sales executive | Company: initech | Skills: django, etl, data pipelines, bigquery, salesforce crm Title: sales executive | Company: dunder mifflin | Skills: postgresql, spark, ci/cd, grpc, ",
+    "contact": {
+      "email": "",
+      "phone": ""
+    },
+    "experiences": [],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "corp | Skills: project management",
+        "field_of_study": "",
+        "evidence": "Title: sales executive | Company: wipro | Skills: salesforce crm, rust, powerpoint, computer vision, sap Title: sales executive | Company: globex inc "
+      },
+      {
+        "degree": "BE",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "Title: sales executive | Company: wipro | Skills: salesforce crm, rust, powerpoint, computer vision, sap Title: sales executive | Company: globex inc "
+      }
+    ],
+    "skills": [
+      {
+        "name": "JavaScript",
+        "type": "hard"
+      },
+      {
+        "name": "TypeScript",
+        "type": "hard"
+      },
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "Go",
+        "type": "hard"
+      },
+      {
+        "name": "Rust",
+        "type": "hard"
+      },
+      {
+        "name": "React",
+        "type": "hard"
+      },
+      {
+        "name": "Angular",
+        "type": "hard"
+      },
+      {
+        "name": "Vue",
+        "type": "hard"
+      },
+      {
+        "name": "Next.js",
+        "type": "hard"
+      },
+      {
+        "name": "Django",
+        "type": "hard"
+      },
+      {
+        "name": "Flask",
+        "type": "hard"
+      },
+      {
+        "name": "FastAPI",
+        "type": "hard"
+      },
+      {
+        "name": "Spring",
+        "type": "hard"
+      },
+      {
+        "name": "GraphQL",
+        "type": "hard"
+      },
+      {
+        "name": "gRPC",
+        "type": "hard"
+      },
+      {
+        "name": "Redux",
+        "type": "hard"
+      },
+      {
+        "name": "Tailwind CSS",
+        "type": "hard"
+      },
+      {
+        "name": "AWS",
+        "type": "hard"
+      },
+      {
+        "name": "Google Cloud Platform",
+        "type": "hard"
+      },
+      {
+        "name": "Azure",
+        "type": "hard"
+      },
+      {
+        "name": "Docker",
+        "type": "hard"
+      },
+      {
+        "name": "Kubernetes",
+        "type": "hard"
+      },
+      {
+        "name": "Terraform",
+        "type": "hard"
+      },
+      {
+        "name": "CI/CD",
+        "type": "hard"
+      },
+      {
+        "name": "Apache",
+        "type": "hard"
+      },
+      {
+        "name": "SQL",
+        "type": "hard"
+      },
+      {
+        "name": "PostgreSQL",
+        "type": "hard"
+      },
+      {
+        "name": "MongoDB",
+        "type": "hard"
+      },
+      {
+        "name": "Redis",
+        "type": "hard"
+      },
+      {
+        "name": "Snowflake",
+        "type": "hard"
+      },
+      {
+        "name": "BigQuery",
+        "type": "hard"
+      },
+      {
+        "name": "dbt",
+        "type": "hard"
+      },
+      {
+        "name": "Kafka",
+        "type": "hard"
+      },
+      {
+        "name": "Apache Spark",
+        "type": "hard"
+      },
+      {
+        "name": "Hadoop",
+        "type": "hard"
+      },
+      {
+        "name": "Flink",
+        "type": "hard"
+      },
+      {
+        "name": "Airflow",
+        "type": "hard"
+      },
+      {
+        "name": "ETL",
+        "type": "hard"
+      },
+      {
+        "name": "Data Pipelines",
+        "type": "hard"
+      },
+      {
+        "name": "Databricks",
+        "type": "hard"
+      },
+      {
+        "name": "Excel",
+        "type": "hard"
+      },
+      {
+        "name": "Statistics",
+        "type": "hard"
+      },
+      {
+        "name": "Computer Vision",
+        "type": "hard"
+      },
+      {
+        "name": "Reinforcement Learning",
+        "type": "hard"
+      },
+      {
+        "name": "MLOps",
+        "type": "hard"
+      },
+      {
+        "name": "MLflow",
+        "type": "hard"
+      },
+      {
+        "name": "Kubeflow",
+        "type": "hard"
+      },
+      {
+        "name": "Generative AI",
+        "type": "hard"
+      },
+      {
+        "name": "REST API",
+        "type": "hard"
+      },
+      {
+        "name": "HTML",
+        "type": "hard"
+      },
+      {
+        "name": "CSS",
+        "type": "hard"
+      },
+      {
+        "name": "Figma",
+        "type": "hard"
+      },
+      {
+        "name": "Agile",
+        "type": "hard"
+      },
+      {
+        "name": "Scrum",
+        "type": "hard"
+      },
+      {
+        "name": "Microservices",
+        "type": "hard"
+      },
+      {
+        "name": "Lean Manufacturing",
+        "type": "hard"
+      },
+      {
+        "name": "Six Sigma",
+        "type": "hard"
+      },
+      {
+        "name": "SAP",
+        "type": "hard"
+      },
+      {
+        "name": "Financial Analysis",
+        "type": "hard"
+      },
+      {
+        "name": "Accounting",
+        "type": "hard"
+      },
+      {
+        "name": "Salesforce",
+        "type": "hard"
+      },
+      {
+        "name": "CRM",
+        "type": "hard"
+      },
+      {
+        "name": "SEO",
+        "type": "hard"
+      },
+      {
+        "name": "Project Management",
+        "type": "hard"
+      },
+      {
+        "name": "Apache Beam",
+        "type": "hard"
+      },
+      {
+        "name": "Apache Flink",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "JavaScript",
+        "evidence": ": mongodb, apache beam, salesforce crm, javascript, sap Title: sales executive | Company: globex inc | Skills: snowflake, java, redis, spark, photosho",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TypeScript",
+        "evidence": "kills: kafka, databricks, seo, next.js, typescript Title: sales executive | Company: stark industries | Skills: gcp, vue.js, sap, scrum, feature engin",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Java",
+        "evidence": "ecutive | Company: globex inc | Skills: java, salesforce crm, six sigma, sales, mlops Title: sales executive | Company: globex inc | Skills: dat",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Go",
+        "evidence": "utive | Company: wipro | Skills: azure, go, snowflake, accounting, mlflow Title: sales executive | Company: initech | Skills: django, etl, dat",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Rust",
+        "evidence": "ompany: wipro | Skills: salesforce crm, rust, powerpoint, computer vision, sap Title: sales executive | Company: globex inc | Skills: data pipel",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "React",
+        "evidence": "sql, spring boot, apache flink, vue.js, react Title: sales executive | Company: stark industries | Skills: snowflake, typescript, salesforce crm,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Angular",
+        "evidence": "stark industries | Skills: postgresql, angular, spring boot, agile, flask Title: sales executive | Company: stark industries | Skills: gcp, projec",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Vue",
+        "evidence": "ompany: stark industries | Skills: gcp, vue.js, sap, scrum, feature engineering Title: sales executive | Company: acme corp | Skills: project mana",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Next.js",
+        "evidence": "tries | Skills: kafka, databricks, seo, next.js, typescript Title: sales executive | Company: stark industries | Skills: gcp, vue.js, sap, scrum, f",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Django",
+        "evidence": "executive | Company: initech | Skills: django, etl, data pipelines, bigquery, salesforce crm Title: sales executive | Company: dunder mifflin | S",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Flask",
+        "evidence": "data pipelines, rest apis, databricks, flask, tailwind Title: sales executive | Company: wipro | Skills: rest apis, salesforce crm, react, sap,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "FastAPI",
+        "evidence": "ecutive | Company: globex inc | Skills: fastapi, salesforce crm, seo, apache flink, webpack Title: sales executive | Company: hooli | Skills: stati",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Spring",
+        "evidence": "Company: initech | Skills: postgresql, spring boot, apache flink, vue.js, react Title: sales executive | Company: stark industries | Skills: snow",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "GraphQL",
+        "evidence": "rest apis, salesforce crm, react, sap, graphql Title: sales executive | Company: globex inc | Skills: fastapi, salesforce crm, seo, apache flink,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "gRPC",
+        "evidence": "lin | Skills: postgresql, spark, ci/cd, grpc, sql Title: sales executive | Company: stark industries | Skills: kafka, databricks, seo, next.js,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Redux",
+        "evidence": "e | Company: stark industries | Skills: redux, webpack, salesforce crm, agile, scrum Title: sales executive | Company: dunder mifflin | Skills: a",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Tailwind CSS",
+        "evidence": "ipelines, rest apis, databricks, flask, tailwind Title: sales executive | Company: wipro | Skills: rest apis, salesforce crm, react, sap, graphql Ti",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "AWS",
+        "evidence": "pelines, excel, salesforce crm, docker, aws Title: sales executive | Company: stark industries | Skills: azure, terraform, bigquery, docker, ku",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Google Cloud Platform",
+        "evidence": "industries | Skills: azure, terraform, bigquery, docker, kubeflow Title: sales executive | Company: wipro | Skills: azure, go, snowflake, accountin",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Azure",
+        "evidence": "e | Company: stark industries | Skills: azure, terraform, bigquery, docker, kubeflow Title: sales executive | Company: wipro | Skills: azure, go,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Docker",
+        "evidence": "data pipelines, excel, salesforce crm, docker, aws Title: sales executive | Company: stark industries | Skills: azure, terraform, bigquery, docke",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kubernetes",
+        "evidence": "ries | Skills: postgresql, gans, scrum, kubernetes, databricks Title: sales executive | Company: stark industries | Skills: postgresql, angular, sprin",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Terraform",
+        "evidence": "pany: stark industries | Skills: azure, terraform, bigquery, docker, kubeflow Title: sales executive | Company: wipro | Skills: azure, go, snowflake,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CI/CD",
+        "evidence": "er mifflin | Skills: postgresql, spark, ci/cd, grpc, sql Title: sales executive | Company: stark industries | Skills: kafka, databricks, seo, nex",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Apache",
+        "evidence": "utive | Company: infosys | Skills: etl, apache beam, typescript, hadoop, data pipelines Title: sales executive | Company: tcs | Skills: typescript",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SQL",
+        "evidence": "Skills: postgresql, spark, ci/cd, grpc, sql Title: sales executive | Company: stark industries | Skills: kafka, databricks, seo, next.js, types",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PostgreSQL",
+        "evidence": "ive | Company: dunder mifflin | Skills: postgresql, spark, ci/cd, grpc, sql Title: sales executive | Company: stark industries | Skills: kafka, databr",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "MongoDB",
+        "evidence": "es executive | Company: wipro | Skills: mongodb, apache beam, salesforce crm, javascript, sap Title: sales executive | Company: globex inc | Skills",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Redis",
+        "evidence": "snowflake, typescript, salesforce crm, redis, sales Title: sales executive | Company: acme corp | Skills: microservices, object detection, apach",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Snowflake",
+        "evidence": "e | Company: wipro | Skills: azure, go, snowflake, accounting, mlflow Title: sales executive | Company: initech | Skills: django, etl, data pipelines",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "BigQuery",
+        "evidence": "industries | Skills: azure, terraform, bigquery, docker, kubeflow Title: sales executive | Company: wipro | Skills: azure, go, snowflake, accountin",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "dbt",
+        "evidence": "terprises | Skills: six sigma, graphql, dbt, salesforce crm, bigquery Title: sales executive | Company: pied piper | Skills: speech recognition",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kafka",
+        "evidence": "e | Company: stark industries | Skills: kafka, databricks, seo, next.js, typescript Title: sales executive | Company: stark industries | Skills:",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Apache Spark",
+        "evidence": "y: dunder mifflin | Skills: postgresql, spark, ci/cd, grpc, sql Title: sales executive | Company: stark industries | Skills: kafka, databricks, s",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Hadoop",
+        "evidence": "| Skills: etl, apache beam, typescript, hadoop, data pipelines Title: sales executive | Company: tcs | Skills: typescript, gans, go, excel, data p",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Flink",
+        "evidence": "Skills: postgresql, spring boot, apache flink, vue.js, react Title: sales executive | Company: stark industries | Skills: snowflake, typescript,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Airflow",
+        "evidence": "y: globex inc | Skills: kafka, mongodb, airflow, salesforce crm, aws Title: sales executive | Company: pied piper | Skills: kafka, illustrator, nod",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "ETL",
+        "evidence": "ve | Company: initech | Skills: django, etl, data pipelines, bigquery, salesforce crm Title: sales executive | Company: dunder mifflin | Skills",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Data Pipelines",
+        "evidence": "ecutive | Company: globex inc | Skills: data pipelines, excel, salesforce crm, docker, aws Title: sales executive | Company: stark industries | Skills: az",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Databricks",
+        "evidence": "pany: stark industries | Skills: kafka, databricks, seo, next.js, typescript Title: sales executive | Company: stark industries | Skills: gcp, vue.js,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Excel",
+        "evidence": "y: globex inc | Skills: data pipelines, excel, salesforce crm, docker, aws Title: sales executive | Company: stark industries | Skills: azure, te",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Statistics",
+        "evidence": "es executive | Company: hooli | Skills: statistical modeling, node.js, html, powerpoint, microservices Title: sales executive | Company: pied piper | Skills: fi",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Computer Vision",
+        "evidence": "any: acme corp | Skills: microservices, object detection, apache beam, rest apis, typescript Title: sales executive | Company: globex inc | Skills: java, sa",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Reinforcement Learning",
+        "evidence": "ecutive | Company: wipro | Skills: etl, reinforcement learning, java, sql, rest apis Title: sales executive | Company: hooli | Skills: django, graphql, hadoop, fe",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "MLOps",
+        "evidence": "java, salesforce crm, six sigma, sales, mlops Title: sales executive | Company: globex inc | Skills: data pipelines, rest apis, databricks, flask",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "MLflow",
+        "evidence": "ills: azure, go, snowflake, accounting, mlflow Title: sales executive | Company: initech | Skills: django, etl, data pipelines, bigquery, salesfor",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kubeflow",
+        "evidence": "ls: azure, terraform, bigquery, docker, kubeflow Title: sales executive | Company: wipro | Skills: azure, go, snowflake, accounting, mlflow Title: s",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Generative AI",
+        "evidence": "Skills: figma, sql, spring boot, redis, diffusion models Title: sales executive | Company: wayne enterprises | Skills: six sigma, graphql, dbt, salesforce c",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "REST API",
+        "evidence": "ervices, object detection, apache beam, rest apis, typescript Title: sales executive | Company: globex inc | Skills: java, salesforce crm, six sigma,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "HTML",
+        "evidence": "Skills: statistical modeling, node.js, html, powerpoint, microservices Title: sales executive | Company: pied piper | Skills: figma, salesforce",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CSS",
+        "evidence": "speech recognition, six sigma, next.js, css, node.js Title: sales executive | Company: wipro | Skills: postgresql, rest apis, fastapi, time ser",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Figma",
+        "evidence": "ecutive | Company: pied piper | Skills: figma, salesforce crm, vue.js, postgresql, tally Title: sales executive | Company: wipro | Skills: mongod",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Agile",
+        "evidence": "ies | Skills: apache beam, time series, agile, next.js, graphql Title: sales executive | Company: initech | Skills: figma, sql, spring boot, redi",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Scrum",
+        "evidence": "industries | Skills: gcp, vue.js, sap, scrum, feature engineering Title: sales executive | Company: acme corp | Skills: project management, vue.",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Microservices",
+        "evidence": "xecutive | Company: acme corp | Skills: microservices, object detection, apache beam, rest apis, typescript Title: sales executive | Company: globex inc",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Lean Manufacturing",
+        "evidence": "bex inc | Skills: java, salesforce crm, six sigma, sales, mlops Title: sales executive | Company: globex inc | Skills: data pipelines, rest apis, dat",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Six Sigma",
+        "evidence": "bex inc | Skills: java, salesforce crm, six sigma, sales, mlops Title: sales executive | Company: globex inc | Skills: data pipelines, rest apis, dat",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SAP",
+        "evidence": "crm, rust, powerpoint, computer vision, sap Title: sales executive | Company: globex inc | Skills: data pipelines, excel, salesforce crm, docke",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Financial Analysis",
+        "evidence": "ecutive | Company: tcs | Skills: excel, forecasting, grpc, redis, typescript Title: sales executive | Company: wipro | Skills: figma, html, javascript,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Accounting",
+        "evidence": ": wipro | Skills: azure, go, snowflake, accounting, mlflow Title: sales executive | Company: initech | Skills: django, etl, data pipelines, bigquery,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Salesforce",
+        "evidence": "es executive | Company: wipro | Skills: salesforce crm, rust, powerpoint, computer vision, sap Title: sales executive | Company: globex inc | Skills:",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CRM",
+        "evidence": "e | Company: wipro | Skills: salesforce crm, rust, powerpoint, computer vision, sap Title: sales executive | Company: globex inc | Skills: data",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SEO",
+        "evidence": "industries | Skills: kafka, databricks, seo, next.js, typescript Title: sales executive | Company: stark industries | Skills: gcp, vue.js, sap,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Project Management",
+        "evidence": "xecutive | Company: acme corp | Skills: project management, vue.js, typescript, terraform, databricks Title: sales executive | Company: infosys | Skills: etl,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Apache Beam",
+        "evidence": "utive | Company: infosys | Skills: etl, apache beam, typescript, hadoop, data pipelines Title: sales executive | Company: tcs | Skills: typescript, gan",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Apache Flink",
+        "evidence": "tech | Skills: postgresql, spring boot, apache flink, vue.js, react Title: sales executive | Company: stark industries | Skills: snowflake, typescript,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [
+      "CKS - Kubernetes Security Specialist"
+    ],
+    "certifications_detail": [
+      {
+        "name": "CKS - Kubernetes Security Specialist",
+        "evidence": "ills: kafka, databricks, seo, next.js, typescript Title: sales executive | Company: stark industries |"
+      }
+    ],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

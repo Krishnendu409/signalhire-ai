@@ -1,0 +1,148 @@
+{
+  "raw_text": "Copyright (c) 1992-2013 The University of Tennessee and The University\n                        of Tennessee Research Foundation.  All rights\n                        reserved.\nCopyright (c) 2000-2013 The University of California Berkeley. All\n                        rights reserved.\nCopyright (c) 2006-2013 The University of Colorado Denver.  All rights\n                        reserved.\n\n$COPYRIGHT$\n\nAdditional copyrights may follow\n\n$HEADER$\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are\nmet:\n\n- Redistributions of source code must retain the above copyright\n  notice, this list of conditions and the following disclaimer.\n\n- Redistributions in binary form must reproduce the above copyright\n  notice, this list of conditions and the following disclaimer listed\n  in this license in the documentation and/or other materials\n  provided with the distribution.\n\n- Neither the name of the copyright holders nor the names of its\n  contributors may be used to endorse or promote products derived from\n  this software without specific prior written permission.\n\nThe copyright holders provide no reassurances that the source code\nprovided does not infringe any patent, copyright, or any other\nintellectual property rights of third parties.  The copyright holders\ndisclaim any liability to any recipient for claims brought against\nrecipient by any third party for infringement of that parties\nintellectual property rights.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\nA PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\nOWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\nSPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\nLIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\nDATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\nTHEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+  "parsed": {
+    "full_name": "of Tennessee Research Foundation.  All rights",
+    "current_title": "Copyright (c)",
+    "normalized_title": "Copyright (c)",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 21,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "of Tennessee Research Foundation.  All rights reserved. Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved. Copyright (c) 2006-2013 The University of Colorado Denver.  All rights reserved. $COPYRIGHT$ Additional copyrights may follow $HEADER$ Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: - Redistributions of source code must retain the above copyright notice, this list",
+    "contact": {
+      "email": "",
+      "phone": ""
+    },
+    "experiences": [
+      {
+        "title": "Copyright (c)",
+        "company": "Company",
+        "start_date": "1992",
+        "end_date": "2013",
+        "is_current": false,
+        "duration_months": 252,
+        "bullets": [
+          "The University of Tennessee and The University",
+          "of Tennessee Research Foundation.  All rights",
+          "reserved.",
+          "Copyright (c)"
+        ],
+        "evidence": "Copyright (c) at Company (1992 \u2013 2013)"
+      },
+      {
+        "title": "Copyright (c)",
+        "company": "reserved.",
+        "start_date": "2000",
+        "end_date": "2013",
+        "is_current": false,
+        "duration_months": 156,
+        "bullets": [
+          "The University of California Berkeley. All",
+          "rights reserved.",
+          "Copyright (c)"
+        ],
+        "evidence": "Copyright (c) at reserved. (2000 \u2013 2013)"
+      },
+      {
+        "title": "Copyright (c)",
+        "company": "rights reserved.",
+        "start_date": "2006",
+        "end_date": "2013",
+        "is_current": false,
+        "duration_months": 84,
+        "bullets": [
+          "The University of Colorado Denver.  All rights",
+          "reserved.",
+          "$COPYRIGHT$",
+          "Additional copyrights may follow",
+          "$HEADER$"
+        ],
+        "evidence": "Copyright (c) at rights reserved. (2006 \u2013 2013)"
+      }
+    ],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "of the copyright holders nor the names of its",
+        "field_of_study": "Tennessee and The University",
+        "evidence": "Copyright (c) 1992-2013 The University of Tennessee and The University                         of Tennessee Research Foundation.  All rights          "
+      },
+      {
+        "degree": "BE",
+        "institution": "used to endorse or promote products derived from",
+        "field_of_study": "Tennessee and The University",
+        "evidence": "Copyright (c) 1992-2013 The University of Tennessee and The University                         of Tennessee Research Foundation.  All rights          "
+      },
+      {
+        "degree": "BS",
+        "institution": "University",
+        "field_of_study": "Tennessee and The University",
+        "evidence": "Copyright (c) 1992-2013 The University of Tennessee and The University                         of Tennessee Research Foundation.  All rights          "
+      }
+    ],
+    "skills": [
+      {
+        "name": "Express",
+        "type": "hard"
+      },
+      {
+        "name": "Supply Chain",
+        "type": "hard"
+      },
+      {
+        "name": "Technical Writing",
+        "type": "hard"
+      },
+      {
+        "name": "Research",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Express",
+        "evidence": "OLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Supply Chain",
+        "evidence": "DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER C",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Technical Writing",
+        "evidence": "claimer listed   in this license in the documentation and/or other materials   provided with the distribution.  - Neither the name of the copyright holde",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Research",
+        "evidence": "ty                         of Tennessee Research Foundation.  All rights                         reserved. Copyright (c) 2000-2013 The University of",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

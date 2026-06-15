@@ -1,0 +1,76 @@
+{
+  "raw_text": "[babel.extractors]\nmako = mako.ext.babelplugin:extract [babel]\n\n[console_scripts]\nmako-render = mako.cmd:cmdline\n\n[lingua.extractors]\nmako = mako.ext.linguaplugin:LinguaMakoExtractor [lingua]\n\n[pygments.lexers]\ncss+mako = mako.ext.pygmentplugin:MakoCssLexer\nhtml+mako = mako.ext.pygmentplugin:MakoHtmlLexer\njs+mako = mako.ext.pygmentplugin:MakoJavascriptLexer\nmako = mako.ext.pygmentplugin:MakoLexer\nxml+mako = mako.ext.pygmentplugin:MakoXmlLexer\n\n[python.templating.engines]\nmako = mako.ext.turbogears:TGPlugin\n",
+  "parsed": {
+    "full_name": "[babel.extractors]",
+    "current_title": "Software Professional",
+    "normalized_title": "Software Professional",
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 3,
+    "current_employment_status": "Unknown",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "mako = mako.ext.babelplugin:extract [babel] [console_scripts] mako-render = mako.cmd:cmdline [lingua.extractors] mako = mako.ext.linguaplugin:LinguaMakoExtractor [lingua] [pygments.lexers] css+mako = mako.ext.pygmentplugin:MakoCssLexer html+mako = mako.ext.pygmentplugin:MakoHtmlLexer js+mako = mako.ext.pygmentplugin:MakoJavascriptLexer mako = mako.ext.pygmentplugin:MakoLexer xml+mako = mako.ext.pygmentplugin:MakoXmlLexer [python.templating.engines] mako = mako.ext.turbogears:TGPlugin",
+    "contact": {
+      "email": "",
+      "phone": ""
+    },
+    "experiences": [],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "[babel.extractors] mako = mako.ext.babelplugin:extract [babel]  [console_scripts] mako-render = mako.cmd:cmdline  [lingua.extractors] mako = mako.ext."
+      },
+      {
+        "degree": "BE",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "[babel.extractors] mako = mako.ext.babelplugin:extract [babel]  [console_scripts] mako-render = mako.cmd:cmdline  [lingua.extractors] mako = mako.ext."
+      },
+      {
+        "degree": "BA",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "[babel.extractors] mako = mako.ext.babelplugin:extract [babel]  [console_scripts] mako-render = mako.cmd:cmdline  [lingua.extractors] mako = mako.ext."
+      }
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "type": "hard"
+      },
+      {
+        "name": "HTML",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Python",
+        "evidence": "= mako.ext.pygmentplugin:MakoXmlLexer  [python.templating.engines] mako = mako.ext.turbogears:TGPlugin",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "HTML",
+        "evidence": "o = mako.ext.pygmentplugin:MakoCssLexer html+mako = mako.ext.pygmentplugin:MakoHtmlLexer js+mako = mako.ext.pygmentplugin:MakoJavascriptLexer ma",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "resume_id": "resume_27",
+  "parsed_output": {
+    "full_name": "Tina Davis 27",
+    "current_title": "Backend Engineer",
+    "raw_title": "Backend Engineer",
+    "normalized_title": "Backend Engineer",
+    "title_confidence": 80,
+    "title_family": "",
+    "title_seniority": "",
+    "total_years_of_experience": 16.25,
+    "current_employment_status": "Employed",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "user27@example.com Experienced Backend Engineer with 14 years of experience.",
+    "contact": {
+      "email": "user27@example.com",
+      "phone": ""
+    },
+    "career_history": [
+      {
+        "title": "Backend Engineer",
+        "company": "Company 27",
+        "start_date": "Jan 2012",
+        "end_date": "Present",
+        "is_current": true,
+        "duration_months": 173,
+        "start_abs_months": 24145,
+        "end_abs_months": 24318,
+        "bullets": [
+          "Developed multiple applications.",
+          "Junior Backend Engineer",
+          "Old Company"
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Backend Engineer",
+          "Company found: Company 27",
+          "Valid dates: Jan 2012 - Present"
+        ]
+      },
+      {
+        "title": "Junior Backend Engineer",
+        "company": "Old Company",
+        "start_date": "Feb 2010",
+        "end_date": "Dec 2011",
+        "is_current": false,
+        "duration_months": 22,
+        "start_abs_months": 24122,
+        "end_abs_months": 24144,
+        "bullets": [
+          "Maintained legacy systems."
+        ],
+        "confidence": 0.9999999999999999,
+        "evidence": [
+          "Title matched ontology: Junior Backend Engineer",
+          "Company found: Old Company",
+          "Valid dates: Feb 2010 - Dec 2011"
+        ]
+      }
+    ],
+    "raw_experience_blocks": [
+      {
+        "pre_date_text": "Backend Engineer\nCompany 27",
+        "start_date": "Jan 2012",
+        "end_date": "Present",
+        "desc_text": "Developed multiple applications.\nJunior Backend Engineer\nOld Company"
+      },
+      {
+        "pre_date_text": "Developed multiple applications.\nJunior Backend Engineer\nOld Company",
+        "start_date": "Feb 2010",
+        "end_date": "Dec 2011",
+        "desc_text": "Maintained legacy systems."
+      }
+    ],
+    "education": [
+      {
+        "degree": "PhD",
+        "institution": "Machine Learning",
+        "field_of_study": "",
+        "evidence": "PhD Machine Learning University 27"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard"
+      },
+      {
+        "name": "React",
+        "type": "hard"
+      },
+      {
+        "name": "AWS",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Java",
+        "type": "hard",
+        "raw": "Java",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard",
+        "raw": "JavaScript",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "React",
+        "type": "hard",
+        "raw": "React",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "AWS",
+        "type": "hard",
+        "raw": "AWS",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [],
+    "certifications_detail": [],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": [],
+    "career_graph": {
+      "total_years": 16.25,
+      "relevant_years": 16.25,
+      "leadership_years": 0,
+      "promotion_count": 0,
+      "company_count": 2,
+      "career_velocity": 0.0,
+      "inversion_count": 2
+    },
+    "raw_extracted_skills": [
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard"
+      },
+      {
+        "name": "React",
+        "type": "hard"
+      },
+      {
+        "name": "AWS",
+        "type": "hard"
+      }
+    ],
+    "scoring_skills": [
+      {
+        "name": "Java",
+        "type": "hard",
+        "raw": "Java",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard",
+        "raw": "JavaScript",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "React",
+        "type": "hard",
+        "raw": "React",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "AWS",
+        "type": "hard",
+        "raw": "AWS",
+        "match_method": "exact",
+        "confidence": 1.0,
+        "parent_domains": [
+          "Tech"
+        ],
+        "related_skills": [],
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "negated_skills": [],
+    "_meta": {
+      "layout_complexity": 0.3,
+      "extraction_confidence": 0.9,
+      "parser_warnings": [],
+      "raw_extracted_text": ""
+    }
+  }
+}

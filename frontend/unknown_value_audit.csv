@@ -1,0 +1,8 @@
+file,occurrence,classification
+frontend/src/lib/api.ts:40,Unknown Candidate,Bug masking real data
+frontend/src/lib/api.ts:41,Unknown Title,Bug masking real data
+frontend/src/lib/api.ts:42,Unknown Company,Bug masking real data
+frontend/src/lib/api.ts:15,role: c.title || 'Unknown',Bug masking real data
+frontend/src/lib/api.ts:16,company: c.company || 'Unknown',Bug masking real data
+frontend/src/lib/api.ts:121,jdTitle: 'Unknown',Valid fallback
+frontend/src/app/workspace/page.tsx:142,Unknown Role,Valid fallback (default UI state for empty props)

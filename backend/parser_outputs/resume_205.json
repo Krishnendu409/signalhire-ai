@@ -1,0 +1,1078 @@
+{
+  "raw_text": "Title: frontend engineer | Company: infosys | Skills: mlflow, javascript, object detection, snowflake, grpc\nTitle: frontend engineer | Company: hooli | Skills: content writing, javascript, weights & biases, rest apis, vue.js\nTitle: frontend engineer | Company: tcs | Skills: pinecone, embeddings, html, vue.js, redis\nTitle: frontend engineer | Company: mindtree | Skills: angular, ci/cd, html, six sigma, statistical modeling\nTitle: frontend engineer | Company: hooli | Skills: css, snowflake, next.js, html, data pipelines\nTitle: frontend engineer | Company: flipkart | Skills: time series, forecasting, opencv, tensorflow, css\nTitle: frontend engineer | Company: accenture | Skills: postgresql, flask, project management, forecasting, sap\nTitle: frontend engineer | Company: swiggy | Skills: next.js, html, weights & biases, redis, angular\nTitle: frontend engineer | Company: acme corp | Skills: java, gcp, vue.js, pgvector, excel\nTitle: frontend engineer | Company: accenture | Skills: css, photoshop, computer vision, seo, html\nTitle: frontend engineer | Company: capgemini | Skills: css, aws, salesforce crm, databricks, feature engineering\nTitle: frontend engineer | Company: hcl | Skills: sap, time series, html, photoshop, illustrator\nTitle: frontend engineer | Company: stark industries | Skills: azure, javascript, postgresql, project management, elasticsearch\nTitle: frontend engineer | Company: globex inc | Skills: content writing, gans, vue.js, object detection, agile\nTitle: frontend engineer | Company: wayne enterprises | Skills: qdrant, flask, semantic search, computer vision, typescript\nTitle: frontend engineer | Company: stark industries | Skills: computer vision, reinforcement learning, css, javascript, graphql\nTitle: frontend engineer | Company: initech | Skills: vue.js, mongodb, spring boot, milvus, docker\nTitle: frontend engineer | Company: capgemini | Skills: accounting, prompt engineering, dbt, apache beam, javascript\nTitle: frontend engineer | Company: globex inc | Skills: mlops, kubeflow, postgresql, flask, haystack\nTitle: frontend engineer | Company: swiggy | Skills: content writing, six sigma, spring boot, redis, snowflake\nTitle: frontend engineer | Company: pied piper | Skills: spring boot, databricks, html, accounting, reinforcement learning\nTitle: frontend engineer | Company: hooli | Skills: java, databricks, django, deep learning, accounting\nTitle: frontend engineer | Company: capgemini | Skills: tailwind, html, recommendation systems, content writing, apache flink\nTitle: frontend engineer | Company: mindtree | Skills: go, spring boot, html, apache flink, weights & biases\nTitle: frontend engineer | Company: mphasis | Skills: statistical modeling, langchain, yolo, databricks, graphql\nTitle: frontend engineer | Company: wipro | Skills: vue.js, html, seo, go, dbt\nTitle: frontend engineer | Company: acme corp | Skills: marketing, bigquery, vue.js, graphql, html\nTitle: frontend engineer | Company: tech mahindra | Skills: etl, apache flink, excel, feature engineering, flask\nTitle: frontend engineer | Company: zomato | Skills: javascript, aws, sql, llms, weights & biases\nTitle: frontend engineer | Company: cognizant | Skills: diffusion models, html, snowflake, bigquery, typescript\nTitle: frontend engineer | Company: accenture | Skills: webpack, typescript, vue.js, react, reinforcement learning\nTitle: frontend engineer | Company: dunder mifflin | Skills: javascript, time series, typescript, flask, rust\nTitle: frontend engineer | Company: tcs | Skills: microservices, illustrator, java, html, azure\nTitle: frontend engineer | Company: tcs | Skills: rest apis, typescript, prompt engineering, flask, postgresql\nTitle: frontend engineer | Company: razorpay | Skills: javascript, webpack, aws, sql, redux\nTitle: frontend engineer | Company: cred | Skills: flask, nlp, kubernetes, css, react\nTitle: frontend engineer | Company: capgemini | Skills: java, computer vision, project management, accounting, etl\nTitle: frontend engineer | Company: wayne enterprises | Skills: javascript, fastapi, mongodb, sap, content writing\nTitle: frontend engineer | Company: hooli | Skills: html, mlops, vue.js, aws, diffusion models\nTitle: frontend engineer | Company: wayne enterprises | Skills: grpc, terraform, accounting, sap, javascript\nTitle: frontend engineer | Company: zomato | Skills: node.js, ci/cd, html, sap, rest apis\nTitle: frontend engineer | Company: razorpay | Skills: graphql, terraform, excel, ci/cd, sales\nTitle: frontend engineer | Company: initech | Skills: agile, airflow, vue.js, forecasting, six sigma\nTitle: frontend engineer | Company: accenture | Skills: machine learning, pgvector, react, asr, javascript\nTitle: frontend engineer | Company: accenture | Skills: flask, illustrator, css, asr, bigquery\nTitle: frontend engineer | Company: infosys | Skills: tally, apache beam, html, feature engineering, sentence transformers\nTitle: frontend engineer | Company: hcl | Skills: deep learning, node.js, css, mongodb, spark\nTitle: frontend engineer | Company: cred | Skills: apache flink, mlops, javascript, powerpoint, microservices\nTitle: frontend engineer | Company: accenture | Skills: pgvector, weights & biases, data pipelines, javascript, feature engineering\nTitle: frontend engineer | Company: hcl | Skills: html, salesforce crm, excel, vue.js, redux\nTitle: frontend engineer | Company: stark industries | Skills: css, object detection, postgresql, go, data pipelines\nTitle: frontend engineer | Company: dunder mifflin | Skills: powerpoint, llms, css, haystack, hadoop\nTitle: frontend engineer | Company: cognizant | Skills: vue.js, node.js, diffusion models, data pipelines, accounting\nTitle: frontend engineer | Company: tcs | Skills: javascript, marketing, redis, rest apis, kubernetes\nTitle: frontend engineer | Company: swiggy | Skills: salesforce crm, kubeflow, html, data pipelines, yolo\nTitle: frontend engineer | Company: capgemini | Skills: javascript, terraform, tensorflow, java, angular\nTitle: frontend engineer | Company: mphasis | Skills: seo, lora, llamaindex, excel, bentoml\nTitle: frontend engineer | Company: cognizant | Skills: java, react, scikit-learn, kafka, terraform\nTitle: frontend engineer | Company: hcl | Skills: kubeflow, llms, tally, dbt, hadoop\nTitle: frontend engineer | Company: accenture | Skills: css, vue.js, seo, object detection, django\nTitle: frontend engineer | Company: infosys | Skills: powerpoint, kafka, spring boot, apache flink, marketing\nTitle: frontend engineer | Company: cognizant | Skills: rust, vue.js, haystack, rest apis, accounting\nTitle: frontend engineer | Company: stark industries | Skills: project management, css, qlora, next.js, vue.js\nTitle: frontend engineer | Company: wayne enterprises | Skills: rest apis, etl, ci/cd, gcp, data pipelines\nTitle: frontend engineer | Company: acme corp | Skills: javascript, qdrant, typescript, node.js, snowflake\nTitle: frontend engineer | Company: acme corp | Skills: kubernetes, javascript, rust, rag, dbt\nTitle: frontend engineer | Company: mphasis | Skills: agile, grpc, dbt, tally, angular\nTitle: frontend engineer | Company: infosys | Skills: terraform, vue.js, redux, data pipelines, typescript\nTitle: frontend engineer | Company: swiggy | Skills: redis, seo, azure, vue.js, scikit-learn\nTitle: frontend engineer | Company: flipkart | Skills: project management, spring boot, html, agile, faiss\nTitle: frontend engineer | Company: stark industries | Skills: photoshop, fastapi, langchain, django, gans\nTitle: frontend engineer | Company: cred | Skills: django, mongodb, graphql, postgresql, feature engineering\nTitle: frontend engineer | Company: mphasis | Skills: excel, go, semantic search, opensearch, diffusion models\nTitle: frontend engineer | Company: initech | Skills: etl, react, sap, airflow, typescript\nTitle: frontend engineer | Company: tech mahindra | Skills: vue.js, reinforcement learning, hadoop, redis, llms\nTitle: frontend engineer | Company: mphasis | Skills: django, speech recognition, statistical modeling, go, spring boot\nTitle: frontend engineer | Company: zomato | Skills: webpack, microservices, azure, information retrieval, feature engineering\nTitle: frontend engineer | Company: mindtree | Skills: apache beam, marketing, mongodb, fastapi, feature engineering\nTitle: frontend engineer | Company: wipro | Skills: llamaindex, html, aws, content writing, flask\nTitle: frontend engineer | Company: wayne enterprises | Skills: semantic search, excel, mongodb, html, content writing\nTitle: frontend engineer | Company: dunder mifflin | Skills: django, css, react, vue.js, seo\nTitle: frontend engineer | Company: initech | Skills: rust, illustrator, angular, marketing, typescript\nTitle: frontend engineer | Company: accenture | Skills: pinecone, gans, python, rust, data pipelines\nTitle: frontend engineer | Company: wipro | Skills: apache beam, haystack, css, microservices, spark\nTitle: frontend engineer | Company: mphasis | Skills: project management, photoshop, computer vision, marketing, graphql\nTitle: frontend engineer | Company: swiggy | Skills: weights & biases, project management, next.js, javascript, sales\nTitle: frontend engineer | Company: accenture | Skills: snowflake, apache beam, airflow, node.js, sales\nTitle: frontend engineer | Company: cred | Skills: node.js, sentence transformers, reinforcement learning, rust, docker\nTitle: frontend engineer | Company: hooli | Skills: content writing, terraform, azure, java, weights & biases\nTitle: frontend engineer | Company: wipro | Skills: react, typescript, html, sap, machine learning\nTitle: frontend engineer | Company: acme corp | Skills: content writing, computer vision, bigquery, image classification, learning to rank\nTitle: frontend engineer | Company: tcs | Skills: spring boot, fastapi, rest apis, bm25, figma\nTitle: frontend engineer | Company: hooli | Skills: react, data pipelines, opencv, css, information retrieval\nTitle: frontend engineer | Company: hooli | Skills: apache flink, html, mongodb, tailwind, grpc\nTitle: frontend engineer | Company: hcl | Skills: docker, mongodb, mlflow, next.js, scrum\nTitle: frontend engineer | Company: hcl | Skills: nlp, ci/cd, html, project management, vue.js\nTitle: frontend engineer | Company: cognizant | Skills: graphql, six sigma, docker, react, nlp\nTitle: frontend engineer | Company: tcs | Skills: microservices, html, django, gans, pinecone\nTitle: frontend engineer | Company: infosys | Skills: redis, bigquery, aws, typescript, data science\nTitle: frontend engineer | Company: globex inc | Skills: seo, sap, html, bigquery, spring boot\n",
+  "parsed": {
+    "full_name": "Candidate",
+    "current_title": "frontend engineer",
+    "normalized_title": "Frontend Engineer",
+    "title_family": "Software Engineering",
+    "title_seniority": "mid",
+    "total_years_of_experience": 3,
+    "current_employment_status": "Unknown",
+    "open_to_work": true,
+    "notice_period": 30,
+    "expected_salary": 0,
+    "summary": "Title: frontend engineer | Company: hooli | Skills: content writing, javascript, weights & biases, rest apis, vue.js Title: frontend engineer | Company: tcs | Skills: pinecone, embeddings, html, vue.js, redis Title: frontend engineer | Company: mindtree | Skills: angular, ci/cd, html, six sigma, statistical modeling Title: frontend engineer | Company: hooli | Skills: css, snowflake, next.js, html, data pipelines Title: frontend engineer | Company: flipkart | Skills: time series, forecasting, ope",
+    "contact": {
+      "email": "",
+      "phone": ""
+    },
+    "experiences": [],
+    "education": [
+      {
+        "degree": "ME",
+        "institution": "series",
+        "field_of_study": "",
+        "evidence": "Title: frontend engineer | Company: infosys | Skills: mlflow, javascript, object detection, snowflake, grpc Title: frontend engineer | Company: hooli "
+      },
+      {
+        "degree": "BE",
+        "institution": "University",
+        "field_of_study": "",
+        "evidence": "Title: frontend engineer | Company: infosys | Skills: mlflow, javascript, object detection, snowflake, grpc Title: frontend engineer | Company: hooli "
+      }
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "type": "hard"
+      },
+      {
+        "name": "JavaScript",
+        "type": "hard"
+      },
+      {
+        "name": "TypeScript",
+        "type": "hard"
+      },
+      {
+        "name": "Java",
+        "type": "hard"
+      },
+      {
+        "name": "Go",
+        "type": "hard"
+      },
+      {
+        "name": "Rust",
+        "type": "hard"
+      },
+      {
+        "name": "React",
+        "type": "hard"
+      },
+      {
+        "name": "Angular",
+        "type": "hard"
+      },
+      {
+        "name": "Vue",
+        "type": "hard"
+      },
+      {
+        "name": "Next.js",
+        "type": "hard"
+      },
+      {
+        "name": "Django",
+        "type": "hard"
+      },
+      {
+        "name": "Flask",
+        "type": "hard"
+      },
+      {
+        "name": "FastAPI",
+        "type": "hard"
+      },
+      {
+        "name": "Spring",
+        "type": "hard"
+      },
+      {
+        "name": "GraphQL",
+        "type": "hard"
+      },
+      {
+        "name": "gRPC",
+        "type": "hard"
+      },
+      {
+        "name": "Redux",
+        "type": "hard"
+      },
+      {
+        "name": "Tailwind CSS",
+        "type": "hard"
+      },
+      {
+        "name": "AWS",
+        "type": "hard"
+      },
+      {
+        "name": "Google Cloud Platform",
+        "type": "hard"
+      },
+      {
+        "name": "Azure",
+        "type": "hard"
+      },
+      {
+        "name": "Docker",
+        "type": "hard"
+      },
+      {
+        "name": "Kubernetes",
+        "type": "hard"
+      },
+      {
+        "name": "Terraform",
+        "type": "hard"
+      },
+      {
+        "name": "CI/CD",
+        "type": "hard"
+      },
+      {
+        "name": "Apache",
+        "type": "hard"
+      },
+      {
+        "name": "SQL",
+        "type": "hard"
+      },
+      {
+        "name": "PostgreSQL",
+        "type": "hard"
+      },
+      {
+        "name": "MongoDB",
+        "type": "hard"
+      },
+      {
+        "name": "Redis",
+        "type": "hard"
+      },
+      {
+        "name": "Elasticsearch",
+        "type": "hard"
+      },
+      {
+        "name": "Snowflake",
+        "type": "hard"
+      },
+      {
+        "name": "BigQuery",
+        "type": "hard"
+      },
+      {
+        "name": "dbt",
+        "type": "hard"
+      },
+      {
+        "name": "Kafka",
+        "type": "hard"
+      },
+      {
+        "name": "Apache Spark",
+        "type": "hard"
+      },
+      {
+        "name": "Hadoop",
+        "type": "hard"
+      },
+      {
+        "name": "Flink",
+        "type": "hard"
+      },
+      {
+        "name": "Airflow",
+        "type": "hard"
+      },
+      {
+        "name": "ETL",
+        "type": "hard"
+      },
+      {
+        "name": "Data Pipelines",
+        "type": "hard"
+      },
+      {
+        "name": "Databricks",
+        "type": "hard"
+      },
+      {
+        "name": "Excel",
+        "type": "hard"
+      },
+      {
+        "name": "Statistics",
+        "type": "hard"
+      },
+      {
+        "name": "Machine Learning",
+        "type": "hard"
+      },
+      {
+        "name": "Deep Learning",
+        "type": "hard"
+      },
+      {
+        "name": "NLP",
+        "type": "hard"
+      },
+      {
+        "name": "Computer Vision",
+        "type": "hard"
+      },
+      {
+        "name": "TensorFlow",
+        "type": "hard"
+      },
+      {
+        "name": "Scikit-Learn",
+        "type": "hard"
+      },
+      {
+        "name": "LLMs",
+        "type": "hard"
+      },
+      {
+        "name": "Reinforcement Learning",
+        "type": "hard"
+      },
+      {
+        "name": "MLOps",
+        "type": "hard"
+      },
+      {
+        "name": "MLflow",
+        "type": "hard"
+      },
+      {
+        "name": "Kubeflow",
+        "type": "hard"
+      },
+      {
+        "name": "Prompt Engineering",
+        "type": "hard"
+      },
+      {
+        "name": "Generative AI",
+        "type": "hard"
+      },
+      {
+        "name": "RAG",
+        "type": "hard"
+      },
+      {
+        "name": "Vector Databases",
+        "type": "hard"
+      },
+      {
+        "name": "REST API",
+        "type": "hard"
+      },
+      {
+        "name": "HTML",
+        "type": "hard"
+      },
+      {
+        "name": "CSS",
+        "type": "hard"
+      },
+      {
+        "name": "Figma",
+        "type": "hard"
+      },
+      {
+        "name": "Agile",
+        "type": "hard"
+      },
+      {
+        "name": "Scrum",
+        "type": "hard"
+      },
+      {
+        "name": "Microservices",
+        "type": "hard"
+      },
+      {
+        "name": "Lean Manufacturing",
+        "type": "hard"
+      },
+      {
+        "name": "Six Sigma",
+        "type": "hard"
+      },
+      {
+        "name": "SAP",
+        "type": "hard"
+      },
+      {
+        "name": "Financial Analysis",
+        "type": "hard"
+      },
+      {
+        "name": "Accounting",
+        "type": "hard"
+      },
+      {
+        "name": "Salesforce",
+        "type": "hard"
+      },
+      {
+        "name": "CRM",
+        "type": "hard"
+      },
+      {
+        "name": "SEO",
+        "type": "hard"
+      },
+      {
+        "name": "Project Management",
+        "type": "hard"
+      },
+      {
+        "name": "Data Science",
+        "type": "hard"
+      },
+      {
+        "name": "Apache Beam",
+        "type": "hard"
+      },
+      {
+        "name": "OpenCV",
+        "type": "hard"
+      },
+      {
+        "name": "Apache Flink",
+        "type": "hard"
+      }
+    ],
+    "normalized_skills": [
+      {
+        "name": "Python",
+        "evidence": "ny: accenture | Skills: pinecone, gans, python, rust, data pipelines Title: frontend engineer | Company: wipro | Skills: apache beam, haystack, cs",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "JavaScript",
+        "evidence": "er | Company: infosys | Skills: mlflow, javascript, object detection, snowflake, grpc Title: frontend engineer | Company: hooli | Skills: content writ",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TypeScript",
+        "evidence": "lask, semantic search, computer vision, typescript Title: frontend engineer | Company: stark industries | Skills: computer vision, reinforcement learn",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Java",
+        "evidence": "engineer | Company: acme corp | Skills: java, gcp, vue.js, pgvector, excel Title: frontend engineer | Company: accenture | Skills: css, photosho",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Go",
+        "evidence": "engineer | Company: mindtree | Skills: go, spring boot, html, apache flink, weights & biases Title: frontend engineer | Company: mphasis | Sk",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Rust",
+        "evidence": "script, time series, typescript, flask, rust Title: frontend engineer | Company: tcs | Skills: microservices, illustrator, java, html, azure Tit",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "React",
+        "evidence": "| Skills: webpack, typescript, vue.js, react, reinforcement learning Title: frontend engineer | Company: dunder mifflin | Skills: javascript, ti",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Angular",
+        "evidence": "engineer | Company: mindtree | Skills: angular, ci/cd, html, six sigma, statistical modeling Title: frontend engineer | Company: hooli | Skills: c",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Vue",
+        "evidence": "avascript, weights & biases, rest apis, vue.js Title: frontend engineer | Company: tcs | Skills: pinecone, embeddings, html, vue.js, redis Title:",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Next.js",
+        "evidence": "ompany: hooli | Skills: css, snowflake, next.js, html, data pipelines Title: frontend engineer | Company: flipkart | Skills: time series, forecasti",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Django",
+        "evidence": "pany: hooli | Skills: java, databricks, django, deep learning, accounting Title: frontend engineer | Company: capgemini | Skills: tailwind, html,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Flask",
+        "evidence": "ompany: accenture | Skills: postgresql, flask, project management, forecasting, sap Title: frontend engineer | Company: swiggy | Skills: next.js,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "FastAPI",
+        "evidence": "wayne enterprises | Skills: javascript, fastapi, mongodb, sap, content writing Title: frontend engineer | Company: hooli | Skills: html, mlops, vue",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Spring",
+        "evidence": "any: initech | Skills: vue.js, mongodb, spring boot, milvus, docker Title: frontend engineer | Company: capgemini | Skills: accounting, prompt eng",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "GraphQL",
+        "evidence": "einforcement learning, css, javascript, graphql Title: frontend engineer | Company: initech | Skills: vue.js, mongodb, spring boot, milvus, docker",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "gRPC",
+        "evidence": "avascript, object detection, snowflake, grpc Title: frontend engineer | Company: hooli | Skills: content writing, javascript, weights & biases,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Redux",
+        "evidence": "Skills: javascript, webpack, aws, sql, redux Title: frontend engineer | Company: cred | Skills: flask, nlp, kubernetes, css, react Title: fronte",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Tailwind CSS",
+        "evidence": "engineer | Company: capgemini | Skills: tailwind, html, recommendation systems, content writing, apache flink Title: frontend engineer | Company: mi",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "AWS",
+        "evidence": "eer | Company: capgemini | Skills: css, aws, salesforce crm, databricks, feature engineering Title: frontend engineer | Company: hcl | Skills:",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Google Cloud Platform",
+        "evidence": "Company: acme corp | Skills: marketing, bigquery, vue.js, graphql, html Title: frontend engineer | Company: tech mahindra | Skills: etl, apache flin",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Azure",
+        "evidence": "r | Company: stark industries | Skills: azure, javascript, postgresql, project management, elasticsearch Title: frontend engineer | Company: glob",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Docker",
+        "evidence": ": vue.js, mongodb, spring boot, milvus, docker Title: frontend engineer | Company: capgemini | Skills: accounting, prompt engineering, dbt, apache",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kubernetes",
+        "evidence": "r | Company: cred | Skills: flask, nlp, kubernetes, css, react Title: frontend engineer | Company: capgemini | Skills: java, computer vision, project",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Terraform",
+        "evidence": "pany: wayne enterprises | Skills: grpc, terraform, accounting, sap, javascript Title: frontend engineer | Company: zomato | Skills: node.js, ci/cd, h",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CI/CD",
+        "evidence": "| Company: mindtree | Skills: angular, ci/cd, html, six sigma, statistical modeling Title: frontend engineer | Company: hooli | Skills: css, sno",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Apache",
+        "evidence": "s: accounting, prompt engineering, dbt, apache beam, javascript Title: frontend engineer | Company: globex inc | Skills: mlops, kubeflow, postgres",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SQL",
+        "evidence": "pany: zomato | Skills: javascript, aws, sql, llms, weights & biases Title: frontend engineer | Company: cognizant | Skills: diffusion models, h",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "PostgreSQL",
+        "evidence": "engineer | Company: accenture | Skills: postgresql, flask, project management, forecasting, sap Title: frontend engineer | Company: swiggy | Skills: n",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "MongoDB",
+        "evidence": "er | Company: initech | Skills: vue.js, mongodb, spring boot, milvus, docker Title: frontend engineer | Company: capgemini | Skills: accounting, pr",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Redis",
+        "evidence": "ls: pinecone, embeddings, html, vue.js, redis Title: frontend engineer | Company: mindtree | Skills: angular, ci/cd, html, six sigma, statistical",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Elasticsearch",
+        "evidence": "script, postgresql, project management, elasticsearch Title: frontend engineer | Company: globex inc | Skills: content writing, gans, vue.js, object dete",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Snowflake",
+        "evidence": ": mlflow, javascript, object detection, snowflake, grpc Title: frontend engineer | Company: hooli | Skills: content writing, javascript, weights & bi",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "BigQuery",
+        "evidence": "Company: acme corp | Skills: marketing, bigquery, vue.js, graphql, html Title: frontend engineer | Company: tech mahindra | Skills: etl, apache flin",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "dbt",
+        "evidence": "Skills: accounting, prompt engineering, dbt, apache beam, javascript Title: frontend engineer | Company: globex inc | Skills: mlops, kubeflow,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kafka",
+        "evidence": "nt | Skills: java, react, scikit-learn, kafka, terraform Title: frontend engineer | Company: hcl | Skills: kubeflow, llms, tally, dbt, hadoop Tit",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Apache Spark",
+        "evidence": ": deep learning, node.js, css, mongodb, spark Title: frontend engineer | Company: cred | Skills: apache flink, mlops, javascript, powerpoint, mic",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Hadoop",
+        "evidence": "kills: powerpoint, llms, css, haystack, hadoop Title: frontend engineer | Company: cognizant | Skills: vue.js, node.js, diffusion models, data pip",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Flink",
+        "evidence": "dation systems, content writing, apache flink Title: frontend engineer | Company: mindtree | Skills: go, spring boot, html, apache flink, weights",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Airflow",
+        "evidence": "eer | Company: initech | Skills: agile, airflow, vue.js, forecasting, six sigma Title: frontend engineer | Company: accenture | Skills: machine lea",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "ETL",
+        "evidence": "neer | Company: tech mahindra | Skills: etl, apache flink, excel, feature engineering, flask Title: frontend engineer | Company: zomato | Skill",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Data Pipelines",
+        "evidence": "Skills: css, snowflake, next.js, html, data pipelines Title: frontend engineer | Company: flipkart | Skills: time series, forecasting, opencv, tensorflow",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Databricks",
+        "evidence": "ini | Skills: css, aws, salesforce crm, databricks, feature engineering Title: frontend engineer | Company: hcl | Skills: sap, time series, html, phot",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Excel",
+        "evidence": "| Skills: java, gcp, vue.js, pgvector, excel Title: frontend engineer | Company: accenture | Skills: css, photoshop, computer vision, seo, html",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Statistics",
+        "evidence": "kills: angular, ci/cd, html, six sigma, statistical modeling Title: frontend engineer | Company: hooli | Skills: css, snowflake, next.js, html, data pipelines T",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Machine Learning",
+        "evidence": "engineer | Company: accenture | Skills: machine learning, pgvector, react, asr, javascript Title: frontend engineer | Company: accenture | Skills: flask, il",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Deep Learning",
+        "evidence": "oli | Skills: java, databricks, django, deep learning, accounting Title: frontend engineer | Company: capgemini | Skills: tailwind, html, recommendation",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "NLP",
+        "evidence": "gineer | Company: cred | Skills: flask, nlp, kubernetes, css, react Title: frontend engineer | Company: capgemini | Skills: java, computer visi",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Computer Vision",
+        "evidence": "art | Skills: time series, forecasting, opencv, tensorflow, css Title: frontend engineer | Company: accenture | Skills: postgresql, flask, project",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "TensorFlow",
+        "evidence": "ills: time series, forecasting, opencv, tensorflow, css Title: frontend engineer | Company: accenture | Skills: postgresql, flask, project management,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Scikit-Learn",
+        "evidence": "mpany: cognizant | Skills: java, react, scikit-learn, kafka, terraform Title: frontend engineer | Company: hcl | Skills: kubeflow, llms, tally, dbt, had",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "LLMs",
+        "evidence": "zomato | Skills: javascript, aws, sql, llms, weights & biases Title: frontend engineer | Company: cognizant | Skills: diffusion models, html, s",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Reinforcement Learning",
+        "evidence": "k industries | Skills: computer vision, reinforcement learning, css, javascript, graphql Title: frontend engineer | Company: initech | Skills: vue.js, mongodb, sp",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "MLOps",
+        "evidence": "ngineer | Company: globex inc | Skills: mlops, kubeflow, postgresql, flask, haystack Title: frontend engineer | Company: swiggy | Skills: content",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "MLflow",
+        "evidence": "d engineer | Company: infosys | Skills: mlflow, javascript, object detection, snowflake, grpc Title: frontend engineer | Company: hooli | Skills:",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Kubeflow",
+        "evidence": "| Company: globex inc | Skills: mlops, kubeflow, postgresql, flask, haystack Title: frontend engineer | Company: swiggy | Skills: content writing,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Prompt Engineering",
+        "evidence": "| Skills: kubernetes, javascript, rust, rag, dbt Title: frontend engineer | Company: mphasis | Skills: agile, grpc, dbt, tally, angular Title:",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Generative AI",
+        "evidence": "engineer | Company: cognizant | Skills: diffusion models, html, snowflake, bigquery, typescript Title: frontend engineer | Company: accenture | Skills: webp",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "RAG",
+        "evidence": "| Skills: kubernetes, javascript, rust, rag, dbt Title: frontend engineer | Company: mphasis | Skills: agile, grpc, dbt, tally, angular Title:",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Vector Databases",
+        "evidence": "| Company: wayne enterprises | Skills: qdrant, flask, semantic search, computer vision, typescript Title: frontend engineer | Company: stark indu",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "REST API",
+        "evidence": "writing, javascript, weights & biases, rest apis, vue.js Title: frontend engineer | Company: tcs | Skills: pinecone, embeddings, html, vue.js, redis",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "HTML",
+        "evidence": "ny: tcs | Skills: pinecone, embeddings, html, vue.js, redis Title: frontend engineer | Company: mindtree | Skills: angular, ci/cd, html, six sig",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CSS",
+        "evidence": "end engineer | Company: hooli | Skills: css, snowflake, next.js, html, data pipelines Title: frontend engineer | Company: flipkart | Skills: ti",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Figma",
+        "evidence": "spring boot, fastapi, rest apis, bm25, figma Title: frontend engineer | Company: hooli | Skills: react, data pipelines, opencv, css, information",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Agile",
+        "evidence": "riting, gans, vue.js, object detection, agile Title: frontend engineer | Company: wayne enterprises | Skills: qdrant, flask, semantic search, com",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Scrum",
+        "evidence": "ills: docker, mongodb, mlflow, next.js, scrum Title: frontend engineer | Company: hcl | Skills: nlp, ci/cd, html, project management, vue.js Titl",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Microservices",
+        "evidence": "ntend engineer | Company: tcs | Skills: microservices, illustrator, java, html, azure Title: frontend engineer | Company: tcs | Skills: rest apis, typesc",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Lean Manufacturing",
+        "evidence": "indtree | Skills: angular, ci/cd, html, six sigma, statistical modeling Title: frontend engineer | Company: hooli | Skills: css, snowflake, next.js,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Six Sigma",
+        "evidence": "indtree | Skills: angular, ci/cd, html, six sigma, statistical modeling Title: frontend engineer | Company: hooli | Skills: css, snowflake, next.js,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SAP",
+        "evidence": "flask, project management, forecasting, sap Title: frontend engineer | Company: swiggy | Skills: next.js, html, weights & biases, redis, angula",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Financial Analysis",
+        "evidence": "ompany: flipkart | Skills: time series, forecasting, opencv, tensorflow, css Title: frontend engineer | Company: accenture | Skills: postgresql, flask,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Accounting",
+        "evidence": "engineer | Company: capgemini | Skills: accounting, prompt engineering, dbt, apache beam, javascript Title: frontend engineer | Company: globex inc |",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Salesforce",
+        "evidence": "Company: capgemini | Skills: css, aws, salesforce crm, databricks, feature engineering Title: frontend engineer | Company: hcl | Skills: sap, time se",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "CRM",
+        "evidence": "apgemini | Skills: css, aws, salesforce crm, databricks, feature engineering Title: frontend engineer | Company: hcl | Skills: sap, time series",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "SEO",
+        "evidence": "kills: css, photoshop, computer vision, seo, html Title: frontend engineer | Company: capgemini | Skills: css, aws, salesforce crm, databricks,",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Project Management",
+        "evidence": "accenture | Skills: postgresql, flask, project management, forecasting, sap Title: frontend engineer | Company: swiggy | Skills: next.js, html, weights & bia",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Data Science",
+        "evidence": "ills: redis, bigquery, aws, typescript, data science Title: frontend engineer | Company: globex inc | Skills: seo, sap, html, bigquery, spring boot",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Apache Beam",
+        "evidence": "s: accounting, prompt engineering, dbt, apache beam, javascript Title: frontend engineer | Company: globex inc | Skills: mlops, kubeflow, postgresql, f",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "OpenCV",
+        "evidence": "art | Skills: time series, forecasting, opencv, tensorflow, css Title: frontend engineer | Company: accenture | Skills: postgresql, flask, project",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      },
+      {
+        "name": "Apache Flink",
+        "evidence": "ecommendation systems, content writing, apache flink Title: frontend engineer | Company: mindtree | Skills: go, spring boot, html, apache flink, weights",
+        "match_method": "alias",
+        "confidence": 0.97,
+        "type": "hard",
+        "is_scoring_eligible": true,
+        "negated": false
+      }
+    ],
+    "certifications": [
+      "CKS - Kubernetes Security Specialist"
+    ],
+    "certifications_detail": [
+      {
+        "name": "CKS - Kubernetes Security Specialist",
+        "evidence": "esforce crm, databricks, feature engineering Title: frontend engineer | Company: hcl | Skills: sap, tim"
+      }
+    ],
+    "projects": [],
+    "career_gaps": [],
+    "trajectory_events": []
+  }
+}
