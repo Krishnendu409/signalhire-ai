@@ -1,0 +1,23 @@
+{
+  "Search Engineer": {
+    "Runtime_Seconds": 42.08832859992981,
+    "Honeypot_Pct": 0.0,
+    "Fully_Consistent_Pct": 97.0,
+    "Partial_Conflict_Pct": 3.0,
+    "Full_Conflict_Pct": 0.0
+  },
+  "Frontend Engineer": {
+    "Runtime_Seconds": 25.855767011642456,
+    "Honeypot_Pct": 0.0,
+    "Fully_Consistent_Pct": 100.0,
+    "Partial_Conflict_Pct": 0.0,
+    "Full_Conflict_Pct": 0.0
+  },
+  "Sales Manager": {
+    "Runtime_Seconds": 44.941571950912476,
+    "Honeypot_Pct": 0.0,
+    "Fully_Consistent_Pct": 100.0,
+    "Partial_Conflict_Pct": 0.0,
+    "Full_Conflict_Pct": 0.0
+  }
+}
