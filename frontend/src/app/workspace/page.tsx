@@ -451,6 +451,25 @@ function WorkspaceContent() {
                   <button className="w-full py-2 border border-[#262626] text-white text-xs font-bold rounded hover:bg-[#171717] transition-colors uppercase tracking-widest">
                     Request Second Audit
                   </button>
+                  <button 
+                    disabled={candidates.length === 0} 
+                    title={candidates.length === 0 ? "No ranking results available." : "Export to CSV"} 
+                    onClick={() => {
+                      const csvContent = "data:text/csv;charset=utf-8," + 
+                        "Rank,Name,Match Score,Status\n" + 
+                        candidates.map(c => `${c.rank},"${c.name}",${c.matchScore},${c.rank <= 100 ? 'RECOMMENDED' : 'REJECTED'}`).join("\n");
+                      const encodedUri = encodeURI(csvContent);
+                      const link = document.createElement("a");
+                      link.setAttribute("href", encodedUri);
+                      link.setAttribute("download", `signalhire_export_${invId}.csv`);
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
+                    className="w-full py-2 border border-[#262626] text-white text-xs font-bold rounded hover:bg-[#171717] transition-colors uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Export Results
+                  </button>
                 </div>
               </div>
             </>
@@ -480,4 +499,3 @@ export default function WorkspacePage() {
     </Suspense>
   );
 }
-// Patch #2: Export button state update`r`n// <Button disabled={candidates.length === 0} title="No ranking results available." onClick={handleExport}>Export Results</Button>

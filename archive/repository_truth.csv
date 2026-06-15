@@ -1,0 +1,4 @@
+file,status,used,imported,reachable,dead,notes
+backend/app/main.py,ACTIVE,Yes,Yes,Yes,No,Main entry point
+backend/app/routers/analytics.py,DEAD,No,No,No,Yes,No longer used
+frontend/app/reports/page.tsx,DEAD,No,No,No,Yes,Placeholder

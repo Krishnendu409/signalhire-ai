@@ -1,8 +1,0 @@
-task,time_to_complete_seconds,bottleneck
-Create Job,15,None
-Upload JD,5,None
-Upload Resumes,30,File I/O
-Generate Ranking (300 resumes),1500,LLM Parsing API limit
-Open Candidate,2,None
-Compare Candidates,10,None
-Export,5,None

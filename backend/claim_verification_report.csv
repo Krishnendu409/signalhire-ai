@@ -1,4 +1,0 @@
-claim,source_file,calculation_method,reproducible_command,status
-93.8% title accuracy,run_v7.py,Row-level match vs Kaggle Ground Truth,python run_v7.py,VERIFIED
-94.8% skill precision,run_v8.py,TP / (TP+FP),python run_v8.py,VERIFIED
-1.4 YOE error,run_v7.py,Mean Absolute Error,python run_v7.py,VERIFIED

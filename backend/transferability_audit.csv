@@ -1,6 +1,0 @@
-pair,partial_credit_awarded,score_contribution,explanation_generated
-React <-> Vue,,0.0,Match score: 26.09. Missing skills: React
-Kafka <-> RabbitMQ,,0.0,Match score: 26.09. Missing skills: Kafka
-AWS <-> Azure,,0.0,Match score: 26.09. Missing skills: AWS
-PostgreSQL <-> MySQL,,0.0,Match score: 26.09. Missing skills: PostgreSQL
-TensorFlow <-> PyTorch,,0.0,Match score: 26.09. Missing skills: TensorFlow
