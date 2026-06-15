@@ -46,7 +46,7 @@ def _make_pattern(alias: str) -> str:
 
 def _extract_skills_with_evidence(text: str) -> list[dict]:
     """
-    Scan text against the full skill ontology.
+    Scan text against the full skill ontology and N-Grams.
     Returns list of {name, evidence, confidence, match_method, type, is_scoring_eligible, negated}
     """
     _load()
@@ -54,13 +54,40 @@ def _extract_skills_with_evidence(text: str) -> list[dict]:
 
     ont = _SKILL_ONT or {}
     lower_txt = text.lower()
+    
+    COMPOUND_SKILLS = {
+        "machine learning", "deep learning", "learning-to-rank", "vector databases",
+        "computer vision", "natural language processing", "project management",
+        "supply chain", "root cause analysis", "microsoft office", "power bi",
+        "tableau", "data analysis", "neural networks", "software engineering",
+        "agile methodologies", "scrum master", "artificial intelligence", "ci/cd",
+        "continuous integration", "continuous deployment", "data science",
+        "amazon web services", "google cloud platform", "object oriented programming",
+        "restful apis", "microservices architecture", "test driven development",
+        "react native", "node.js", "kubernetes", "docker", "sql server",
+        "postgresql", "mongodb", "elasticsearch", "redis", "kafka", "rabbitmq"
+    }
+
+    for comp in COMPOUND_SKILLS:
+        if comp in lower_txt:
+            idx = lower_txt.find(comp)
+            snippet = text[max(0, idx-40):min(len(text), idx+len(comp)+100)].replace('\n', ' ').strip()
+            found[comp.title()] = {
+                "name": comp.title(),
+                "evidence": snippet,
+                "match_method": "n-gram",
+                "confidence": 0.95,
+                "type": "hard",
+                "is_scoring_eligible": True,
+                "negated": False
+            }
+
     for canonical, data in ont.items():
         if canonical in found:
             continue
         for alias in data.get("aliases", []):
             if alias.lower() not in lower_txt:
                 continue
-            pattern = _make_pattern(alias)
             pattern = _make_pattern(alias)
             if len(alias) <= 3 and alias.lower() in ['c', 'r', 'sta', 'ads', 'c++']:
                 m = re.search(pattern, text, re.MULTILINE)  # Case sensitive for short tokens
@@ -74,7 +101,7 @@ def _extract_skills_with_evidence(text: str) -> list[dict]:
                     "name": canonical,
                     "evidence": snippet,
                     "match_method": "alias",
-                    "confidence": 0.97,
+                    "confidence": 0.90,
                     "type": "hard",
                     "is_scoring_eligible": True,
                     "negated": False,
@@ -473,20 +500,42 @@ class AIPipeline:
 
         # ── 3. Name ──────────────────────────────────────────────────────────
         name = None
+        name_confidence = 0.0
         ignore_words = {"resume", "cv", "curriculum vitae", "profile", "summary", "objective",
-                        "experience", "education", "skills", "certifications"}
-        for line in lines[:6]:
-            if line.lower() in ignore_words:
-                continue
-            if len(line.split()) > 6:
-                continue
-            if "@" in line or "http" in line or "www." in line or any(c.isdigit() for c in line[:3]):
-                continue
-            # Clean separators
-            candidate_name = re.split(r'\s*[\|\-–—]\s*', line)[0].strip()
-            if candidate_name and len(candidate_name) >= 2:
-                name = candidate_name
-                break
+                        "experience", "education", "skills", "certifications", "page", "portfolio"}
+        
+        name_candidates = []
+        for i, line in enumerate(lines[:50]):
+            cl = line.strip()
+            if not cl: continue
+            words = cl.split()
+            if len(words) > 5 or len(words) < 1: continue
+            
+            lower_cl = cl.lower()
+            if lower_cl in ignore_words or lower_cl.startswith("page"): continue
+            if "@" in cl or "http" in cl or "www." in cl or any(c.isdigit() for c in cl): continue
+            
+            candidate_name = re.split(r'\s*[\|\-–—]\s*', cl)[0].strip()
+            if len(candidate_name) < 2: continue
+            
+            score = 100 - (i * 5)
+            
+            if email_match and abs(text.find(email_match.group(0)) - text.find(candidate_name)) < 200:
+                score += 20
+            if phone_match and abs(text.find(phone_match.group(0)) - text.find(candidate_name)) < 200:
+                score += 20
+                
+            if candidate_name.isupper():
+                score += 15
+            elif candidate_name.istitle():
+                score += 10
+                
+            name_candidates.append((candidate_name, score))
+            
+        if name_candidates:
+            name_candidates.sort(key=lambda x: x[1], reverse=True)
+            name = name_candidates[0][0]
+            name_confidence = min(100, max(0, name_candidates[0][1])) / 100.0
 
         # ── 4. Section Splitting ─────────────────────────────────────────────
         sections: dict[str, list[str]] = {
@@ -592,14 +641,9 @@ class AIPipeline:
 
         current_title = _clean_raw_title(current_title)
 
-        # Title extraction rebuild based on priority: headline -> latest role -> summary -> ontology inference
-        raw_title = None
-        normalized_title = None
-        title_confidence = 0
-
-        # Try to extract title directly from early text lines (headline)
+        # Priority 1: Headline
         headline_title = ""
-        for line in lines[:8]:
+        for line in lines[:15]:
             if line.strip() == name: continue
             cleaned = _clean_raw_title(line[:100])
             tn = _normalize_title(cleaned)
@@ -607,27 +651,28 @@ class AIPipeline:
                 headline_title = tn["normalized"]
                 break
 
-        # Priority 1: Headline
+        raw_title = None
+        normalized_title = None
+        title_confidence = 0.0
+
         if headline_title:
             raw_title = headline_title
-            title_confidence = 90
-        # Priority 2: Latest Role
+            title_confidence = 0.90
         elif career_history and career_history[0].get('title'):
             raw_title = career_history[0].get('title')
-            title_confidence = 80
-        # Priority 3: Summary
+            title_confidence = 0.85
         elif sections["Summary"]:
             summary_text = " ".join(sections["Summary"])
             tn = _normalize_title(summary_text[:200])
             if tn["match_method"] != "none":
                 raw_title = tn["normalized"]
-                title_confidence = 70
-        # Priority 4: Ontology Inference
+                title_confidence = 0.70
+
         if not raw_title and skill_results:
             top_cat = max([s.get("category") for s in skill_results if s.get("category")], default="", key=lambda c: sum(1 for x in skill_results if x.get("category") == c))
             if top_cat:
                 raw_title = f"{top_cat} Specialist"
-                title_confidence = 50
+                title_confidence = 0.50
 
         if raw_title:
             title_norm = _normalize_title(raw_title)
@@ -781,6 +826,10 @@ class AIPipeline:
             "projects": [],
             "career_gaps": [],
             "trajectory_events": [],
+            "name_confidence": name_confidence,
+            "title_confidence": title_confidence,
+            "skill_confidence": min(1.0, len(skill_results) / 20.0),
+            "overall_confidence": round((name_confidence + title_confidence + min(1.0, len(skill_results) / 20.0)) / 3.0, 2),
             "career_graph": {
                 "total_years": total_years,
                 "relevant_years": relevant_years,

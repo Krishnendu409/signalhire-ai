@@ -1,0 +1,16 @@
+filename,skill_count,confidence,skills
+ENGINEERING_14206561.pdf,2,0.1,Microsoft Office | Excel
+ENGINEERING_15139979.pdf,3,0.15,Project Management | C | R
+ENGINEERING_44624796.pdf,2,0.1,Project Management | Excel
+FINANCE_11877150.pdf,2,0.1,C | Excel
+FINANCE_26530575.pdf,2,0.1,Excel | STA
+FINANCE_86549455.pdf,3,0.15,Project Management | Data Analysis | R
+HR_16852973.pdf,3,0.15,Data Analysis | Swift | ADS
+HR_22323967.pdf,3,0.15,Microsoft Office | Project Management | R
+HR_33176873.pdf,4,0.2,Project Management | C | Excel | Agents
+INFORMATION-TECHNOLOGY_21780877.pdf,1,0.05,Project Management
+INFORMATION-TECHNOLOGY_33241454.pdf,1,0.05,Excel
+INFORMATION-TECHNOLOGY_36856210.pdf,2,0.1,HTML | Linux
+SALES_27607632.pdf,2,0.1,SAP | Excel
+SALES_33578873.pdf,2,0.1,C | ADS
+SALES_87118391.pdf,1,0.05,Excel
