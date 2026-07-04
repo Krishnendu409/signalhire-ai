@@ -1,6 +1,0 @@
-feature,severity,reason
-Compare Candidates,High,UI exists but API endpoint / logic is missing
-Search Candidates,Medium,Frontend filter logic missing
-Export Results,Low,Not implemented
-Transferable Skills,Medium,Explanation engine does not highlight adjacent tech
-Metric Reproducibility,Medium,No reproducible script for original precision claims

@@ -1,3 +1,0 @@
-resume_id,missing_skill,source_text,why_missed,recommended_fix
-bfaf78e4-2f22-4bb8-86d3-ab45ef634091,project management,managed engineering projects,noun-verb inversion in summary,expand alias matching to noun forms
-fb8df965-b7ea-49d0-9352-72b89dc75a74,safety compliance,Kept a clean and safe work environment.,semantic gap,add semantic similarity scoring

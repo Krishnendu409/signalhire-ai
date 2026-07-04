@@ -1,0 +1,22 @@
+# Redrob "Senior AI Engineer" candidate ranker — dependencies
+#
+# The ranking step (rank.py) only needs numpy + pandas + scikit-learn (CPU, no network).
+# The one-time offline precompute (offline_embedder.py) additionally needs
+# sentence-transformers + torch. lightgbm is only for the exploratory study
+# (final_ranking_experiment.py). fastapi/uvicorn are for the demo server.
+
+# --- ranking runtime (required to reproduce submission.csv) ---
+numpy==1.26.4
+pandas==2.3.3
+scikit-learn==1.5.2
+
+# --- offline embedding precompute (candidate_embeddings.npy, jd_embedding.npy) ---
+sentence-transformers==5.5.0
+torch==2.12.0
+
+# --- exploratory LightGBM study (optional) ---
+lightgbm>=4.0,<5.0
+
+# --- demo API server (optional) ---
+fastapi==0.115.14
+uvicorn==0.29.0

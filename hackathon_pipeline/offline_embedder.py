@@ -1,13 +1,17 @@
+import argparse
 import json
 import time
 import os
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
+import jd_config
 
-def process_candidates(input_path, output_path):
-    print("Loading all-MiniLM-L6-v2 model (optimized for CPU)...")
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+
+def process_candidates(input_path, output_path, model=None):
+    if model is None:
+        print("Loading all-MiniLM-L6-v2 model (optimized for CPU)...")
+        model = SentenceTransformer('all-MiniLM-L6-v2')
 
     embeddings = []
     ids = []
@@ -83,8 +87,24 @@ def process_candidates(input_path, output_path):
     np.save("candidate_ids.npy", np.array(ids))
 
 
+def process_jd(model, jd_emb_path="jd_embedding.npy"):
+    """Precompute the JD embedding (same model/space as candidates) so the ranking step needs
+    no network. run_ranking.py loads this instead of encoding the JD at rank time."""
+    emb = model.encode([jd_config.JD_EMBED_TEXT])[0].astype(np.float32)
+    np.save(jd_emb_path, emb)
+    print(f"Saved JD embedding to {jd_emb_path} (dim {emb.shape[0]}).")
+
+
 if __name__ == "__main__":
-    input_file = r"C:\Users\krish\Downloads\signalhire-ai-master (3)\signalhire-ai-master\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl"
-    
-    output_file = "candidate_embeddings.npy"
-    process_candidates(input_file, output_file)
+    ap = argparse.ArgumentParser(description="Precompute candidate + JD embeddings (offline step)")
+    default_in = "../candidates.jsonl" if os.path.exists("../candidates.jsonl") else \
+        r"C:\Users\krish\Documents\signalhire\candidates.jsonl"
+    ap.add_argument("--candidates", default=default_in)
+    ap.add_argument("--out", default="candidate_embeddings.npy")
+    ap.add_argument("--jd-out", default="jd_embedding.npy")
+    args = ap.parse_args()
+
+    print("Loading all-MiniLM-L6-v2 model (optimized for CPU)...")
+    model = SentenceTransformer("all-MiniLM-L6-v2")
+    process_candidates(args.candidates, args.out, model=model)
+    process_jd(model, args.jd_out)

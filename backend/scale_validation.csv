@@ -1,4 +1,0 @@
-resumes,parse_time,ranking_time,memory_usage,api_latency
-10,12s,0.5s,45MB,40ms
-50,55s,1.2s,110MB,45ms
-100,115s,2.1s,205MB,52ms

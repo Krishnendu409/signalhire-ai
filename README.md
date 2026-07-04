@@ -1,201 +1,194 @@
 <div align="center">
-  
-# 🎯 SignalHire AI: Redrob Intelligent Candidate Discovery
-**Modeling Recruiter Judgment through 5 Dimensions of Technical and Behavioral Fit**
 
-[![Python](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
-[![LightGBM](https://img.shields.io/badge/LightGBM-4.6.0-green.svg)](https://lightgbm.readthedocs.io/)
-[![Sentence Transformers](https://img.shields.io/badge/Sentence_Transformers-5.5.1-yellow.svg)](https://sbert.net/)
-[![Next.js](https://img.shields.io/badge/Next.js-UI-black.svg)](https://nextjs.org/)
+# SignalHire AI
+### Recruiter-grade candidate ranking, built for the Redrob Intelligent Candidate Discovery & Ranking Challenge
+
+[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688.svg)](https://fastapi.tiangolo.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.2-black.svg)](https://nextjs.org/)
+[![Sentence Transformers](https://img.shields.io/badge/MiniLM-Embeddings-yellow.svg)](https://sbert.net/)
 
 </div>
 
 ---
 
-## 🚀 Overview
+## What this is
 
-**SignalHire AI** is a cutting-edge retrieval and ranking pipeline built specifically for the *Redrob Intelligent Candidate Discovery & Ranking Challenge*. 
+Given a job description and a pool of **100,000** candidate profiles, rank the best 100 — in
+under 5 minutes, on CPU only, with no network access — while resisting a dataset deliberately
+seeded with keyword-stuffed profiles and ~80 "honeypot" candidates with internally impossible
+resumes (e.g. "expert" skills with 0 months used, tenure longer than the company has existed).
 
-Instead of relying purely on semantic similarity—which is highly vulnerable to keyword stuffing and honeypot profiles—SignalHire AI explicitly models **Recruiter Judgment** through five dimensions:
-1. **Technical Fit** (Retrieval, Ranking, Vector DBs, Evaluation)
-2. **Startup Readiness** (Ownership, Cross-functional experience)
-3. **Candidate Authenticity** (LLM-Artifact Detection, Multi-Profile Consistency)
-4. **Hireability** (Response rates, Notice periods, Recency)
-5. **Behavioral Reliability** (Role Progression Slope, Leadership momentum)
+This repo has **two parts**:
 
-The system is designed strictly for offline, CPU-constrained execution, maintaining full forensic dataset scanning within the 5-minute wall-clock limit. We extract **22 recruiter-aligned features** prior to LightGBM lambda-rank scoring.
-
----
-
-## 📈 How We Improved Candidate Quality
-
-During development, we actively audited the candidate pool to identify and resolve systemic retrieval and ranking failures.
-
-**JD Truncation Fix**
-* **Problem:** 88.4% of the Job Description was initially unseen by the embedding model due to 256-token limits.
-* **Solution:** Implemented **Top-5 Mean Chunking**.
-* **Result:** Search engineers immediately surfaced to the top of the pool.
-
-**Retrieval Recall Fix**
-* **Problem:** Lexical retrieval was dropping candidates whose experience lived in project descriptions rather than titles.
-* **Solution:** **Expanded BM25 Corpus** to include `skills`, `career_history`, and `experience_descriptions`.
-
-**Feature Contamination Fix**
-* **Problem:** Marketing Managers were triggering false positives for "Production ML" based on ambiguous keywords.
-* **Solution:** **Production ML redesign**—transitioned from keyword existence to strict ML-production evidence (e.g., `model serving`, `inference latency`, `feature store`).
-
-**Pseudo-label Redesign**
-* **Problem:** Initial pseudo-labels were noisy, causing high-quality candidates to be suppressed.
-* **Solution:** **Model C formulation** implemented, completely reshaping the label generation logic.
-* **Result:** 
-  * 18/20 Specialist Penetration
-  * Zero unexplained rejections in the Top 20
-  * Cleanest candidate representation yet
+| | Path | Purpose |
+|---|---|---|
+| 🏆 | [`hackathon_pipeline/`](hackathon_pipeline/) | The actual graded submission — a deterministic, offline, reproducible ranking pipeline |
+| 🖥️ | [`backend/`](backend/) + [`frontend/`](frontend/) | An interactive full-stack demo product that showcases the same ranking approach through a real UI |
 
 ---
 
-## 🛠️ Complete Setup Instructions (For Beginners)
+## How the ranking actually works
 
-If you are new to programming, don't worry! Follow these step-by-step instructions to get the AI pipeline running on your own computer.
+Modern semantic search alone is trivially gamed by keyword stuffing. The pipeline instead models
+what a recruiter actually does: **retrieve broadly, then judge narrowly.**
 
-### Step 1: Install Python
-You need Python installed on your computer to run the AI models.
-1. Go to the [Python Downloads Page](https://www.python.org/downloads/).
-2. Download the latest version of Python (3.11 or higher is recommended).
-3. **Important for Windows Users:** During the installation, make sure to check the box that says **"Add Python to PATH"** before clicking Install.
+1. **Hybrid retrieval.** Precomputed MiniLM (`all-MiniLM-L6-v2`) dense embeddings over each
+   candidate's headline, summary, and career trajectory are fused with a TF-IDF/BM25 lexical score
+   using **Reciprocal Rank Fusion** (`k=60`). Dense and lexical search have complementary blind
+   spots — BM25 nails rare exact tokens ("FAISS", "Qdrant"), dense embeddings catch paraphrase
+   ("built a recommender system") — so both run and get fused, rather than picking one.
+2. **Transparent, deterministic re-ranking.** No black-box learned model. A weighted scoring
+   function combines JD-relative title/role fit, a rare retrieval/vector-DB specialist-skill
+   signal, semantic similarity, seniority alignment, **skill authenticity** (endorsements + months
+   actually used — not just whether a keyword appears), behavioural availability (recruiter
+   response rate, activity recency, notice period), location fit, and
+   product-vs-consulting-vs-research signals.
+3. **Trap penalties.** Off-domain title-holders with stuffed AI/technical keywords (HR Manager,
+   Accountant, Content Writer), CV/speech-only profiles, and research-only profiles are explicitly
+   down-ranked.
+4. **Honeypot integrity gate.** A rule-based checker hard-flags profiles that are internally
+   impossible — expert-level skills with zero months of use, total tenure exceeding stated years of
+   experience, overlapping/contradictory employment dates — and demotes them below every legitimate
+   candidate. Result: **0 honeypots surfaced in the top 100.**
+5. **Grounded, per-candidate reasoning.** Every ranked candidate gets an explanation citing their
+   actual title, years of experience, and only the skills they actually list — no hallucinated
+   claims.
 
-### Step 2: Download the Project
-1. Open your computer's terminal (Command Prompt or PowerShell on Windows, Terminal on Mac).
-2. Clone this repository to your computer by typing:
-   ```bash
-   git clone https://github.com/Krishnendu409/signalhire-ai.git
-   ```
-3. Move into the project folder:
-   ```bash
-   cd signalhire-ai
-   ```
+A learned ranker (LightGBM LambdaRank) was evaluated and deliberately **not** used for the
+submission: there's no ground-truth relevance data for this dataset, so training against
+pseudo-labels derived from the heuristic itself would be circular and produce uncalibrated,
+undefensible scores. The transparent heuristic is the actual scoring method — see
+[`hackathon_pipeline/RESEARCH_NOTES.md`](hackathon_pipeline/RESEARCH_NOTES.md) for the full
+research trail behind every design decision.
 
-### Step 3: Install Required Packages
-The AI relies on several external libraries (like `pandas` for data and `lightgbm` for ranking). You need to install them.
-Run this command in your terminal:
+**Verified results** (see [`hackathon_pipeline/README.md`](hackathon_pipeline/README.md) for the
+exact reproduction steps): 100,000 candidates evaluated → ~8,000 retrieved by hybrid search → top
+100 ranked and scored, end-to-end in **30–50 seconds**, CPU-only, 0 honeypots in the top 100.
+
+---
+
+## Screenshots
+
+<table>
+<tr>
+<td><img src="screenshots/0_landing_page.png" alt="Landing page" width="400"/></td>
+<td><img src="screenshots/1_workspace.png" alt="Candidate workspace" width="400"/></td>
+</tr>
+<tr>
+<td align="center"><sub>Landing page</sub></td>
+<td align="center"><sub>Candidate workspace — evidence-driven review</sub></td>
+</tr>
+<tr>
+<td><img src="screenshots/analytics_100k_v2.png" alt="Analytics dashboard" width="400"/></td>
+<td><img src="screenshots/pipeline_page.png" alt="100k pipeline run" width="400"/></td>
+</tr>
+<tr>
+<td align="center"><sub>Analytics — retrieval funnel & rejection reasons</sub></td>
+<td align="center"><sub>Live 100k-candidate pipeline run</sub></td>
+</tr>
+</table>
+
+---
+
+## Quick start
+
+### Reproduce the challenge submission
+
 ```bash
-pip install pandas numpy scikit-learn lightgbm sentence-transformers
+cd hackathon_pipeline
+python -m pip install -r requirements.txt
+
+# One-time offline precompute (embeddings)
+python offline_embedder.py --candidates ../candidates.jsonl
+
+# The actual reproduce command — CPU-only, no network, ~30s
+python rank.py --candidates ../candidates.jsonl --out submission.csv
+
+# Validate against the official spec
+python "../[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/validate_submission.py" submission.csv
 ```
-*(Depending on your computer, you might need to use `pip3` instead of `pip`)*
 
-### Step 4: Add the Hackathon Dataset
-1. Ensure you have the hackathon dataset folder named `[PUB] India_runs_data_and_ai_challenge`.
-2. Place this folder directly next to or inside the `signalhire-ai` folder so the pipeline can read `candidates.jsonl` and `job_description.docx`.
+> `candidates.jsonl` (the 100k-candidate dataset) is not committed to this repo — it's a ~450MB
+> file supplied separately by the challenge. Place it at the repo root before running the above.
 
----
+### Running the interactive demo
 
-## 🏃 Running the AI Pipeline
+The demo product is a separate FastAPI + Next.js app that runs the same ranking approach against
+a live SQLite-backed candidate database, with a full recruiter-facing UI.
 
-The pipeline is split into two parts: an **Offline** preparation step and an **Online** ranking step.
+**Windows:** just run `start.bat` from the repo root — it launches both servers.
 
-### Part 1: Offline Preparation (Run this ONCE)
-This step reads all 100,000 candidates and converts their text into mathematical vectors (embeddings), and then trains the AI model on what makes a "good" candidate.
-1. In your terminal, run the embedder:
-   ```bash
-   python hackathon_pipeline/offline_embedder.py
-   ```
-   *(Note: This process reads 100,000 candidates and calculates deep AI vectors using just your CPU. It may take 1-2 hours depending on your computer's speed. Let it run until it finishes!)*
-   
-2. Next, train the Ranker AI model:
-   ```bash
-   python hackathon_pipeline/train_lightgbm.py
-   ```
-   *(This step takes about 1 minute. It generates a file called `lgbm_ranker.txt`)*
+**Manual setup:**
 
-### Part 2: Online Ranking (The Fast Challenge)
-Once the offline setup is complete, you can run the final ranking engine. This part simulates the hackathon's 5-minute constraint. It quickly searches the 100,000 candidates, extracts our 22 recruiter features, filters out fake profiles, and scores the Top 100.
-1. Run the ranking script:
-   ```bash
-   python hackathon_pipeline/run_ranking.py
-   ```
-2. **Success!** Within seconds, this will generate a file named `submission.csv` in your folder. This file contains the Top 100 candidates ranked from 1 to 100, complete with scores and detailed AI-generated recruiter explanations for *why* they were chosen.
+```bash
+# Backend (FastAPI, port 8000)
+cd backend
+python -m venv .venv && .venv\Scripts\activate   # or source .venv/bin/activate on macOS/Linux
+pip install -r requirements.txt
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
 
-### Part 3: Running the Next.js Frontend Dashboard (Optional)
-We built a beautiful frontend visualization to view your `submission.csv` results directly in the browser!
-1. Install Node.js from the [Node.js Downloads Page](https://nodejs.org/).
-2. In your terminal, move into the `frontend` directory:
-   ```bash
-   cd frontend
-   ```
-3. Install frontend dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the dashboard:
-   ```bash
-   npm run dev
-   ```
-5. Open your web browser and go to `http://localhost:3000` to interact with the Next.js Dashboard!
+# Frontend (Next.js, port 3000) — in a second terminal
+cd frontend
+npm install
+npm run dev
+```
+
+Then open `http://localhost:3000`.
+
+### Backend API surface
+
+| Method | Path | Description |
+|---|---|---|
+| `POST` | `/api/pipeline/run-100k` | Kick off a full 100k-candidate ranking run in the background |
+| `GET` | `/api/pipeline/100k-status` | Poll run progress/stage |
+| `GET` | `/api/pipeline/100k-results` | Fetch the completed top-100 results + analytics |
+| `POST` | `/api/jobs` | Create a job (JD) investigation |
+| `GET` | `/api/jobs/default` | Fetch the default showcase job |
+| `GET` | `/api/rankings/{job_id}/latest` | Fetch the latest ranking for a job |
+| `POST` | `/api/candidates/upload` | Upload candidate resumes |
+| `GET` | `/api/candidates/search` | Search the candidate pool |
+| `POST` | `/api/feedback` | Submit recruiter feedback on a ranking |
 
 ---
 
-## ✨ Key Features & Architecture Details
-
-For technical judges, here is how the engine actually works under the hood:
-
-### 🛡️ 1. Dataset Forensics & Consistency Engine
-We don't just match keywords; we detect deception.
-*   **Identity Consistency Score:** Cross-references headlines, summaries, and career history to find contradictions.
-*   **Timeline Integrity:** Validates mathematical discrepancies between stated years of experience and actual chronologies.
-*   **LLM Synthetic Generation Artifacts:** Identifies generated honeypots using a statistical penalty for known LLM-isms (e.g., *"delve"*, *"tapestry"*).
-*   **Skill Inflation Penalty:** Penalizes profiles listing 50+ "Expert" skills with low actual experience.
-
-### 🧠 2. JD-Specific Alignment Scoring
-We built 22 handcrafted recruiter heuristics precisely mapped to the JD:
-*   `retrieval_experience_score`
-*   `ranking_experience_score`
-*   `vector_db_score`
-*   `evaluation_framework_score`
-*   `production_ml_score`
-*   `profile_completeness`
-*   `avg_skill_assessment`
-*   `trust_score`
-
-*Mentions in current roles are mathematically weighted higher than mentions 10 years ago.*
-
-### ⚡ 3. Hybrid Retrieval Funnel
-To ensure zero high-quality candidates fall through the cracks, we use a massive union strategy:
-*   **Top 5,000 via Semantic Similarity** (`all-MiniLM-L6-v2`)
-*   **Top 5,000 via Lexical BM25** (TF-IDF approximation)
-*   **Heavy Feature Extraction** runs on the deduplicated 10,000 candidate union.
-
-### 🎯 4. Deterministic LightGBM LambdaRank
-Instead of training our Ranker on generic pseudo-labels, we train LightGBM `lambdarank` against our **Handcrafted Recruiter Score** ground truth. This forces the model to learn the critical, non-linear interactions between technical capability and candidate authenticity.
-
-### 💬 5. SHAP-Inspired NLG Reasoning
-Explanations are generated dynamically by reading the extremity of the underlying feature vectors for each candidate.
-*   *Example Output:* `"Extensive background building retrieval and ranking systems with production vector-search infrastructure. Exceptional recruiter engagement signals and hireability."*
-
----
-
-## 📁 Repository Structure
+## Repository structure
 
 ```text
 signalhire-ai/
-├── backend/                  # FastAPI backend for the recruiting system
-│   ├── app/                  # Core application logic, models, and endpoints
-│   ├── requirements.txt      # Python dependencies
-│   └── run_server.py         # Entry point for backend server
-├── frontend/                 # Next.js React frontend 
-│   ├── src/app/              # UI pages (Landing, Workspace)
-│   ├── src/components/       # Reusable React components
-│   ├── src/store/            # Zustand state management (workspace data)
-│   └── package.json          # Node dependencies
-├── hackathon_pipeline/       # Offline data processing & ranking pipeline
-│   ├── offline_embedder.py   # Step 1: Pre-compute semantic embeddings
-│   ├── train_lightgbm.py     # Step 2: Train the ranking model
-│   └── run_ranking.py        # Step 3: Run full pipeline & generate submission
-├── final_validation.md       # Audit documentation of architecture evolution
-└── README.md                 # Setup and architecture documentation
+├── hackathon_pipeline/            # The graded submission — offline, reproducible ranking
+│   ├── offline_embedder.py        # Step 1: precompute MiniLM embeddings over 100k candidates
+│   ├── rank.py                    # Step 2: the actual reproduce entrypoint → submission.csv
+│   ├── run_ranking.py             # Core ranking logic (hybrid retrieval + weighted re-rank)
+│   ├── feature_extractor.py       # Recruiter-aligned feature extraction + honeypot detection
+│   ├── jd_config.py               # Single source of truth for the target job description
+│   ├── engine.py                  # Deterministic scoring re-implemented for the demo backend
+│   ├── RESEARCH_NOTES.md          # IR/ranking research trail behind every design decision
+│   └── submission.csv             # Latest generated top-100 submission
+├── backend/                       # FastAPI demo product
+│   ├── app/api/                   # Route handlers (jobs, candidates, rankings, pipeline)
+│   ├── app/services/              # Ranking, parsing, storage, audit services
+│   └── app/models/                # SQLAlchemy models
+├── frontend/                      # Next.js 16 + React 19 recruiter UI
+│   ├── src/app/                   # Pages (landing, new search, workspace, analytics, reports)
+│   ├── src/components/            # Shared UI components
+│   ├── src/lib/                   # API clients
+│   └── src/store/                 # Zustand state (workspace candidates, rankings)
+├── [PUB] India_runs_data_and_ai_challenge/   # Official challenge brief & validator (read-only)
+├── screenshots/                   # Product screenshots
+└── submission_metadata.yaml       # Official challenge submission metadata
 ```
+
+---
+
+## Tech stack
+
+- **Ranking pipeline:** Python, `sentence-transformers` (MiniLM), scikit-learn (TF-IDF/BM25), NumPy/Pandas
+- **Backend:** FastAPI, SQLAlchemy, SQLite
+- **Frontend:** Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS, Zustand, Framer Motion
 
 ---
 
 <div align="center">
-<i>Built to find the safe business investment.</i>
+<sub>Built for the Redrob Intelligent Candidate Discovery & Ranking Challenge.</sub>
 </div>

@@ -1,9 +1,0 @@
-category,score,notes
-Parser,90,Deterministic and accurate with updated ontology. Slow due to LLM fallback.
-Ranking,95,Math fixed. High NDCG.
-Transferability,30,Static map only maps a few skills. Missing broad taxonomy understanding.
-Explainability,95,Zero hallucinations. Clear match/missing arrays.
-UX,85,Functional and clean. Needs bulk upload indicator.
-Workflow,80,Slow processing time for large batches.
-Deployment,70,Docker ready but needs CI/CD.
-Reliability,85,Stable since math fix.

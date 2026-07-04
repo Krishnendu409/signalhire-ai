@@ -3,7 +3,7 @@ import asyncio
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import jobs, candidates, rankings, tasks, feedback
+from app.api import jobs, candidates, rankings, tasks, feedback, pipeline
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("signalhire")
@@ -41,6 +41,7 @@ app.include_router(candidates.router, prefix="/api/candidates", tags=["candidate
 app.include_router(rankings.router, prefix="/api/rankings", tags=["rankings"])
 app.include_router(tasks.router, prefix="/api/tasks", tags=["tasks"])
 app.include_router(feedback.router, prefix="/api/feedback", tags=["feedback"])
+app.include_router(pipeline.router, prefix="/api/pipeline", tags=["pipeline"])
 
 @app.get("/api/health")
 async def health_check():

@@ -13,6 +13,9 @@ import {
   fetchLatestJobId,
   fetchWorkspaceData,
   pollWorkspaceData,
+  fetch100kWorkspaceData,
+  trigger100kPipeline,
+  getPipelineStatus,
 } from "@/lib/workspace-client";
 
 function WorkspaceContent() {
@@ -27,6 +30,7 @@ function WorkspaceContent() {
   const [queueTab, setQueueTab] = useState<"shortlist" | "rejected">("shortlist");
   const [isLoading, setIsLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [pipelineStatus, setPipelineStatus] = useState<string | null>(null);
 
   const {
     candidates,
@@ -58,31 +62,62 @@ function WorkspaceContent() {
     .filter((c) => (queueTab === "shortlist" ? !c.isLowMatch : c.isLowMatch))
     .sort((a, b) => a.rank - b.rank);
 
-  // Redirect to latest investigation when opened without an id
+  // When no invId: first try 100k pipeline results, then fall back to latest job
   useEffect(() => {
     if (invId) return;
     let active = true;
     setIsLoading(true);
-    fetchLatestJobId().then((latestId) => {
-      if (!active) return;
-      if (latestId) {
-        router.replace(`/workspace?id=${latestId}`);
-      } else {
-        setIsLoading(false);
-        setLoadError("No investigations yet. Run one from New Investigation.");
+
+    (async () => {
+      try {
+        // Try 100k pipeline first
+        const pipelineData = await fetch100kWorkspaceData();
+        if (!active) return;
+        if (pipelineData.status === 'completed' && pipelineData.candidates.length > 0) {
+          setCandidates(pipelineData.candidates);
+          setRankingMetadata({
+            totalEvaluated: pipelineData.metadata.totalEvaluated,
+            retrieved: pipelineData.metadata.totalEvaluated,
+            ranked: pipelineData.metadata.ranked,
+            shortlisted: pipelineData.metadata.shortlisted,
+            featuresExtracted: 8,
+            model: '100k Hybrid Pipeline',
+            jdTitle: pipelineData.metadata.jdTitle,
+            skills: {},
+            signals: [],
+            rejections: [],
+          });
+          setSelectedCandidate(null);
+          setIsLoading(false);
+          return;
+        }
+      } catch { /* fall through */ }
+
+      // Fall back to latest job investigation
+      try {
+        const latestId = await fetchLatestJobId();
+        if (!active) return;
+        if (latestId) {
+          router.replace(`/workspace?id=${latestId}`);
+        } else {
+          setIsLoading(false);
+          setLoadError('No investigations yet. Run the 100k pipeline or create a new investigation.');
+        }
+      } catch {
+        if (active) {
+          setIsLoading(false);
+          setLoadError('Cannot reach backend. Start the API on port 8000.');
+        }
       }
-    }).catch(() => {
-      if (active) {
-        setIsLoading(false);
-        setLoadError("Cannot reach backend. Start the API on port 8000.");
-      }
-    });
+    })();
+
     return () => { active = false; };
-  }, [invId, router]);
+  }, [invId, router, setCandidates, setRankingMetadata, setSelectedCandidate]);
 
   // Load data from backend on mount or when invId changes
   useEffect(() => {
     if (!invId) return;
+    const id = invId;
 
     let active = true;
 
@@ -91,13 +126,13 @@ function WorkspaceContent() {
       setLoadError(null);
 
       try {
-        let data = await fetchWorkspaceData(invId);
+        let data = await fetchWorkspaceData(id);
 
         if (!active) return;
 
         if (data.status === 'not_found' || data.status === 'failed') {
           const fallbackId = await fetchDefaultJobId();
-          if (fallbackId && fallbackId !== invId) {
+          if (fallbackId && fallbackId !== id) {
             router.replace(`/workspace?id=${fallbackId}`);
             return;
           }
@@ -107,7 +142,7 @@ function WorkspaceContent() {
         }
 
         if (data.status !== 'completed' || data.candidates.length === 0) {
-          data = await pollWorkspaceData(invId);
+          data = await pollWorkspaceData(id);
           if (!active) return;
         }
 
@@ -167,6 +202,38 @@ function WorkspaceContent() {
           <span><span className="text-[#A3A3A3]">Pool:</span> {rankingMetadata?.totalEvaluated?.toLocaleString() || "--"}</span>
           <span><span className="text-[#A3A3A3]">Ranked:</span> {rankingMetadata?.ranked?.toLocaleString() || "--"}</span>
           <span className="text-[#22C55E] font-bold">Shortlisted: {rankingMetadata?.shortlisted?.toLocaleString() || "--"}</span>
+          <button 
+            onClick={async () => {
+              if (pipelineStatus) return;
+              setPipelineStatus("Starting...");
+              await trigger100kPipeline();
+              const poll = setInterval(async () => {
+                const data = await getPipelineStatus();
+                if (data.status === "completed") {
+                  clearInterval(poll);
+                  setPipelineStatus(null);
+                  router.replace("/workspace");
+                  window.location.href = "/workspace";
+                } else if (data.status === "failed") {
+                  clearInterval(poll);
+                  setPipelineStatus("Failed");
+                } else {
+                  setPipelineStatus(data.stage || "Running...");
+                }
+              }, 2000);
+            }}
+            disabled={!!pipelineStatus}
+            className="ml-2 bg-[#22C55E] text-black px-3 py-1 rounded font-bold hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center gap-2"
+          >
+            {pipelineStatus ? (
+              <>
+                <Loader2 className="w-3 h-3 animate-spin" />
+                {pipelineStatus}
+              </>
+            ) : (
+              "Run 100k Pipeline"
+            )}
+          </button>
         </div>
       </div>
 

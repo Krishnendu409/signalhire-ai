@@ -1,3 +1,0 @@
-classification,description
-F. Parser architecture fundamentally insufficient,The deterministic parser uses brittle array indexing (lines[:6]) for names and naive regex boundaries for skills. It fundamentally cannot handle the variance of PDF layouts without an LLM/ML layer.
-RECOMMENDATION,RESTORE GEMINI

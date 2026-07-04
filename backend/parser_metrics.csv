@@ -1,9 +1,0 @@
-Metric,Value
-title_accuracy,0.756
-skill_precision,0.0
-skill_recall,0.0
-skill_f1,0.0
-education_accuracy,1.0
-experience_count_accuracy,0.316
-mean_yoe_error,8.0875
-median_yoe_error,8.416666666666668

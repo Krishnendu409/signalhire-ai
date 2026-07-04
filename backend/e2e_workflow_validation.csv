@@ -1,7 +1,0 @@
-step,api_request,api_response,status_code,database_change,frontend_behavior,screenshot_path,execution_log
-Create Job,POST /jobs,"{""job_id"": 1}",201,INSERT INTO jobs,Redirects to /upload,screenshots/1_frontend_upload.png,Job created successfully
-Upload Resume,POST /upload,"{""task_id"": ""abc""}",202,INSERT INTO uploads,Shows loading bar,screenshots/1_search_upload.png,Upload accepted
-Wait For Parse,GET /tasks/abc,"{""status"": ""completed""}",200,UPDATE uploads status=COMPLETED,Redirects to /workspace,screenshots/2_frontend_processing.png,Parse completed in 1.1s
-Open Candidate,GET /candidates/1,"{""id"": 1, ""skills"": [...]}",200,None,Renders Candidate Card,screenshots/1_workspace.png,Candidate profile loaded
-Run Ranking,POST /rank,"{""scores"": [...]}",200,INSERT INTO rankings,Reorders Candidate Cards,screenshots/2_search_processing.png,Ranked 5 candidates
-Open Explainability,GET /explain/1,"{""trace"": {...}}",200,None,Opens Explainability Modal,screenshots/2_reports.png,Rendered math trace

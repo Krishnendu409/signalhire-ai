@@ -1,7 +1,0 @@
-competitor,explainability,transferability,ranking_accuracy,candidate_discovery,auditability
-SignalHire,High (Transparent Match Arrays),Low (Static Map),High (Deterministic),Medium,High
-Greenhouse,Low,None,Medium,Low,Low
-Lever,Low,None,Medium,Low,Low
-Ashby,Medium,None,High,Medium,Medium
-Workday,Low,None,Low,Low,Low
-SmartRecruiters,Low,None,Low,Medium,Low

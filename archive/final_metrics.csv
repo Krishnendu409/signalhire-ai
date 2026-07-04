@@ -1,6 +1,0 @@
-metric,value
-title_accuracy,97.5%
-skill_precision,85.4%
-skill_recall,76.5%
-skill_f1,80.7%
-yoe_mae,0.50

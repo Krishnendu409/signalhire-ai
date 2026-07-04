@@ -13,44 +13,51 @@ github_repo: "https://github.com/Krishnendu409/signalhire-ai"
 sandbox_link: ""
 
 reproduce_command: >
-  python hackathon_pipeline/run_ranking.py
-  --candidates ./candidates.jsonl
-  --out ./submission.csv
+  cd hackathon_pipeline && python offline_embedder.py --candidates ../candidates.jsonl
+  && python rank.py --candidates ../candidates.jsonl --out submission.csv
 
 compute:
   platform: "local"
-  cpu_cores: 4
+  cpu_cores: 8
   ram_gb: 16
-  python_version: "3.11"
+  python_version: "3.12"
   os: "Windows / Linux"
   uses_gpu_for_inference: false
   has_network_during_ranking: false
   pre_computation:
     embeddings_precomputed: true
-    model_pretrained: true
+    model_pretrained: false
 
 ai_tools_used:
-  - "Gemini (code generation assistance)"
+  - "Claude (code generation, debugging, and research assistance)"
 
 ai_usage_summary: >
-  AI tools were used to assist with code generation, debugging, and
-  architectural design. All feature engineering logic, recruiter heuristics,
-  and ranking methodology were designed by the team.
+  Claude (Claude Code) was used as an engineering assistant: auditing the
+  existing pipeline, analysing the dataset, researching IR/ranking best
+  practices, and pair-writing/refactoring code. All design decisions, feature
+  definitions, weights, and honeypot rules were reviewed and validated by the
+  team against the real data. No candidate data was sent to any hosted LLM,
+  and the ranking step itself makes no network/API calls.
 
 methodology_summary: >
   SignalHire AI uses a multi-stage retrieval and ranking pipeline to discover
-  the top 100 candidates from 100k profiles. Stage 1 performs hybrid retrieval
-  using a union of semantic similarity (all-MiniLM-L6-v2 embeddings) and
-  lexical BM25 scoring, producing ~10k candidates. Stage 2 extracts 22
-  handcrafted recruiter features across 5 dimensions: Technical Fit (retrieval,
-  ranking, vector DB, evaluation framework experience), Startup Readiness,
-  Candidate Authenticity (career/timeline consistency, synthetic profile
-  detection), Hireability (notice period, response rate, recency), and
-  Behavioral Reliability (role progression, leadership). Stage 3 uses
-  LightGBM LambdaRank trained on deterministic pseudo-labels derived from
-  our recruiter scoring formula. The system detects keyword stuffers,
-  profile inconsistencies, and honeypot candidates before final ranking.
-  Runs entirely offline on CPU within 35 seconds.
+  the top 100 candidates from 100k profiles. Stage 1 performs hybrid retrieval:
+  precomputed MiniLM dense embeddings (headline + summary + career trajectory)
+  fused with a TF-IDF/BM25 lexical score via Reciprocal Rank Fusion (k=60).
+  Stage 2 extracts recruiter-aligned features across JD-relative fit
+  (title/role, a rare retrieval/vector-DB specialist-skill bonus, semantic
+  similarity, seniority), skill AUTHENTICITY (endorsements + months used, not
+  raw keyword count), behavioural availability (recruiter response, activity
+  recency, open-to-work, notice period), location fit, and
+  product-vs-consulting-vs-research signals. Stage 3 combines these into a
+  transparent, deterministic weighted score (not a trained model — there is
+  no ground-truth relevance data to train against, so a trained ranker's
+  scores would be uncalibrated and undefensible). Explicit penalties demote
+  off-domain keyword-stuffers and CV/speech-only or research-only profiles. A
+  rule-based integrity gate hard-flags impossible "honeypot" profiles (expert
+  skills with 0 months used, tenure exceeding career, date/duration
+  contradictions), giving 0 honeypots in the top 100. Runs entirely offline,
+  CPU-only, no network, in roughly 30-50 seconds over the full 100k pool.
 
 declarations:
   read_submission_spec: true

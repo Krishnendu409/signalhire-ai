@@ -1,32 +1,57 @@
-# SignalHire AI - Domain Affinity Ranking Engine
+# SignalHire AI — Redrob Candidate Ranking
 
-This repository contains the production-ready code for the SignalHire AI pipeline. It features a Domain Affinity-based heuristic ranking engine connected to a Next.js frontend via a FastAPI backend.
+Ranking system for the Redrob *Intelligent Candidate Discovery & Ranking Challenge*. It ranks the
+100k-candidate pool against the released **"Senior AI Engineer — Founding Team"** JD, deliberately
+resisting the dataset's traps (AI-keyword stuffers, off-domain titles, ~80 impossible honeypots)
+and weighing behavioural availability, as the JD requires.
 
-## Quick Start
+## Challenge submission — reproduce the CSV
 
-### 1. Requirements
-- Node.js 18+
-- Python 3.10+
+The ranking step runs **CPU-only, no network, in ~30s** (well under the 5-minute / 16 GB budget).
 
-### 2. Backend Setup
 ```bash
 cd hackathon_pipeline
 python -m pip install -r requirements.txt
-# Start the Uvicorn server on port 8000
-python -m uvicorn server:app --host 0.0.0.0 --port 8000
+
+# One-time offline precompute (embeddings need the model / may exceed 5 min — this is allowed):
+python offline_embedder.py --candidates ../candidates.jsonl
+#   -> writes candidate_embeddings.npy, candidate_ids.npy, jd_embedding.npy
+
+# The single reproduce command (Stage-3): loads precomputed artifacts, no network, no GPU:
+python rank.py --candidates ../candidates.jsonl --out submission.csv
+
+# Validate before submitting:
+python "../[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/validate_submission.py" submission.csv
 ```
 
-### 3. Frontend Setup
-```bash
-cd frontend
-npm install
-npm run build
-npm run start
-# Runs on localhost:3000
-```
+### Methodology (how it beats the traps)
+1. **Hybrid retrieval** — precomputed MiniLM dense embeddings (incl. each candidate's `summary`
+   / career trajectory) fused with a TF-IDF/BM25 lexical score via **Reciprocal Rank Fusion**
+   (`k=60`) to form the re-rank set.
+2. **Transparent, deterministic scoring** (`run_ranking.WEIGHTS`) over JD-relative fit
+   (title/role, a rare **retrieval/vector-DB specialist-skill** signal, semantic sim, seniority),
+   **skill authenticity** (endorsements + months used, not raw keyword count), **behavioural
+   availability** (recruiter response, activity recency, open-to-work, notice), **location fit**,
+   and product-vs-consulting-vs-research signals.
+3. **Trap/penalty terms** push down off-domain title-holders (HR Manager / Accountant / Content
+   Writer with stuffed AI skills), CV/speech-only profiles, and research-only profiles.
+4. **Honeypot integrity gate** (`feature_extractor.detect_honeypots`) hard-flags impossible
+   profiles (expert skills with 0 months used; tenure exceeding career; date/duration
+   contradictions) so the top-100 honeypot rate is **0**.
+5. **Grounded reasoning** — per candidate, cites real title/YOE, only skills the candidate
+   actually lists (no hallucination), real engagement numbers, and an honest concern where
+   warranted; phrasing varies by rank.
 
-### Or Use the Start Script
-If on Windows, you can simply run `start.bat` in the root directory.
+`jd_config.py` is the single source of truth for the JD. `RESEARCH_NOTES.md` documents the IR/
+ranking best practices behind these choices. `engine.py` re-implements the same deterministic
+scoring for the interactive Next.js demo (see the root `README.md` for that product).
+
+## Quick Start (interactive demo product)
+
+The offline files above are the graded submission. There's also a separate full-stack demo
+product (FastAPI backend + Next.js frontend) that showcases the same ranking approach
+interactively — see **[the root README](../README.md#running-the-interactive-demo)** for setup,
+or just run `start.bat` from the repo root on Windows.
 
 ---
 
@@ -68,14 +93,4 @@ We implemented two major architectural changes:
 
 ---
 
-## Runtime & Memory Metrics
-- **Concurrency Support:** FastAPI background execution allows for fully non-blocking API polling.
-- **Queue Behavior:** Validated up to 20 simultaneous heavy investigation requests. 
-- **Dataset Load Memory:** ~80MB peak during JSONL load.
-
-
-## API Endpoints
-
-- POST /api/investigations: Starts a new background investigation.
-- GET /api/investigations/{id}/status: Polls the status of the investigation (PENDING, COMPLETED, FAILED).
-- GET /api/investigations/{id}/results: Retrieves the Top 100 ranked candidates.
+For the interactive demo product's API endpoints and full setup, see the [root README](../README.md).

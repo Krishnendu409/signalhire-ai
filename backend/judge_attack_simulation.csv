@@ -1,6 +1,0 @@
-attack_vector,question,expected_evidence,current_evidence,strength_of_defense
-Parser Accuracy,How does this handle non-standard PDF structures?,Large diverse benchmark results,Validated on 500 random Kaggle resumes,Strong
-Ranking Fairness & Bias,How do you prevent bias against specific demographics?,De-identification architecture,"PII (Name, Location, Gender context) stripped strictly before semantic ranking layer",Very Strong
-Hallucinations,Does your AI invent skills like other GPT wrappers?,Ontology constraints,Deterministic Ontology matching guarantees 0% hallucination rate on extractions,Very Strong
-Scalability,"Can this handle 10,000 resumes at once?",Compute complexity mapping,O(ms) local embeddings instead of round-trip LLM API calls,Strong
-Explainability,Why did candidate X rank #1?,Clear decision matrices,UI explicitly renders YOE overlap + matched skills + skill gaps for every score,Very Strong

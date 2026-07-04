@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Fingerprint } from "lucide-react";
 
-type NavKey = "home" | "new" | "workspace";
+type NavKey = "home" | "new" | "workspace" | "analytics" | "reports";
 
 export function AppNav({ active = "workspace" }: { active?: NavKey }) {
   const linkClass = (key: NavKey) =>
@@ -20,6 +20,8 @@ export function AppNav({ active = "workspace" }: { active?: NavKey }) {
       <div className="hidden md:flex items-center gap-6">
         <Link className={linkClass("new")} href="/new">New search</Link>
         <Link className={linkClass("workspace")} href="/workspace">Shortlist</Link>
+        <Link className={linkClass("analytics")} href="/analytics">Analytics</Link>
+        <Link className={linkClass("reports")} href="/reports">Reports</Link>
       </div>
     </nav>
   );

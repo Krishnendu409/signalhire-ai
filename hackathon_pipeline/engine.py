@@ -4,6 +4,21 @@ import numpy as np
 import os
 import time
 
+
+def _resolve_dataset_path():
+    """Portable dataset resolution (the previous hardcoded absolute path broke on any other
+    machine and made the whole engine unloadable)."""
+    candidates = [
+        "../candidates.jsonl",
+        "candidates.jsonl",
+        "../[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/candidates.jsonl",
+    ]
+    for p in candidates:
+        if os.path.exists(p):
+            return p
+    return "candidates.jsonl"
+
+
 class RankingEngine:
     _df_cache = None
     def __init__(self, dataset_path=None):
@@ -18,6 +33,10 @@ class RankingEngine:
                 'quality_score': 1.00,
                 'consistency_penalty': -2.00
             },
+            # NOTE: these three families are a FROZEN v1 contract — engine consistency is derived
+            # via idxmax over every family, so adding a family here changes the scoring of the
+            # others and breaks the regression baselines. The actual challenge "AI Engineer" JD is
+            # ranked by the enhanced, separate pipeline in run_ranking.py, not by this frozen engine.
             "role_families": {
                 'Search Engineer': ['search', 'retrieval', 'relevance', 'ranking', 'nlp', 'machine learning', 'ai', 'data scientist', 'ml'],
                 'Frontend Engineer': ['frontend', 'ui', 'ux', 'client', 'web', 'javascript', 'react', 'angular', 'vue', 'front-end'],
@@ -30,8 +49,8 @@ class RankingEngine:
             },
             "trap_titles": ['marketing', 'sales', 'hr', 'recruiter', 'manager', 'project manager', 'product manager', 'analyst', 'support', 'executive', 'director', 'accountant']
         }
-        
-        self.dataset_path = dataset_path or r"C:\Users\krish\Downloads\signalhire-ai-master (3)\signalhire-ai-master\[PUB] India_runs_data_and_ai_challenge\India_runs_data_and_ai_challenge\candidates.jsonl"
+
+        self.dataset_path = dataset_path or _resolve_dataset_path()
         self._load_dataset()
 
     def _load_dataset(self):

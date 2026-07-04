@@ -20,8 +20,14 @@ __pycache__/
 # Local data & logs
 backend/signalhire.db
 backend/*.db
+backend/*.db-shm
+backend/*.db-wal
 logs/
 backend/error.log
+
+# Raw candidate dataset (too large for git; supply separately)
+candidates.jsonl
+*.jsonl
 
 # OS
 .DS_Store

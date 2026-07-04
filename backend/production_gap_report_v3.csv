@@ -1,6 +1,0 @@
-gap_type,description,impact_rank
-parser_weakness,Inconsistent table layout extraction in Finance resumes,1
-ontology_gap,"Missing specific modern frontend frameworks (e.g., Svelte)",2
-title_extraction_failure,Non-standard title formats miss in legacy industries,3
-experience_extraction_failure,Merged entries without clear date separation,4
-domain_specific_failure,Sales metric extraction misses quota achievements,5
